@@ -14,7 +14,7 @@ TagManager:
   - Player
   - Enemy
   - Obstacle
-  - 
+  - Door
   - 
   - 
   - 
@@ -40,6 +40,12 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Door
+    uniqueID: 3799311547
+    locked: 0
+  - name: Player
+    uniqueID: 2725457975
     locked: 0
   m_RenderingLayers:
   - Default

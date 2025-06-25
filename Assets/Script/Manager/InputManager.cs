@@ -12,17 +12,20 @@ namespace SGGames.Script.Managers
     {
         [SerializeField] private bool m_isAllowInput;
 
+        private Camera m_camera;
         private Vector2 m_movementInput;
+        private Vector3 m_worldMousePosition;
         private InputAction m_moveAction;
         
         public bool IsAllowInput => m_isAllowInput;
         public Action<Vector2> OnMoveInputUpdate;
+        public Action<Vector3> WorldMousePositionUpdate;
         
         private void Awake()
         {
             ServiceLocator.RegisterService<InputManager>(this);
             m_moveAction = InputSystem.actions.FindAction("Move");
-            
+            m_camera = Camera.main;
             EnableInput();
         }
 
@@ -32,8 +35,18 @@ namespace SGGames.Script.Managers
 
             m_movementInput = m_moveAction.ReadValue<Vector2>();
             OnMoveInputUpdate?.Invoke(m_movementInput);
-        }
 
+            m_worldMousePosition = ComputeWorldMousePosition();
+            WorldMousePositionUpdate?.Invoke(m_worldMousePosition);
+        }
+        
+        private Vector3 ComputeWorldMousePosition()
+        {
+            var mousePos = Input.mousePosition;
+            mousePos = m_camera.ScreenToWorldPoint(mousePos);
+            mousePos.z = 0;
+            return mousePos;    
+        }
         
         /// <summary>
         /// Enable player input
@@ -52,11 +65,6 @@ namespace SGGames.Script.Managers
         {
             m_isAllowInput = false;
             InputSystem.actions.Disable();
-        }
-        
-        private void OnDestroy()
-        {
-            ServiceLocator.UnregisterService<InputManager>();
         }
     }
 }

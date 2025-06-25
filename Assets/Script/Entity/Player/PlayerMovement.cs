@@ -1,4 +1,3 @@
-using System;
 using SGGames.Script.Core;
 using SGGames.Script.Data;
 using SGGames.Script.Managers;
@@ -8,15 +7,40 @@ namespace SGGames.Script.Entity
 {
     public class PlayerMovement : EntityMovement
     {
-        [Header("Player")]
+        [Header("Player")] 
+        [SerializeField] private float m_raycastDistance;
+        [SerializeField] private LayerMask m_obstacleLayerMask;
         [SerializeField] private PlayerData m_playerData;
+        
+        private BoxCollider2D m_boxCollider2D;
         
         private void Start()
         {
             var inputManager = ServiceLocator.GetService<InputManager>();
             inputManager.OnMoveInputUpdate += UpdateMoveInput;
-            
             m_moveSpeed = m_playerData.MoveSpeed;
+            m_boxCollider2D = GetComponent<BoxCollider2D>();
+            
+        }
+        
+        protected override void UpdateMovement()
+        {
+            if (CheckObstacle())
+            {
+                m_movementDirection = Vector2.zero;
+            }
+            base.UpdateMovement();
+        }
+
+        private bool CheckObstacle()
+        {
+            var hit = Physics2D.BoxCast(transform.position, m_boxCollider2D.size, 0, m_movementDirection,m_raycastDistance,m_obstacleLayerMask);
+            if (hit.collider != null)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         private void UpdateMoveInput(Vector2 moveInput)
@@ -24,10 +48,15 @@ namespace SGGames.Script.Entity
             m_movementDirection = moveInput;
         }
 
-        private void OnDestroy()
+        
+
+        private void OnDisable()
         {
             var inputManager = ServiceLocator.GetService<InputManager>();
-            inputManager.OnMoveInputUpdate -= UpdateMoveInput;
+            if (inputManager != null)
+            {
+                inputManager.OnMoveInputUpdate -= UpdateMoveInput;
+            }
         }
     }
 }
