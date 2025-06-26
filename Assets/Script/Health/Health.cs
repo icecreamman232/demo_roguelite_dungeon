@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using SGGames.Script.Entity;
 using UnityEngine;
@@ -17,6 +18,8 @@ namespace SGGames.Script.HealthSystem
         public float MaxHealth => m_maxHealth;
         public float CurrentHealth => m_currHealth;
         public bool IsInvincible => m_isInvincible;
+
+        public Action OnDeath;
         
         protected virtual void Awake()
         {
@@ -57,6 +60,7 @@ namespace SGGames.Script.HealthSystem
 
         protected virtual void Kill()
         {
+            OnDeath?.Invoke();
             m_isInvincible = true;
             this.gameObject.SetActive(false);
         }

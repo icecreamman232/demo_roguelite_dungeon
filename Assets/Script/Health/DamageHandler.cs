@@ -24,7 +24,8 @@ namespace SGGames.Script.HealthSystem
             if (!LayerManager.IsInLayerMask(other.gameObject.layer, m_targetMask)) return;
             
             var health = other.gameObject.GetComponent<Health>();
-            
+
+            if (health == null) return;
             HitDamageable(health);
         }
 

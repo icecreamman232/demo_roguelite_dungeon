@@ -5,7 +5,7 @@ namespace SGGames.Script.AI
     /// <summary>
     /// Literally do nothing xD
     /// </summary>
-    public class BrainActionDoNothing : BrainAction
+    public class DoNothingBrainAction : BrainAction
     {
         public override void DoAction()
         {

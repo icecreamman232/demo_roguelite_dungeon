@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6753531175759519837}
   - component: {fileID: 7318948112732643173}
-  - component: {fileID: 4929002116728085365}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -88,21 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4929002116728085365
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3208953041782440387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edf5c01c63a9815478a86b73eb344abf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_position: {x: 0, y: 0, z: 0}
-  m_rotation: {x: 0, y: 0, z: 0, w: 0}
-  m_scalar: {x: 0, y: 0, z: 0}
 --- !u!1 &4002551312666425985
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,6 +130,7 @@ GameObject:
   - component: {fileID: 1744010610948065966}
   - component: {fileID: 6292691107279439100}
   - component: {fileID: 3820469565839765366}
+  - component: {fileID: 8325707403380716102}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -211,7 +196,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -236,6 +221,24 @@ PolygonCollider2D:
       - {x: 0.79497904, y: -0.16240461}
       - {x: 0.9754135, y: 0.48438832}
   m_UseDelaunayMesh: 0
+--- !u!114 &8325707403380716102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4905719961428441205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dafb5a6d328e8243947f454b2f8875d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_targetMask:
+    serializedVersion: 2
+    m_Bits: 128
+  m_minDamage: 50
+  m_maxDamage: 50
+  m_invincibilityDuration: 0.3
 --- !u!1 &5928035885629875951
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,7 +11,7 @@ namespace SGGames.Script.Entity
         protected virtual void Update()
         {
             if (!m_isPermit) return;
-
+            
             UpdateInput();
             UpdateMovement();
         }

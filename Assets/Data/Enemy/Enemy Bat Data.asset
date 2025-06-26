@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Enemy Bat Data
   m_EditorClassIdentifier: 
   m_maxHealth: 50
+  m_moveSpeed: 5
