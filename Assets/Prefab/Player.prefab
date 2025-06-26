@@ -466,7 +466,7 @@ MonoBehaviour:
   m_isPermit: 1
   m_moveSpeed: 2
   m_movementDirection: {x: 0, y: 0}
-  m_raycastDistance: 0
+  m_raycastDistance: 0.15
   m_obstacleLayerMask:
     serializedVersion: 2
     m_Bits: 256

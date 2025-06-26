@@ -2,8 +2,8 @@ using UnityEngine;
 
 namespace SGGames.Script.Data
 {
-    [CreateAssetMenu(fileName = "Player Data", menuName = "SGGames/Player Data")]
-    public class PlayerData : ScriptableObject
+    [CreateAssetMenu(menuName = "SGGames/Enemy Data",fileName = "Enemy Data")]
+    public class EnemyData : ScriptableObject
     {
         [SerializeField] private float m_maxHealth;
         [SerializeField] private float m_moveSpeed;
