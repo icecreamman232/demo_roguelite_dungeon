@@ -21,7 +21,7 @@ namespace SGGames.Script.HealthSystem
 
         public Action OnDeath;
         
-        protected virtual void Awake()
+        protected virtual void Start()
         {
             m_currHealth = m_maxHealth;
         }
@@ -32,6 +32,8 @@ namespace SGGames.Script.HealthSystem
             
             m_currHealth -= damage;
 
+            UpdateHealthBar();
+            
             if (m_currHealth <= 0)
             {
                 Kill();
@@ -40,6 +42,11 @@ namespace SGGames.Script.HealthSystem
             {
                 StartCoroutine(OnInvincible(invincibleDuration));
             }
+        }
+
+        protected virtual void UpdateHealthBar()
+        {
+            
         }
         
         protected virtual bool CanTakeDamage()
@@ -63,6 +70,11 @@ namespace SGGames.Script.HealthSystem
             OnDeath?.Invoke();
             m_isInvincible = true;
             this.gameObject.SetActive(false);
+        }
+
+        protected virtual void OnDestroy()
+        {
+            
         }
     }
 }
