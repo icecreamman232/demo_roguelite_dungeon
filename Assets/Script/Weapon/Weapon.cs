@@ -1,16 +1,33 @@
+using SGGames.Script.Core;
+using SGGames.Script.Managers;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour
+namespace SGGames.Script.Weapons
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public class Weapon : MonoBehaviour
     {
+        private Animator m_animator;
+        private readonly int ATTACK_LEFT_ANIM_TRIGGER = Animator.StringToHash("Trigger_Slash_Left");
+        private readonly int ATTACK_RIGHT_ANIM_TRIGGER = Animator.StringToHash("Trigger_Slash_Right");
         
-    }
+        private bool m_isAttackOnLeft;
+        
+        private void Start()
+        {
+            m_animator = GetComponent<Animator>();
+            var inputManager = ServiceLocator.GetService<InputManager>();
+            inputManager.OnPressAttack += OnAttackTriggered;
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private void OnAttackTriggered()
+        {
+            
+            m_animator.SetTrigger(m_isAttackOnLeft ? ATTACK_LEFT_ANIM_TRIGGER : ATTACK_RIGHT_ANIM_TRIGGER);
+        }
+
+        public void SetAttackOnLeft(bool isAttackOnLeft)
+        {
+            m_isAttackOnLeft = isAttackOnLeft;
+        }
     }
 }

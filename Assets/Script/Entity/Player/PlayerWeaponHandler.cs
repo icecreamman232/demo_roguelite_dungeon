@@ -1,5 +1,6 @@
 using SGGames.Script.Core;
 using SGGames.Script.Managers;
+using SGGames.Script.Weapons;
 using UnityEngine;
 
 namespace SGGames.Script.Entity
@@ -11,7 +12,7 @@ namespace SGGames.Script.Entity
         
         private Vector3 m_aimDirection;
         private float m_aimAngle;
-        
+        private bool m_isAimAtLeftSide;
         
         private void Start()
         {
@@ -26,16 +27,15 @@ namespace SGGames.Script.Entity
             m_weaponAttachment.rotation = Quaternion.AngleAxis(m_aimAngle, Vector3.forward);
 
             m_currWeapon.transform.localScale = Vector3.one;
+            m_isAimAtLeftSide = false;
             
             if ((m_aimAngle <= -90) || (m_aimAngle >= 90))
             {
                 m_currWeapon.transform.localScale = new Vector3(1, -1, 1);
+                m_isAimAtLeftSide = true;
             }
-        }
-
-        private void FlipVisual()
-        {
             
+            m_currWeapon.SetAttackOnLeft(m_isAimAtLeftSide);
         }
     }
 }
