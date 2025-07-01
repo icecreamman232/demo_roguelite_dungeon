@@ -8,7 +8,7 @@ namespace SGGames.Script.Entity
     public class PlayerWeaponHandler : EntityBehavior
     {
         [SerializeField] private Transform m_weaponAttachment;
-        [SerializeField] private Weapon m_currWeapon;
+        [SerializeField] private PlayerWeapon m_currWeapon;
         
         private Vector3 m_aimDirection;
         private float m_aimAngle;
