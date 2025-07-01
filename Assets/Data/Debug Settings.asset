@@ -15,3 +15,4 @@ MonoBehaviour:
   m_showDebug: 1
   m_showPlayerDamageDebug: 1
   m_showEnemyDamageDebug: 1
+  m_isPlayerImmortal: 0

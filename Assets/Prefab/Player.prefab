@@ -455,6 +455,7 @@ MonoBehaviour:
   m_isInvincible: 0
   m_playerData: {fileID: 11400000, guid: cb8c5b08840ace34ab97ac1148242ac1, type: 2}
   m_updatePlayerHealthEvent: {fileID: 11400000, guid: 3ea1778f75b556045a3b02555e9cae7b, type: 2}
+  m_debugSettings: {fileID: 11400000, guid: 9de6ea07a3c0d8e47937d6be7dfeff25, type: 2}
 --- !u!114 &5377102226311233767
 MonoBehaviour:
   m_ObjectHideFlags: 0

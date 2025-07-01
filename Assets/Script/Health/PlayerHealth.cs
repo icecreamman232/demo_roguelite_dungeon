@@ -1,5 +1,6 @@
 using SGGames.Script.Data;
 using SGGames.Script.Events;
+using SGGames.Script.Managers;
 using UnityEngine;
 
 namespace SGGames.Script.HealthSystem
@@ -8,6 +9,7 @@ namespace SGGames.Script.HealthSystem
     {
         [SerializeField] private PlayerData m_playerData;
         [SerializeField] private UpdatePlayerHealthEvent m_updatePlayerHealthEvent;
+        [SerializeField] private DebugSettings m_debugSettings;
 
         protected override void Start()
         {
@@ -16,10 +18,23 @@ namespace SGGames.Script.HealthSystem
             m_updatePlayerHealthEvent.Raise(m_currHealth, m_maxHealth,isInitialize:true);
         }
 
+        protected override bool CanTakeDamage()
+        {
+            if (m_debugSettings.IsPlayerImmortal) return false;
+            
+            return base.CanTakeDamage();
+        }
+
         protected override void UpdateHealthBar()
         {
             m_updatePlayerHealthEvent.Raise(m_currHealth, m_maxHealth, isInitialize:false);
             base.UpdateHealthBar();
+        }
+
+        public void KillPlayer()
+        {
+            StopAllCoroutines();
+            Kill();
         }
     }
 }
