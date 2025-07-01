@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace SGGames.Script.Managers
@@ -9,6 +10,8 @@ namespace SGGames.Script.Managers
         [SerializeField] private bool m_showDebug;
         [SerializeField] private bool m_showPlayerDamageDebug;
         [SerializeField] private bool m_showEnemyDamageDebug;
+        [Header("Game Speed")]
+        [SerializeField][Range(0,1)] private float m_updateSpeed;
         [Header("Player")]
         [SerializeField] private bool m_isPlayerImmortal;
 
@@ -21,6 +24,11 @@ namespace SGGames.Script.Managers
             #endif
         }
 
+        private void OnValidate()
+        {
+            Time.timeScale = m_updateSpeed;
+        }
+
         public bool ShowPlayerDamageDebug => m_showDebug && m_showPlayerDamageDebug;
         public bool ShowEnemyDamageDebug => m_showDebug && m_showEnemyDamageDebug;
         
@@ -30,6 +38,8 @@ namespace SGGames.Script.Managers
         public void ResetSettings()
         {
             m_isPlayerImmortal = false;
+            Time.timeScale = 1.0f;
+            m_updateSpeed = 1.0f;
         }
     }
 }
