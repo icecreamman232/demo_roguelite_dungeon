@@ -12,6 +12,15 @@ namespace SGGames.Script.Core
             Shield,
             ShieldDisable,
         }
+
+        public enum RoomType
+        {
+            Normal,
+            NPC_WeaponShop,
+            NPC_ItemShop,
+            MiniBoss,
+            Boss = 30,
+        }
     }
 }
 

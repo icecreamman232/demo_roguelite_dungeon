@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -36,6 +37,19 @@ namespace SGGames.Script.Core
         {
             return Guid.NewGuid().ToString();
         }
+
+        public static void Shuffle<T>(List<T> list)
+        {
+            int count = list.Count;
+
+            for (int i = 0; i < count; i++)
+            {
+                var randomIndex = UnityEngine.Random.Range(0, count);
+                //Swap via deconstruction
+                (list[i], list[randomIndex]) = (list[randomIndex], list[i]);
+            }
+        }
+        
         #endregion
         
         #region Vector
