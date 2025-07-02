@@ -21,6 +21,13 @@ namespace SGGames.Script.Core
             MiniBoss,
             Boss = 30,
         }
+
+        public enum GameEventType
+        {
+            SpawnPlayer,
+            PlayerCreated,
+            GameStarted,
+        }
     }
 }
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using SGGames.Script.Core;
 using SGGames.Script.Data;
@@ -22,7 +23,12 @@ namespace SGGames.Script.Managers
             m_leftRoomList = new List<RoomData>();
             m_rightRoomList = new List<RoomData>();
         }
-        
+
+        private void Start()
+        {
+            GenerateRooms();
+        }
+
         [ContextMenu("Generate Rooms")]
         private void GenerateRooms()
         {

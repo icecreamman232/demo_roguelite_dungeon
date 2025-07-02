@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Managers_Prefab
+  m_EditorClassIdentifier: 
+  m_GroupName: Managers_Prefab
+  m_GUID: 61ac5a91535c7e54485d1ede6f77e328
+  m_SerializeEntries:
+  - m_GUID: 2dd9e91b19038884a9c8f78040058205
+    m_Address: Assets/Prefab/RoomManager.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 33b4746128e678d4d8531493a22cf053
+    m_Address: Assets/Prefab/LevelManager.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 550c41379831e8d4ebb6e5258b5ccbaf
+    m_Address: Assets/Prefab/InputManager.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e1b0510601389a44cae18343a5545958
+    m_Address: Assets/Prefab/UI/LoadingScreen.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 8cf258e3a231a0945b7eb17f27662218, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 04ca4f1516960aa4e99e482006f60253, type: 2}
+    - {fileID: 11400000, guid: 9907e20ab10bbb141b3c084c785bee55, type: 2}
