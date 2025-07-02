@@ -26,6 +26,7 @@ namespace SGGames.Script.Core
         {
             SpawnPlayer,
             PlayerCreated,
+            RoomCreated,
             GameStarted,
         }
     }

@@ -24,7 +24,7 @@ namespace SGGames.Script.EditorExtensions
                     ((RoomContainer)target).AddItem(data);
                 }
                 
-                EditorUtility.SetDirty(this);
+                EditorUtility.SetDirty((RoomContainer)target);
                 AssetDatabase.SaveAssets();
             }
             
@@ -55,7 +55,7 @@ namespace SGGames.Script.EditorExtensions
                     }
                 }
                 
-                EditorUtility.SetDirty(this);
+                EditorUtility.SetDirty((RoomContainer)target);
                 AssetDatabase.SaveAssets();
             }
         }

@@ -15,8 +15,10 @@ namespace SGGames.Script.Data
         public void ClearSubContainer()
         {
             m_npcWeaponShop = null;
+            m_npcItemShop = null;
             m_normalRooms.Clear();
             m_bossRooms.Clear();
+            m_miniBossRooms.Clear();
         }
 
         public void AddNPCWeaponShopRoom(RoomData roomData)

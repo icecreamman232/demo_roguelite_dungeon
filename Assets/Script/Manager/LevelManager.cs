@@ -30,12 +30,20 @@ namespace SGGames.Script.Managers
         private IEnumerator LoadLevel()
         {
             var loadingSceneController = ServiceLocator.GetService<LoadingScreenController>();
+            var roomManager = ServiceLocator.GetService<RoomManager>();
             
             m_gameEvent.Raise(Global.GameEventType.SpawnPlayer);
             var loadingPlayerPrefabOperation = m_playerPrefab.LoadAssetAsync();
             yield return new WaitUntil(() => loadingPlayerPrefabOperation.IsDone);
             Instantiate(loadingPlayerPrefabOperation.Result, m_spawnPosition.position, Quaternion.identity);
+            yield return new WaitForEndOfFrame();
             m_gameEvent.Raise(Global.GameEventType.PlayerCreated);
+
+            var roomData = roomManager.GetNextLeftRoom();
+            Instantiate(roomData.RoomPrefab);
+            yield return new WaitForEndOfFrame();
+            m_gameEvent.Raise(Global.GameEventType.RoomCreated);
+            
             loadingSceneController.FadeInFromBlack();
             yield return m_delayCoroutine;
             m_gameEvent.Raise(Global.GameEventType.GameStarted);
