@@ -8,10 +8,15 @@ namespace SGGames.Script.Core
     /// <summary>
     /// Use to initialize all system in order to prevent race condition
     /// </summary>
-    public class Bootstrap : MonoBehaviour
+    public class BootstrapGameObject : MonoBehaviour
     {
         [SerializeField] private BootstrapProfile m_profile;
         
+        private void Awake()
+        {
+            Initialize();
+        }
+
         [ContextMenu("Initialize")]
         private void Initialize()
         {

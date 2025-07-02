@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 676162268238077466}
   - component: {fileID: 6148025529788204866}
   m_Layer: 0
-  m_Name: BootstrapScene
+  m_Name: BootstrapSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58f18fd5c683e8a4a979c41955e5c5db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_profile: {fileID: 11400000, guid: ed313c370a6f5a242971f5f17fb67d47, type: 2}
+  m_profile: {fileID: 0}
