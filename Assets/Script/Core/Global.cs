@@ -28,6 +28,11 @@ namespace SGGames.Script.Core
             PlayerCreated,
             RoomCreated,
             GameStarted,
+            RoomCleared,
+            LoadNextRoom,
+            
+            PauseGame = 30,
+            UnpauseGame = 31,
         }
     }
 }

@@ -13,6 +13,7 @@ namespace SGGames.Script.Entity
         [SerializeField] private PlayerData m_playerData;
         
         private BoxCollider2D m_boxCollider2D;
+        private bool m_canMove;
         
         private void Start()
         {
@@ -21,10 +22,29 @@ namespace SGGames.Script.Entity
             m_moveSpeed = m_playerData.MoveSpeed;
             m_boxCollider2D = GetComponent<BoxCollider2D>();
             
+            var gameManager = ServiceLocator.GetService<GameManager>();
+            gameManager.OnGamePauseCallback += OnGamePaused;
+            gameManager.OnGameUnPauseCallback += OnGameResumed;
+
+            m_canMove = true;
         }
-        
+
+        protected override void OnGamePaused()
+        {
+            m_canMove = false;
+            base.OnGamePaused();
+        }
+
+        protected override void OnGameResumed()
+        {
+            m_canMove = true;
+            base.OnGameResumed();
+        }
+
         protected override void UpdateMovement()
         {
+            if (!m_canMove) return;
+            
             if (CheckObstacle())
             {
                 m_movementDirection = Vector2.zero;
@@ -47,7 +67,6 @@ namespace SGGames.Script.Entity
         {
             m_movementDirection = moveInput;
         }
-
         
 
         private void OnDisable()

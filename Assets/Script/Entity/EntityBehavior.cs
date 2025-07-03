@@ -19,5 +19,15 @@ namespace SGGames.Script.Entity
         {
             m_isPermit = isPermit;
         }
+
+        protected virtual void OnGamePaused()
+        {
+            
+        }
+
+        protected virtual void OnGameResumed()
+        {
+            
+        }
     }
 }

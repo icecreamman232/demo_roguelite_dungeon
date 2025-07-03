@@ -1,0 +1,32 @@
+using UnityEngine;
+
+namespace SGGames.Script.Modules
+{
+    public class FillOverlayColorOnSprite : MonoBehaviour
+    {
+        [SerializeField] private Material m_ovelayMaterial;
+        private static readonly int OverlayColorProperty = Shader.PropertyToID("_OverlayColor");
+        private static readonly int IntensityProperty = Shader.PropertyToID("_OverlayIntensity");
+        
+        private Material m_originalMaterial;
+
+        public void FillOverlayColor(SpriteRenderer targetRender, Color color)
+        {
+            m_originalMaterial = targetRender.material;
+            targetRender.material = m_ovelayMaterial;
+            m_ovelayMaterial.SetColor(OverlayColorProperty, color);
+        }
+
+        public void SetIntensity(float intensity)
+        {
+            m_ovelayMaterial.SetFloat(IntensityProperty, intensity);
+        }
+
+        public void ResetColor(SpriteRenderer targetRender)
+        {
+            targetRender.material = m_originalMaterial;
+            targetRender.color = Color.white;
+        }
+    }
+}
+

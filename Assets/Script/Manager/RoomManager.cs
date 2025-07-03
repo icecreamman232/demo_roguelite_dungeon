@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using SGGames.Script.Core;
 using SGGames.Script.Data;

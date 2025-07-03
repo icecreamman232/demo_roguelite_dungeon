@@ -30,7 +30,7 @@ namespace SGGames.Script.HealthSystem
         {
             if (!CanTakeDamage()) return;
             
-            m_currHealth -= damage;
+            Damage(damage);
 
             UpdateHealthBar();
             
@@ -43,11 +43,6 @@ namespace SGGames.Script.HealthSystem
                 StartCoroutine(OnInvincible(invincibleDuration));
             }
         }
-
-        protected virtual void UpdateHealthBar()
-        {
-            
-        }
         
         protected virtual bool CanTakeDamage()
         {
@@ -58,6 +53,16 @@ namespace SGGames.Script.HealthSystem
             return true;
         }
 
+        protected virtual void Damage(float damage)
+        {
+            m_currHealth -= damage;
+        }
+
+        protected virtual void UpdateHealthBar()
+        {
+            
+        }
+        
         protected virtual IEnumerator OnInvincible(float duration)
         {
             m_isInvincible = true;
@@ -70,11 +75,6 @@ namespace SGGames.Script.HealthSystem
             OnDeath?.Invoke();
             m_isInvincible = true;
             this.gameObject.SetActive(false);
-        }
-
-        protected virtual void OnDestroy()
-        {
-            
         }
     }
 }

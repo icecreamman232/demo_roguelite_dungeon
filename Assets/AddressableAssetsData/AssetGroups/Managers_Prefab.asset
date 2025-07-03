@@ -30,6 +30,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9fbd32af4d9f8cb49a2ba1e6c5790363
+    m_Address: Assets/Prefab/GameManager.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e1b0510601389a44cae18343a5545958
     m_Address: Assets/Prefab/UI/LoadingScreen.prefab
     m_ReadOnly: 0
