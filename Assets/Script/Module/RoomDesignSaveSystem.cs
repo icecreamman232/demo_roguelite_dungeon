@@ -23,8 +23,12 @@ namespace SGGames.Script.Modules
         {
             Debug.Log("Room design has been saved");
             var savePath = SAVE_PATH + GetNextRoomName();
-            PrefabUtility.SaveAsPrefabAsset(m_designRoom, savePath);
+            var savedPrefab = PrefabUtility.SaveAsPrefabAsset(m_designRoom, savePath);
             AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
+            
+            EditorUtility.FocusProjectWindow();
+            Selection.activeObject = savedPrefab;
         }
 
         public void ResetLevel()
@@ -34,6 +38,7 @@ namespace SGGames.Script.Modules
             m_designRoom.transform.localRotation = Quaternion.identity;
             m_designRoom.transform.localScale = Vector3.one;
             PrefabUtility.RevertPrefabInstance(m_designRoom,InteractionMode.UserAction);
+            
         }
     }
 }
