@@ -23,6 +23,12 @@ namespace SGGames.Script.EditorExtensions
             OpenScene("Assets/Scenes/GameplayScene.unity");
         }
         
+        [MenuItem("SGGames/Scene/Room Design")]
+        public static void OpenRoomDesignScene()
+        {
+            OpenScene("Assets/Scenes/RoomDesignScene_EditorOnly.unity");
+        }
+        
         private static void OpenScene(string address)
         {
             EditorSceneManager.OpenScene(address, OpenSceneMode.Single);
