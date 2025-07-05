@@ -50,6 +50,7 @@ namespace SGGames.Script.Dungeon
             if (eventType == Global.GameEventType.RoomCleared)
             {
                 OpenDoor();
+                m_gameEvent.RemoveListener(OnReceiveGameEvent);
             }
         }
     }
