@@ -1,5 +1,6 @@
 using System.Collections;
 using SGGames.Script.Core;
+using SGGames.Script.Data;
 using SGGames.Script.Events;
 using SGGames.Script.UI;
 using UnityEngine;
@@ -12,6 +13,9 @@ namespace SGGames.Script.Managers
         [SerializeField] private AssetReferenceGameObject m_playerPrefab;
         [SerializeField] private GameEvent m_gameEvent;
         [SerializeField] private Transform m_spawnPosition;
+        [Header("Testing")]
+        [SerializeField] private bool m_isUsingTestRoom;
+        [SerializeField] private RoomData m_testRoom;
 
         private readonly float DELAY_TIME = 0.5f;
         private WaitForSeconds m_delayCoroutine;
@@ -56,8 +60,21 @@ namespace SGGames.Script.Managers
                 m_player.transform.position = m_spawnPosition.position;
             }
             
+            #if UNITY_EDITOR
+            if (m_isUsingTestRoom)
+            {
+                Instantiate(m_testRoom.RoomPrefab);
+            }
+            else
+            {
+                var roomData = roomManager.GetNextLeftRoom();
+                Instantiate(roomData.RoomPrefab);
+            }
+            #else
             var roomData = roomManager.GetNextLeftRoom();
             Instantiate(roomData.RoomPrefab);
+            #endif
+            
             yield return new WaitForEndOfFrame();
             m_gameEvent.Raise(Global.GameEventType.RoomCreated);
             
