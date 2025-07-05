@@ -11,10 +11,12 @@ namespace SGGames.Script.Entity
         [SerializeField] private Global.MovementBehaviorType m_movementBehaviorType;
         [SerializeField] private EnemyData m_enemyData;
 
+        private SpriteRenderer m_spriteRenderer;
+        
         /// <summary>
         /// Target object for enemy ether following or move towards
         /// </summary>
-        protected Transform m_target;
+        private Transform m_target;
 
         public Vector2 MoveDirection => m_movementDirection;
         
@@ -24,7 +26,8 @@ namespace SGGames.Script.Entity
             var gameManager = ServiceLocator.GetService<GameManager>();
             gameManager.OnGamePauseCallback += OnGamePaused;
             gameManager.OnGameUnPauseCallback += OnGameResumed;
-            
+
+            m_spriteRenderer = GetComponentInChildren<SpriteRenderer>();
             SetMovementType(Global.MovementType.Normal);
         }
 
@@ -50,6 +53,23 @@ namespace SGGames.Script.Entity
             {
                 base.UpdateNormalMovement();
             }
+            
+            FlipModel();
+        }
+
+        protected override void FlipModel()
+        {
+            if (m_movementBehaviorType == Global.MovementBehaviorType.FollowingTarget)
+            {
+                var direction = (m_target.position - transform.position).normalized;
+                m_spriteRenderer.flipX =  direction.x < 0;
+            }
+            else
+            {
+                m_spriteRenderer.flipX = m_movementDirection.x < 0;
+            }
+            
+            base.FlipModel();
         }
 
         public void SetDirection(Vector2 dir)
