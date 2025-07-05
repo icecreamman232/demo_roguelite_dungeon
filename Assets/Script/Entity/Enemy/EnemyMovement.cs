@@ -7,20 +7,25 @@ namespace SGGames.Script.Entity
 {
     public class EnemyMovement : EntityMovement
     {
-        [Header("Enemy")]
+        [Header("Enemy")] 
+        [SerializeField] private Global.MovementBehaviorType m_movementBehaviorType;
         [SerializeField] private EnemyData m_enemyData;
 
-        private bool m_canMove;
+        /// <summary>
+        /// Target object for enemy ether following or move towards
+        /// </summary>
+        protected Transform m_target;
 
         public Vector2 MoveDirection => m_movementDirection;
         
         private void Awake()
         {
             m_moveSpeed = m_enemyData.MoveSpeed;
-            m_canMove = true;
             var gameManager = ServiceLocator.GetService<GameManager>();
             gameManager.OnGamePauseCallback += OnGamePaused;
             gameManager.OnGameUnPauseCallback += OnGameResumed;
+            
+            SetMovementType(Global.MovementType.Normal);
         }
 
         protected override void OnGamePaused()
@@ -35,6 +40,18 @@ namespace SGGames.Script.Entity
             base.OnGameResumed();
         }
 
+        protected override void UpdateNormalMovement()
+        {
+            if (m_movementBehaviorType == Global.MovementBehaviorType.FollowingTarget)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, m_target.position, m_moveSpeed * Time.deltaTime);
+            }
+            else
+            {
+                base.UpdateNormalMovement();
+            }
+        }
+
         public void SetDirection(Vector2 dir)
         {
             m_movementDirection = dir;
@@ -42,23 +59,31 @@ namespace SGGames.Script.Entity
 
         public void StartMoving()
         {
-            m_canMove = true;
+            SetMovementType(Global.MovementType.Normal);
         }
 
         public void PauseMoving()
         {
-            m_canMove = false;
+            SetMovementType(Global.MovementType.Stop);
         }
 
         public void ResumeMoving()
         {
-            m_canMove = m_movementDirection == Vector2.zero;
+            SetMovementType(Global.MovementType.Normal);
         }
 
         public void StopMoving()
         {
-            m_canMove = false;
             m_movementDirection = Vector2.zero;
+            SetMovementType(Global.MovementType.Stop);
+        }
+
+        public void SetFollowingTarget(Transform followingTarget)
+        {
+            m_target = followingTarget;
+            SetMovementType(Global.MovementType.Normal);
+            //TODO:Handle the case where enemy is taking knockback then they have to finish the knockback before following target
+            m_movementBehaviorType = Global.MovementBehaviorType.FollowingTarget;
         }
 
         private void OnDestroy()
