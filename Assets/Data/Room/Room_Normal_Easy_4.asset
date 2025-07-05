@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c22358165880caf4896fcb4fcef4fea4, type: 3}
-  m_Name: Room Data Test 4
+  m_Name: Room_Normal_Easy_4
   m_EditorClassIdentifier: 
-  m_roomType: 3
-  m_roomPrefab: {fileID: 8630033408810215285, guid: 287d580421c343b4383510feefd4ff30, type: 3}
+  m_roomType: 0
+  m_roomPrefab: {fileID: 3563251662596672920, guid: 170706682ebffed4e9411d1bb6342b68, type: 3}
