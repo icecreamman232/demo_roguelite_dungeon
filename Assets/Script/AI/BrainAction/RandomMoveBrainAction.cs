@@ -19,7 +19,7 @@ namespace SGGames.Script.AI
         {
             var randomX = Random.Range(-1.0f, 1.0f);
             var randomY = Random.Range(-1.0f, 1.0f);
-            m_movement.SetDirection(new Vector2(randomX, randomY));
+            m_movement.SetDirection((new Vector2(randomX, randomY)).normalized);
         }
     } 
 }
