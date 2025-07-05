@@ -10,8 +10,10 @@ namespace SGGames.Script.Weapons
         [SerializeField] protected float m_range;
         [SerializeField] protected DamageHandler m_damageHandler;
         [SerializeField] protected LayerMask m_obstacleLayerMask;
-        [SerializeField]  protected BoxCollider2D m_projectileCollider;
-
+        [SerializeField] protected BoxCollider2D m_projectileCollider;
+        [SerializeField] protected GameObject m_model;
+        [SerializeField] protected float m_offsetAngle;
+        
         protected GameObject m_owner;
         protected Vector2 m_startPosition;
         protected bool m_isAlive;
@@ -59,10 +61,10 @@ namespace SGGames.Script.Weapons
         {
             m_movingDirection = builder.Direction;
             transform.position = builder.Position;
-            transform.rotation = builder.Rotation;
             m_owner = builder.Owner;
             
             m_startPosition = transform.position;
+            m_model.transform.rotation = builder.Rotation * Quaternion.AngleAxis(m_offsetAngle, Vector3.forward);
             m_isAlive = true;
         }
     }

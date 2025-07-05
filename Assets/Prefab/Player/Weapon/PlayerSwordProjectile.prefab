@@ -79,7 +79,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.4, y: 0.7}
   m_EdgeRadius: 0
 --- !u!114 &7273346060848923032
 MonoBehaviour:
@@ -101,6 +101,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 768
   m_projectileCollider: {fileID: 5875946731721129601}
+  m_model: {fileID: 5806886535113504492}
+  m_offsetAngle: 0
 --- !u!114 &9000068607633190052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,7 +197,7 @@ SpriteRenderer:
   m_SortingLayerID: -1569509321
   m_SortingLayer: 2
   m_SortingOrder: 3
-  m_Sprite: {fileID: -338130392, guid: d7642ee7bdb6fae429295c2be7694ab6, type: 3}
+  m_Sprite: {fileID: 5413184319536607785, guid: cebfab842c0c19b4d932ec5f44e46a11, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

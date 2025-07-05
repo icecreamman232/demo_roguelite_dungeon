@@ -33,12 +33,14 @@ namespace SGGames.Script.Weapons
 
         protected override void SpawnProjectile()
         {
+            var projectileRot = Quaternion.AngleAxis(Mathf.Atan2(m_playerWeaponHandler.AimDirection.y, m_playerWeaponHandler.AimDirection.x) * Mathf.Rad2Deg, Vector3.forward);
             var projectileGO = m_projectilePooler.GetPooledGameObject();
             var projectile = projectileGO.GetComponent<Projectile>();
             projectile.Spawn(new ProjectileBuilder()
                 .SetOwner(m_owner)
                 .SetDirection(m_playerWeaponHandler.AimDirection)
-                .SetPosition(transform.position));
+                .SetPosition(transform.position)
+                .SetRotation(projectileRot));
         }
 
         protected override void UpdateAnimatorOnAttack()
