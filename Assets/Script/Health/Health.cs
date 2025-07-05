@@ -19,6 +19,7 @@ namespace SGGames.Script.HealthSystem
         public float CurrentHealth => m_currHealth;
         public bool IsInvincible => m_isInvincible;
 
+        public Action<float, GameObject> OnHit;
         public Action OnDeath;
         
         protected virtual void Start()
@@ -30,7 +31,7 @@ namespace SGGames.Script.HealthSystem
         {
             if (!CanTakeDamage()) return;
             
-            Damage(damage);
+            Damage(damage, source);
 
             UpdateHealthBar();
             
@@ -53,9 +54,10 @@ namespace SGGames.Script.HealthSystem
             return true;
         }
 
-        protected virtual void Damage(float damage)
+        protected virtual void Damage(float damage, GameObject source)
         {
             m_currHealth -= damage;
+            OnHit?.Invoke(damage, source);
         }
 
         protected virtual void UpdateHealthBar()
