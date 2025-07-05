@@ -53,6 +53,11 @@ namespace SGGames.Script.Entity
             
         }
 
+        protected virtual void FlipModel()
+        {
+            
+        }
+
         public void SetMovementType(Global.MovementType movementType)
         {
             switch (movementType)

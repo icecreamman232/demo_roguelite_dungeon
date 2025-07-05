@@ -14,6 +14,8 @@ namespace SGGames.Script.Entity
         private float m_aimAngle;
         private bool m_isAimAtLeftSide;
         
+        public Vector3 AimDirection => m_aimDirection;
+        
         private void Start()
         {
             var inputManager = ServiceLocator.GetService<InputManager>();
