@@ -1,4 +1,5 @@
 using SGGames.Script.HealthSystem;
+using SGGames.Script.Weapons;
 using SGGames.Scripts.AI;
 using SGGames.Scripts.Entity;
 using UnityEngine;
@@ -24,7 +25,15 @@ namespace SGGames.Script.AI
         private void EnemyGetHit(float damage, GameObject source)
         {
             m_isHit = true;
-            m_brain.Target = source.transform;
+            if (source.CompareTag("Player"))
+            {
+                m_brain.Target = source.transform;
+            }
+            else if (source.CompareTag("PlayerProjectile"))
+            {
+                var playerProjectile = source.GetComponent<PlayerProjectile>();
+                m_brain.Target = playerProjectile.Owner.transform;
+            }
         }
 
         private void OnDestroy()

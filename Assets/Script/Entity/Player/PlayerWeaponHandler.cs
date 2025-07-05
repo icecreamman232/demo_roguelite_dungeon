@@ -20,6 +20,8 @@ namespace SGGames.Script.Entity
         {
             var inputManager = ServiceLocator.GetService<InputManager>();
             inputManager.WorldMousePositionUpdate += OnWorldMousePositionChanged;
+            
+            m_currWeapon.Initialize(this.gameObject);
         }
 
         private void OnWorldMousePositionChanged(Vector3 mouseWorldPosition)

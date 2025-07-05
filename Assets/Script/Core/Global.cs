@@ -36,6 +36,12 @@ namespace SGGames.Script.Core
             Boss = 30,
         }
 
+        public enum WeaponState
+        {
+            Ready,
+            CoolDown,
+        }
+
         public enum GameEventType
         {
             SpawnPlayer,

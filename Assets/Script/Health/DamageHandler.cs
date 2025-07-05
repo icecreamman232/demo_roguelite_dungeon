@@ -1,3 +1,4 @@
+using System;
 using SGGames.Script.Core;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -14,6 +15,8 @@ namespace SGGames.Script.HealthSystem
         [SerializeField] protected float m_maxDamage;
         [SerializeField] protected float m_invincibilityDuration;
 
+        public Action OnHit;
+        
         protected float GetDamage()
         {
             return Random.Range(m_minDamage, m_maxDamage);
@@ -32,6 +35,7 @@ namespace SGGames.Script.HealthSystem
         protected virtual void HitDamageable(Health health)
         {
             health.TakeDamage(GetDamage(),this.gameObject, m_invincibilityDuration);
+            OnHit?.Invoke();
         }
     }
 }

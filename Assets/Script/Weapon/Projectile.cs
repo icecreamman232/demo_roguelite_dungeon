@@ -1,0 +1,69 @@
+using SGGames.Script.HealthSystem;
+using UnityEngine;
+
+namespace SGGames.Script.Weapons
+{
+    public class Projectile : MonoBehaviour
+    {
+        [SerializeField] protected Vector2 m_movingDirection;
+        [SerializeField] protected float m_speed;
+        [SerializeField] protected float m_range;
+        [SerializeField] protected DamageHandler m_damageHandler;
+        [SerializeField] protected LayerMask m_obstacleLayerMask;
+        [SerializeField]  protected BoxCollider2D m_projectileCollider;
+
+        protected GameObject m_owner;
+        protected Vector2 m_startPosition;
+        protected bool m_isAlive;
+        
+        public GameObject Owner => m_owner;
+
+        private void Awake()
+        {
+            m_damageHandler.OnHit += DestroyProjectile;
+        }
+        
+        protected virtual void UpdateMovement()
+        {
+            transform.Translate(m_movingDirection * (m_speed * Time.deltaTime));    
+        }
+
+        protected virtual bool IsOutOfRange()
+        {
+            return Vector2.Distance(transform.position, m_startPosition) > m_range;
+        }
+
+        protected virtual bool IsHitObstacle()
+        {
+            return Physics2D.OverlapBox(transform.position, m_projectileCollider.size, 0, m_obstacleLayerMask);
+        }
+
+        protected virtual void Update()
+        {
+            if (!m_isAlive) return;
+            UpdateMovement();
+            if (IsOutOfRange() || IsHitObstacle())
+            {
+                DestroyProjectile();
+            }
+        }
+
+        protected virtual void DestroyProjectile()
+        {
+            m_isAlive = false;
+            transform.rotation = Quaternion.identity;
+            this.gameObject.SetActive(false);
+        }
+        
+        public virtual void Spawn(ProjectileBuilder builder)
+        {
+            m_movingDirection = builder.Direction;
+            transform.position = builder.Position;
+            transform.rotation = builder.Rotation;
+            m_owner = builder.Owner;
+            
+            m_startPosition = transform.position;
+            m_isAlive = true;
+        }
+    }
+}

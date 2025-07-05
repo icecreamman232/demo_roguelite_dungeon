@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 3820469565839765366}
   - component: {fileID: 6292691107279439100}
   - component: {fileID: 8325707403380716102}
+  - component: {fileID: 6860998298820110780}
   - component: {fileID: 1498664189930988572}
   m_Layer: 0
   m_Name: Weapon
@@ -221,6 +222,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a654874fb7da2de49b747c43d2a88bc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_currWeaponState: 0
+  m_weaponData: {fileID: 11400000, guid: 2474eaf0ff861f546a1eb95a298883e7, type: 2}
+  m_projectilePooler: {fileID: 6860998298820110780}
   m_attackAnimation: {fileID: 7400000, guid: c54b3ce9d8f6b394ea512205073c1b06, type: 2}
 --- !u!114 &8325707403380716102
 MonoBehaviour:
@@ -240,6 +244,24 @@ MonoBehaviour:
   m_minDamage: 50
   m_maxDamage: 50
   m_invincibilityDuration: 0.3
+--- !u!114 &6860998298820110780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4905719961428441205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbfe5d2fe6527dc40893b1d9a844900b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SelfInitialize: 1
+  Parent: {fileID: 0}
+  Offset: {x: 0, y: 0}
+  IsSharePool: 0
+  ObjectToPool: {fileID: 2609813097702135230, guid: 7cba39db18a8cbf469df28c58c48ef2f, type: 3}
+  PoolSize: 20
 --- !u!95 &1498664189930988572
 Animator:
   serializedVersion: 7
