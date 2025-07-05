@@ -93,9 +93,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f7f865b5c13e544b9dd96281b1ed9a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_projectileData: {fileID: 11400000, guid: 44f601df9f34492458967fe82aea32d6, type: 2}
   m_movingDirection: {x: 0, y: 0}
-  m_speed: 10
-  m_range: 10
   m_damageHandler: {fileID: 9000068607633190052}
   m_obstacleLayerMask:
     serializedVersion: 2

@@ -1,3 +1,4 @@
+using SGGames.Script.Data;
 using SGGames.Script.HealthSystem;
 using UnityEngine;
 
@@ -5,9 +6,8 @@ namespace SGGames.Script.Weapons
 {
     public class Projectile : MonoBehaviour
     {
+        [SerializeField] protected ProjectileData m_projectileData;
         [SerializeField] protected Vector2 m_movingDirection;
-        [SerializeField] protected float m_speed;
-        [SerializeField] protected float m_range;
         [SerializeField] protected DamageHandler m_damageHandler;
         [SerializeField] protected LayerMask m_obstacleLayerMask;
         [SerializeField] protected BoxCollider2D m_projectileCollider;
@@ -27,12 +27,12 @@ namespace SGGames.Script.Weapons
         
         protected virtual void UpdateMovement()
         {
-            transform.Translate(m_movingDirection * (m_speed * Time.deltaTime));    
+            transform.Translate(m_movingDirection * (m_projectileData.Speed * Time.deltaTime));    
         }
 
         protected virtual bool IsOutOfRange()
         {
-            return Vector2.Distance(transform.position, m_startPosition) > m_range;
+            return Vector2.Distance(transform.position, m_startPosition) > m_projectileData.Range;
         }
 
         protected virtual bool IsHitObstacle()
