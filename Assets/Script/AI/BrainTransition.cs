@@ -13,6 +13,7 @@ namespace SGGames.Scripts.AI
 
         public void Initialize(EnemyBrain brain)
         {
+            if (BrainDecision == null) return;
             BrainDecision.Initialize(brain);
         }
         

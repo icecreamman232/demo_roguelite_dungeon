@@ -14,8 +14,12 @@ namespace SGGames.Scripts.Entity
 
         public float TimeInState;
         
-        public EnemyController Owner => m_owner;
-        
+        public EnemyController Owner
+        {
+            get => m_owner;
+            set => m_owner = value;
+        }
+
         private void Start()
         {
             m_owner = GetComponentInParent<EnemyController>();
