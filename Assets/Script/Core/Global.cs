@@ -4,7 +4,21 @@ namespace SGGames.Script.Core
     public static class Global
     {
         public static readonly float HP_PER_SLOT = 50f;
+        
+        public enum MovementType
+        {
+            Normal,
+            KnockBack,
+            Stop,
+        }
 
+        public enum MovementBehaviorType
+        {
+            Normal,
+            TowardPoint,
+            FollowingTarget,
+        }
+        
         public enum HealthSlotType
         {
             Health,
