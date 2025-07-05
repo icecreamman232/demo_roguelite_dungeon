@@ -26,6 +26,7 @@ namespace SGGames.Script.Entity
             gameManager.OnGamePauseCallback += OnGamePaused;
             gameManager.OnGameUnPauseCallback += OnGameResumed;
 
+            SetMovementType(Global.MovementType.Normal);
             m_canMove = true;
         }
 
