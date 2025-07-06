@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <ui:TextField label="Name" placeholder-text="projectile name here..." name="projectile_name" style="top: 10px;" />
+    <uie:ObjectField label="Data" name="data_field" type="SGGames.Script.Data.ProjectileData, Assembly-CSharp" style="top: 20px;" />
+    <uie:ObjectField label="Sprite" name="sprite_field" type="UnityEngine.Sprite, UnityEngine.CoreModule" style="flex-direction: row; align-items: flex-start; width: auto; top: 30px;">
+        <ui:VisualElement name="sprite_review" style="flex-grow: 1; height: 100px; width: 100px; opacity: 1; background-color: rgba(137, 137, 137, 0); min-width: 100px; min-height: 100px; max-width: 100px; max-height: 100px; align-self: flex-end; align-content: auto; align-items: auto; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-top-width: 5px; border-right-width: 5px; border-bottom-width: 5px; border-left-width: 5px; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; -unity-background-scale-mode: scale-to-fit;" />
+    </uie:ObjectField>
+    <ui:Button text="Create" name="create_button" style="top: 50px;" />
+</ui:UXML>
