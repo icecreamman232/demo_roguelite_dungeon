@@ -218,7 +218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Label: Check if target is in range
-  m_range: 4
+  m_range: 3
   m_targetLayerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -283,7 +283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Label: Check target is in range
-  m_range: 4
+  m_range: 3
   m_targetLayerMask:
     serializedVersion: 2
     m_Bits: 64
