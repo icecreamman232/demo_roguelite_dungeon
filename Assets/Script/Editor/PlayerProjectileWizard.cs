@@ -40,6 +40,9 @@ public class PlayerProjectileWizard : EditorWindow
     private void ChangeSprite(ChangeEvent<Object> changeEvent)
     {
         var newSprite = changeEvent.newValue as Sprite;
+
+        if (newSprite == null) return;
+        
         var spriteReview = rootVisualElement.Q("sprite_review");
         // Create a new texture from the sprite's rectangle
         //Here make sure the texture which the sprite is from, is a readable texture.
@@ -100,5 +103,21 @@ public class PlayerProjectileWizard : EditorWindow
         DestroyImmediate(projectile);
         DestroyImmediate(m_previewTexture);
         m_previewTexture = null;
+        ResetAllFields();
+    }
+
+    private void ResetAllFields()
+    {
+        var textField = rootVisualElement.Q("projectile_name") as TextField;
+        textField.value = string.Empty;
+        
+        var dataField = rootVisualElement.Q("data_field") as ObjectField;
+        dataField.value = null;
+        
+        var spriteField = rootVisualElement.Q("sprite_field") as ObjectField;
+        spriteField.value = null;
+        
+        var spriteReview = rootVisualElement.Q("sprite_review");
+        spriteReview.style.backgroundImage = null;
     }
 }
