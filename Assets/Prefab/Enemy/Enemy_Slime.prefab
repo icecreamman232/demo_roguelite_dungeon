@@ -729,10 +729,7 @@ MonoBehaviour:
   - StateName: Following target
     Actions:
     - {fileID: 2584562588577761201}
-    Transitions:
-    - BrainDecision: {fileID: 0}
-      TrueStateName: 
-      FalseStateName: 
+    Transitions: []
   Target: {fileID: 0}
   BrainActive: 0
   CurrentState:
@@ -829,10 +826,7 @@ MonoBehaviour:
     Actions:
     - {fileID: 6125285981914534825}
     - {fileID: 5700814372054199496}
-    Transitions:
-    - BrainDecision: {fileID: 0}
-      TrueStateName: 
-      FalseStateName: 
+    Transitions: []
   Target: {fileID: 0}
   BrainActive: 0
   CurrentState:

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8771215208790197940}
   - component: {fileID: 2683117593661826656}
   - component: {fileID: 7003861262732544001}
+  - component: {fileID: 256202089850895772}
   m_Layer: 7
   m_Name: Actions
   m_TagString: Untagged
@@ -93,6 +94,21 @@ MonoBehaviour:
   m_shouldStart: 0
   m_shouldStop: 1
   m_shouldPause: 0
+--- !u!114 &256202089850895772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645577991867033977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 847cdab9da311ac47b9190bcc7a896c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Label: Switch to Attack Brain
+  m_brainToSwap: {fileID: 3938395167080190447}
+  m_keepTarget: 1
 --- !u!1 &1907449461258066276
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,6 +122,7 @@ GameObject:
   - component: {fileID: 322643143484808417}
   - component: {fileID: 2415082943600697279}
   - component: {fileID: 7697040552916070325}
+  - component: {fileID: 1797004493163212863}
   m_Layer: 7
   m_Name: Decisions
   m_TagString: Untagged
@@ -188,6 +205,179 @@ MonoBehaviour:
   m_obstacleMask:
     serializedVersion: 2
     m_Bits: 256
+--- !u!114 &1797004493163212863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907449461258066276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a19b0ed34b6bd048a29cffe5c774aad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Label: Check if target is in range
+  m_range: 4
+  m_targetLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  m_showDebug: 1
+--- !u!1 &3526891635434185879
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3373599699335593834}
+  - component: {fileID: 1198004912225600862}
+  - component: {fileID: 7714746608270239602}
+  - component: {fileID: 4796348386735474456}
+  m_Layer: 0
+  m_Name: Decisions
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3373599699335593834
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3526891635434185879}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6066358609404017249}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1198004912225600862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3526891635434185879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c07a3be150d0a44fb282e08d5b9787c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Label: Next state
+--- !u!114 &7714746608270239602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3526891635434185879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a19b0ed34b6bd048a29cffe5c774aad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Label: Check target is in range
+  m_range: 4
+  m_targetLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  m_showDebug: 0
+--- !u!114 &4796348386735474456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3526891635434185879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 966765b42d774ed4698c08cd460bb807, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Label: Time after shoot
+  m_minDuration: 3
+  m_maxDuration: 4
+--- !u!1 &4234714744072813313
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6066358609404017249}
+  - component: {fileID: 3938395167080190447}
+  m_Layer: 0
+  m_Name: AttackBrain
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &6066358609404017249
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4234714744072813313}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -5.11, y: -3.26, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 510952252202044473}
+  - {fileID: 3373599699335593834}
+  m_Father: {fileID: 8924605653382889979}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3938395167080190447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4234714744072813313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be6acd2bf091d6a46b03cf6a74a20106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  States:
+  - StateName: Shoot
+    Actions:
+    - {fileID: 5367312114792998120}
+    Transitions:
+    - BrainDecision: {fileID: 1198004912225600862}
+      TrueStateName: Rest
+      FalseStateName: 
+  - StateName: Rest
+    Actions:
+    - {fileID: 2138218894293648204}
+    Transitions:
+    - BrainDecision: {fileID: 7714746608270239602}
+      TrueStateName: Shoot
+      FalseStateName: 
+    - BrainDecision: {fileID: 4796348386735474456}
+      TrueStateName: Switch to WanderingBrain
+      FalseStateName: 
+  - StateName: Switch to WanderingBrain
+    Actions:
+    - {fileID: 1463371052336529064}
+    Transitions: []
+  Target: {fileID: 0}
+  BrainActive: 0
+  CurrentState:
+    StateName: 
+    Actions: []
+    Transitions: []
+  TimeInState: 0
 --- !u!1 &4258220321656995300
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,6 +429,9 @@ MonoBehaviour:
     Actions:
     - {fileID: 3500609276579106397}
     Transitions:
+    - BrainDecision: {fileID: 1797004493163212863}
+      TrueStateName: Switch to Attack Brain
+      FalseStateName: 
     - BrainDecision: {fileID: 7809580460371843036}
       TrueStateName: Choose direction
       FalseStateName: 
@@ -254,6 +447,9 @@ MonoBehaviour:
     Actions:
     - {fileID: 3500609276579106397}
     Transitions:
+    - BrainDecision: {fileID: 1797004493163212863}
+      TrueStateName: Switch to Attack Brain
+      FalseStateName: 
     - BrainDecision: {fileID: 322643143484808417}
       TrueStateName: Stop flying
       FalseStateName: 
@@ -267,6 +463,11 @@ MonoBehaviour:
     - BrainDecision: {fileID: 2415082943600697279}
       TrueStateName: Rest
       FalseStateName: 
+  - StateName: Switch to Attack Brain
+    Actions:
+    - {fileID: 7003861262732544001}
+    - {fileID: 256202089850895772}
+    Transitions: []
   Target: {fileID: 0}
   BrainActive: 0
   CurrentState:
@@ -274,6 +475,163 @@ MonoBehaviour:
     Actions: []
     Transitions: []
   TimeInState: 0
+--- !u!1 &5088425119728619313
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9120198436415557387}
+  - component: {fileID: 985231345648919768}
+  - component: {fileID: 5883246072891767112}
+  m_Layer: 7
+  m_Name: Weapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9120198436415557387
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5088425119728619313}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6395817917984953545}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &985231345648919768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5088425119728619313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 947b2e007562d5f408725d4805647544, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: 0}
+  m_currWeaponState: 0
+  m_weaponData: {fileID: 11400000, guid: c88c0b857543d054fb2c3bc9b9bb874c, type: 2}
+  m_projectilePooler: {fileID: 5883246072891767112}
+--- !u!114 &5883246072891767112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5088425119728619313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbfe5d2fe6527dc40893b1d9a844900b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SelfInitialize: 1
+  Parent: {fileID: 0}
+  Offset: {x: 0, y: 0}
+  IsSharePool: 0
+  ObjectToPool: {fileID: 9034834727839782509, guid: 1cfdc674b35356a44a040ab7235c64ed, type: 3}
+  PoolSize: 10
+--- !u!1 &7080342650294217659
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 510952252202044473}
+  - component: {fileID: 5367312114792998120}
+  - component: {fileID: 2138218894293648204}
+  - component: {fileID: 1463371052336529064}
+  m_Layer: 0
+  m_Name: Actions
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &510952252202044473
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7080342650294217659}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6066358609404017249}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5367312114792998120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7080342650294217659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a4631697c5fc14e86586bbcd13c8c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Label: Shoot
+  m_event:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 985231345648919768}
+        m_TargetAssemblyTypeName: SGGames.Script.Weapons.EnemyWeapon, Assembly-CSharp
+        m_MethodName: Attack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2138218894293648204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7080342650294217659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fc0cd9003d79d5408e7a8a67597bb9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Label: Do nothing
+--- !u!114 &1463371052336529064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7080342650294217659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 847cdab9da311ac47b9190bcc7a896c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Label: Switch to Wandering Brain
+  m_brainToSwap: {fileID: 6110430800030532304}
+  m_keepTarget: 1
 --- !u!1 &7276820154010669371
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,6 +646,7 @@ GameObject:
   - component: {fileID: 1603082076624760688}
   - component: {fileID: 8403957574603744869}
   - component: {fileID: 4121836022372627583}
+  - component: {fileID: 4031663204895293153}
   m_Layer: 7
   m_Name: Enemy_Bat
   m_TagString: Untagged
@@ -310,7 +669,9 @@ Transform:
   m_Children:
   - {fileID: 3540184199205951122}
   - {fileID: 5213464722981557921}
+  - {fileID: 6395817917984953545}
   - {fileID: 8001056677711891415}
+  - {fileID: 6066358609404017249}
   - {fileID: 3466371234525442294}
   - {fileID: 7070543752496130147}
   m_Father: {fileID: 0}
@@ -434,9 +795,58 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_isPermit: 1
+  m_movementType: 0
   m_moveSpeed: 0
   m_movementDirection: {x: 0, y: 0}
+  m_movementBehaviorType: 0
   m_enemyData: {fileID: 11400000, guid: 016adb8f7453c2449bff74fb74c392fd, type: 2}
+--- !u!114 &4031663204895293153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7276820154010669371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef5e8ba7a1001474b8316b94ff211d03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_isPermit: 1
+  m_weaponAttachment: {fileID: 6395817917984953545}
+  m_currWeapon: {fileID: 985231345648919768}
+--- !u!1 &7822698539900801893
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6395817917984953545}
+  m_Layer: 7
+  m_Name: WeaponAttachment
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6395817917984953545
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7822698539900801893}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 9120198436415557387}
+  m_Father: {fileID: 8924605653382889979}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7919653215087773685
 GameObject:
   m_ObjectHideFlags: 0

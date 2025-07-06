@@ -185,7 +185,7 @@ MonoBehaviour:
   m_damageHandler: {fileID: 4720754150642318466}
   m_obstacleLayerMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 768
   m_projectileCollider: {fileID: 7371921456206582427}
   m_model: {fileID: 9002567463328336386}
   m_offsetAngle: 0
@@ -203,7 +203,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_targetMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 64
   m_minDamage: 50
   m_maxDamage: 50
   m_invincibilityDuration: 0.3

@@ -46,6 +46,8 @@ public class PlayerProjectileWizard : EditorWindow
         var spriteReview = rootVisualElement.Q("sprite_review");
         // Create a new texture from the sprite's rectangle
         //Here make sure the texture which the sprite is from, is a readable texture.
+        
+        //TODO: Re-visit this code after having all monster in big atlas
         m_previewTexture = new Texture2D((int)newSprite.rect.width, (int)newSprite.rect.height);
         var pixels = newSprite.texture.GetPixels(
             (int)newSprite.textureRect.x, 
