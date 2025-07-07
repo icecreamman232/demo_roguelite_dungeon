@@ -1,4 +1,3 @@
-using System;
 using SGGames.Script.Core;
 using SGGames.Script.Data;
 using SGGames.Script.HealthSystem;
@@ -35,7 +34,8 @@ namespace SGGames.Script.Pickable
                 
                 for (int i = 0; i < amount; i++)
                 {
-                    var spawnPos = Random.insideUnitCircle * m_spawnRange + (Vector2)m_health.transform.position;
+                    var spawnPos = GetSpawnPosition();
+                    
                     var lootObject = pickablePrefabManager.GetPrefabWith(loot.Item);
                     
                     if (loot.Item == Global.ItemID.Coin)
@@ -48,6 +48,23 @@ namespace SGGames.Script.Pickable
                     }
                 }
             }
+        }
+
+        private Vector2 GetSpawnPosition()
+        {
+            var newPos = Random.insideUnitCircle * m_spawnRange + (Vector2)m_health.transform.position;
+            var levelManager = ServiceLocator.GetService<LevelManager>();
+            for (int i = 0; i < 30; i++)
+            {
+                if (levelManager.NormalRoomRect.Contains(newPos))
+                {
+                    return newPos;
+                }
+                newPos = Random.insideUnitCircle * m_spawnRange + (Vector2)m_health.transform.position;
+            }
+            
+            //Last try we spawn the loot at monster position which is guaranteed to be in the room area
+            return m_health.transform.position;
         }
 
         private void OnDrawGizmos()

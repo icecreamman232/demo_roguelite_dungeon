@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace SGGames.Script.Pickables
@@ -9,9 +10,11 @@ namespace SGGames.Script.Pickables
         private static float S_FLYING_SPEED = 5f;
         private static float S_FLYING_SPEED_TO_PLAYER = 18f;
         private static float S_OFFSET_POSITION = 1.5F;
+        private static float S_DELAY_BEFORE_FLY = 0.3f;
         
         private delegate void UpdatePickableMovementDelegate();
         private UpdatePickableMovementDelegate m_updateMovementDelegate;
+        
         private bool m_shouldFly;
         private Vector2 m_offsetPos;
         private Vector2 m_startPos;
@@ -21,18 +24,26 @@ namespace SGGames.Script.Pickables
         private void OnEnable()
         {
             Warmup();
+            StartCoroutine(OnDelayBeforeFlyingToPlayer());
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (!other.CompareTag("Player")) return;
+            if (!other.CompareTag("Player") && !m_shouldFly) return;
 
             m_player = other.transform;
             m_collider.enabled = false;
-            m_shouldFly = true;
             m_startPos = transform.position;
-            m_offsetPos = -(other.transform.position - transform.position).normalized * S_OFFSET_POSITION + transform.position;
+            m_offsetPos = -(m_player.transform.position - transform.position).normalized * S_OFFSET_POSITION + transform.position;
             m_updateMovementDelegate = UpdateMovementToOffsetPosition;
+            m_shouldFly = true;
+        }
+
+        private IEnumerator OnDelayBeforeFlyingToPlayer()
+        {
+            m_collider.enabled = false;
+            yield return new WaitForSeconds(S_DELAY_BEFORE_FLY);
+            m_collider.enabled = true;
         }
         
         private void Update()

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using SGGames.Script.Core;
 using SGGames.Script.Data;
@@ -21,13 +22,17 @@ namespace SGGames.Script.Managers
         private WaitForSeconds m_delayCoroutine;
         private bool m_isLoading;
         private GameObject m_player;
+        private Rect m_normalRoomRect;
         
+        public Rect NormalRoomRect => m_normalRoomRect;
         
         private void Awake()
         {
             ServiceLocator.RegisterService<LevelManager>(this);
             m_delayCoroutine = new WaitForSeconds(DELAY_TIME);
             m_gameEvent.AddListener(OnReceiveGameEvent);
+            
+            m_normalRoomRect = new Rect(m_spawnPosition.position.x, m_spawnPosition.position.y + 0.5f, 14, 7);
         }
         
         private void Start()
