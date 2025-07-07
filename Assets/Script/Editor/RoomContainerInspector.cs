@@ -11,7 +11,7 @@ namespace SGGames.Script.EditorExtensions
     {
         public override void OnInspectorGUI()
         {
-            base.OnInspectorGUI();
+            
 
             if (GUILayout.Button("Find All & Save"))
             {
@@ -26,6 +26,7 @@ namespace SGGames.Script.EditorExtensions
                 
                 EditorUtility.SetDirty((RoomContainer)target);
                 AssetDatabase.SaveAssets();
+                AssetDatabase.Refresh();
             }
             
             if (GUILayout.Button("Sort"))
@@ -57,6 +58,7 @@ namespace SGGames.Script.EditorExtensions
                 
                 EditorUtility.SetDirty((RoomContainer)target);
                 AssetDatabase.SaveAssets();
+                AssetDatabase.Refresh();
             }
         }
     }

@@ -1,7 +1,7 @@
 
 namespace SGGames.Script.Core
 {
-    public static class Global
+    public static partial class Global
     {
         public static readonly float HP_PER_SLOT = 50f;
         

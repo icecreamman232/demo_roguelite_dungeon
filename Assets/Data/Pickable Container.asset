@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaeef59d560336044967983423a841c1, type: 3}
+  m_Name: Pickable Container
+  m_EditorClassIdentifier: 
+  m_container:
+  - {fileID: 5212737347992751394, guid: afecc2a4b1e6f3e419f1b1fcbb3ae197, type: 3}
+  m_autoPickableList:
+  - {fileID: 5212737347992751394, guid: afecc2a4b1e6f3e419f1b1fcbb3ae197, type: 3}
+  m_manualPickableList: []
