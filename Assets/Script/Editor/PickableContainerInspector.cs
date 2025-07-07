@@ -21,7 +21,7 @@ namespace SGGames.Script.EditorExtensions
 
         private void FindPickable()
         {
-            ((PickableContainer)target).ClearContainer();
+            ((PickableContainer)target).ClearAllContainer();
             
             var allGUIDs = AssetDatabase.FindAssets("t:Prefab");
             foreach (var guid in allGUIDs)
@@ -30,7 +30,7 @@ namespace SGGames.Script.EditorExtensions
                 var component = prefabAsset.GetComponent<Pickables.Pickable>();
                 if (component != null)
                 {
-                    ((PickableContainer)target).AddItem(prefabAsset);
+                    ((PickableContainer)target).AddPickable(prefabAsset,component.ItemData.ItemID);
                     
                     if (component is AutoPickable)
                     {

@@ -22,6 +22,7 @@ namespace SGGames.Script.Managers
         private bool m_isLoading;
         private GameObject m_player;
         
+        
         private void Awake()
         {
             ServiceLocator.RegisterService<LevelManager>(this);

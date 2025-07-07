@@ -8,6 +8,8 @@ namespace SGGames.Script.Data
     {
         [SerializeField] private Global.ItemID m_itemID;
         
+        public Global.ItemID ItemID => m_itemID;
+        
         public virtual void Picked(int amount)
         {
             
