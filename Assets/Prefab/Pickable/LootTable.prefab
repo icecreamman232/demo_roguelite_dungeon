@@ -46,4 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_spawnRange: 1.5
   m_lootTable: {fileID: 0}
-  m_showDebug: 1
+  m_showDebug: 0
