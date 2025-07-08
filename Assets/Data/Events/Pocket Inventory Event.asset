@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77971309ebd1aae4c934a4fa9d40a0c6, type: 3}
-  m_Name: Coin
+  m_Script: {fileID: 11500000, guid: e48fb8e422315ef4cb639a1f548c2d3f, type: 3}
+  m_Name: Pocket Inventory Event
   m_EditorClassIdentifier: 
-  m_itemID: 1
-  m_pocketInventoryEvent: {fileID: 11400000, guid: e94a91a834927e24a84c3d237dee0eb5, type: 2}

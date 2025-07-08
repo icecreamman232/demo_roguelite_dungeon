@@ -48,6 +48,12 @@ namespace SGGames.Script.Core
             Cancel = 9,
             Finish = 10,
         }
+
+        public enum InventoryEventType
+        {
+            Add,
+            Remove,
+        }
         
         public enum GameEventType
         {

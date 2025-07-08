@@ -3,10 +3,9 @@ using UnityEngine;
 
 namespace SGGames.Script.Data
 {
-    [CreateAssetMenu(fileName = "New Item Data", menuName = "SGGames/Data/Item")]
     public class ItemData : ScriptableObject
     {
-        [SerializeField] private Global.ItemID m_itemID;
+        [SerializeField] protected Global.ItemID m_itemID;
         
         public Global.ItemID ItemID => m_itemID;
         
