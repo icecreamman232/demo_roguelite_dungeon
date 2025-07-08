@@ -42,6 +42,13 @@ namespace SGGames.Script.Core
             CoolDown,
         }
 
+        public enum InteractEventType
+        {
+            InteractWithItem,
+            Cancel = 9,
+            Finish = 10,
+        }
+        
         public enum GameEventType
         {
             SpawnPlayer,

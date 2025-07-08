@@ -12,6 +12,7 @@
         {
             None,
             Coin,
+            Key,
         }
     }
 }
