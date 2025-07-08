@@ -24,13 +24,14 @@ namespace SGGames.Script.AI
 
             return false;
         }
-
+        #if UNITY_EDITOR
         private void OnDrawGizmosSelected()
         {
             if (!m_showDebug) return;
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(transform.position, m_range);
         }
+        #endif
     }
 }
 

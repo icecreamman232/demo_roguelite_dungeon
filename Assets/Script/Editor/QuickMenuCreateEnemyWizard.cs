@@ -13,7 +13,7 @@ namespace SGGames.Script.EditorExtensions
     {
         #region Create Enemy Wizard
 
-        [MenuItem("SGGames/Create Enemy Wizard")]
+        [MenuItem("GameObject/Create Enemy Wizard",priority = 1)]
         public static void CreateEnemyPlaceHolderInScene()
         {
             GameObject newEnemyGO = new GameObject();

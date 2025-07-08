@@ -66,13 +66,14 @@ namespace SGGames.Script.Pickable
             //Last try we spawn the loot at monster position which is guaranteed to be in the room area
             return m_health.transform.position;
         }
-
+        #if UNITY_EDITOR
         private void OnDrawGizmos()
         {
             if (!m_showDebug) return;
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(transform.position, m_spawnRange);
         }
+        #endif
     }
 }
 

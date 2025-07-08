@@ -15,6 +15,11 @@ MonoBehaviour:
   m_GroupName: Managers_Prefab
   m_GUID: 61ac5a91535c7e54485d1ede6f77e328
   m_SerializeEntries:
+  - m_GUID: 1a0250c963f535643b840ce4d7c24104
+    m_Address: Assets/Prefab/InventoryManager.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2dd9e91b19038884a9c8f78040058205
     m_Address: Assets/Prefab/RoomManager.prefab
     m_ReadOnly: 0
@@ -22,6 +27,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 33b4746128e678d4d8531493a22cf053
     m_Address: Assets/Prefab/LevelManager.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 54693e464c767e94a9d94144a816b903
+    m_Address: Assets/Prefab/PickablePrefabManager.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
