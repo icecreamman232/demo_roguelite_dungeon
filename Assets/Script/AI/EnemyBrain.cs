@@ -35,6 +35,13 @@ namespace SGGames.Scripts.Entity
         public void ResetBrain()
         {
             CurrentState = States[0];
+            foreach (var state in States)
+            {
+                foreach (var transition in state.Transitions)
+                {
+                    transition.BrainDecision.OnReset();
+                }
+            }
         }
         
         private void Update()

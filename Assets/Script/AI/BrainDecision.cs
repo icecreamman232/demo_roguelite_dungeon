@@ -15,6 +15,7 @@ namespace SGGames.Scripts.AI
         public virtual void OnEnterState(){}
         public abstract bool CheckDecision();
         public virtual void OnExitState(){}
+        public virtual void OnReset(){}
     }
 }
 

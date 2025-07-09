@@ -11,6 +11,7 @@ namespace SGGames.Script.AI
 
         public override void DoAction()
         {
+            Debug.Log($"{m_brain.name} Switching Brain");
             m_brain.BrainActive = false;
             m_brain.ResetBrain();
             m_brain.gameObject.SetActive(false);

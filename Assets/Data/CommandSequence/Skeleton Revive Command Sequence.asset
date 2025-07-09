@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93566e171adc2cc4b8003e8b353a4eac, type: 3}
+  m_Name: Skeleton Revive Command Sequence
+  m_EditorClassIdentifier: 
+  m_commands:
+  - {fileID: 11400000, guid: da9906c1558783c4a81ec56d2dafb11f, type: 2}
+  - {fileID: 11400000, guid: b9e9881c3935b914c82040ecf26a5b9c, type: 2}

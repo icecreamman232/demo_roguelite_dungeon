@@ -14,7 +14,7 @@ namespace SGGames.Script.Entity
         private SpriteRenderer m_spriteRenderer;
         
         /// <summary>
-        /// Target object for enemy ether following or move towards
+        /// Target object for enemy either following or move towards
         /// </summary>
         private Transform m_target;
 
@@ -84,6 +84,7 @@ namespace SGGames.Script.Entity
 
         public void PauseMoving()
         {
+            Debug.Log("EnemyMovement::PauseMoving");
             SetMovementType(Global.MovementType.Stop);
         }
 
@@ -94,8 +95,10 @@ namespace SGGames.Script.Entity
 
         public void StopMoving()
         {
+            Debug.Log("EnemyMovement::StopMoving");
             m_movementDirection = Vector2.zero;
             SetMovementType(Global.MovementType.Stop);
+            SetMovementBehaviorType(Global.MovementBehaviorType.Normal);
         }
 
         public void SetFollowingTarget(Transform followingTarget)
@@ -103,7 +106,12 @@ namespace SGGames.Script.Entity
             m_target = followingTarget;
             SetMovementType(Global.MovementType.Normal);
             //TODO:Handle the case where enemy is taking knockback then they have to finish the knockback before following target
-            m_movementBehaviorType = Global.MovementBehaviorType.FollowingTarget;
+            SetMovementBehaviorType(Global.MovementBehaviorType.FollowingTarget);
+        }
+
+        public void SetMovementBehaviorType(Global.MovementBehaviorType movementBehaviorType)
+        {
+            m_movementBehaviorType = movementBehaviorType;
         }
 
         private void OnDestroy()

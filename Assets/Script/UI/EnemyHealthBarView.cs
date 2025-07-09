@@ -1,3 +1,4 @@
+using System;
 using SGGames.Script.Core;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,7 +9,12 @@ namespace SGGames.Script.UI
     {
         [SerializeField] private CanvasGroup m_canvasGroup;
         [SerializeField] private Image m_healthBar;
-        
+
+        private void Start()
+        {
+            m_canvasGroup.alpha = 0;
+        }
+
         public void UpdateHealthBarVisual(float currentHealth, float maxHealth)
         {
             m_healthBar.fillAmount = MathHelpers.Remap(currentHealth, 0, maxHealth, 0, 1);

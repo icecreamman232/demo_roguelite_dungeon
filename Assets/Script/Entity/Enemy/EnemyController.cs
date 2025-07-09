@@ -1,25 +1,31 @@
 using System;
+using System.Collections.Generic;
 using SGGames.Script.Core;
 using SGGames.Script.Dungeon;
 using SGGames.Script.Entity;
 using SGGames.Script.Events;
 using SGGames.Script.HealthSystem;
 using SGGames.Script.Managers;
+using SGGames.Script.Modules;
 using UnityEngine;
 
 namespace SGGames.Scripts.Entity
 {
-    public class EnemyController : EntityBehavior
+    public class EnemyController : EntityBehavior, IRevivable
     {
-        [SerializeField] private GameEvent m_gameEvent;
+        [SerializeField] protected GameEvent m_gameEvent;
+        [SerializeField] protected EnemyBrain m_defaultBrain;
         [SerializeField] protected EnemyBrain m_currentBrain;
         
-        private EnemyHealth m_health;
+        protected EnemyHealth m_health;
+        private List<IDeathCommand> m_deathCommands;
 
         public EnemyBrain CurrentBrain => m_currentBrain;
 
         private void Awake()
         {
+            m_currentBrain = m_defaultBrain;
+            
             m_gameEvent.AddListener(OnReceiveGameEvent);
             m_health = GetComponent<EnemyHealth>();
             m_health.OnDeath += OnEnemyDeath;
@@ -31,12 +37,25 @@ namespace SGGames.Scripts.Entity
             var gameManager = ServiceLocator.GetService<GameManager>();
             gameManager.OnGamePauseCallback += OnGamePaused;
             gameManager.OnGameUnPauseCallback += OnGameResumed;
+            
+            m_deathCommands = new List<IDeathCommand>
+            {
+                new DisableMovementDeathCommand(),
+                new DisableBrainDeathCommand()
+            };
+
+            foreach (var command in m_deathCommands)
+            {
+                command.Initialize(this);
+            }
         }
         
         private void OnEnemyDeath()
         {
-            m_health.OnDeath -= OnEnemyDeath;
-            m_currentBrain.BrainActive = false;
+            foreach (var command in m_deathCommands)
+            {
+                command.Execute();
+            }
         }
 
         protected override void OnGamePaused()
@@ -69,6 +88,16 @@ namespace SGGames.Scripts.Entity
             var gameManager = ServiceLocator.GetService<GameManager>();
             gameManager.OnGamePauseCallback -= OnGamePaused;
             gameManager.OnGameUnPauseCallback -= OnGameResumed;
+        }
+
+        public void OnRevive()
+        {
+            Debug.Log("EnemyController::OnRevive");
+            m_currentBrain = m_defaultBrain;
+            
+            m_currentBrain.gameObject.SetActive(true);
+            m_currentBrain.ResetBrain();
+            m_currentBrain.BrainActive = true;
         }
     }
 }

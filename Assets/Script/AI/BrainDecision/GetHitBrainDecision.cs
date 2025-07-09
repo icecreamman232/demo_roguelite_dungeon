@@ -21,7 +21,13 @@ namespace SGGames.Script.AI
         {
             return m_isHit;
         }
-        
+
+        public override void OnReset()
+        {
+            m_isHit = false;
+            base.OnReset();
+        }
+
         private void EnemyGetHit(float damage, GameObject source)
         {
             m_isHit = true;

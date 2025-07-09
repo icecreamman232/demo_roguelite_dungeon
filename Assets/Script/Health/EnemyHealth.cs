@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace SGGames.Script.HealthSystem
 {
-    public class EnemyHealth : Health
+    public class EnemyHealth : Health, IRevivable
     {
         [Header("Enemy")] 
         [SerializeField] private EnemyData m_enemyData;
@@ -14,11 +14,12 @@ namespace SGGames.Script.HealthSystem
         private FillOverlayColorOnSprite m_fillOverlayColorOnSprite;
         [SerializeField] private SpriteRenderer m_spriteRenderer;
         private static float SPRITE_FLICKING_FREQUENCY = 0.1f;
-        
+     
         protected override void Start()
         {
             m_maxHealth = m_enemyData.MaxHealth;
             base.Start();
+            
             m_spriteRenderer = GetComponentInChildren<SpriteRenderer>();
             m_enemyHealthBar = GetComponentInChildren<EnemyHealthBarController>();
             m_fillOverlayColorOnSprite = GetComponentInChildren<FillOverlayColorOnSprite>();
@@ -55,6 +56,12 @@ namespace SGGames.Script.HealthSystem
         {
             m_enemyHealthBar.UpdateHealthBar(m_currHealth, m_maxHealth);
             base.UpdateHealthBar();
+        }
+
+        public void OnRevive()
+        {
+            m_isInvincible = false;
+            UpdateHealthBar();
         }
     }
 }
