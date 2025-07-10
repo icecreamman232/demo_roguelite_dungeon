@@ -21,7 +21,6 @@ namespace SGGames.Script.UI
         public void FadeOutToBlack(float duration = 0.5f)
         {
             if (m_isLoading) return;
-            Debug.Log("FadeOutToBlack");
             StartCoroutine(OnFadeOut(duration));
         }
 
@@ -42,7 +41,6 @@ namespace SGGames.Script.UI
         public void FadeInFromBlack(float duration = 0.5f)
         {
             if (m_isLoading) return;
-            Debug.Log("FadeInFromBlack");
             StartCoroutine(OnFadeIn(duration));
         }
         
