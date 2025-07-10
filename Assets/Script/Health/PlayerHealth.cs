@@ -10,7 +10,7 @@ namespace SGGames.Script.HealthSystem
         [SerializeField] private PlayerData m_playerData;
         [SerializeField] private UpdatePlayerHealthEvent m_updatePlayerHealthEvent;
         [SerializeField] private DebugSettings m_debugSettings;
-
+        
         protected override void Start()
         {
             m_maxHealth = m_playerData.MaxHealth;
@@ -35,6 +35,11 @@ namespace SGGames.Script.HealthSystem
         {
             StopAllCoroutines();
             Kill();
+        }
+
+        public void SetInvincible(bool isInvincible)
+        {
+            m_isInvincible = isInvincible;
         }
     }
 }

@@ -17,6 +17,8 @@ namespace SGGames.Script.Entity
         private SpriteRenderer m_spriteRenderer;
         private PlayerWeaponHandler m_playerWeaponHandler;
         
+        public bool IsHitObstacle => CheckObstacle();
+        
         private void Start()
         {
             var inputManager = ServiceLocator.GetService<InputManager>();
@@ -93,6 +95,16 @@ namespace SGGames.Script.Entity
             {
                 inputManager.OnMoveInputUpdate -= UpdateMoveInput;
             }
+        }
+
+        public void PauseMovement()
+        {
+            m_canMove = false;    
+        }
+
+        public void ResumeMovement()
+        {
+            m_canMove = true;
         }
     }
 }

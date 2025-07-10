@@ -17,18 +17,22 @@ namespace SGGames.Script.Managers
         private Vector3 m_worldMousePosition;
         private InputAction m_moveAction;
         private InputAction m_attackAction;
+        private InputAction m_dashAction;
         
         public bool IsAllowInput => m_isAllowInput;
         public Action<Vector2> OnMoveInputUpdate;
         public Action<Vector3> WorldMousePositionUpdate;
         public Action OnPressAttack;
+        public Action OnPressDash;
         
         private void Awake()
         {
             ServiceLocator.RegisterService<InputManager>(this);
             m_moveAction = InputSystem.actions.FindAction("Move");
             m_attackAction = InputSystem.actions.FindAction("Attack");
+            m_dashAction = InputSystem.actions.FindAction("Dash");
             m_attackAction.performed += OnAttackButtonPressed;
+            m_dashAction.performed += OnDashButtonPressed;
             m_camera = Camera.main;
             EnableInput();
         }
@@ -56,6 +60,12 @@ namespace SGGames.Script.Managers
         {
             if (!m_isAllowInput) return;
             OnPressAttack?.Invoke();
+        }
+        
+        private void OnDashButtonPressed(InputAction.CallbackContext context)
+        {
+            if (!m_isAllowInput) return;
+            OnPressDash?.Invoke();
         }
         
         /// <summary>
