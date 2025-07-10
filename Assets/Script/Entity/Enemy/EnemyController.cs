@@ -30,10 +30,6 @@ namespace SGGames.Scripts.Entity
             m_health = GetComponent<EnemyHealth>();
             m_health.OnDeath += OnEnemyDeath;
 
-            var room = GetComponentInParent<Room>();
-            room.RegisterEnemyToRoom(this);
-            m_health.OnDeath += room.OnEnemyDeath;
-
             var gameManager = ServiceLocator.GetService<GameManager>();
             gameManager.OnGamePauseCallback += OnGamePaused;
             gameManager.OnGameUnPauseCallback += OnGameResumed;
@@ -55,6 +51,13 @@ namespace SGGames.Scripts.Entity
             foreach (var command in m_deathCommands)
             {
                 command.Execute();
+            }
+
+            if (!m_health.CanRevive)
+            {
+                var room = GetComponentInParent<Room>();
+                room.RegisterEnemyToRoom(this);
+                room.OnEnemyDeath();
             }
         }
 

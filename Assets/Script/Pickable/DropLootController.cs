@@ -25,6 +25,8 @@ namespace SGGames.Script.Pickable
         [ContextMenu("Spawn Loot")]
         private void SpawnLoot()
         {
+            if (m_health.CanRevive) return;
+            
             m_health.OnDeath -= SpawnLoot;
             var pickablePrefabManager = ServiceLocator.GetService<PickablePrefabManager>();
 

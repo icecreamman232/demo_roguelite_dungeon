@@ -25,6 +25,7 @@ namespace SGGames.Script.HealthSystem
         public bool IsInvincible => m_isInvincible;
 
         public bool IsDead => m_currHealth <= 0;
+        public bool CanRevive => m_reviveComponent.CanRevive();
 
         public Action<float, GameObject> OnHit;
         public Action OnDeath;
