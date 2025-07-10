@@ -40,8 +40,6 @@ namespace SGGames.Script.UI
                 case Global.HealthSlotType.ShieldDisable:
                     m_slotImage.sprite = m_emptyShieldSprite;
                     break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(slotType), slotType, null);
             }
         }
     }

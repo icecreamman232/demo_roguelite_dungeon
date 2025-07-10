@@ -215,7 +215,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -224,6 +224,50 @@ TextureImporter:
       bones: []
       spriteID: 2bc1172063bbf0a4ca0759df22a2954e
       internalID: -533815806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_stamina-full
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9a45378403bdad4db59d240c4fca579
+      internalID: -1269720117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_stamina-empty
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3dd6996c0f0994649b5832a20b0ec3ae
+      internalID: -174943990
       vertices: []
       indices: 
       edges: []
@@ -246,6 +290,8 @@ TextureImporter:
       hud-heart-full: 866825348
       hud-heart-half: -1661166616
       hud_e_button: -533815806
+      hud_stamina-empty: -174943990
+      hud_stamina-full: -1269720117
       white-rect-ui: -1958002395
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0

@@ -3,6 +3,7 @@ using SGGames.Script.Core;
 using SGGames.Script.Data;
 using SGGames.Script.Managers;
 using SGGames.Script.Modules;
+using SGGames.Script.StaminaSystem;
 using UnityEngine;
 
 namespace SGGames.Script.Entity
@@ -13,6 +14,8 @@ namespace SGGames.Script.Entity
         [SerializeField] private AnimationCurve m_dashSpeedCurve;
         [SerializeField] private AfterImageFX m_afterImageFX;
         [SerializeField] private SpriteRenderer m_spriteRenderer;
+
+        private PlayerStamina m_playerStamina;
         private PlayerMovement m_playerMovement;
         private bool m_canDash = true;
         private bool m_isDashing;
@@ -29,12 +32,19 @@ namespace SGGames.Script.Entity
         private void Start()
         {
             m_playerMovement = GetComponent<PlayerMovement>();
+            m_playerStamina = GetComponent<PlayerStamina>();
+            
             var inputManager = ServiceLocator.GetService<InputManager>();
             inputManager.OnMoveInputUpdate += UpdateMoveInput;
             inputManager.OnPressDash += OnDashButtonPressed;
 
             m_lastMoveInput = Vector2.right;
-            
+
+            SetupCommands();
+        }
+
+        private void SetupCommands()
+        {
             m_startDashCommands = new IDashCommand[]
             {
                 new PauseMovementDashCommand(),
@@ -60,6 +70,9 @@ namespace SGGames.Script.Entity
 
         private void OnDashButtonPressed()
         {
+            if (!m_playerStamina.CanUseStamina(m_playerData.StaminaCostForDash)) return;
+
+            m_playerStamina.UseStamina(m_playerData.StaminaCostForDash);
             PrepareBeforeDash();
         }
 
