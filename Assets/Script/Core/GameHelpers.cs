@@ -75,5 +75,17 @@ namespace SGGames.Script.Core
         }
         
         #endregion
+        
+        #region Coroutine
+
+        public static IEnumerable<WaitForEndOfFrame> WaitForFrame(int frameNumber)
+        {
+            for (int i = 0; i < frameNumber; i++)
+            {
+                yield return new WaitForEndOfFrame();
+            }
+        }
+        
+        #endregion
     }
 }

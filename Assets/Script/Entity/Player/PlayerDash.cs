@@ -11,7 +11,8 @@ namespace SGGames.Script.Entity
     {
         [SerializeField] private PlayerData m_playerData;
         [SerializeField] private AnimationCurve m_dashSpeedCurve;
-        
+        [SerializeField] private AfterImageFX m_afterImageFX;
+        [SerializeField] private SpriteRenderer m_spriteRenderer;
         private PlayerMovement m_playerMovement;
         private bool m_canDash = true;
         private bool m_isDashing;
@@ -82,7 +83,9 @@ namespace SGGames.Script.Entity
             var traveledTime = MathHelpers.Remap(m_traveledDistance,0,m_distanceToTarget,0,1);
             var speedMultiplier = m_dashSpeedCurve.Evaluate(traveledTime);
             transform.position = Vector3.MoveTowards(transform.position,m_endPosition, speedMultiplier * m_playerData.DashSpeed * Time.deltaTime);
-            m_traveledDistance = Vector3.Distance(m_startPosition, transform.position);;
+            m_traveledDistance = Vector3.Distance(m_startPosition, transform.position);
+
+            m_afterImageFX.DropImageFX(m_spriteRenderer.sprite);
 
             if (transform.position == m_endPosition)
             {
@@ -109,7 +112,6 @@ namespace SGGames.Script.Entity
 
         private void EndDash()
         {
-            Debug.Log("End Dash");
             m_isDashing = false;
             foreach (var command in m_endDashCommands)
             {
