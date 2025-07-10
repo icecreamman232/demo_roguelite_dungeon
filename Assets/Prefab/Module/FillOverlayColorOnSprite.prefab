@@ -44,4 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85b5dc74d107c85448228599cd22dc44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_overlayColor: {r: 0.8207547, g: 0.22841759, b: 0.22841759, a: 1}
   m_ovelayMaterial: {fileID: 2100000, guid: c550fdd3c472c2c4bba40548e88cf293, type: 2}

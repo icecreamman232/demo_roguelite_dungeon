@@ -4,17 +4,22 @@ namespace SGGames.Script.Modules
 {
     public class FillOverlayColorOnSprite : MonoBehaviour
     {
+        [SerializeField] private Color m_overlayColor;
         [SerializeField] private Material m_ovelayMaterial;
         private static readonly int OverlayColorProperty = Shader.PropertyToID("_OverlayColor");
         private static readonly int IntensityProperty = Shader.PropertyToID("_OverlayIntensity");
         
         private Material m_originalMaterial;
 
-        public void FillOverlayColor(SpriteRenderer targetRender, Color color)
+        public void FillOverlayColor(SpriteRenderer targetRender)
         {
-            m_originalMaterial = targetRender.material;
+            if (m_originalMaterial == null)
+            {
+                m_originalMaterial = targetRender.material;
+            }
+            
             targetRender.material = m_ovelayMaterial;
-            m_ovelayMaterial.SetColor(OverlayColorProperty, color);
+            m_ovelayMaterial.SetColor(OverlayColorProperty, m_overlayColor);
         }
 
         public void SetIntensity(float intensity)

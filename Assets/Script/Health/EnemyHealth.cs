@@ -37,7 +37,7 @@ namespace SGGames.Script.HealthSystem
             m_isInvincible = true;
             
             var timeStop = duration + Time.time;
-            m_fillOverlayColorOnSprite.FillOverlayColor(m_spriteRenderer,Color.white);
+            m_fillOverlayColorOnSprite.FillOverlayColor(m_spriteRenderer);
             
             while (Time.time < timeStop)
             {

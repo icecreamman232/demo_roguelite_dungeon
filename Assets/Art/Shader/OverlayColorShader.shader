@@ -8,7 +8,11 @@ Shader "SGGames/OverlayColorShader"
     }
     SubShader
     {
-        Tags { "RenderType"="Transparent" }
+        Tags
+        {
+            "RenderType"="Transparent"
+            "CanUseSpriteAtlas"="True"
+        }
         Blend SrcAlpha OneMinusSrcAlpha
         ZWrite Off
 
