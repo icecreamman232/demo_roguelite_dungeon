@@ -9,10 +9,12 @@ namespace SGGames.Scripts.Entity
         [SerializeField] private List<BrainState> States;
         private EnemyController m_owner;
         public Transform Target;
-        public bool BrainActive;
+        private bool m_brainActive;
         public BrainState CurrentState;
 
         public float TimeInState;
+        
+        public bool IsBrainActive => m_brainActive;
         
         public EnemyController Owner
         {
@@ -32,6 +34,15 @@ namespace SGGames.Scripts.Entity
             CurrentState.EnterState();
         }
 
+        public void ActivateBrain(bool isActive)
+        {
+            m_brainActive = isActive;
+            if (m_brainActive)
+            {
+                CurrentState.EnterState();
+            }
+        }
+
         public void ResetBrain()
         {
             CurrentState = States[0];
@@ -46,13 +57,13 @@ namespace SGGames.Scripts.Entity
         
         private void Update()
         {
-            if (!BrainActive) return;
+            if (!m_brainActive) return;
 
             if (CurrentState == null) return;
             
             CurrentState.DoActions();
             
-            if (!BrainActive) return;
+            if (!m_brainActive) return;
             
             CurrentState.CheckTransitions();
 

@@ -23,7 +23,6 @@ namespace SGGames.Script.AI
                 return;
             }
             m_movement.SetFollowingTarget(m_brain.Target);
-            
             base.OnEnterState();
         }
 

@@ -60,13 +60,13 @@ namespace SGGames.Scripts.Entity
 
         protected override void OnGamePaused()
         {
-            m_currentBrain.BrainActive = false;
+            m_currentBrain.ActivateBrain(false);
             base.OnGamePaused();
         }
 
         protected override void OnGameResumed()
         {
-            m_currentBrain.BrainActive = true;
+            m_currentBrain.ActivateBrain(true);
             base.OnGameResumed();
         }
 
@@ -79,7 +79,7 @@ namespace SGGames.Scripts.Entity
         {
             if(eventType ==  Global.GameEventType.GameStarted)
             {
-                m_currentBrain.BrainActive = true;
+                m_currentBrain.ActivateBrain(true);
             }
         }
 
@@ -97,7 +97,7 @@ namespace SGGames.Scripts.Entity
             
             m_currentBrain.gameObject.SetActive(true);
             m_currentBrain.ResetBrain();
-            m_currentBrain.BrainActive = true;
+            m_currentBrain.ActivateBrain(true);
         }
     }
 }

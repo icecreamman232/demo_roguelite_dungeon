@@ -84,7 +84,6 @@ namespace SGGames.Script.Entity
 
         public void PauseMoving()
         {
-            Debug.Log("EnemyMovement::PauseMoving");
             SetMovementType(Global.MovementType.Stop);
         }
 
@@ -95,7 +94,6 @@ namespace SGGames.Script.Entity
 
         public void StopMoving()
         {
-            Debug.Log("EnemyMovement::StopMoving");
             m_movementDirection = Vector2.zero;
             SetMovementType(Global.MovementType.Stop);
             SetMovementBehaviorType(Global.MovementBehaviorType.Normal);
@@ -104,8 +102,8 @@ namespace SGGames.Script.Entity
         public void SetFollowingTarget(Transform followingTarget)
         {
             m_target = followingTarget;
-            SetMovementType(Global.MovementType.Normal);
             //TODO:Handle the case where enemy is taking knockback then they have to finish the knockback before following target
+            SetMovementType(Global.MovementType.Normal);
             SetMovementBehaviorType(Global.MovementBehaviorType.FollowingTarget);
         }
 

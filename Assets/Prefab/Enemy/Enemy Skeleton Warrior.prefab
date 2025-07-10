@@ -49,6 +49,7 @@ MonoBehaviour:
   States:
   - StateName: Set to follow target
     Actions:
+    - {fileID: 7681684010626499263}
     - {fileID: 858007157731435357}
     Transitions:
     - BrainDecision: {fileID: 8149218924165151013}
@@ -721,6 +722,7 @@ GameObject:
   - component: {fileID: 2311415172737360335}
   - component: {fileID: 6822682151190462612}
   - component: {fileID: 858007157731435357}
+  - component: {fileID: 7681684010626499263}
   m_Layer: 7
   m_Name: Actions
   m_TagString: Untagged
@@ -769,6 +771,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Label: Set to follow target
+--- !u!114 &7681684010626499263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5943892167980588376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a4631697c5fc14e86586bbcd13c8c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Label: Start Moving
+  m_event:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 57688177495773685}
+        m_TargetAssemblyTypeName: SGGames.Script.Entity.EnemyMovement, Assembly-CSharp
+        m_MethodName: StartMoving
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7760903749109327040
 GameObject:
   m_ObjectHideFlags: 0

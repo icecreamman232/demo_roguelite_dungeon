@@ -12,7 +12,7 @@ namespace SGGames.Script.AI
         public override void DoAction()
         {
             Debug.Log($"{m_brain.name} Switching Brain");
-            m_brain.BrainActive = false;
+            m_brain.ActivateBrain(false);
             m_brain.ResetBrain();
             m_brain.gameObject.SetActive(false);
 
@@ -24,7 +24,7 @@ namespace SGGames.Script.AI
             m_brainToSwap.Owner = m_brain.Owner;
             m_brainToSwap.Owner.SetActiveBrain(m_brainToSwap);
             m_brainToSwap.gameObject.SetActive(true);
-            m_brainToSwap.BrainActive = true;
+            m_brainToSwap.ActivateBrain(true);
         }
     }
 

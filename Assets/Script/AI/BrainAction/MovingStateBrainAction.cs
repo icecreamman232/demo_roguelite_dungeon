@@ -32,7 +32,6 @@ namespace SGGames.Script.AI
 
             if (m_shouldStop)
             {
-                Debug.Log($"{m_brain.name} Stop moving");
                 m_movement.StopMoving();
                 return;
             }
