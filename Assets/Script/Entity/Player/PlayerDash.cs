@@ -85,7 +85,7 @@ namespace SGGames.Script.Entity
             transform.position = Vector3.MoveTowards(transform.position,m_endPosition, speedMultiplier * m_playerData.DashSpeed * Time.deltaTime);
             m_traveledDistance = Vector3.Distance(m_startPosition, transform.position);
 
-            m_afterImageFX.DropImageFX(m_spriteRenderer.sprite);
+            m_afterImageFX.DropImageFX(m_spriteRenderer.sprite, m_spriteRenderer.flipX);
 
             if (transform.position == m_endPosition)
             {

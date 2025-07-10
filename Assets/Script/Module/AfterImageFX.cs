@@ -11,7 +11,7 @@ namespace SGGames.Script.Modules
 
         private bool m_canDropImage = true;
         
-        public void DropImageFX(Sprite sprite)
+        public void DropImageFX(Sprite sprite, bool isFlipped)
         {
             if (!m_canDropImage) return;
 
@@ -19,7 +19,7 @@ namespace SGGames.Script.Modules
             var cloneGO = m_imagePooler.GetPooledGameObject();
             cloneGO.transform.position = transform.position;
             var playerCloneSprite = cloneGO.GetComponent<PlayerCloneSprite>();
-            playerCloneSprite.StartWith(sprite);
+            playerCloneSprite.StartWith(sprite, isFlipped);
         }
 
         private IEnumerator OnCoolDown()

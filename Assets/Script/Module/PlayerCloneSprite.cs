@@ -9,12 +9,13 @@ namespace SGGames.Script.Modules
         [SerializeField] private SpriteRenderer m_spriteRenderer;
         private static float S_LIVE_TIME = 0.2f;
         
-        public void StartWith(Sprite sprite)
+        public void StartWith(Sprite sprite, bool isFlipped)
         {
             var color = m_spriteRenderer.color;
             color.a = 1;
             m_spriteRenderer.color = color;
             m_spriteRenderer.sprite = sprite;
+            m_spriteRenderer.flipX = isFlipped;
             StartCoroutine(OnPlaying());
         }
 
