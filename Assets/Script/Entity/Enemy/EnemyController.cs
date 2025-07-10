@@ -95,7 +95,6 @@ namespace SGGames.Scripts.Entity
 
         public void OnRevive()
         {
-            Debug.Log("EnemyController::OnRevive");
             m_currentBrain = m_defaultBrain;
             
             m_currentBrain.gameObject.SetActive(true);

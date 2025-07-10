@@ -21,6 +21,7 @@ namespace SGGames.Script.UI
         public void FadeOutToBlack(float duration = 0.5f)
         {
             if (m_isLoading) return;
+            Debug.Log("FadeOutToBlack");
             StartCoroutine(OnFadeOut(duration));
         }
 
@@ -30,7 +31,7 @@ namespace SGGames.Script.UI
             var timer = 0f;
             while (m_canvasGroup.alpha < 1)
             {
-                timer += Time.deltaTime;
+                timer += Time.unscaledDeltaTime;
                 m_canvasGroup.alpha = MathHelpers.Remap(timer, 0, duration, 0, 1);
                 yield return null;
             }
@@ -41,6 +42,7 @@ namespace SGGames.Script.UI
         public void FadeInFromBlack(float duration = 0.5f)
         {
             if (m_isLoading) return;
+            Debug.Log("FadeInFromBlack");
             StartCoroutine(OnFadeIn(duration));
         }
         
@@ -50,7 +52,7 @@ namespace SGGames.Script.UI
             var timer = duration;
             while (m_canvasGroup.alpha > 0)
             {
-                timer -= Time.deltaTime;
+                timer -= Time.unscaledDeltaTime;
                 m_canvasGroup.alpha = MathHelpers.Remap(timer, 0, duration, 0, 1);
                 yield return null;
             }

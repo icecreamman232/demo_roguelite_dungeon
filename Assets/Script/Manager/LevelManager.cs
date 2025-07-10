@@ -19,7 +19,6 @@ namespace SGGames.Script.Managers
         [SerializeField] private RoomData m_testRoom;
 
         private readonly float DELAY_TIME = 0.5f;
-        private WaitForSeconds m_delayCoroutine;
         private bool m_isLoading;
         private GameObject m_player;
         private Rect m_normalRoomRect;
@@ -29,7 +28,6 @@ namespace SGGames.Script.Managers
         private void Awake()
         {
             ServiceLocator.RegisterService<LevelManager>(this);
-            m_delayCoroutine = new WaitForSeconds(DELAY_TIME);
             m_gameEvent.AddListener(OnReceiveGameEvent);
             
             m_normalRoomRect = new Rect(m_spawnPosition.position.x, m_spawnPosition.position.y + 0.5f, 14, 7);
@@ -53,7 +51,7 @@ namespace SGGames.Script.Managers
             if (isFirstLoad)
             {
                 loadingSceneController.FadeOutToBlack();
-                
+                yield return new WaitForSecondsRealtime(DELAY_TIME);
                 m_gameEvent.Raise(Global.GameEventType.SpawnPlayer);
                 var loadingPlayerPrefabOperation = m_playerPrefab.LoadAssetAsync();
                 yield return new WaitUntil(() => loadingPlayerPrefabOperation.IsDone);
@@ -63,7 +61,10 @@ namespace SGGames.Script.Managers
             }
             else
             {
+                loadingSceneController.FadeOutToBlack();
+                yield return new WaitForSecondsRealtime(DELAY_TIME);
                 m_player.transform.position = m_spawnPosition.position;
+                yield return new WaitForSecondsRealtime(0.3f); //Small delay to feel better after moving player
             }
             
             #if UNITY_EDITOR
@@ -86,7 +87,7 @@ namespace SGGames.Script.Managers
             
             m_gameEvent.Raise(Global.GameEventType.UnpauseGame);
             loadingSceneController.FadeInFromBlack();
-            yield return m_delayCoroutine;
+            yield return new WaitForSecondsRealtime(DELAY_TIME);
             m_gameEvent.Raise(Global.GameEventType.GameStarted);
 
             m_isLoading = false;
