@@ -49,3 +49,4 @@ MonoBehaviour:
     m_totalKey: 0
   m_inventoryEvent: {fileID: 11400000, guid: 13529ca2b65aad543acc50a4d03b8c4b, type: 2}
   m_pocketInventoryEvent: {fileID: 11400000, guid: e94a91a834927e24a84c3d237dee0eb5, type: 2}
+  m_updateCurrencyUIEvent: {fileID: 11400000, guid: 9a2a3cd3b7567224491db05d547c8c38, type: 2}

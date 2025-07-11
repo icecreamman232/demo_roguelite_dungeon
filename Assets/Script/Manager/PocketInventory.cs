@@ -13,7 +13,10 @@ namespace SGGames.Script.Managers
     {
         [SerializeField] private int m_totalCoin = 0;
         [SerializeField] private int m_totalKey = 0;
-
+        
+        public int TotalCoin => m_totalCoin;
+        public int TotalKey => m_totalKey;
+        
         public void AddItem(Global.ItemID id, int amount)
         {
             switch (id)
