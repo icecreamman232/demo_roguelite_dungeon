@@ -9,6 +9,8 @@ namespace SGGames.Script.Pickables
     {
         [SerializeField] private InteractEvent m_interactEvent;
         [SerializeField] private CircleCollider2D m_collider2D;
+        
+        private bool m_isInteracting;
 
         private void Awake()
         {
@@ -39,16 +41,18 @@ namespace SGGames.Script.Pickables
         private void StartInteraction()
         {
             m_interactEvent.Raise(Global.InteractEventType.InteractWithItem);
+            m_isInteracting = true;
         }
 
         private void CancelInteraction()
         {
             m_interactEvent.Raise(Global.InteractEventType.Cancel);
+            m_isInteracting = false;
         }
         
         private void OnReceiveInteractionEvent(Global.InteractEventType eventType)
         {
-            if (eventType == Global.InteractEventType.Finish)
+            if (eventType == Global.InteractEventType.Finish && m_isInteracting)
             {
                 PickedUp();
             }
