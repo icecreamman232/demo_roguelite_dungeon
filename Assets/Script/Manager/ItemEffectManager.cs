@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using SGGames.Script.Core;
+using SGGames.Script.EditorExtensions;
 using SGGames.Script.Pickable;
 using UnityEngine;
 
@@ -15,11 +16,13 @@ namespace SGGames.Script.Managers
         {
             ServiceLocator.RegisterService<ItemEffectManager>(this);
             m_appliedItemEffects = new List<ItemEffect>();
+            ConsoleCheatManager.RegisterCommands(this);
         }
         /// <summary>
         /// Apply given item effect to player
         /// </summary>
         /// <param name="itemEffect"></param>
+        [CheatCode("item", "Apply item effect")]
         public void ApplyItemEffect(ItemEffect itemEffect)
         {
             var lvlManager = ServiceLocator.GetService<LevelManager>();

@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_isAllowInput: 1
+  m_isAllowGameplayInput: 1

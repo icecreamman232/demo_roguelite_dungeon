@@ -1,5 +1,6 @@
 using System;
 using SGGames.Script.Core;
+using SGGames.Script.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,6 +12,7 @@ namespace SGGames.Script.Managers
     public class InputManager : MonoBehaviour, IGameService
     {
         [SerializeField] private bool m_isAllowInput;
+        [SerializeField] private bool m_isAllowGameplayInput;
 
         private Camera m_camera;
         private Vector2 m_movementInput;
@@ -18,12 +20,16 @@ namespace SGGames.Script.Managers
         private InputAction m_moveAction;
         private InputAction m_attackAction;
         private InputAction m_dashAction;
+        private InputAction m_openConsole;
+        private InputAction m_closeUI;
         
         public bool IsAllowInput => m_isAllowInput;
         public Action<Vector2> OnMoveInputUpdate;
         public Action<Vector3> WorldMousePositionUpdate;
         public Action OnPressAttack;
         public Action OnPressDash;
+        public Action OnPressOpenConsole;
+        public Action OnPressCloseUI;
         
         private void Awake()
         {
@@ -31,8 +37,14 @@ namespace SGGames.Script.Managers
             m_moveAction = InputSystem.actions.FindAction("Move");
             m_attackAction = InputSystem.actions.FindAction("Attack");
             m_dashAction = InputSystem.actions.FindAction("Dash");
+            m_openConsole = InputSystem.actions.FindAction("Open Console");
+            m_closeUI = InputSystem.actions.FindAction("Close UI");
+            
             m_attackAction.performed += OnAttackButtonPressed;
             m_dashAction.performed += OnDashButtonPressed;
+            m_openConsole.performed += OnOpenConsoleButtonPressed;
+            m_closeUI.performed += OnCloseUIButtonPressed;
+            
             m_camera = Camera.main;
             EnableInput();
         }
@@ -40,6 +52,7 @@ namespace SGGames.Script.Managers
         private void Update()
         {
             if (!m_isAllowInput) return;
+            if (!m_isAllowGameplayInput) return;
 
             m_movementInput = m_moveAction.ReadValue<Vector2>();
             OnMoveInputUpdate?.Invoke(m_movementInput);
@@ -59,13 +72,29 @@ namespace SGGames.Script.Managers
         private void OnAttackButtonPressed(InputAction.CallbackContext context)
         {
             if (!m_isAllowInput) return;
+            if (!m_isAllowGameplayInput) return;
             OnPressAttack?.Invoke();
         }
         
         private void OnDashButtonPressed(InputAction.CallbackContext context)
         {
             if (!m_isAllowInput) return;
+            if (!m_isAllowGameplayInput) return;
             OnPressDash?.Invoke();
+        }
+        
+        private void OnOpenConsoleButtonPressed(InputAction.CallbackContext context)
+        {
+            if (!m_isAllowInput) return;
+            if (ConsoleCanvasController.IsConsoleOpen) return;
+            OnPressOpenConsole?.Invoke();
+        }
+        
+        private void OnCloseUIButtonPressed(InputAction.CallbackContext context)
+        {
+            if (!m_isAllowInput) return;
+            
+            OnPressCloseUI?.Invoke();
         }
         
         /// <summary>
@@ -74,6 +103,7 @@ namespace SGGames.Script.Managers
         public void EnableInput()
         {
             m_isAllowInput = true;
+            m_isAllowGameplayInput = true;
             InputSystem.actions.Enable();
         }
 
@@ -85,6 +115,11 @@ namespace SGGames.Script.Managers
         {
             m_isAllowInput = false;
             InputSystem.actions.Disable();
+        }
+
+        public void DisableGameplayInput()
+        {
+            m_isAllowGameplayInput = false;
         }
     }
 }

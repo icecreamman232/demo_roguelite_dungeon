@@ -1,5 +1,6 @@
 using SGGames.Script.Core;
 using SGGames.Script.Data;
+using SGGames.Script.EditorExtensions;
 using SGGames.Script.Managers;
 using UnityEngine;
 
@@ -36,6 +37,8 @@ namespace SGGames.Script.Entity
 
             SetMovementType(Global.MovementType.Normal);
             m_canMove = true;
+            
+            ConsoleCheatManager.RegisterCommands(this);
         }
 
         protected override void OnGamePaused()
@@ -112,6 +115,12 @@ namespace SGGames.Script.Entity
         public void AddFlatSpeedBonus(float bonus)
         {
             m_flatSpeedBonus += bonus;
+        }
+
+        [CheatCode("test","Description Here")]
+        public void TestCheatCode(int testValue)
+        {
+            Debug.Log($"Applied Cheat Code  {testValue}");
         }
     }
 }

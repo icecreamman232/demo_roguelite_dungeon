@@ -15,6 +15,11 @@ MonoBehaviour:
   m_GroupName: Managers_Prefab
   m_GUID: 61ac5a91535c7e54485d1ede6f77e328
   m_SerializeEntries:
+  - m_GUID: 14551427138851e45afb765ab8365aed
+    m_Address: Assets/Prefab/UI/ConsoleCanvas.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1a0250c963f535643b840ce4d7c24104
     m_Address: Assets/Prefab/InventoryManager.prefab
     m_ReadOnly: 0
@@ -27,6 +32,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 33b4746128e678d4d8531493a22cf053
     m_Address: Assets/Prefab/LevelManager.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3bae545fbd1c058409296817cc0439b2
+    m_Address: Assets/Prefab/ItemEffectManager.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
