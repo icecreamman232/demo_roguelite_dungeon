@@ -51,15 +51,15 @@ namespace SGGames.Script.Managers
             }
         }
 
-        private void OnReceiveInventoryEvent(Global.InventoryEventType eventType, int slotIndex, Global.ItemID itemID)
+        private void OnReceiveInventoryEvent(Global.InventoryEventType eventType,Global.ItemID itemID, int amount)
         {
             if(eventType == Global.InventoryEventType.Add)
             {
-                m_inventory.AddItem(slotIndex, itemID);
+                m_inventory.AddItem(itemID, amount );
             }
             else if (eventType == Global.InventoryEventType.Remove)
             {
-                m_inventory.RemoveItem(slotIndex);
+                m_inventory.RemoveItem(itemID);
             }
         }
     }

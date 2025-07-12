@@ -7,21 +7,21 @@ namespace SGGames.Script.Data
     [CreateAssetMenu(fileName = "Inventory Event", menuName = "SGGames/Event/Inventory")]
     public class InventoryEvent: ScriptableObject
     {
-        protected Action<Global.InventoryEventType, int, Global.ItemID> m_listener;
+        protected Action<Global.InventoryEventType,Global.ItemID, int> m_listener;
 
-        public virtual void AddListener(Action<Global.InventoryEventType, int, Global.ItemID> addListener)
+        public virtual void AddListener(Action<Global.InventoryEventType,Global.ItemID, int> addListener)
         {
             m_listener += addListener;
         }
 
-        public virtual void RemoveListener(Action<Global.InventoryEventType, int, Global.ItemID> removeListener)
+        public virtual void RemoveListener(Action<Global.InventoryEventType,Global.ItemID, int> removeListener)
         {
             m_listener -= removeListener;
         }
 
-        public virtual void Raise(Global.InventoryEventType inventoryEventType, int slotIndex, Global.ItemID item)
+        public virtual void Raise(Global.InventoryEventType inventoryEventType,Global.ItemID item, int amount)
         {
-            m_listener?.Invoke(inventoryEventType, slotIndex, item);
+            m_listener?.Invoke(inventoryEventType,item, amount);
         }
     }
 }

@@ -11,7 +11,7 @@ namespace SGGames.Script.Data
         public override void Picked(int amount)
         {
             //Slot index -1 because we dont know which slot the item will go to. The default is an empty slot.
-            m_inventoryEvent.Raise(Global.InventoryEventType.Add,-1,m_itemID);
+            m_inventoryEvent.Raise(Global.InventoryEventType.Add, m_itemID, amount);
             base.Picked(amount);
         }
     }
