@@ -23,6 +23,8 @@ namespace SGGames.Script.Managers
         private GameObject m_player;
         private Rect m_normalRoomRect;
         
+        public GameObject Player => m_player;
+        
         public Rect NormalRoomRect => m_normalRoomRect;
         
         private void Awake()

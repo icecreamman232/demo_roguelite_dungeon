@@ -16,6 +16,8 @@ namespace SGGames.Script.Entity
         private bool m_canMove;
         private SpriteRenderer m_spriteRenderer;
         private PlayerWeaponHandler m_playerWeaponHandler;
+
+        private float m_flatSpeedBonus;
         
         public bool IsHitObstacle => CheckObstacle();
         
@@ -105,6 +107,11 @@ namespace SGGames.Script.Entity
         public void ResumeMovement()
         {
             m_canMove = true;
+        }
+
+        public void AddFlatSpeedBonus(float bonus)
+        {
+            m_flatSpeedBonus += bonus;
         }
     }
 }

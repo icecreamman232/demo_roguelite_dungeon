@@ -17,7 +17,7 @@ namespace SGGames.Script.HealthSystem
 
         public Action OnHit;
         
-        protected float GetDamage()
+        protected virtual float GetDamage()
         {
             return Random.Range(m_minDamage, m_maxDamage);
         }

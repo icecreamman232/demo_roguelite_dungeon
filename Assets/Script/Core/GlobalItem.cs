@@ -13,6 +13,24 @@
             None,
             Coin,
             Key,
+            
+            GreenMushroom = 10,
+            RedMushroom,
+        }
+        
+        public enum ItemEffectID
+        {
+            IncreasePlayerSize,
+            DecreasePlayerSize,
+            IncreaseFlatDamage,
+            IncreaseFlatMoveSpeed,
+        }
+
+        public enum ItemEffectTag
+        {
+            ModifySize,
+            ModifyDamage,
+            ModifySpeed,
         }
     }
 }

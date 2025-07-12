@@ -1,4 +1,6 @@
 
+using SGGames.Script.Pickable;
+
 namespace SGGames.Script.Core
 {
     public static partial class Global

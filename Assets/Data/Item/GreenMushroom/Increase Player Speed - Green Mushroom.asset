@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 646fecc10b2f09d44b86e2e850862c5f, type: 3}
+  m_Name: Increase Player Speed - Green Mushroom
+  m_EditorClassIdentifier: 
+  m_itemEffectID: 3
+  m_itemEffectTag: 2
+  m_speedIncrease: 1.5

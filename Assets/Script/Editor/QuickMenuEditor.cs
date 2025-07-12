@@ -24,5 +24,12 @@ namespace SGGames.Script.EditorExtensions
             decision.name = "Decisions";
             decision.transform.SetParent(brain.transform);
         }
+
+        [MenuItem("GameObject/Create Item",priority = 1)]
+        public static void AddInventoryItemTemplate()
+        {
+            var prefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefab/Pickable/InventoryItemTemplate.prefab");
+            PrefabUtility.InstantiatePrefab(prefab);
+        }
     }
 }

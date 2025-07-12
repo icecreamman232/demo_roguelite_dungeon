@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2997806905222396552}
   - component: {fileID: 5875946731721129601}
   - component: {fileID: 7273346060848923032}
-  - component: {fileID: 9000068607633190052}
+  - component: {fileID: 5308555457938306830}
   m_Layer: 0
   m_Name: PlayerSwordProjectile
   m_TagString: PlayerProjectile
@@ -95,14 +95,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_projectileData: {fileID: 11400000, guid: 44f601df9f34492458967fe82aea32d6, type: 2}
   m_movingDirection: {x: 0, y: 0}
-  m_damageHandler: {fileID: 9000068607633190052}
+  m_damageHandler: {fileID: 5308555457938306830}
   m_obstacleLayerMask:
     serializedVersion: 2
     m_Bits: 768
   m_projectileCollider: {fileID: 5875946731721129601}
   m_model: {fileID: 5806886535113504492}
   m_offsetAngle: 0
---- !u!114 &9000068607633190052
+--- !u!114 &5308555457938306830
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2609813097702135230}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7dafb5a6d328e8243947f454b2f8875d, type: 3}
+  m_Script: {fileID: 11500000, guid: 484b826c8dce0234a80dd9ba9398fe68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_targetMask:
@@ -120,6 +120,8 @@ MonoBehaviour:
   m_minDamage: 50
   m_maxDamage: 50
   m_invincibilityDuration: 0.3
+  m_flatDamageModifier: 0
+  m_playerProjectileDamageEvent: {fileID: 11400000, guid: d2588a1244fcc69409b423e1ce8377fd, type: 2}
 --- !u!1 &5806886535113504492
 GameObject:
   m_ObjectHideFlags: 0
