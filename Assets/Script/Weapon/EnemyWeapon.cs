@@ -25,15 +25,21 @@ namespace SGGames.Script.Weapons
         protected override void SpawnProjectile()
         {
             var target = m_controller.CurrentBrain.Target;
-            var aimDirection = (target.transform.position - transform.position).normalized;
-            var projectileRot = Quaternion.AngleAxis(Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg, Vector3.forward);
-            var projectileGO = m_projectilePooler.GetPooledGameObject();
-            var projectile = projectileGO.GetComponent<Projectile>();
-            projectile.Spawn(new ProjectileBuilder()
-                .SetOwner(m_owner)
-                .SetDirection(aimDirection)
-                .SetPosition(transform.position)
-                .SetRotation(projectileRot));
+            var numberProjectile = m_weaponData.ProjectilePerShot;
+
+            for (int i = 0; i < numberProjectile; i++)
+            {
+                var targetPos = target.transform.position + m_weaponData.ShotProperties[i].OffsetPosition;
+                var aimDirection = (targetPos - transform.position).normalized;
+                var projectileRot = Quaternion.AngleAxis(Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg, Vector3.forward);
+                var projectileGO = m_projectilePooler.GetPooledGameObject();
+                var projectile = projectileGO.GetComponent<Projectile>();
+                projectile.Spawn(new ProjectileBuilder()
+                    .SetOwner(m_owner)
+                    .SetDirection(aimDirection)
+                    .SetPosition(transform.position)
+                    .SetRotation(projectileRot));
+            }
         }
     }
 }
