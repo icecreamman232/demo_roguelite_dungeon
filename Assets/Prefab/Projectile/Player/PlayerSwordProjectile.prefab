@@ -120,6 +120,8 @@ MonoBehaviour:
   m_minDamage: 50
   m_maxDamage: 50
   m_invincibilityDuration: 0.3
+  m_knockBackForce: 5
+  m_knockDuration: 0.1
   m_flatDamageModifier: 0
   m_playerProjectileDamageEvent: {fileID: 11400000, guid: d2588a1244fcc69409b423e1ce8377fd, type: 2}
 --- !u!1 &5806886535113504492
@@ -196,7 +198,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1569509321
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 3
   m_Sprite: {fileID: 5413184319536607785, guid: cebfab842c0c19b4d932ec5f44e46a11, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

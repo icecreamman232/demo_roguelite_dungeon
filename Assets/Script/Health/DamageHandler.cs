@@ -1,5 +1,6 @@
 using System;
 using SGGames.Script.Core;
+using SGGames.Script.Entity;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -14,6 +15,8 @@ namespace SGGames.Script.HealthSystem
         [SerializeField] protected float m_minDamage;
         [SerializeField] protected float m_maxDamage;
         [SerializeField] protected float m_invincibilityDuration;
+        [SerializeField] protected float m_knockBackForce;
+        [SerializeField] protected float m_knockDuration;
 
         public Action OnHit;
         
@@ -27,15 +30,28 @@ namespace SGGames.Script.HealthSystem
             if (!LayerManager.IsInLayerMask(other.gameObject.layer, m_targetMask)) return;
             
             var health = other.gameObject.GetComponent<Health>();
+            var entityMovement = other.gameObject.GetComponent<EntityMovement>();
 
-            if (health == null) return;
-            HitDamageable(health);
+            if (health)
+            {
+                HitDamageable(health);
+            }
+            if (entityMovement && !health.IsDead)
+            {
+                ApplyKnockBack(entityMovement);
+            }
         }
 
         protected virtual void HitDamageable(Health health)
         {
             health.TakeDamage(GetDamage(),this.gameObject, m_invincibilityDuration);
             OnHit?.Invoke();
+        }
+
+        protected virtual void ApplyKnockBack(EntityMovement movement)
+        {
+            var attackDir = (movement.transform.position - transform.position).normalized;
+            movement.ApplyKnockBack(attackDir, m_knockBackForce, m_knockDuration);;
         }
     }
 }
