@@ -31,6 +31,7 @@ namespace SGGames.Script.EditorExtensions
 
             AddSharedPrefab(newEnemyGO, "Assets/Prefab/UI/EnemyHealthBar.prefab");
             AddSharedPrefab(newEnemyGO, "Assets/Prefab/Module/FillOverlayColorOnSprite.prefab");
+            AddSharedPrefab(newEnemyGO,"Assets/Prefab/Pickable/LootTable");
         }
 
         private static void AddMainCollisionComponents(GameObject main)

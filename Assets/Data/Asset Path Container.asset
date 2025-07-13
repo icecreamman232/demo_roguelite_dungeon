@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab59c78b5ee7ba04e81fe1b88b6e0871, type: 3}
+  m_Name: Asset Path Container
+  m_EditorClassIdentifier: 
+  m_enemyHealthBarPrefabPath: Assets/Prefab/UI/EnemyHealthBar.prefab
+  m_fillColorSpritePrefabPath: Assets/Prefab/Module/FillOverlayColorOnSprite.prefab
+  m_lootTablePrefabPath: Assets/Prefab/Pickable/LootTable.prefab

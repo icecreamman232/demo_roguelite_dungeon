@@ -36,7 +36,7 @@ namespace SGGames.Script.HealthSystem
             {
                 HitDamageable(health);
             }
-            if (entityMovement && !health.IsDead)
+            if (entityMovement && !health.IsDead && m_knockBackForce > 0)
             {
                 ApplyKnockBack(entityMovement);
             }
