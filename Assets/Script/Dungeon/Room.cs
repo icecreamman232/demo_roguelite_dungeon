@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using SGGames.Script.Core;
 using SGGames.Script.Events;
+using SGGames.Script.Managers;
 using SGGames.Scripts.Entity;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ namespace SGGames.Script.Dungeon
     public class Room : MonoBehaviour
     {
         [SerializeField] private GameEvent m_gameEvent;
+        [SerializeField] private Transform m_treasureChestSpawnPoint;
         private List<EnemyController> m_enemyList;
         private int m_totalEnemyAlive;
         
@@ -41,6 +43,9 @@ namespace SGGames.Script.Dungeon
             if (m_totalEnemyAlive <= 0)
             {
                 m_gameEvent.Raise(Global.GameEventType.RoomCleared);
+                var treasureChestManager = ServiceLocator.GetService<TreasureChestManager>();
+                var treasureChestPrefab = treasureChestManager.GetTreasureChestWith(-1);
+                Instantiate(treasureChestPrefab, m_treasureChestSpawnPoint);
             }
         }
     }

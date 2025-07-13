@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 5874547574898793884}
   - component: {fileID: 6097568748201454230}
   - component: {fileID: 4314084558326647446}
+  - component: {fileID: 256882742575665036}
+  - component: {fileID: 4325435449761446805}
   m_Layer: 11
   m_Name: TreasureChestTemplate
   m_TagString: Interact/TreasureChest
@@ -83,6 +85,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_interactEvent: {fileID: 11400000, guid: 45e12c09bec6ffa4dbb959ea840d16bf, type: 2}
+--- !u!114 &256882742575665036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3071160926173905969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05dd492441571e645be511c3e597be88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_dropController: {fileID: 4325435449761446805}
+--- !u!114 &4325435449761446805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3071160926173905969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb7fcabcfb3ebf46b55b99afee51c0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_spawnRange: 3
+  m_lootTable: {fileID: 0}
+  m_showDebug: 0
 --- !u!1 &6728415248479020453
 GameObject:
   m_ObjectHideFlags: 0

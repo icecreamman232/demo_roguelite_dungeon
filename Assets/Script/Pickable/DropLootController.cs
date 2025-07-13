@@ -19,15 +19,21 @@ namespace SGGames.Script.Pickable
         private void Awake()
         {
             m_health = GetComponentInParent<Health>();
-            m_health.OnDeath += SpawnLoot;
+            if (m_health)
+            {
+                m_health.OnDeath += SpawnLoot;
+            }
         }
         
         [ContextMenu("Spawn Loot")]
-        private void SpawnLoot()
+        public void SpawnLoot()
         {
-            if (m_health.CanRevive) return;
+            if (m_health)
+            {
+                if (m_health.CanRevive) return;
+                m_health.OnDeath -= SpawnLoot;
+            }
             
-            m_health.OnDeath -= SpawnLoot;
             var pickablePrefabManager = ServiceLocator.GetService<PickablePrefabManager>();
 
             foreach (var loot in m_lootTable.GetLootTable())
@@ -36,7 +42,8 @@ namespace SGGames.Script.Pickable
                 
                 for (int i = 0; i < amount; i++)
                 {
-                    var spawnPos = GetSpawnPosition();
+                    var hostPosition = m_health ? m_health.transform.position : transform.position;
+                    var spawnPos = GetSpawnPosition(hostPosition);
                     
                     var lootObject = pickablePrefabManager.GetPrefabWith(loot.Item);
                     
@@ -52,9 +59,9 @@ namespace SGGames.Script.Pickable
             }
         }
 
-        private Vector2 GetSpawnPosition()
+        private Vector2 GetSpawnPosition(Vector2 hostPosition)
         {
-            var newPos = Random.insideUnitCircle * m_spawnRange + (Vector2)m_health.transform.position;
+            var newPos = Random.insideUnitCircle * m_spawnRange + hostPosition;
             var levelManager = ServiceLocator.GetService<LevelManager>();
             for (int i = 0; i < 30; i++)
             {
@@ -62,11 +69,11 @@ namespace SGGames.Script.Pickable
                 {
                     return newPos;
                 }
-                newPos = Random.insideUnitCircle * m_spawnRange + (Vector2)m_health.transform.position;
+                newPos = Random.insideUnitCircle * m_spawnRange + hostPosition;
             }
             
             //Last try we spawn the loot at monster position which is guaranteed to be in the room area
-            return m_health.transform.position;
+            return  hostPosition;
         }
         #if UNITY_EDITOR
         private void OnDrawGizmos()
