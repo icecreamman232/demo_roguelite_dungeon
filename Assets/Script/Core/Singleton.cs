@@ -12,7 +12,7 @@ namespace SGGames.Script.Core
             {
                 if (m_instance == null)
                 {
-                    m_instance = FindObjectOfType<T>();
+                    m_instance = FindFirstObjectByType<T>();
                     if (m_instance == null)
                     {
                         GameObject newObj = new GameObject();

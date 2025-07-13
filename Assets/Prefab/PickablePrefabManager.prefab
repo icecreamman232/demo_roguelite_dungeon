@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SelfInitialize: 1
-  Parent: {fileID: 0}
+  Parent: {fileID: 4196357807764483631}
   Offset: {x: 0, y: 0}
   IsSharePool: 0
   ObjectToPool: {fileID: 5212737347992751394, guid: afecc2a4b1e6f3e419f1b1fcbb3ae197, type: 3}

@@ -33,7 +33,7 @@ namespace SGGames.Script.Core
             //Find existing pool with same name
             if (IsSharePool)
             {
-                var pools = FindObjectsOfType<ObjectPooler>();
+                var pools = FindObjectsByType<ObjectPooler>(FindObjectsSortMode.None);
                 for (int i = 0; i < pools.Length; i++)
                 {
                     if(pools[i].GetInstanceID() == this.GetInstanceID()) continue;
