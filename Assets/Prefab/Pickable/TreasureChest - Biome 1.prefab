@@ -15,7 +15,7 @@ PrefabInstance:
     - target: {fileID: 4325435449761446805, guid: abf9b6339b399344283412261ed81d86, type: 3}
       propertyPath: m_lootTable
       value: 
-      objectReference: {fileID: 11400000, guid: 3851a9fbcbade634e96d23eabadefa8d, type: 2}
+      objectReference: {fileID: 11400000, guid: 8863e79019e95c740a91b81fafa48c7a, type: 2}
     - target: {fileID: 5874547574898793884, guid: abf9b6339b399344283412261ed81d86, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
