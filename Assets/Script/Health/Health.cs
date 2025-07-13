@@ -25,7 +25,7 @@ namespace SGGames.Script.HealthSystem
         public bool IsInvincible => m_isInvincible;
 
         public bool IsDead => m_currHealth <= 0;
-        public bool CanRevive => m_reviveComponent.CanRevive();
+        public bool CanRevive => m_reviveComponent && m_reviveComponent.CanRevive();
 
         public Action<float, GameObject> OnHit;
         public Action OnDeath;
@@ -102,14 +102,12 @@ namespace SGGames.Script.HealthSystem
             }
             yield return new WaitForSeconds(m_delayAfterDeath);
 
-            var canRevive = m_reviveComponent.CanRevive();
-            
             if (m_reviveComponent)
             {
                 m_reviveComponent.Revive();
             }
             
-            if (m_disableOnDeath && !canRevive)
+            if (m_disableOnDeath && !CanRevive)
             {
                 this.gameObject.SetActive(false);
             }
