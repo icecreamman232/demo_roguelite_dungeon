@@ -22,6 +22,7 @@ namespace SGGames.Script.Managers
         private InputAction m_dashAction;
         private InputAction m_openConsole;
         private InputAction m_closeUI;
+        private InputAction m_interactAction;
         
         public bool IsAllowInput => m_isAllowInput;
         public Action<Vector2> OnMoveInputUpdate;
@@ -30,6 +31,7 @@ namespace SGGames.Script.Managers
         public Action OnPressDash;
         public Action OnPressOpenConsole;
         public Action OnPressCloseUI;
+        public Action OnPressInteract;
         
         private void Awake()
         {
@@ -39,11 +41,13 @@ namespace SGGames.Script.Managers
             m_dashAction = InputSystem.actions.FindAction("Dash");
             m_openConsole = InputSystem.actions.FindAction("Open Console");
             m_closeUI = InputSystem.actions.FindAction("Close UI");
+            m_interactAction = InputSystem.actions.FindAction("Interact");
             
             m_attackAction.performed += OnAttackButtonPressed;
             m_dashAction.performed += OnDashButtonPressed;
             m_openConsole.performed += OnOpenConsoleButtonPressed;
             m_closeUI.performed += OnCloseUIButtonPressed;
+            m_interactAction.performed += OnInteractButtonPressed;
             
             m_camera = Camera.main;
             EnableInput();
@@ -95,6 +99,13 @@ namespace SGGames.Script.Managers
             if (!m_isAllowInput) return;
             
             OnPressCloseUI?.Invoke();
+        }
+        
+        private void OnInteractButtonPressed(InputAction.CallbackContext context)
+        {
+            if (!m_isAllowInput) return;
+            if (ConsoleCanvasController.IsConsoleOpen) return;
+            OnPressInteract?.Invoke();
         }
         
         /// <summary>

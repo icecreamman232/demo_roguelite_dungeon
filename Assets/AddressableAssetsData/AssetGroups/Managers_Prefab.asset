@@ -50,6 +50,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 57a8cab836ada0a4596670ce35d6ad32
+    m_Address: Assets/Prefab/UI/HUD.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9fbd32af4d9f8cb49a2ba1e6c5790363
     m_Address: Assets/Prefab/GameManager.prefab
     m_ReadOnly: 0

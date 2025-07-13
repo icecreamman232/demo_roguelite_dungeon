@@ -40,19 +40,22 @@ namespace SGGames.Script.Pickables
 
         private void StartInteraction()
         {
-            m_interactEvent.Raise(Global.InteractEventType.InteractWithItem);
+            m_interactEvent.Raise(Global.InteractEventType.Interact, gameObject.layer, gameObject.tag);
             m_isInteracting = true;
         }
 
         private void CancelInteraction()
         {
-            m_interactEvent.Raise(Global.InteractEventType.Cancel);
+            m_interactEvent.Raise(Global.InteractEventType.Cancel, gameObject.layer, gameObject.tag);
             m_isInteracting = false;
         }
         
-        private void OnReceiveInteractionEvent(Global.InteractEventType eventType)
+        private void OnReceiveInteractionEvent(Global.InteractEventType eventType, int interactLayer, string interactTag)
         {
-            if (eventType == Global.InteractEventType.Finish && m_isInteracting)
+            if (eventType == Global.InteractEventType.Finish 
+                && m_isInteracting
+                && gameObject.layer == interactLayer
+                && gameObject.CompareTag(interactTag))
             {
                 PickedUp();
             }

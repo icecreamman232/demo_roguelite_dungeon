@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PlayerProjectile
   - Pickable/Item
+  - Interact/TreasureChest
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - Obstacle
   - Door
   - Pickable
-  - 
+  - Interactable
   - 
   - 
   - 
@@ -46,14 +47,14 @@ TagManager:
   - name: Door
     uniqueID: 3799311547
     locked: 0
+  - name: Pickable
+    uniqueID: 2341421309
+    locked: 0
   - name: Player
     uniqueID: 2725457975
     locked: 0
   - name: Enemy
     uniqueID: 2029056537
-    locked: 0
-  - name: Pickable
-    uniqueID: 2341421309
     locked: 0
   - name: UI
     uniqueID: 2551254577

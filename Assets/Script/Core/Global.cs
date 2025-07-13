@@ -46,7 +46,7 @@ namespace SGGames.Script.Core
 
         public enum InteractEventType
         {
-            InteractWithItem,
+            Interact,
             Cancel = 9,
             Finish = 10,
         }
