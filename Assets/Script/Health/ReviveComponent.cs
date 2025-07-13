@@ -2,7 +2,6 @@ using SGGames.Script.Entity;
 using SGGames.Script.Modules;
 using UnityEngine;
 
-
 namespace SGGames.Script.HealthSystem
 {
     public class ReviveComponent : EntityBehavior
@@ -11,8 +10,6 @@ namespace SGGames.Script.HealthSystem
         [SerializeField] private int m_maxReviveTime = 1;
 
         private IRevivable[] m_revivableComponents;
-        
-        private bool m_isReviving = false;
         private int m_reviveCounter = 0;
         private Health m_health;
 
@@ -30,8 +27,6 @@ namespace SGGames.Script.HealthSystem
                 if(revivableComponent == null) continue;
                 revivableComponent.OnRevive();
             }
-            
-            m_isReviving = false;
         }
 
         public bool CanRevive()
@@ -48,7 +43,6 @@ namespace SGGames.Script.HealthSystem
             
             Debug.Log($"{this.gameObject.name} revived");
             
-            m_isReviving = true;
             m_reviveCounter++;
             
             m_health.SetHealth(m_health.MaxHealth);

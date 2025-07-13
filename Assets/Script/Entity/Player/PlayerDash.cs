@@ -17,7 +17,6 @@ namespace SGGames.Script.Entity
 
         private PlayerStamina m_playerStamina;
         private PlayerMovement m_playerMovement;
-        private bool m_canDash = true;
         private bool m_isDashing;
         private Vector3 m_startPosition;
         private Vector3 m_endPosition;
@@ -118,8 +117,6 @@ namespace SGGames.Script.Entity
             {
                 command.Execute();
             }
-
-            m_canDash = false;
             m_isDashing = true;
         }
 
@@ -137,7 +134,6 @@ namespace SGGames.Script.Entity
         private IEnumerator OnCoolDown()
         {
             yield return new WaitForSeconds(m_playerData.DashCooldown);
-            m_canDash = true;
         }
 
         protected override void OnGamePaused()
