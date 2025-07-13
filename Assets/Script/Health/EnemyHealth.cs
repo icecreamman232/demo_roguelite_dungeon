@@ -37,17 +37,16 @@ namespace SGGames.Script.HealthSystem
             m_isInvincible = true;
             
             var timeStop = duration + Time.time;
-            m_fillOverlayColorOnSprite.FillOverlayColor(m_spriteRenderer);
             
             while (Time.time < timeStop)
             {
-                m_fillOverlayColorOnSprite.SetIntensity(1);
+                m_fillOverlayColorOnSprite.FillOverlayColor(m_spriteRenderer,Color.red,1);
                 yield return new WaitForSeconds(SPRITE_FLICKING_FREQUENCY);
-                m_fillOverlayColorOnSprite.SetIntensity(0);
+                m_fillOverlayColorOnSprite.FillOverlayColor(m_spriteRenderer,Color.red,0);
                 yield return new WaitForSeconds(SPRITE_FLICKING_FREQUENCY);
             }
-            m_fillOverlayColorOnSprite.ResetColor(m_spriteRenderer);
             
+            m_fillOverlayColorOnSprite.FillOverlayColor(m_spriteRenderer,Color.white,0);
             
             m_isInvincible = false;
         }

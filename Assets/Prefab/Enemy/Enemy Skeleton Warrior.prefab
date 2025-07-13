@@ -60,7 +60,6 @@ MonoBehaviour:
     - {fileID: 6822682151190462612}
     Transitions: []
   Target: {fileID: 0}
-  BrainActive: 0
   CurrentState:
     StateName: 
     Actions: []
@@ -344,7 +343,6 @@ MonoBehaviour:
     - {fileID: 211101701580940838}
     Transitions: []
   Target: {fileID: 0}
-  BrainActive: 0
   CurrentState:
     StateName: 
     Actions: []
@@ -406,7 +404,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: c550fdd3c472c2c4bba40548e88cf293, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -425,7 +423,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2029056537
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 1644955684130295614, guid: ef40648214e69a9448fad30b4c8ceaa8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

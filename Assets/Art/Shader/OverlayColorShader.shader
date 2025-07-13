@@ -2,66 +2,81 @@ Shader "SGGames/OverlayColorShader"
 {
     Properties
     {
-        _MainTex ("Texture", 2D) = "white" {}
+        [PerRendererData] _MainTex ("Sprite Texture", 2D) = "white" {}
         _OverlayColor ("Overlay Color", Color) = (1,1,1,1)
-        _OverlayIntensity ("Overlay Intensity", Range(0,1)) = 1
+        _BlendAmount ("Blend Amount", Range(0, 1)) = 1
+        [MaterialToggle] PixelSnap ("Pixel snap", Float) = 0
     }
     SubShader
     {
         Tags
         {
+            "Queue"="Transparent"
+            "IgnoreProjector"="True"
             "RenderType"="Transparent"
+            "PreviewType"="Plane"
             "CanUseSpriteAtlas"="True"
         }
-        Blend SrcAlpha OneMinusSrcAlpha
+
+        Cull Off
+        Lighting Off
         ZWrite Off
+        Blend SrcAlpha OneMinusSrcAlpha
 
         Pass
         {
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
+            #pragma multi_compile _ PIXELSNAP_ON
             #include "UnityCG.cginc"
 
-            struct appdata
+            struct appdata_t
             {
-                float4 vertex : POSITION;
-                float2 uv : TEXCOORD0;
+                float4 vertex   : POSITION;
+                float4 color    : COLOR;
+                float2 texcoord : TEXCOORD0;
             };
 
             struct v2f
             {
-                float2 uv : TEXCOORD0;
-                UNITY_FOG_COORDS(1)
-                float4 vertex : SV_POSITION;
+                float4 vertex   : SV_POSITION;
+                fixed4 color    : COLOR;
+                float2 texcoord : TEXCOORD0;
             };
 
             sampler2D _MainTex;
-            float4 _MainTex_ST;
             float4 _OverlayColor;
-            float _OverlayIntensity;
+            float _BlendAmount;
 
-            v2f vert (appdata v)
+            v2f vert(appdata_t IN)
             {
-                v2f o;
-                o.vertex = UnityObjectToClipPos(v.vertex);
-                o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-                return o;
+                v2f OUT;
+                OUT.vertex = UnityObjectToClipPos(IN.vertex);
+                OUT.texcoord = IN.texcoord;
+                OUT.color = IN.color;
+                #ifdef PIXELSNAP_ON
+                OUT.vertex = UnityPixelSnap(OUT.vertex);
+                #endif
+                return OUT;
             }
 
-            fixed4 frag (v2f i) : SV_Target
+            fixed4 frag(v2f IN) : SV_Target
             {
-                
-                // sample the texture
-                fixed4 texColor = tex2D(_MainTex, i.uv);
-
-                if(texColor.a > 0 && _OverlayIntensity > 0)
+                fixed4 c = tex2D(_MainTex, IN.texcoord) * IN.color;
+                // Only apply overlay to pixels with non-zero alpha
+                if (c.a > 0.0)
                 {
-                    fixed4 overlay = _OverlayColor * _OverlayIntensity;
-                    //Blend texture and overlay color
-                    return texColor * (1 - overlay.a) + overlay * overlay.a; 
+                    // Lerp between original color and overlay color based on _BlendAmount
+                    c.rgb = lerp(c.rgb, _OverlayColor.rgb, _BlendAmount);
+                    c.a = c.a * _OverlayColor.a;
                 }
-                return texColor;
+                else
+                {
+                    // Discard fully transparent pixels
+                    discard;
+                }
+                return c;
             }
             ENDCG
         }
