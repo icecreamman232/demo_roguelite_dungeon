@@ -24,5 +24,6 @@ namespace SGGames.Script.Data
             get => m_lootTablePrefabPath;
             set => m_lootTablePrefabPath = value;
         }
+        
     }
 }

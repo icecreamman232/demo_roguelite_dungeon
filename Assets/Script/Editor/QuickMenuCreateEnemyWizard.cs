@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using SGGames.Script.Core;
+using SGGames.Script.Data;
 using SGGames.Script.Entity;
 using SGGames.Script.Events;
 using SGGames.Script.HealthSystem;
@@ -28,10 +29,10 @@ namespace SGGames.Script.EditorExtensions
             AddModel(newEnemyGO);
             AddBodyDamageGameObject(newEnemyGO);
 
-
-            AddSharedPrefab(newEnemyGO, "Assets/Prefab/UI/EnemyHealthBar.prefab");
-            AddSharedPrefab(newEnemyGO, "Assets/Prefab/Module/FillOverlayColorOnSprite.prefab");
-            AddSharedPrefab(newEnemyGO,"Assets/Prefab/Pickable/LootTable");
+            var pathContainer = AssetDatabase.LoadAssetAtPath<AssetPathContainer>("Assets/Data/Asset Path Container.asset");
+            AddSharedPrefab(newEnemyGO, pathContainer.EnemyHPBarPath);
+            AddSharedPrefab(newEnemyGO, pathContainer.FillColorSpritePath);
+            AddSharedPrefab(newEnemyGO,pathContainer.LootTablePath);
         }
 
         private static void AddMainCollisionComponents(GameObject main)
