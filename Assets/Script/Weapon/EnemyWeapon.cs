@@ -14,14 +14,6 @@ namespace SGGames.Script.Weapons
             base.Initialize(owner);
         }
 
-        /// <summary>
-        /// Public version of OnAttack, this means to be used by Enemy Brain
-        /// </summary>
-        public void Attack()
-        {
-            OnAttack();
-        }
-
         protected override void SpawnProjectile()
         {
             var target = m_controller.CurrentBrain.Target;

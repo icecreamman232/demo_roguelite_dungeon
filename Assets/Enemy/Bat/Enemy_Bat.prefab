@@ -372,7 +372,6 @@ MonoBehaviour:
     - {fileID: 1463371052336529064}
     Transitions: []
   Target: {fileID: 0}
-  BrainActive: 0
   CurrentState:
     StateName: 
     Actions: []
@@ -469,7 +468,6 @@ MonoBehaviour:
     - {fileID: 256202089850895772}
     Transitions: []
   Target: {fileID: 0}
-  BrainActive: 0
   CurrentState:
     StateName: 
     Actions: []
@@ -593,8 +591,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 985231345648919768}
-        m_TargetAssemblyTypeName: SGGames.Script.Weapons.EnemyWeapon, Assembly-CSharp
-        m_MethodName: Attack
+        m_TargetAssemblyTypeName: SGGames.Script.Weapons.Weapon, Assembly-CSharp
+        m_MethodName: OnAttack
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -764,6 +762,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_isPermit: 1
   m_gameEvent: {fileID: 11400000, guid: 7ac1f24220b2ef14186e0695169f9965, type: 2}
+  m_defaultBrain: {fileID: 0}
   m_currentBrain: {fileID: 6110430800030532304}
 --- !u!114 &8403957574603744869
 MonoBehaviour:
@@ -781,6 +780,8 @@ MonoBehaviour:
   m_maxHealth: 0
   m_currHealth: 0
   m_isInvincible: 0
+  m_disableOnDeath: 1
+  m_delayAfterDeath: 0
   m_enemyData: {fileID: 11400000, guid: 016adb8f7453c2449bff74fb74c392fd, type: 2}
   m_spriteRenderer: {fileID: 7984223844477170315}
 --- !u!114 &4121836022372627583
@@ -922,7 +923,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2029056537
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: acea15572926e074282b6e2344ba8b54, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -986,6 +987,8 @@ MonoBehaviour:
   m_minDamage: 50
   m_maxDamage: 50
   m_invincibilityDuration: 0.3
+  m_knockBackForce: 0
+  m_knockDuration: 0
 --- !u!61 &3580966054706626734
 BoxCollider2D:
   m_ObjectHideFlags: 0

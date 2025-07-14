@@ -16,18 +16,18 @@ namespace SGGames.Script.Weapons
         private bool m_isAttackOnLeft;
         private bool m_isAttacking;
         private PlayerWeaponHandler m_playerWeaponHandler;
+        private ProjectileBuilder m_projectileBuilder;
         
         private void Start()
         {
             m_animator = GetComponent<Animator>();
             m_attackAnimDuration = m_attackAnimation.length;
-            var inputManager = ServiceLocator.GetService<InputManager>();
-            inputManager.OnPressAttack += OnAttack;
         }
 
         public override void Initialize(GameObject owner)
         {
             m_playerWeaponHandler = owner.GetComponent<PlayerWeaponHandler>();
+            m_projectileBuilder = new ProjectileBuilder();
             base.Initialize(owner);
         }
 
@@ -36,7 +36,7 @@ namespace SGGames.Script.Weapons
             var projectileRot = Quaternion.AngleAxis(Mathf.Atan2(m_playerWeaponHandler.AimDirection.y, m_playerWeaponHandler.AimDirection.x) * Mathf.Rad2Deg, Vector3.forward);
             var projectileGO = m_projectilePooler.GetPooledGameObject();
             var projectile = projectileGO.GetComponent<Projectile>();
-            projectile.Spawn(new ProjectileBuilder()
+            projectile.Spawn(m_projectileBuilder
                 .SetOwner(m_owner)
                 .SetDirection(m_playerWeaponHandler.AimDirection)
                 .SetPosition(transform.position)

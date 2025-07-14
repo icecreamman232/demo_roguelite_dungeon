@@ -20,7 +20,7 @@ namespace SGGames.Script.Weapons
             m_owner = owner;
         }
         
-        protected virtual void OnAttack()
+        public virtual void OnAttack()
         {
             if (m_currWeaponState != Global.WeaponState.Ready) return;
             SpawnProjectile();
