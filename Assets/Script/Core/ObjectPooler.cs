@@ -5,14 +5,14 @@ namespace SGGames.Script.Core
 {
     public class ObjectPooler : MonoBehaviour
     {
-        public bool SelfInitialize = true;
-        public Transform Parent;
-        public Vector2 Offset;
-        public bool IsSharePool;
-        public GameObject ObjectToPool;
-        public int PoolSize;
+        [SerializeField] private bool m_autoCreateParentForPool;
+        [SerializeField] private GameObject m_parent;
+        [SerializeField] private bool m_isSharePool;
+        [SerializeField] private GameObject m_objectToPool;
+        [SerializeField] private int m_poolSize;
 
         private List<GameObject> m_pool;
+        private GameObject m_poolParent;
 
         public List<GameObject> CurrentPool => m_pool;
         
@@ -23,21 +23,30 @@ namespace SGGames.Script.Core
         
         private void CreatePool()
         {
-            if (ObjectToPool == null) return;
+            if (m_objectToPool == null) return;
             
             if (m_pool == null)
             {
                 m_pool = new List<GameObject>();
             }
 
+            if (m_autoCreateParentForPool)
+            {
+                m_poolParent = new GameObject(m_objectToPool.name + " Parent");
+            }
+            else
+            {
+                m_poolParent = m_parent;
+            }
+
             //Find existing pool with same name
-            if (IsSharePool)
+            if (m_isSharePool)
             {
                 var pools = FindObjectsByType<ObjectPooler>(FindObjectsSortMode.None);
                 for (int i = 0; i < pools.Length; i++)
                 {
                     if(pools[i].GetInstanceID() == this.GetInstanceID()) continue;
-                    if (pools[i].ObjectToPool.name == ObjectToPool.name && pools[i].ObjectToPool!=null)
+                    if (pools[i].m_objectToPool.name == m_objectToPool.name && pools[i].m_objectToPool!=null)
                     {
                         m_pool = pools[i].CurrentPool;
                         return;
@@ -45,9 +54,9 @@ namespace SGGames.Script.Core
                 }
             }
             
-            for (int i = 0; i < PoolSize; i++)
+            for (int i = 0; i < m_poolSize; i++)
             {
-                var pooledObject = Instantiate(ObjectToPool, Parent);
+                var pooledObject = Instantiate(m_objectToPool, m_poolParent.transform);
                 var currentName = pooledObject.name;
                 currentName += $"({i})";
                 pooledObject.name = currentName;
@@ -58,7 +67,7 @@ namespace SGGames.Script.Core
 
         public GameObject GetPooledGameObject()
         {
-            for (int i = 0; i < PoolSize; i++)
+            for (int i = 0; i < m_poolSize; i++)
             {
                 if (!m_pool[i].activeInHierarchy)
                 {

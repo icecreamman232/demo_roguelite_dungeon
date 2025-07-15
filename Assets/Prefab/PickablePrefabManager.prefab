@@ -59,9 +59,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbfe5d2fe6527dc40893b1d9a844900b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SelfInitialize: 1
-  Parent: {fileID: 4196357807764483631}
-  Offset: {x: 0, y: 0}
-  IsSharePool: 0
-  ObjectToPool: {fileID: 5212737347992751394, guid: afecc2a4b1e6f3e419f1b1fcbb3ae197, type: 3}
-  PoolSize: 30
+  m_autoCreateParentForPool: 0
+  m_parent: {fileID: 1908924170007982583}
+  m_isSharePool: 0
+  m_objectToPool: {fileID: 5212737347992751394, guid: afecc2a4b1e6f3e419f1b1fcbb3ae197, type: 3}
+  m_poolSize: 30

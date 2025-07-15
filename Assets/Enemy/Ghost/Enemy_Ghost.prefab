@@ -976,12 +976,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbfe5d2fe6527dc40893b1d9a844900b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SelfInitialize: 1
-  Parent: {fileID: 0}
-  Offset: {x: 0, y: 0}
-  IsSharePool: 0
-  ObjectToPool: {fileID: 9034834727839782509, guid: e7d653f8d33b4b14195da3a057c489c8, type: 3}
-  PoolSize: 25
+  m_autoCreateParentForPool: 1
+  m_parent: {fileID: 0}
+  m_isSharePool: 0
+  m_objectToPool: {fileID: 9034834727839782509, guid: e7d653f8d33b4b14195da3a057c489c8, type: 3}
+  m_poolSize: 20
 --- !u!1001 &5218235502491183651
 PrefabInstance:
   m_ObjectHideFlags: 0

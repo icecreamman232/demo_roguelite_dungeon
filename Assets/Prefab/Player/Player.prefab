@@ -77,12 +77,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbfe5d2fe6527dc40893b1d9a844900b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SelfInitialize: 1
-  Parent: {fileID: 0}
-  Offset: {x: 0, y: 0}
-  IsSharePool: 0
-  ObjectToPool: {fileID: 5760272314426281025, guid: 36cea74f19eeca745af49392487b853e, type: 3}
-  PoolSize: 30
+  m_autoCreateParentForPool: 1
+  m_parent: {fileID: 0}
+  m_isSharePool: 0
+  m_objectToPool: {fileID: 5760272314426281025, guid: 36cea74f19eeca745af49392487b853e, type: 3}
+  m_poolSize: 30
 --- !u!114 &5595065650812919701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,7 +170,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1569509321
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8df069f59108d404fb0e0f9aaa41f2a0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
