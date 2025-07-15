@@ -38,6 +38,13 @@ namespace SGGames.Script.Core
             Boss = 30,
         }
 
+        public enum RoomDifficulty
+        {
+            Easy,
+            Hard,
+            Challenge,
+        }
+
         public enum WeaponState
         {
             Ready,

@@ -148,8 +148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f75b90c898daee54383dc88beaa807da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_prefixName: Room-Easy
-  m_startIndex: 5
+  m_prefixName: Room-Challenge
+  m_startIndex: 6
   m_designRoom: {fileID: 1950160414}
   m_roomTemplatePrefab: {fileID: 8630033408810215285, guid: 287d580421c343b4383510feefd4ff30, type: 3}
 --- !u!4 &415352469

@@ -15,7 +15,7 @@ namespace SGGames.Script.Modules
         
         private string GetNextRoomName()
         {
-            var roomName = m_prefixName + m_startIndex + ".prefab";
+            var roomName = m_prefixName + "-" + m_startIndex + ".prefab";
             m_startIndex++;
             return roomName;
         }

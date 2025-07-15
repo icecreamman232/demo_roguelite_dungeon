@@ -11,7 +11,7 @@ namespace SGGames.Script.EditorExtensions
     {
         public override void OnInspectorGUI()
         {
-            
+            base.OnInspectorGUI();
 
             if (GUILayout.Button("Find All & Save"))
             {
