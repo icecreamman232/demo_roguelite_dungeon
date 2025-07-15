@@ -169,7 +169,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2029056537
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 96844419, guid: 33d858f163cc45c429fad25e2306cddf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -311,6 +311,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_isPermit: 1
   m_gameEvent: {fileID: 11400000, guid: 7ac1f24220b2ef14186e0695169f9965, type: 2}
+  m_defaultBrain: {fileID: 4238696107163186904}
   m_currentBrain: {fileID: 4238696107163186904}
 --- !u!114 &3681058085338316961
 MonoBehaviour:
@@ -328,8 +329,11 @@ MonoBehaviour:
   m_maxHealth: 0
   m_currHealth: 0
   m_isInvincible: 0
+  m_disableOnDeath: 1
+  m_delayAfterDeath: 0
   m_enemyData: {fileID: 11400000, guid: 049bb2bb3605ba542a2fba87ee291eea, type: 2}
-  m_spriteRenderer: {fileID: 0}
+  m_spriteRenderer: {fileID: 1208306049597145186}
+  m_floatingTextEvent: {fileID: 11400000, guid: 319a78d159feea54fb1d2b7b0953e9ec, type: 2}
 --- !u!114 &8262135198344343122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -399,6 +403,8 @@ MonoBehaviour:
   m_minDamage: 0
   m_maxDamage: 0
   m_invincibilityDuration: 0
+  m_knockBackForce: 0
+  m_knockDuration: 0
 --- !u!61 &2933225535416741485
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -618,7 +624,6 @@ MonoBehaviour:
       TrueStateName: Rest
       FalseStateName: 
   Target: {fileID: 0}
-  BrainActive: 0
   CurrentState:
     StateName: 
     Actions: []

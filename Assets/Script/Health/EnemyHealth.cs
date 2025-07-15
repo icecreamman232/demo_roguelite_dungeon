@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Globalization;
 using SGGames.Script.Data;
 using SGGames.Script.Modules;
 using SGGames.Script.UI;
@@ -10,9 +11,10 @@ namespace SGGames.Script.HealthSystem
     {
         [Header("Enemy")] 
         [SerializeField] private EnemyData m_enemyData;
+        [SerializeField] private SpriteRenderer m_spriteRenderer;
+        [SerializeField] private FloatingTextEvent m_floatingTextEvent;
         private EnemyHealthBarController m_enemyHealthBar;
         private FillOverlayColorOnSprite m_fillOverlayColorOnSprite;
-        [SerializeField] private SpriteRenderer m_spriteRenderer;
         private static float SPRITE_FLICKING_FREQUENCY = 0.1f;
      
         protected override void Start()
@@ -49,6 +51,12 @@ namespace SGGames.Script.HealthSystem
             m_fillOverlayColorOnSprite.FillOverlayColor(m_spriteRenderer,Color.white,0);
             
             m_isInvincible = false;
+        }
+
+        protected override void Damage(float damage, GameObject source)
+        {
+            base.Damage(damage, source);
+            m_floatingTextEvent.Raise(damage.ToString(), transform.position);
         }
 
         protected override void UpdateHealthBar()

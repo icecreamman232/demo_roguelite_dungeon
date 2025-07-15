@@ -760,7 +760,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_isPermit: 1
   m_gameEvent: {fileID: 11400000, guid: 7ac1f24220b2ef14186e0695169f9965, type: 2}
-  m_defaultBrain: {fileID: 0}
+  m_defaultBrain: {fileID: 6110430800030532304}
   m_currentBrain: {fileID: 6110430800030532304}
 --- !u!114 &8403957574603744869
 MonoBehaviour:
@@ -782,6 +782,7 @@ MonoBehaviour:
   m_delayAfterDeath: 0
   m_enemyData: {fileID: 11400000, guid: 016adb8f7453c2449bff74fb74c392fd, type: 2}
   m_spriteRenderer: {fileID: 7984223844477170315}
+  m_floatingTextEvent: {fileID: 11400000, guid: 319a78d159feea54fb1d2b7b0953e9ec, type: 2}
 --- !u!114 &4121836022372627583
 MonoBehaviour:
   m_ObjectHideFlags: 0

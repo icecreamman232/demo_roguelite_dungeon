@@ -154,6 +154,7 @@ MonoBehaviour:
   m_delayAfterDeath: 0
   m_enemyData: {fileID: 11400000, guid: 91471da19da6fe74f917e6271e04784f, type: 2}
   m_spriteRenderer: {fileID: 103804058724106057}
+  m_floatingTextEvent: {fileID: 11400000, guid: 319a78d159feea54fb1d2b7b0953e9ec, type: 2}
 --- !u!114 &4363575023723288489
 MonoBehaviour:
   m_ObjectHideFlags: 0
