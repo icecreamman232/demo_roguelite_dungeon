@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4363575023723288489}
   - component: {fileID: 1761888736921343199}
   m_Layer: 7
-  m_Name: Ghost
+  m_Name: Enemy_Ghost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -264,8 +264,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3651804524659773834}
-        m_TargetAssemblyTypeName: SGGames.Script.Weapons.Weapon, Assembly-CSharp
-        m_MethodName: OnAttack
+        m_TargetAssemblyTypeName: SGGames.Script.Weapons.EnemyDefaultRangeWeapon,
+          Assembly-CSharp
+        m_MethodName: Attack
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -961,10 +962,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 947b2e007562d5f408725d4805647544, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_owner: {fileID: 0}
-  m_currWeaponState: 0
-  m_weaponData: {fileID: 11400000, guid: 86ab90475afc9a04190079e27801c84e, type: 2}
   m_projectilePooler: {fileID: 5124686353770428340}
+  m_weaponData: {fileID: 11400000, guid: 86ab90475afc9a04190079e27801c84e, type: 2}
 --- !u!114 &5124686353770428340
 MonoBehaviour:
   m_ObjectHideFlags: 0

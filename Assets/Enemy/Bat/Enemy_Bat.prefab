@@ -518,10 +518,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 947b2e007562d5f408725d4805647544, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_owner: {fileID: 0}
-  m_currWeaponState: 0
-  m_weaponData: {fileID: 11400000, guid: c88c0b857543d054fb2c3bc9b9bb874c, type: 2}
   m_projectilePooler: {fileID: 5883246072891767112}
+  m_weaponData: {fileID: 11400000, guid: c88c0b857543d054fb2c3bc9b9bb874c, type: 2}
 --- !u!114 &5883246072891767112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -591,8 +589,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 985231345648919768}
-        m_TargetAssemblyTypeName: SGGames.Script.Weapons.Weapon, Assembly-CSharp
-        m_MethodName: OnAttack
+        m_TargetAssemblyTypeName: SGGames.Script.Weapons.EnemyDefaultRangeWeapon,
+          Assembly-CSharp
+        m_MethodName: Attack
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

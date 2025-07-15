@@ -5,10 +5,10 @@ using UnityEngine;
 
 namespace SGGames.Script.Entity
 {
-    public class PlayerWeaponHandler : EntityBehavior
+    public class PlayerWeaponHandler : EntityBehavior, IWeaponOwner
     {
         [SerializeField] private Transform m_weaponAttachment;
-        [SerializeField] private PlayerWeapon m_currWeapon;
+        [SerializeField] private PlayerDefaultRangedWeapon m_currWeapon;
         
         private Vector3 m_aimDirection;
         private float m_aimAngle;
@@ -21,12 +21,12 @@ namespace SGGames.Script.Entity
             var inputManager = ServiceLocator.GetService<InputManager>();
             inputManager.WorldMousePositionUpdate += OnWorldMousePositionChanged;
             inputManager.OnPressAttack += OnPressAttackButton;
-            m_currWeapon.Initialize(this.gameObject);
+            m_currWeapon.InitializeWeapon(this);
         }
 
         private void OnPressAttackButton()
         {
-            m_currWeapon.OnAttack();
+            m_currWeapon.Attack();
         }
 
         private void OnWorldMousePositionChanged(Vector3 mouseWorldPosition)
