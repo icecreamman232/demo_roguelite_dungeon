@@ -49,7 +49,11 @@ MonoBehaviour:
   m_maxHardRoom: 4
   m_maxChallengeRoom: 3
   m_maxSpecialRoom: 2
+  m_currentBiomesIndex: 0
   m_currentRoomIndex: 0
+  m_roomContainers:
+  - {fileID: 11400000, guid: 235aab5be81028340bd17a6c47102168, type: 2}
+  - {fileID: 11400000, guid: a5316fc05ecc7d8448137941b6540698, type: 2}
   m_roomContainer: {fileID: 11400000, guid: 235aab5be81028340bd17a6c47102168, type: 2}
   m_leftRoomList:
   - {fileID: 11400000, guid: d07a488d76cec89428fb42b518cb40dd, type: 2}

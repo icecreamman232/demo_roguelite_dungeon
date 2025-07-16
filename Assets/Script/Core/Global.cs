@@ -77,7 +77,9 @@ namespace SGGames.Script.Core
             RoomCreated,
             GameStarted,
             RoomCleared,
-            LoadNextRoom,
+            LoadNextRoomLeftRoom,
+            LoadNextRoomRightRoom,
+            LoadNextBiomes,
             
             PauseGame = 30,
             UnpauseGame = 31,

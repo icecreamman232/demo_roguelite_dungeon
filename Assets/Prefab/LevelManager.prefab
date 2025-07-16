@@ -53,7 +53,7 @@ MonoBehaviour:
     m_EditorAssetChanged: 0
   m_gameEvent: {fileID: 11400000, guid: 7ac1f24220b2ef14186e0695169f9965, type: 2}
   m_spawnPosition: {fileID: 182542924476121638}
-  m_isUsingTestRoom: 1
+  m_isUsingTestRoom: 0
   m_testRoom: {fileID: 11400000, guid: 0dfe4e0e1634e34478758c787bb8bf71, type: 2}
 --- !u!1 &8407236139128086581
 GameObject:

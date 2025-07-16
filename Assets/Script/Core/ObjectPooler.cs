@@ -16,7 +16,7 @@ namespace SGGames.Script.Core
 
         public List<GameObject> CurrentPool => m_pool;
         
-        private void Awake()
+        protected virtual void Awake()
         {
             CreatePool();
         }

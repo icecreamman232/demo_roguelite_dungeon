@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbfd70dccdf4363419d5900a2d0e157b, type: 3}
+  m_Name: Room Container Biome 2
+  m_EditorClassIdentifier: 
+  m_container:
+  - {fileID: 11400000, guid: db0564c974e65a442a5f36a5c9187616, type: 2}
+  - {fileID: 11400000, guid: 46f079323b410a744a79b90df146cfd6, type: 2}
+  - {fileID: 11400000, guid: 73ef74fb444c4fb48923ada8f9758175, type: 2}
+  - {fileID: 11400000, guid: 0dfe4e0e1634e34478758c787bb8bf71, type: 2}
+  - {fileID: 11400000, guid: c677f190f709ba941a7b0d2a3061a9fd, type: 2}
+  - {fileID: 11400000, guid: 7021545fdd0dff24d89e1ca12ba911c8, type: 2}
+  - {fileID: 11400000, guid: 9166a0107dab9d248a142027ee5be1f5, type: 2}
+  - {fileID: 11400000, guid: 62fb101cab1029543b03ee7f69948220, type: 2}
+  - {fileID: 11400000, guid: b98f8e43a4a0380408a86f7ea4934553, type: 2}
+  - {fileID: 11400000, guid: 28794d9061efbae40af51eb4fb8b3e30, type: 2}
+  - {fileID: 11400000, guid: 8e253db462dbcde469ebc99ee8bc8813, type: 2}
+  - {fileID: 11400000, guid: 62a66ae24b583cb45893b852a43ca515, type: 2}
+  - {fileID: 11400000, guid: 6572a58d762c28b4b8ab780e762ebd62, type: 2}
+  - {fileID: 11400000, guid: 4548ef1a69e5b4d4f8dd210d034e9fb7, type: 2}
+  - {fileID: 11400000, guid: a1bc4937e568e8b41b99c89c4b583c7c, type: 2}
+  - {fileID: 11400000, guid: a2d54f0396dfdfe45b66dc20248e2c6f, type: 2}
+  - {fileID: 11400000, guid: db45743df3038fe4a8622b7894e7297a, type: 2}
+  - {fileID: 11400000, guid: fb575ac8534de0c44a977f3b99f7233b, type: 2}
+  - {fileID: 11400000, guid: 3fc4c70c6b80fcd40b235b56e5d52f81, type: 2}
+  - {fileID: 11400000, guid: d07a488d76cec89428fb42b518cb40dd, type: 2}
+  - {fileID: 11400000, guid: 56baa7aad6d1d3f4c8e01032216cc8a3, type: 2}
+  - {fileID: 11400000, guid: 5ecfd3f0964464845b940f3e91c8612c, type: 2}
+  - {fileID: 11400000, guid: 9768e7a427f9b774e8d197ec949a6384, type: 2}
+  m_biomesName: 1
+  m_easyRooms:
+  - {fileID: 11400000, guid: 3fc4c70c6b80fcd40b235b56e5d52f81, type: 2}
+  - {fileID: 11400000, guid: d07a488d76cec89428fb42b518cb40dd, type: 2}
+  - {fileID: 11400000, guid: 56baa7aad6d1d3f4c8e01032216cc8a3, type: 2}
+  - {fileID: 11400000, guid: 5ecfd3f0964464845b940f3e91c8612c, type: 2}
+  - {fileID: 11400000, guid: 9768e7a427f9b774e8d197ec949a6384, type: 2}
+  m_hardRooms:
+  - {fileID: 11400000, guid: 8e253db462dbcde469ebc99ee8bc8813, type: 2}
+  - {fileID: 11400000, guid: 62a66ae24b583cb45893b852a43ca515, type: 2}
+  - {fileID: 11400000, guid: 6572a58d762c28b4b8ab780e762ebd62, type: 2}
+  - {fileID: 11400000, guid: 4548ef1a69e5b4d4f8dd210d034e9fb7, type: 2}
+  - {fileID: 11400000, guid: a1bc4937e568e8b41b99c89c4b583c7c, type: 2}
+  - {fileID: 11400000, guid: a2d54f0396dfdfe45b66dc20248e2c6f, type: 2}
+  - {fileID: 11400000, guid: db45743df3038fe4a8622b7894e7297a, type: 2}
+  - {fileID: 11400000, guid: fb575ac8534de0c44a977f3b99f7233b, type: 2}
+  m_challengeRooms:
+  - {fileID: 11400000, guid: c677f190f709ba941a7b0d2a3061a9fd, type: 2}
+  - {fileID: 11400000, guid: 7021545fdd0dff24d89e1ca12ba911c8, type: 2}
+  - {fileID: 11400000, guid: 9166a0107dab9d248a142027ee5be1f5, type: 2}
+  - {fileID: 11400000, guid: 62fb101cab1029543b03ee7f69948220, type: 2}
+  - {fileID: 11400000, guid: b98f8e43a4a0380408a86f7ea4934553, type: 2}
+  - {fileID: 11400000, guid: 28794d9061efbae40af51eb4fb8b3e30, type: 2}
+  m_bossRooms: []
+  m_npcWeaponShop: {fileID: 11400000, guid: 73ef74fb444c4fb48923ada8f9758175, type: 2}
+  m_npcItemShop: {fileID: 11400000, guid: db0564c974e65a442a5f36a5c9187616, type: 2}
+  m_miniBossRooms:
+  - {fileID: 11400000, guid: 46f079323b410a744a79b90df146cfd6, type: 2}

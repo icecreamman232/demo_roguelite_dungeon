@@ -21,9 +21,11 @@ namespace SGGames.Script.Managers
         private readonly float DELAY_TIME = 0.5f;
         private bool m_isLoading;
         private GameObject m_player;
+        private GameObject m_currentRoom;
         private Rect m_normalRoomRect;
         
         public GameObject Player => m_player;
+        public GameObject CurrentRoom => m_currentRoom;
         
         public Rect NormalRoomRect => m_normalRoomRect;
         
@@ -38,10 +40,10 @@ namespace SGGames.Script.Managers
         private void Start()
         {
             if (m_isLoading) return;
-            StartCoroutine(LoadLevel(isFirstLoad:true));
+            StartCoroutine(LoadLevel(fromLeftRoom:true, isFirstLoad:true));
         }
         
-        private IEnumerator LoadLevel(bool isFirstLoad = false)
+        private IEnumerator LoadLevel(bool fromLeftRoom, bool isFirstLoad = false)
         {
             m_isLoading = true;
             
@@ -65,6 +67,12 @@ namespace SGGames.Script.Managers
             {
                 loadingSceneController.FadeOutToBlack();
                 yield return new WaitForSecondsRealtime(DELAY_TIME);
+                if (m_currentRoom)
+                {
+                    Destroy(m_currentRoom);
+                    m_currentRoom = null;
+                }
+                yield return new WaitForEndOfFrame();
                 m_player.transform.position = m_spawnPosition.position;
                 yield return new WaitForSecondsRealtime(0.3f); //Small delay to feel better after moving player
             }
@@ -72,16 +80,16 @@ namespace SGGames.Script.Managers
             #if UNITY_EDITOR
             if (m_isUsingTestRoom)
             {
-                Instantiate(m_testRoom.RoomPrefab);
+                m_currentRoom = Instantiate(m_testRoom.RoomPrefab);
             }
             else
             {
-                var roomData = roomManager.GetNextLeftRoom();
-                Instantiate(roomData.RoomPrefab);
+                var roomData = fromLeftRoom ? roomManager.GetNextLeftRoom() : roomManager.GetNextRightRoom();
+                m_currentRoom = Instantiate(roomData.RoomPrefab);
             }
             #else
-            var roomData = roomManager.GetNextLeftRoom();
-            Instantiate(roomData.RoomPrefab);
+            var roomData = fromLeftRoom ? roomManager.GetNextLeftRoom() : roomManager.GetNextRightRoom();;
+            m_currentRoom = Instantiate(roomData.RoomPrefab);
             #endif
             
             yield return new WaitForEndOfFrame();
@@ -97,10 +105,15 @@ namespace SGGames.Script.Managers
         
         private void OnReceiveGameEvent(Global.GameEventType eventType)
         {
-            if (eventType == Global.GameEventType.LoadNextRoom)
+            if (eventType == Global.GameEventType.LoadNextRoomLeftRoom)
             {
                 if (m_isLoading) return;
-                StartCoroutine(LoadLevel());
+                StartCoroutine(LoadLevel(fromLeftRoom:true));
+            }
+            else if (eventType == Global.GameEventType.LoadNextRoomRightRoom)
+            {
+                if (m_isLoading) return;
+                StartCoroutine(LoadLevel(fromLeftRoom:false));
             }
         }
 
@@ -110,7 +123,7 @@ namespace SGGames.Script.Managers
         [ContextMenu("Load Level")]
         private void TestLoadLevel()
         {
-            StartCoroutine(LoadLevel());
+            StartCoroutine(LoadLevel(fromLeftRoom:true));
         }
         
         #endregion

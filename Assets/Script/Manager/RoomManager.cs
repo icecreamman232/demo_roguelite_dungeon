@@ -14,7 +14,9 @@ namespace SGGames.Script.Managers
         [SerializeField] private int m_maxChallengeRoom;
         [SerializeField] private int m_maxSpecialRoom; //Special room includes: npc room, mini boss room, all except normal room
         [Header("Data")] 
+        [SerializeField] private int m_currentBiomesIndex;
         [SerializeField] private int m_currentRoomIndex;
+        [SerializeField] private RoomContainer[] m_roomContainers;
         [SerializeField] private RoomContainer m_roomContainer;
         [SerializeField] private List<RoomData> m_leftRoomList;
         [SerializeField] private List<RoomData> m_rightRoomList;
@@ -28,7 +30,64 @@ namespace SGGames.Script.Managers
 
         private void Start()
         {
-            GenerateRooms();
+            GenerateRoomForBiomes(m_currentBiomesIndex);
+        }
+
+        private void GenerateRoomForBiomes(int biomesIndex)
+        {
+            ClearData();
+            
+            var shuffledEasyRoomList = new List<RoomData>();
+            shuffledEasyRoomList.AddRange(m_roomContainers[biomesIndex].GetEasyRoomList);
+            GameHelper.Shuffle(shuffledEasyRoomList);
+            
+            var shuffledHardRoomList = new List<RoomData>();
+            shuffledHardRoomList.AddRange(m_roomContainers[biomesIndex].GetHardRoomList);
+            GameHelper.Shuffle(shuffledHardRoomList);
+            
+            var shuffledChallengeRoomList = new List<RoomData>();
+            shuffledChallengeRoomList.AddRange(m_roomContainers[biomesIndex].GetChallengeRoomList);
+            GameHelper.Shuffle(shuffledChallengeRoomList);
+            
+            
+            int numberEasyRoomToSelect = Mathf.Min(m_maxEasyRoom * 2, shuffledEasyRoomList.Count);
+            int numberHardRoomToSelect = Mathf.Min(m_maxHardRoom * 2, shuffledHardRoomList.Count);
+            int numberChallengeRoomToSelect = Mathf.Min(m_maxChallengeRoom * 2, shuffledChallengeRoomList.Count);
+            
+            //Debug.Log($"RoomManager::Pick Easy:{numberEasyRoomToSelect} Hard:{numberHardRoomToSelect} Challenge:{numberChallengeRoomToSelect}");
+            
+            //Easy
+            for (int e = 0; e < numberEasyRoomToSelect/2; e++)
+            {
+                m_leftRoomList.Add(shuffledEasyRoomList[e]);
+            }
+            
+            for (int e = numberEasyRoomToSelect/2; e < numberEasyRoomToSelect; e++)
+            {
+                m_rightRoomList.Add(shuffledEasyRoomList[e]);
+            }
+            
+            //Hard
+            for (int h = 0; h < numberHardRoomToSelect/2; h++)
+            {
+                m_leftRoomList.Add(shuffledHardRoomList[h]);
+            }
+            
+            for (int h = numberHardRoomToSelect/2; h < numberHardRoomToSelect; h++)
+            {
+                m_rightRoomList.Add(shuffledHardRoomList[h]);
+            }
+            
+            //Challenge
+            for (int c = 0; c < numberChallengeRoomToSelect/2; c++)
+            {
+                m_leftRoomList.Add(shuffledChallengeRoomList[c]);
+            }
+            
+            for (int c = numberChallengeRoomToSelect/2; c < numberChallengeRoomToSelect; c++)
+            {
+                m_rightRoomList.Add(shuffledChallengeRoomList[c]);
+            }
         }
 
         [ContextMenu("Generate Rooms")]

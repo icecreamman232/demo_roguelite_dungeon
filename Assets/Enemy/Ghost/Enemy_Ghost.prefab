@@ -928,7 +928,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5611062421031624494}
   - component: {fileID: 3651804524659773834}
-  - component: {fileID: 5124686353770428340}
+  - component: {fileID: 2299522054817845221}
   m_Layer: 7
   m_Name: Weapon
   m_TagString: Untagged
@@ -963,9 +963,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 947b2e007562d5f408725d4805647544, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_projectilePooler: {fileID: 5124686353770428340}
+  m_projectilePooler: {fileID: 2299522054817845221}
   m_weaponData: {fileID: 11400000, guid: 86ab90475afc9a04190079e27801c84e, type: 2}
---- !u!114 &5124686353770428340
+--- !u!114 &2299522054817845221
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -974,7 +974,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7996645629662702497}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbfe5d2fe6527dc40893b1d9a844900b, type: 3}
+  m_Script: {fileID: 11500000, guid: 61e6e92cba29d564783e28cbf797db10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_autoCreateParentForPool: 1
@@ -982,6 +982,7 @@ MonoBehaviour:
   m_isSharePool: 0
   m_objectToPool: {fileID: 9034834727839782509, guid: e7d653f8d33b4b14195da3a057c489c8, type: 3}
   m_poolSize: 20
+  m_gameEvent: {fileID: 11400000, guid: 7ac1f24220b2ef14186e0695169f9965, type: 2}
 --- !u!1001 &5218235502491183651
 PrefabInstance:
   m_ObjectHideFlags: 0

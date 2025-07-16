@@ -6,6 +6,7 @@ namespace SGGames.Script.Dungeon
 {
     public class Door : MonoBehaviour
     {
+        [SerializeField] private bool m_isLeftRoom;
         [SerializeField] private Sprite m_openSprite;
         [SerializeField] private Sprite m_closeSprite;
         [SerializeField] private BoxCollider2D m_exitCollider;
@@ -25,8 +26,10 @@ namespace SGGames.Script.Dungeon
         {
             if (!m_isOpen) return;
             if (!other.CompareTag("Player")) return;
-            
-            m_gameEvent.Raise(Global.GameEventType.LoadNextRoom);
+        
+            m_gameEvent.Raise( m_isLeftRoom 
+                ? Global.GameEventType.LoadNextRoomLeftRoom
+                : Global.GameEventType.LoadNextRoomRightRoom);
         }
 
         private void OpenDoor()

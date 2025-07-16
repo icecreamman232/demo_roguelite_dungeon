@@ -3738,6 +3738,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeftDoor
       objectReference: {fileID: 0}
+    - target: {fileID: 2949247255192424545, guid: 1dcf726c490ec6b47bf0a367b41805c6, type: 3}
+      propertyPath: m_isLeftRoom
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8416122182006895645, guid: 1dcf726c490ec6b47bf0a367b41805c6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.5
