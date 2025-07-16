@@ -168,7 +168,13 @@ namespace SGGames.Script.Managers
         public RoomData GetNextRightRoom()
         {
             m_currentRoomIndex++;
-            if (m_currentRoomIndex >= m_maxRoom)
+            if (m_currentRoomIndex == m_maxRoom - 1)
+            {
+                //TODO:Load default first boss. THis should be another random to choose between bosses for a biome
+                return m_roomContainers[m_currentBiomesIndex].GetBossRoomList[0];
+            }
+
+            if (m_currentRoomIndex == m_maxRoom)
             {
                 m_currentRoomIndex = 0;
             }

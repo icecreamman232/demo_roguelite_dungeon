@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Room Container Biome 1
   m_EditorClassIdentifier: 
   m_container:
+  - {fileID: 11400000, guid: 16126dd883a8d314684a6a675b699f11, type: 2}
   - {fileID: 11400000, guid: db0564c974e65a442a5f36a5c9187616, type: 2}
   - {fileID: 11400000, guid: 46f079323b410a744a79b90df146cfd6, type: 2}
   - {fileID: 11400000, guid: 73ef74fb444c4fb48923ada8f9758175, type: 2}
@@ -59,7 +60,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 62fb101cab1029543b03ee7f69948220, type: 2}
   - {fileID: 11400000, guid: b98f8e43a4a0380408a86f7ea4934553, type: 2}
   - {fileID: 11400000, guid: 28794d9061efbae40af51eb4fb8b3e30, type: 2}
-  m_bossRooms: []
+  m_bossRooms:
+  - {fileID: 11400000, guid: 16126dd883a8d314684a6a675b699f11, type: 2}
   m_npcWeaponShop: {fileID: 11400000, guid: 73ef74fb444c4fb48923ada8f9758175, type: 2}
   m_npcItemShop: {fileID: 11400000, guid: db0564c974e65a442a5f36a5c9187616, type: 2}
   m_miniBossRooms:
