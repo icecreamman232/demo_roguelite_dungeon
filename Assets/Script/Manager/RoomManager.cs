@@ -53,8 +53,7 @@ namespace SGGames.Script.Managers
             int numberHardRoomToSelect = Mathf.Min(m_maxHardRoom * 2, shuffledHardRoomList.Count);
             int numberChallengeRoomToSelect = Mathf.Min(m_maxChallengeRoom * 2, shuffledChallengeRoomList.Count);
             
-            Debug.Log($"Easy:{numberEasyRoomToSelect} Hard:{numberHardRoomToSelect} Challenge:{numberChallengeRoomToSelect}");
-            
+            //Debug.Log($"RoomManager::Pick Easy:{numberEasyRoomToSelect} Hard:{numberHardRoomToSelect} Challenge:{numberChallengeRoomToSelect}");
             
             //Easy
             for (int e = 0; e < numberEasyRoomToSelect/2; e++)
