@@ -36,6 +36,11 @@ namespace SGGames.Script.Dungeon
             m_enemyList.Add(enemyController);
             m_totalEnemyAlive++;
         }
+
+        public bool HasThisEnemyRegistered(EnemyController enemyController)
+        {
+            return m_enemyList.Contains(enemyController);
+        }
         
         public void OnEnemyDeath()
         {

@@ -44,6 +44,13 @@ namespace SGGames.Scripts.Entity
             {
                 command.Initialize(this);
             }
+            
+            if (!m_health.CanRevive)
+            {
+                var room = GetComponentInParent<Room>();
+                room.RegisterEnemyToRoom(this);
+                
+            }
         }
         
         private void OnEnemyDeath()
@@ -53,11 +60,17 @@ namespace SGGames.Scripts.Entity
                 command.Execute();
             }
 
-            if (!m_health.CanRevive)
+            var room = GetComponentInParent<Room>();
+            if (room.HasThisEnemyRegistered(this))
             {
-                var room = GetComponentInParent<Room>();
-                room.RegisterEnemyToRoom(this);
                 room.OnEnemyDeath();
+            }
+            else
+            {
+                if (!m_health.CanRevive)
+                {
+                    room.RegisterEnemyToRoom(this);
+                }
             }
         }
 

@@ -94,7 +94,6 @@ namespace SGGames.Script.Managers
             
             yield return new WaitForEndOfFrame();
             m_gameEvent.Raise(Global.GameEventType.RoomCreated);
-            
             m_gameEvent.Raise(Global.GameEventType.UnpauseGame);
             loadingSceneController.FadeInFromBlack();
             yield return new WaitForSecondsRealtime(DELAY_TIME);
