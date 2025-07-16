@@ -88,7 +88,7 @@ namespace SGGames.Script.Managers
                 m_rightRoomList.Add(shuffledChallengeRoomList[c]);
             }
         }
-
+        
         private void ClearData()
         {
             m_currentRoomIndex = 0;

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dbfd70dccdf4363419d5900a2d0e157b, type: 3}
-  m_Name: RoomContainer
+  m_Name: Room Container Biome 1
   m_EditorClassIdentifier: 
   m_container:
   - {fileID: 11400000, guid: db0564c974e65a442a5f36a5c9187616, type: 2}
@@ -38,7 +38,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9768e7a427f9b774e8d197ec949a6384, type: 2}
   m_biomesName: 0
   m_easyRooms:
-  - {fileID: 11400000, guid: 0dfe4e0e1634e34478758c787bb8bf71, type: 2}
   - {fileID: 11400000, guid: 3fc4c70c6b80fcd40b235b56e5d52f81, type: 2}
   - {fileID: 11400000, guid: d07a488d76cec89428fb42b518cb40dd, type: 2}
   - {fileID: 11400000, guid: 56baa7aad6d1d3f4c8e01032216cc8a3, type: 2}
