@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Room Normal Hard 3
   m_EditorClassIdentifier: 
   m_roomType: 0
+  m_roomDifficulty: 1
   m_roomPrefab: {fileID: 3549147483069574049, guid: 806c793e0f1c2f64187880a28d606284, type: 3}

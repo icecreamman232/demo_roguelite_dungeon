@@ -21,6 +21,7 @@ namespace SGGames.Script.EditorExtensions
                 foreach (var guid in allGUIDs)
                 {
                     var data = AssetDatabase.LoadAssetAtPath<RoomData>(AssetDatabase.GUIDToAssetPath(guid));
+                    if(data.BiomesName != ((RoomContainer)target).BiomesName) continue;
                     ((RoomContainer)target).AddItem(data);
                 }
                 
@@ -39,7 +40,19 @@ namespace SGGames.Script.EditorExtensions
                     switch (data.RoomType)
                     {
                         case Global.RoomType.Normal:
-                            roomContainer.AddNormalRoom(data);
+                            if (data.RoomDifficulty == Global.RoomDifficulty.Easy)
+                            {
+                                roomContainer.AddEasyRoom(data);
+                            }
+                            else if (data.RoomDifficulty == Global.RoomDifficulty.Hard)
+                            {
+                                roomContainer.AddHardRoom(data);
+                            }
+                            else
+                            {
+                                roomContainer.AddChallengeRoom(data);
+                            }
+                            
                             break;
                         case Global.RoomType.Boss:
                             roomContainer.AddBossRoom(data);

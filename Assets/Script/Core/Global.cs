@@ -29,6 +29,12 @@ namespace SGGames.Script.Core
             ShieldDisable,
         }
 
+        public enum BiomesName
+        {
+            Biome1,
+            Biome2,
+        }
+
         public enum RoomType
         {
             Normal,
