@@ -180,5 +180,7 @@ namespace SGGames.Script.Managers
             }
             return m_rightRoomList[m_currentRoomIndex];
         }
+        
+        public bool IsBossRoom => m_currentRoomIndex == m_maxRoom - 1;
     }
 }

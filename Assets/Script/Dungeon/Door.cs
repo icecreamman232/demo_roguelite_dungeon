@@ -1,5 +1,6 @@
 using SGGames.Script.Core;
 using SGGames.Script.Events;
+using SGGames.Script.Managers;
 using UnityEngine;
 
 namespace SGGames.Script.Dungeon
@@ -26,10 +27,18 @@ namespace SGGames.Script.Dungeon
         {
             if (!m_isOpen) return;
             if (!other.CompareTag("Player")) return;
-        
-            m_gameEvent.Raise( m_isLeftRoom 
-                ? Global.GameEventType.LoadNextRoomLeftRoom
-                : Global.GameEventType.LoadNextRoomRightRoom);
+
+            var roomManager = ServiceLocator.GetService<RoomManager>();
+            if (roomManager.IsBossRoom)
+            {
+                m_gameEvent.Raise(Global.GameEventType.LoadNextBiomes);
+            }
+            else
+            {
+                m_gameEvent.Raise( m_isLeftRoom 
+                    ? Global.GameEventType.LoadNextRoomLeftRoom
+                    : Global.GameEventType.LoadNextRoomRightRoom);
+            }
         }
 
         private void OpenDoor()

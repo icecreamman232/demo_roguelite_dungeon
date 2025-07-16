@@ -95,6 +95,19 @@ namespace SGGames.Script.Managers
 
             m_isLoading = false;
         }
+
+        private IEnumerator PrepareLoadNextBiomes()
+        {
+            m_isLoading = true;
+            var loadingSceneController = ServiceLocator.GetService<LoadingScreenController>();
+            
+            loadingSceneController.FadeOutToBlack();
+            yield return new WaitForSecondsRealtime(DELAY_TIME);
+           
+            m_player.transform.position = m_spawnPosition.position;
+            yield return new WaitForSecondsRealtime(0.3f); //Small delay to feel better after moving player
+            m_isLoading = false;
+        }
         
         private void OnReceiveGameEvent(Global.GameEventType eventType)
         {
@@ -107,6 +120,11 @@ namespace SGGames.Script.Managers
             {
                 if (m_isLoading) return;
                 StartCoroutine(LoadLevel(fromLeftRoom:false));
+            }
+            else if (eventType == Global.GameEventType.LoadNextBiomes)
+            {
+                if (m_isLoading) return;
+                StartCoroutine(PrepareLoadNextBiomes());
             }
         }
 

@@ -69,6 +69,21 @@ namespace SGGames.Script.Core
             Add,
             Remove,
         }
+
+        public enum EaseType
+        {
+            Linear,
+            EaseInSine, EaseOutSine, EaseInOutSine,
+            EaseInQuad, EaseOutQuad, EaseInOutQuad,
+            EaseInCubic, EaseOutCubic, EaseInOutCubic,
+            EaseInQuart, EaseOutQuart, EaseInOutQuart,
+            EaseInQuint, EaseOutQuint, EaseInOutQuint,
+            EaseInExpo, EaseOutExpo, EaseInOutExpo,
+            EaseInCirc, EaseOutCirc, EaseInOutCirc,
+            EaseInBack, EaseOutBack, EaseInOutBack,
+            EaseInElastic, EaseOutElastic, EaseInOutElastic,
+            AnimationCurve
+        }
         
         public enum GameEventType
         {
