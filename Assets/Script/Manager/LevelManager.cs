@@ -67,12 +67,6 @@ namespace SGGames.Script.Managers
             {
                 loadingSceneController.FadeOutToBlack();
                 yield return new WaitForSecondsRealtime(DELAY_TIME);
-                if (m_currentRoom)
-                {
-                    Destroy(m_currentRoom);
-                    m_currentRoom = null;
-                }
-                yield return new WaitForEndOfFrame();
                 m_player.transform.position = m_spawnPosition.position;
                 yield return new WaitForSecondsRealtime(0.3f); //Small delay to feel better after moving player
             }

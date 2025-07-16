@@ -24,7 +24,7 @@ namespace SGGames.Script.Dungeon
         
         private void OnReceiveGameEvent(Global.GameEventType eventType)
         {
-            if (eventType == Global.GameEventType.LoadNextRoomLeftRoom)
+            if (eventType == Global.GameEventType.LoadNextRoomLeftRoom || eventType == Global.GameEventType.LoadNextRoomRightRoom)
             {
                 m_gameEvent.RemoveListener(OnReceiveGameEvent);
                 Destroy(this.gameObject);
