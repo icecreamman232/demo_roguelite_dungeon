@@ -12,7 +12,7 @@ namespace SGGames.Script.Core
         [SerializeField] private int m_poolSize;
 
         private List<GameObject> m_pool;
-        private GameObject m_poolParent;
+        private GameObject m_autoCreatedPoolParent;
 
         public List<GameObject> CurrentPool => m_pool;
         
@@ -32,12 +32,9 @@ namespace SGGames.Script.Core
 
             if (m_autoCreateParentForPool)
             {
-                m_poolParent = new GameObject(m_objectToPool.name + " Parent");
+                m_autoCreatedPoolParent = new GameObject(m_objectToPool.name + " Parent");
             }
-            else
-            {
-                m_poolParent = m_parent;
-            }
+            
 
             //Find existing pool with same name
             if (m_isSharePool)
@@ -56,7 +53,7 @@ namespace SGGames.Script.Core
             
             for (int i = 0; i < m_poolSize; i++)
             {
-                var pooledObject = Instantiate(m_objectToPool, m_poolParent.transform);
+                var pooledObject = Instantiate(m_objectToPool, m_autoCreateParentForPool ? m_autoCreatedPoolParent.transform : m_parent.transform);
                 var currentName = pooledObject.name;
                 currentName += $"({i})";
                 pooledObject.name = currentName;
@@ -81,6 +78,13 @@ namespace SGGames.Script.Core
 
         public void CleanUp()
         {
+            if (m_autoCreatedPoolParent != null)
+            {
+                Destroy(m_autoCreatedPoolParent);
+                return;
+            }
+            
+            
             for (int i = 0; i < m_pool.Count; i++)
             {
                 Destroy(m_pool[i].gameObject);
