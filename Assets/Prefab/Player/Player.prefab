@@ -356,6 +356,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   m_playerData: {fileID: 11400000, guid: cb8c5b08840ace34ab97ac1148242ac1, type: 2}
+  m_gameEvent: {fileID: 11400000, guid: 7ac1f24220b2ef14186e0695169f9965, type: 2}
 --- !u!114 &7672955217685612132
 MonoBehaviour:
   m_ObjectHideFlags: 0

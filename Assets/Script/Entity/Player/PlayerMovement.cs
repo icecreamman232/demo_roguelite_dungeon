@@ -1,6 +1,7 @@
 using SGGames.Script.Core;
 using SGGames.Script.Data;
 using SGGames.Script.EditorExtensions;
+using SGGames.Script.Events;
 using SGGames.Script.Managers;
 using UnityEngine;
 
@@ -12,6 +13,7 @@ namespace SGGames.Script.Entity
         [SerializeField] private float m_raycastDistance;
         [SerializeField] private LayerMask m_obstacleLayerMask;
         [SerializeField] private PlayerData m_playerData;
+        [SerializeField] private GameEvent m_gameEvent;
         
         private BoxCollider2D m_boxCollider2D;
         private bool m_canMove;
@@ -27,6 +29,7 @@ namespace SGGames.Script.Entity
             var inputManager = ServiceLocator.GetService<InputManager>();
             inputManager.OnMoveInputUpdate += UpdateMoveInput;
             m_moveSpeed = m_playerData.MoveSpeed;
+            m_gameEvent.AddListener(OnReceiveGameEvent);
             m_boxCollider2D = GetComponent<BoxCollider2D>();
             m_spriteRenderer = GetComponentInChildren<SpriteRenderer>();
             m_playerWeaponHandler = GetComponent<PlayerWeaponHandler>();
@@ -39,6 +42,14 @@ namespace SGGames.Script.Entity
             m_canMove = true;
             
             ConsoleCheatManager.RegisterCommands(this);
+        }
+
+        private void OnReceiveGameEvent(Global.GameEventType eventType)
+        {
+            if (eventType == Global.GameEventType.SpawnPlayer)
+            {
+                m_movementDirection = Vector2.zero;
+            }
         }
 
         protected override void OnGamePaused()
@@ -100,6 +111,7 @@ namespace SGGames.Script.Entity
             {
                 inputManager.OnMoveInputUpdate -= UpdateMoveInput;
             }
+            m_gameEvent.RemoveListener(OnReceiveGameEvent);
         }
 
         public void PauseMovement()
