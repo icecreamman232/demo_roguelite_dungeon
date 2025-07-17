@@ -2,6 +2,7 @@ using SGGames.Script.Core;
 using SGGames.Script.Managers;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace SGGames.Script.UI
 {
@@ -35,6 +36,7 @@ namespace SGGames.Script.UI
             m_canvasGroup.alpha = 1;
             m_canvasGroup.interactable = true;
             m_canvasGroup.blocksRaycasts = true;
+            EventSystem.current.SetSelectedGameObject(m_inputField.gameObject);
             IsConsoleOpen = true;
         }
         
