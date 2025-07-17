@@ -70,6 +70,12 @@ namespace SGGames.Script.HealthSystem
             m_isInvincible = false;
             UpdateHealthBar();
         }
+
+        public void SelfKill()
+        {
+            TakeDamage(m_currHealth,null,0);
+            Kill();
+        }
     }
 }
 

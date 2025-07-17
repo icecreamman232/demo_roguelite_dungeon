@@ -36,6 +36,7 @@ namespace SGGames.Script.UI
             m_canvasGroup.alpha = 1;
             m_canvasGroup.interactable = true;
             m_canvasGroup.blocksRaycasts = true;
+            m_inputField.text = "";
             EventSystem.current.SetSelectedGameObject(m_inputField.gameObject);
             m_inputField.ActivateInputField();
             IsConsoleOpen = true;

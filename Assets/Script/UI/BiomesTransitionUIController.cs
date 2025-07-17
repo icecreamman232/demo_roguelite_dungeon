@@ -1,5 +1,7 @@
-using System;
+using System.Collections;
 using SGGames.Script.Core;
+using SGGames.Script.Data;
+using SGGames.Script.Events;
 using SGGames.Script.TweenSystem;
 using UnityEngine;
 
@@ -7,29 +9,32 @@ namespace SGGames.Script.UI
 {
     public class BiomesTransitionUIController : MonoBehaviour
     {
+        [SerializeField] private CanvasGroup m_canvasGroup;
+        [SerializeField] private BiomesTransitionUIEvent m_biomesTransitionUIEvent;
+        [SerializeField] private GameEvent m_gameEvent;
         [SerializeField] private Transform m_indicator;
         [SerializeField] private Transform[] m_biomesIcons;
 
         private Transform m_targetTransform;
-        private float m_movingDurationPerBiomes = 0.5f;
-        private float m_scaleDuration = 0.5f;
-        private float m_finalScale = 1.5f;
+        private readonly float m_delayBeforeClosing = 1;
+        private readonly float m_movingDurationPerBiomes = 0.5f;
+        private readonly float m_scaleDuration = 0.5f;
+        private readonly float m_finalScale = 1.5f;
         private Vector2 m_targetPos;
         private Vector2 m_startPos;
 
-        private void Update()
+        private void Awake()
         {
-            if (Input.GetKeyUp(KeyCode.F))
-            {
-                Test();
-            }
+            m_biomesTransitionUIEvent.AddListener(OnReceiveTransitionEvent);
         }
-
+        
+        #if UNITY_EDITOR
         [ContextMenu("Test")]
         private void Test()
         {
             OnReceiveTransitionEvent(2);
         }
+        #endif
 
         private void OnTweenPosition(Vector3 updatePos)
         {
@@ -50,11 +55,27 @@ namespace SGGames.Script.UI
 
         private void OnCompleteAllTween()
         {
-            
+            StartCoroutine(OnClosingBiomeTransitionUI());
+        }
+
+        private IEnumerator OnClosingBiomeTransitionUI()
+        {
+            yield return new WaitForSeconds(m_delayBeforeClosing);
+            m_canvasGroup.alpha = 0;
+            m_gameEvent.Raise(Global.GameEventType.LoadNextBiomes);
+        }
+        
+        private void SetTargetPosition(Transform target)
+        {
+            var nextPos = m_indicator.position;
+            nextPos.x = target.position.x;
+            m_targetPos = nextPos;
         }
         
         private void OnReceiveTransitionEvent(int nextBiomes)
         {
+            m_canvasGroup.alpha = 1;
+            
             m_startPos = m_indicator.position;
             SetTargetPosition(m_biomesIcons[nextBiomes]);
             m_targetTransform = m_biomesIcons[nextBiomes];
@@ -64,13 +85,6 @@ namespace SGGames.Script.UI
             TweenManager.Instance.TweenVector3(m_startPos, m_targetPos, OnTweenPosition,
                     movingDuration ,Global.EaseType.EaseOutCubic)
                 .OnComplete(TweenIconScale);
-        }
-
-        private void SetTargetPosition(Transform target)
-        {
-            var nextPos = m_indicator.position;
-            nextPos.x = target.position.x;
-            m_targetPos = nextPos;
         }
     }
 }

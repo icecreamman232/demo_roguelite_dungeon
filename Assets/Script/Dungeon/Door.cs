@@ -31,7 +31,7 @@ namespace SGGames.Script.Dungeon
             var roomManager = ServiceLocator.GetService<RoomManager>();
             if (roomManager.IsBossRoom)
             {
-                m_gameEvent.Raise(Global.GameEventType.LoadNextBiomes);
+                m_gameEvent.Raise(Global.GameEventType.PlayBiomesTransition);
             }
             else
             {

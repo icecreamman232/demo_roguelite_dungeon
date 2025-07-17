@@ -51,6 +51,7 @@ MonoBehaviour:
     m_SubObjectType: 
     m_SubObjectGUID: 
     m_EditorAssetChanged: 0
+  m_biomesTransitionUIEvent: {fileID: 11400000, guid: a2968847acf4eb047a0295f74c00780e, type: 2}
   m_gameEvent: {fileID: 11400000, guid: 7ac1f24220b2ef14186e0695169f9965, type: 2}
   m_spawnPosition: {fileID: 182542924476121638}
   m_isUsingTestRoom: 0

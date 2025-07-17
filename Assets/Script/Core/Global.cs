@@ -84,6 +84,11 @@ namespace SGGames.Script.Core
             EaseInElastic, EaseOutElastic, EaseInOutElastic,
             AnimationCurve
         }
+
+        public enum RoomManagerEventType
+        {
+            
+        }
         
         public enum GameEventType
         {
@@ -94,6 +99,7 @@ namespace SGGames.Script.Core
             RoomCleared,
             LoadNextRoomLeftRoom,
             LoadNextRoomRightRoom,
+            PlayBiomesTransition,
             LoadNextBiomes,
             
             PauseGame = 30,

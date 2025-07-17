@@ -114,6 +114,11 @@ namespace SGGames.Scripts.Entity
             m_currentBrain.ResetBrain();
             m_currentBrain.ActivateBrain(true);
         }
+
+        public void Kill()
+        {
+            m_health.SelfKill();
+        }
     }
 }
 

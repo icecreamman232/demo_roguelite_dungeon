@@ -1,4 +1,5 @@
 using SGGames.Scripts.Entity;
+using UnityEngine;
 
 namespace SGGames.Script.Modules
 {
@@ -19,6 +20,8 @@ namespace SGGames.Script.Modules
                 m_controller.CurrentBrain.ActivateBrain(false);
             }
             m_controller.CurrentBrain.gameObject.SetActive(false);
+            
+            //Debug.Log(("DisableBrainDeathCommand"));
         }
     }
 

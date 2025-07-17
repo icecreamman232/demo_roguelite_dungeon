@@ -30,6 +30,23 @@ namespace SGGames.Script.Dungeon
                 Destroy(this.gameObject);
             }
         }
+        
+        public void KillAllEnemiesInRoom()
+        {
+            //Debug.Log("Room Clear");
+            for (int i = 0; i < m_enemyList.Count; i++)
+            {
+                m_enemyList[i].Kill();
+            }
+        }
+
+        private void RoomClearAndDropChest()
+        {
+            m_gameEvent.Raise(Global.GameEventType.RoomCleared);
+            var treasureChestManager = ServiceLocator.GetService<TreasureChestManager>();
+            var treasureChestPrefab = treasureChestManager.GetTreasureChestWith(-1);
+            Instantiate(treasureChestPrefab, m_treasureChestSpawnPoint);
+        }
 
         public void RegisterEnemyToRoom(EnemyController enemyController)
         {
@@ -47,10 +64,7 @@ namespace SGGames.Script.Dungeon
             m_totalEnemyAlive--;
             if (m_totalEnemyAlive <= 0)
             {
-                m_gameEvent.Raise(Global.GameEventType.RoomCleared);
-                var treasureChestManager = ServiceLocator.GetService<TreasureChestManager>();
-                var treasureChestPrefab = treasureChestManager.GetTreasureChestWith(-1);
-                Instantiate(treasureChestPrefab, m_treasureChestSpawnPoint);
+                RoomClearAndDropChest();
             }
         }
     }
