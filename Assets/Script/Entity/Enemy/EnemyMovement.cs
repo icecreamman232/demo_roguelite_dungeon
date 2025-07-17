@@ -10,7 +10,11 @@ namespace SGGames.Script.Entity
         [Header("Enemy")] 
         [SerializeField] private Global.MovementBehaviorType m_movementBehaviorType;
         [SerializeField] private EnemyData m_enemyData;
+        [SerializeField] private LayerMask m_obstacleLayerMask;
+        private static float S_RAYCAST_DISTANCE = 0.15f;
 
+        private BoxCollider2D m_collider2D;
+        private RaycastHit2D m_collisionHit;
         private SpriteRenderer m_spriteRenderer;
         
         /// <summary>
@@ -27,6 +31,7 @@ namespace SGGames.Script.Entity
             gameManager.OnGamePauseCallback += OnGamePaused;
             gameManager.OnGameUnPauseCallback += OnGameResumed;
 
+            m_collider2D = GetComponent<BoxCollider2D>();
             m_spriteRenderer = GetComponentInChildren<SpriteRenderer>();
             SetMovementType(Global.MovementType.Normal);
         }
@@ -41,6 +46,21 @@ namespace SGGames.Script.Entity
         {
             ResumeMoving();
             base.OnGameResumed();
+        }
+
+        protected virtual bool IsCollideWithObstacle()
+        {
+            m_collisionHit = Physics2D.BoxCast(transform.position,m_collider2D.size, 0,m_movementDirection,S_RAYCAST_DISTANCE,m_obstacleLayerMask);    
+            return m_collisionHit.collider != null;
+        }
+
+        protected override void UpdateMovement()
+        {
+            if (IsCollideWithObstacle())
+            {
+                StopMoving();
+            }
+            base.UpdateMovement();
         }
 
         protected override void UpdateNormalMovement()

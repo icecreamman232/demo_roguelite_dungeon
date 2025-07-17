@@ -170,6 +170,9 @@ MonoBehaviour:
   m_movementDirection: {x: 0, y: 0}
   m_movementBehaviorType: 0
   m_enemyData: {fileID: 11400000, guid: 2ec19b3e521046e4eb8c041ff4c169b4, type: 2}
+  m_obstacleLayerMask:
+    serializedVersion: 2
+    m_Bits: 768
 --- !u!1 &6005996644028470282
 GameObject:
   m_ObjectHideFlags: 0
@@ -411,7 +414,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3418944313944217670}
   - component: {fileID: 6093405640151604970}
-  - component: {fileID: 499118406521073592}
   m_Layer: 0
   m_Name: Decisions
   m_TagString: Untagged
@@ -447,23 +449,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Label: Next state
---- !u!114 &499118406521073592
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8818817936459308041}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac8563e80138095488ca63e0100eed4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Label: Check obstacle
-  m_raycastDistance: 0.15
-  m_obstacleMask:
-    serializedVersion: 2
-    m_Bits: 768
 --- !u!1 &9017852967055494623
 GameObject:
   m_ObjectHideFlags: 0

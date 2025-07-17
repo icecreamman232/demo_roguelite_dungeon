@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8502416664518272981}
   - component: {fileID: 7330007277093028541}
   - component: {fileID: 5570278051322064981}
-  - component: {fileID: 3952199801992077837}
   - component: {fileID: 7818494068028227214}
   m_Layer: 7
   m_Name: Decisions
@@ -79,23 +78,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Label: Next state
---- !u!114 &3952199801992077837
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 81754200236588280}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac8563e80138095488ca63e0100eed4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Label: Check obstacle
-  m_raycastDistance: 0.15
-  m_obstacleMask:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!114 &7818494068028227214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -367,6 +349,9 @@ MonoBehaviour:
   m_movementDirection: {x: 0, y: 0}
   m_movementBehaviorType: 0
   m_enemyData: {fileID: 11400000, guid: 3a4d342279c43b74ba18ff85db68f046, type: 2}
+  m_obstacleLayerMask:
+    serializedVersion: 2
+    m_Bits: 768
 --- !u!1 &5149597996681181693
 GameObject:
   m_ObjectHideFlags: 0
@@ -816,9 +801,6 @@ MonoBehaviour:
       TrueStateName: Switch to Chase Brain
       FalseStateName: 
     - BrainDecision: {fileID: 7330007277093028541}
-      TrueStateName: Stop flying
-      FalseStateName: 
-    - BrainDecision: {fileID: 3952199801992077837}
       TrueStateName: Stop flying
       FalseStateName: 
   - StateName: Stop flying

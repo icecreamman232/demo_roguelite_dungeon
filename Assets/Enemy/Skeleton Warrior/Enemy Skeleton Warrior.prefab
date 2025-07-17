@@ -219,6 +219,7 @@ MonoBehaviour:
   m_delayAfterDeath: 2
   m_enemyData: {fileID: 11400000, guid: 9234b955f0855bc44b05fba84d745bb1, type: 2}
   m_spriteRenderer: {fileID: 5035112355880991516}
+  m_floatingTextEvent: {fileID: 11400000, guid: 319a78d159feea54fb1d2b7b0953e9ec, type: 2}
 --- !u!114 &57688177495773685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,6 +238,9 @@ MonoBehaviour:
   m_movementDirection: {x: 0, y: 0}
   m_movementBehaviorType: 0
   m_enemyData: {fileID: 11400000, guid: 9234b955f0855bc44b05fba84d745bb1, type: 2}
+  m_obstacleLayerMask:
+    serializedVersion: 2
+    m_Bits: 768
 --- !u!114 &8187148818719575173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -325,9 +329,6 @@ MonoBehaviour:
       TrueStateName: Switch to Chase Brain
       FalseStateName: 
     - BrainDecision: {fileID: 4030670866494665545}
-      TrueStateName: Stop flying
-      FalseStateName: 
-    - BrainDecision: {fileID: 3679002475789580305}
       TrueStateName: Stop flying
       FalseStateName: 
   - StateName: Stop flying
@@ -663,6 +664,8 @@ MonoBehaviour:
   m_minDamage: 50
   m_maxDamage: 50
   m_invincibilityDuration: 0.3
+  m_knockBackForce: 0
+  m_knockDuration: 0
 --- !u!61 &3228669936716824137
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -809,7 +812,6 @@ GameObject:
   - component: {fileID: 2600347797272159341}
   - component: {fileID: 4030670866494665545}
   - component: {fileID: 2682568325961530987}
-  - component: {fileID: 3679002475789580305}
   - component: {fileID: 529573826061918192}
   m_Layer: 7
   m_Name: Decisions
@@ -876,23 +878,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Label: Next state
---- !u!114 &3679002475789580305
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7760903749109327040}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac8563e80138095488ca63e0100eed4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Label: Check obstacle
-  m_raycastDistance: 0.15
-  m_obstacleMask:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!114 &529573826061918192
 MonoBehaviour:
   m_ObjectHideFlags: 0
