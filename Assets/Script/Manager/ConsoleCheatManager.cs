@@ -7,6 +7,10 @@ using UnityEngine;
 
 namespace SGGames.Script.Managers
 {
+    /// <summary>
+    /// Main class for cheat code used in game.
+    /// To use this put the attribute [CheatCode] on the method means to be used for cheat code
+    /// </summary>
     public class ConsoleCheatManager : MonoBehaviour
 {
     private delegate void CheatCommandDelegate(object[] args);
