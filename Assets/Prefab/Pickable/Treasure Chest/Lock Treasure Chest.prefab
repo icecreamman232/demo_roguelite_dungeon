@@ -8,9 +8,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 589725023648221093, guid: abf9b6339b399344283412261ed81d86, type: 3}
+      propertyPath: m_Size.x
+      value: 0.875
+      objectReference: {fileID: 0}
+    - target: {fileID: 589725023648221093, guid: abf9b6339b399344283412261ed81d86, type: 3}
+      propertyPath: m_Size.y
+      value: 0.8125
+      objectReference: {fileID: 0}
+    - target: {fileID: 589725023648221093, guid: abf9b6339b399344283412261ed81d86, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1506692931, guid: 7fb07b24af32cb9469721580fd31a15d, type: 3}
+    - target: {fileID: 589725023648221093, guid: abf9b6339b399344283412261ed81d86, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3071160926173905969, guid: abf9b6339b399344283412261ed81d86, type: 3}
       propertyPath: m_Name
-      value: TreasureChest - Biome 1
+      value: Lock Treasure Chest
       objectReference: {fileID: 0}
     - target: {fileID: 4325435449761446805, guid: abf9b6339b399344283412261ed81d86, type: 3}
       propertyPath: m_lootTable

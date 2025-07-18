@@ -119,67 +119,111 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Chest_0
+      name: Weapon-chest
       rect:
         serializedVersion: 2
-        x: 8
+        x: 7
         y: 41
-        width: 16
-        height: 15
+        width: 18
+        height: 13
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1cb13755f8e94b6b0800000000000000
-      internalID: -5281422124547630143
+      spriteID: ca01cd5ae49b7f04da3c316f41b0a33a
+      internalID: -4685547431992939551
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Chest_1
+      name: Item-chest
       rect:
         serializedVersion: 2
         x: 39
         y: 41
         width: 18
-        height: 15
+        height: 13
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 43fa0ce01a3fc6140800000000000000
-      internalID: 4714410783012859700
+      spriteID: 932fb1dd789344c4088e57c19fdd7e2c
+      internalID: -1531147957
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Chest_2
+      name: No-lock-chest
       rect:
         serializedVersion: 2
-        x: 5
-        y: 7
-        width: 22
-        height: 17
+        x: 9
+        y: 10
+        width: 14
+        height: 13
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1eb21d98f6799feb0800000000000000
-      internalID: -4685547431992939551
+      spriteID: 06259397d130be94c82daa10e7ca2d65
+      internalID: -1631056593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lock-chest
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 10
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3db09732bfec7542ba5de3eab30fe96
+      internalID: 1506692931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss-chest
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 9
+        width: 22
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a2c1c6c7b639cc4d8bba59c972f865b
+      internalID: -1208286986
       vertices: []
       indices: 
       edges: []
@@ -188,7 +232,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: faae85ef827b1f44d88cab0c137c9bfd
     internalID: 0
     vertices: []
     indices: 
@@ -198,9 +242,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Chest_0: -5281422124547630143
-      Chest_1: 4714410783012859700
-      Chest_2: -4685547431992939551
+      Boss-chest: -1208286986
+      Item-chest: -1531147957
+      Lock-chest: 1506692931
+      No-lock-chest: -1631056593
+      Weapon-chest: -4685547431992939551
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

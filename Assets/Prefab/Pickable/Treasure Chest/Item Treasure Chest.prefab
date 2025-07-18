@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &2680245396860053109
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 589725023648221093, guid: abf9b6339b399344283412261ed81d86, type: 3}
+      propertyPath: m_Size.x
+      value: 0.875
+      objectReference: {fileID: 0}
+    - target: {fileID: 589725023648221093, guid: abf9b6339b399344283412261ed81d86, type: 3}
+      propertyPath: m_Size.y
+      value: 0.8125
+      objectReference: {fileID: 0}
+    - target: {fileID: 589725023648221093, guid: abf9b6339b399344283412261ed81d86, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1531147957, guid: 7fb07b24af32cb9469721580fd31a15d, type: 3}
+    - target: {fileID: 589725023648221093, guid: abf9b6339b399344283412261ed81d86, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3071160926173905969, guid: abf9b6339b399344283412261ed81d86, type: 3}
+      propertyPath: m_Name
+      value: Item Treasure Chest
+      objectReference: {fileID: 0}
+    - target: {fileID: 4325435449761446805, guid: abf9b6339b399344283412261ed81d86, type: 3}
+      propertyPath: m_lootTable
+      value: 
+      objectReference: {fileID: 11400000, guid: 8863e79019e95c740a91b81fafa48c7a, type: 2}
+    - target: {fileID: 5874547574898793884, guid: abf9b6339b399344283412261ed81d86, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874547574898793884, guid: abf9b6339b399344283412261ed81d86, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874547574898793884, guid: abf9b6339b399344283412261ed81d86, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874547574898793884, guid: abf9b6339b399344283412261ed81d86, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874547574898793884, guid: abf9b6339b399344283412261ed81d86, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874547574898793884, guid: abf9b6339b399344283412261ed81d86, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874547574898793884, guid: abf9b6339b399344283412261ed81d86, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874547574898793884, guid: abf9b6339b399344283412261ed81d86, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874547574898793884, guid: abf9b6339b399344283412261ed81d86, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874547574898793884, guid: abf9b6339b399344283412261ed81d86, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: abf9b6339b399344283412261ed81d86, type: 3}
