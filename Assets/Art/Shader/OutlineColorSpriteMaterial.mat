@@ -42,9 +42,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _AlphaCutoff: 0.1
     - _EnableExternalAlpha: 0
     - _OutlinePixelWidth: 1
-    - _OutlineWidth: 0.015625
+    - _OutlineWidth: 1
     - _ShowOutline: 1
     - _ZWrite: 0
     m_Colors:
