@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bfe9eb401d3cae43bf3b408e111c6d6, type: 3}
   m_Name: Enemy Bat Data
   m_EditorClassIdentifier: 
+  m_enemyGrade: 0
+  m_enemyProperties: 0
   m_maxHealth: 100
   m_moveSpeed: 5

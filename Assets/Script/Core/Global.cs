@@ -1,6 +1,3 @@
-
-using SGGames.Script.Pickable;
-
 namespace SGGames.Script.Core
 {
     public static partial class Global
@@ -83,11 +80,6 @@ namespace SGGames.Script.Core
             EaseInBack, EaseOutBack, EaseInOutBack,
             EaseInElastic, EaseOutElastic, EaseInOutElastic,
             AnimationCurve
-        }
-
-        public enum RoomManagerEventType
-        {
-            
         }
         
         public enum GameEventType

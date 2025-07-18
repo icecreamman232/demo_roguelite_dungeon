@@ -87,5 +87,22 @@ namespace SGGames.Script.Core
         }
         
         #endregion
+        
+        #region Enum - Flag
+
+        /// <summary>
+        /// Check whether flag value is in group flag values. Works like LayerMask Unity
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="group"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static bool IsInEnumGroup<T>(T input, T group) where T : Enum
+        {
+            int inputValue = Convert.ToInt32(input);
+            int groupValue = Convert.ToInt32(group);
+            return (inputValue & groupValue) != groupValue;
+        }
+        #endregion
     }
 }
