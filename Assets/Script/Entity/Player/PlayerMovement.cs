@@ -14,12 +14,9 @@ namespace SGGames.Script.Entity
         [SerializeField] private LayerMask m_obstacleLayerMask;
         [SerializeField] private PlayerData m_playerData;
         [SerializeField] private GameEvent m_gameEvent;
-        
-        private BoxCollider2D m_boxCollider2D;
-        private bool m_canMove;
-        private SpriteRenderer m_spriteRenderer;
-        private PlayerWeaponHandler m_playerWeaponHandler;
 
+        private PlayerController m_controller;
+        private bool m_canMove;
         private float m_flatSpeedBonus;
         
         public bool IsHitObstacle => CheckObstacle();
@@ -30,10 +27,9 @@ namespace SGGames.Script.Entity
             inputManager.OnMoveInputUpdate += UpdateMoveInput;
             m_moveSpeed = m_playerData.MoveSpeed;
             m_gameEvent.AddListener(OnReceiveGameEvent);
-            m_boxCollider2D = GetComponent<BoxCollider2D>();
-            m_spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-            m_playerWeaponHandler = GetComponent<PlayerWeaponHandler>();
             
+            
+            m_controller = GetComponent<PlayerController>();
             var gameManager = ServiceLocator.GetService<GameManager>();
             gameManager.OnGamePauseCallback += OnGamePaused;
             gameManager.OnGameUnPauseCallback += OnGameResumed;
@@ -83,13 +79,13 @@ namespace SGGames.Script.Entity
 
         protected override void FlipModel()
         {
-            m_spriteRenderer.flipX = m_playerWeaponHandler.AimDirection.x < 0;
+            m_controller.SpriteRenderer.flipX = m_controller.WeaponHandler.AimDirection.x < 0;
             base.FlipModel();
         }
 
         private bool CheckObstacle()
         {
-            var hit = Physics2D.BoxCast(transform.position, m_boxCollider2D.size, 0, m_movementDirection,m_raycastDistance,m_obstacleLayerMask);
+            var hit = Physics2D.BoxCast(transform.position, m_controller.PlayerCollider.size, 0, m_movementDirection,m_raycastDistance,m_obstacleLayerMask);
             if (hit.collider != null)
             {
                 return true;

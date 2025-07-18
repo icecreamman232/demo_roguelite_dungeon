@@ -3,7 +3,6 @@ using SGGames.Script.Core;
 using SGGames.Script.Data;
 using SGGames.Script.Managers;
 using SGGames.Script.Modules;
-using SGGames.Script.StaminaSystem;
 using UnityEngine;
 
 namespace SGGames.Script.Entity
@@ -15,8 +14,7 @@ namespace SGGames.Script.Entity
         [SerializeField] private AfterImageFX m_afterImageFX;
         [SerializeField] private SpriteRenderer m_spriteRenderer;
 
-        private PlayerStamina m_playerStamina;
-        private PlayerMovement m_playerMovement;
+        private PlayerController m_controller;
         private bool m_isDashing;
         private Vector3 m_startPosition;
         private Vector3 m_endPosition;
@@ -30,8 +28,7 @@ namespace SGGames.Script.Entity
 
         private void Start()
         {
-            m_playerMovement = GetComponent<PlayerMovement>();
-            m_playerStamina = GetComponent<PlayerStamina>();
+            m_controller = GetComponent<PlayerController>();
             
             var inputManager = ServiceLocator.GetService<InputManager>();
             inputManager.OnMoveInputUpdate += UpdateMoveInput;
@@ -69,9 +66,9 @@ namespace SGGames.Script.Entity
 
         private void OnDashButtonPressed()
         {
-            if (!m_playerStamina.CanUseStamina(m_playerData.StaminaCostForDash)) return;
+            if (!m_controller.PlayerStamina.CanUseStamina(m_playerData.StaminaCostForDash)) return;
 
-            m_playerStamina.UseStamina(m_playerData.StaminaCostForDash);
+            m_controller.PlayerStamina.UseStamina(m_playerData.StaminaCostForDash);
             PrepareBeforeDash();
         }
 
@@ -86,7 +83,7 @@ namespace SGGames.Script.Entity
             if (!m_isPermit) return;
             if (!m_isDashing) return;
 
-            if (m_playerMovement.IsHitObstacle)
+            if (m_controller.PlayerMovement.IsHitObstacle)
             {
                 EndDash();
                 return;

@@ -10,14 +10,14 @@ namespace SGGames.Script.Pickable
         
         public override void ApplyEffect(GameObject target)
         {
-            var playerMovement = target.GetComponent<PlayerMovement>();
-            playerMovement.AddFlatSpeedBonus(m_speedIncrease);
+            var controller = target.GetComponent<PlayerController>();
+            controller.PlayerMovement.AddFlatSpeedBonus(m_speedIncrease);
         }
 
         public override void RemoveEffect(GameObject target)
         {
-            var playerMovement = target.GetComponent<PlayerMovement>();
-            playerMovement.AddFlatSpeedBonus(-m_speedIncrease);
+            var controller = target.GetComponent<PlayerController>();
+            controller.PlayerMovement.AddFlatSpeedBonus(-m_speedIncrease);
         }
     }
 

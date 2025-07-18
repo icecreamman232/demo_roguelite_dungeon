@@ -1,3 +1,4 @@
+using SGGames.Script.Entity;
 using UnityEngine;
 
 namespace SGGames.Script.Pickable
@@ -9,14 +10,14 @@ namespace SGGames.Script.Pickable
         
         public override void ApplyEffect(GameObject target)
         {
-            var model = target.transform.GetChild(0);
-            model.localScale += new Vector3(m_sizeIncrease, m_sizeIncrease, 0);
+            var controller = target.GetComponent<PlayerController>();
+            controller.Model.transform.localScale += new Vector3(m_sizeIncrease, m_sizeIncrease, 0);
         }
 
         public override void RemoveEffect(GameObject target)
         {
-            var model = target.transform.GetChild(0);
-            model.localScale -= new Vector3(m_sizeIncrease, m_sizeIncrease, 0);
+            var controller = target.GetComponent<PlayerController>();
+            controller.Model.transform.localScale -= new Vector3(m_sizeIncrease, m_sizeIncrease, 0);
         }
     }
 }
