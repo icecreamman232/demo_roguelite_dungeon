@@ -30,6 +30,8 @@ namespace SGGames.Script.AI
 
         private void EnemyGetHit(float damage, GameObject source)
         {
+            if(source == null) return;
+            
             m_isHit = true;
             if (source.CompareTag("Player"))
             {

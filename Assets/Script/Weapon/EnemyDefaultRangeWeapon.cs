@@ -65,6 +65,9 @@ namespace SGGames.Script.Weapons
         
         public void SpawnProjectile()
         {
+            if (m_controller.CurrentBrain == null) return;
+            if (m_controller.CurrentBrain.Target == null) return;
+            
             var target = m_controller.CurrentBrain.Target;
             var numberProjectile = m_weaponData.ProjectilePerShot;
 

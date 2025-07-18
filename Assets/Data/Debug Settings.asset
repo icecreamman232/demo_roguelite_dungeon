@@ -16,4 +16,4 @@ MonoBehaviour:
   m_showPlayerDamageDebug: 1
   m_showEnemyDamageDebug: 1
   m_updateSpeed: 1
-  m_isPlayerImmortal: 0
+  m_isPlayerImmortal: 1

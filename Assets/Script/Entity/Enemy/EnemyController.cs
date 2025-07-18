@@ -62,6 +62,7 @@ namespace SGGames.Scripts.Entity
             var gameManager = ServiceLocator.GetService<GameManager>();
             gameManager.OnGamePauseCallback -= OnGamePaused;
             gameManager.OnGameUnPauseCallback -= OnGameResumed;
+            var room = GetComponentInParent<Room>();
         }
         
         private void OnEnemyDeath()

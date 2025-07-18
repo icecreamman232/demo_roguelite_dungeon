@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Globalization;
 using SGGames.Script.Data;
@@ -73,8 +74,15 @@ namespace SGGames.Script.HealthSystem
 
         public void SelfKill()
         {
-            TakeDamage(m_currHealth,null,0);
-            Kill();
+            Debug.Log($"Self kill on {gameObject.name}");
+            try
+            {
+                TakeDamage(m_currHealth, null, 0);
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"Error in TakeDamage for {gameObject.name}: {ex.Message}\nStack Trace: {ex.StackTrace}");
+            }
         }
     }
 }

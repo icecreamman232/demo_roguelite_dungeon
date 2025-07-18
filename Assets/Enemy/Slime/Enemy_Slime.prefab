@@ -445,9 +445,9 @@ MonoBehaviour:
   m_targetMask:
     serializedVersion: 2
     m_Bits: 64
-  m_minDamage: 0
-  m_maxDamage: 0
-  m_invincibilityDuration: 0
+  m_minDamage: 50
+  m_maxDamage: 50
+  m_invincibilityDuration: 0.3
   m_knockBackForce: 0
   m_knockDuration: 0
 --- !u!61 &2933225535416741485
