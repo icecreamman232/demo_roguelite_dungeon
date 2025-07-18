@@ -17,6 +17,10 @@ namespace SGGames.Script.UI
 
         public void UpdateHealthBarVisual(float currentHealth, float maxHealth)
         {
+            if (m_canvasGroup.alpha == 0 && currentHealth < maxHealth)
+            {
+                m_canvasGroup.alpha = 1;
+            }
             m_healthBar.fillAmount = MathHelpers.Remap(currentHealth, 0, maxHealth, 0, 1);
             if (m_healthBar.fillAmount <= 0)
             {
