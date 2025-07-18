@@ -17,7 +17,8 @@ namespace SGGames.Scripts.Entity
         [SerializeField] protected EnemyBrain m_defaultBrain;
         [SerializeField] protected EnemyBrain m_currentBrain;
         
-        protected EnemyHealth m_health;
+        private SpriteRenderer m_spriteRenderer;
+        private EnemyHealth m_health;
         private List<IDeathCommand> m_deathCommands;
 
         public EnemyBrain CurrentBrain => m_currentBrain;
@@ -25,10 +26,13 @@ namespace SGGames.Scripts.Entity
         private void Awake()
         {
             m_currentBrain = m_defaultBrain;
+            m_currentBrain.Initialize(this);
             
             m_gameEvent.AddListener(OnReceiveGameEvent);
             m_health = GetComponent<EnemyHealth>();
             m_health.OnDeath += OnEnemyDeath;
+
+            m_spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
             var gameManager = ServiceLocator.GetService<GameManager>();
             gameManager.OnGamePauseCallback += OnGamePaused;
@@ -53,6 +57,13 @@ namespace SGGames.Scripts.Entity
             }
         }
         
+        private void OnDestroy()
+        {
+            var gameManager = ServiceLocator.GetService<GameManager>();
+            gameManager.OnGamePauseCallback -= OnGamePaused;
+            gameManager.OnGameUnPauseCallback -= OnGameResumed;
+        }
+        
         private void OnEnemyDeath()
         {
             foreach (var command in m_deathCommands)
@@ -73,6 +84,14 @@ namespace SGGames.Scripts.Entity
                 }
             }
         }
+        
+        private void OnReceiveGameEvent(Global.GameEventType eventType)
+        {
+            if(eventType ==  Global.GameEventType.GameStarted)
+            {
+                m_currentBrain.ActivateBrain(true);
+            }
+        }
 
         protected override void OnGamePaused()
         {
@@ -89,23 +108,9 @@ namespace SGGames.Scripts.Entity
         public void SetActiveBrain(EnemyBrain newBrain)
         {
             m_currentBrain = newBrain;
+            m_currentBrain.Initialize(this);
         }
         
-        private void OnReceiveGameEvent(Global.GameEventType eventType)
-        {
-            if(eventType ==  Global.GameEventType.GameStarted)
-            {
-                m_currentBrain.ActivateBrain(true);
-            }
-        }
-
-        private void OnDestroy()
-        {
-            var gameManager = ServiceLocator.GetService<GameManager>();
-            gameManager.OnGamePauseCallback -= OnGamePaused;
-            gameManager.OnGameUnPauseCallback -= OnGameResumed;
-        }
-
         public void OnRevive()
         {
             m_currentBrain = m_defaultBrain;
@@ -114,11 +119,27 @@ namespace SGGames.Scripts.Entity
             m_currentBrain.ResetBrain();
             m_currentBrain.ActivateBrain(true);
         }
+        #region Facade Methods
 
+        public void FlipSprite(Vector2 direction)
+        {
+            if (m_spriteRenderer == null)
+            {
+                Debug.LogError("Sprite Renderer is null");
+                return;
+            }
+            
+            m_spriteRenderer.flipX = direction.x < 0;
+        }
+        #endregion
+        
+        #region Cheat Code
         public void Kill()
         {
             m_health.SelfKill();
         }
+        #endregion
+        
     }
 }
 

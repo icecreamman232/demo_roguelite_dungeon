@@ -22,9 +22,21 @@ namespace SGGames.Scripts.Entity
             set => m_owner = value;
         }
 
-        private void Start()
+        // private void Start()
+        // {
+        //     m_owner = GetComponentInParent<EnemyController>();
+        //     foreach (var state in States)
+        //     {
+        //         state.Initialize(this);
+        //     }
+        //
+        //     CurrentState = States[0];
+        //     CurrentState.EnterState();
+        // }
+
+        public void Initialize(EnemyController controller)
         {
-            m_owner = GetComponentInParent<EnemyController>();
+            m_owner = controller;
             foreach (var state in States)
             {
                 state.Initialize(this);

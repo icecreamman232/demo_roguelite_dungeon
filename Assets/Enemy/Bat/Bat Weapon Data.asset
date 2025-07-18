@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b0ce7b22ba139d48a292b8ab86a8780, type: 3}
   m_Name: Bat Weapon Data
   m_EditorClassIdentifier: 
-  m_coolDown: 0.5
+  m_coolDown: 1.5
   m_projectilePerShot: 1
   m_shotProperties:
   - OffsetPosition: {x: 0, y: 0, z: 0}

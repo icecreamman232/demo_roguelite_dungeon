@@ -203,6 +203,7 @@ GameObject:
   - component: {fileID: 786498064542666518}
   - component: {fileID: 8227952959503997235}
   - component: {fileID: 4203015532287548786}
+  - component: {fileID: 1248187875449957721}
   m_Layer: 7
   m_Name: Actions
   m_TagString: Untagged
@@ -280,6 +281,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1248187875449957721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2305173086188531156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cca9218454b9a0546a788329add27f80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Label: Flip toward target
 --- !u!1 &2492478750164987007
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,6 +476,7 @@ MonoBehaviour:
   - StateName: Following and shoot
     Actions:
     - {fileID: 4203015532287548786}
+    - {fileID: 1248187875449957721}
     Transitions: []
   Target: {fileID: 0}
   CurrentState:
