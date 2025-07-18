@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using SGGames.Script.Core;
 using SGGames.Script.Dungeon;
@@ -48,13 +47,6 @@ namespace SGGames.Scripts.Entity
             {
                 command.Initialize(this);
             }
-            
-            if (!m_health.CanRevive)
-            {
-                var room = GetComponentInParent<Room>();
-                room.RegisterEnemyToRoom(this);
-                
-            }
         }
         
         private void OnDestroy()
@@ -62,7 +54,16 @@ namespace SGGames.Scripts.Entity
             var gameManager = ServiceLocator.GetService<GameManager>();
             gameManager.OnGamePauseCallback -= OnGamePaused;
             gameManager.OnGameUnPauseCallback -= OnGameResumed;
+            
+            m_gameEvent.RemoveListener(OnReceiveGameEvent);
+        }
+
+        private void RegisterEnemyToRoom()
+        {
+            if (m_health.CanRevive) return;
+            
             var room = GetComponentInParent<Room>();
+            room.RegisterEnemyToRoom(this);
         }
         
         private void OnEnemyDeath()
@@ -88,7 +89,11 @@ namespace SGGames.Scripts.Entity
         
         private void OnReceiveGameEvent(Global.GameEventType eventType)
         {
-            if(eventType ==  Global.GameEventType.GameStarted)
+            if (eventType == Global.GameEventType.RoomCreated)
+            {
+                RegisterEnemyToRoom();
+            }
+            else if(eventType ==  Global.GameEventType.GameStarted)
             {
                 m_currentBrain.ActivateBrain(true);
             }
