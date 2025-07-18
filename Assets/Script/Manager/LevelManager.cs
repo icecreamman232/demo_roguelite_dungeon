@@ -118,6 +118,7 @@ namespace SGGames.Script.Managers
         private IEnumerator GenerateRoomsForBiomes(RoomManager roomManager)
         {
             roomManager.GenerateRoomForCurrentBiomes();
+            roomManager.GenerateRoomRewardForCurrentBiomes();
             yield return new WaitForEndOfFrame();
         }
 

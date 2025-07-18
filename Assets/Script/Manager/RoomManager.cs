@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using SGGames.Script.Core;
 using SGGames.Script.Data;
+using SGGames.Script.Dungeon;
 using UnityEngine;
 
 namespace SGGames.Script.Managers
@@ -16,10 +17,16 @@ namespace SGGames.Script.Managers
         [Header("Data")] 
         [SerializeField] private int m_currentBiomesIndex;
         [SerializeField] private int m_currentRoomIndex;
+        [Header("Room Layout")]
         [SerializeField] private RoomContainer[] m_roomContainers;
         [SerializeField] private RoomContainer m_roomContainer;
         [SerializeField] private List<RoomData> m_leftRoomList;
         [SerializeField] private List<RoomData> m_rightRoomList;
+        [Header("Room Reward")]
+        [SerializeField] private List<Global.RoomRewardType> m_leftRoomRewardList;
+        [SerializeField] private List<Global.RoomRewardType> m_rightRoomRewardList;
+
+        private RoomRewardGenerator m_roomRewardGenerator;
         
         public int CurrentBiomesIndex => m_currentBiomesIndex;
         
@@ -28,6 +35,7 @@ namespace SGGames.Script.Managers
             ServiceLocator.RegisterService<RoomManager>(this);
             m_leftRoomList = new List<RoomData>();
             m_rightRoomList = new List<RoomData>();
+            m_roomRewardGenerator = new RoomRewardGenerator();
         }
         
         public void GenerateRoomForCurrentBiomes()
@@ -86,14 +94,49 @@ namespace SGGames.Script.Managers
                 m_rightRoomList.Add(shuffledChallengeRoomList[c]);
             }
         }
+
+        [ContextMenu("Test Reward Generation")]
+        private void TestRewardGeneration()
+        {
+            m_roomRewardGenerator.GenerateRoomReward(9);
+
+            for (int i = 0; i < m_roomRewardGenerator.ResultList.Count; i++)
+            {
+                Debug.Log($"Reward Room {i} : {m_roomRewardGenerator.ResultList[i].ToString()}");
+            }
+        }
+        
+        public void GenerateRoomRewardForCurrentBiomes()
+        {
+            m_leftRoomRewardList.Clear();
+            m_rightRoomRewardList.Clear();
+            
+            m_roomRewardGenerator.GenerateRoomReward(9);
+            m_leftRoomRewardList.AddRange(m_roomRewardGenerator.ResultList);
+            
+            m_roomRewardGenerator.GenerateRoomReward(9);
+            m_rightRoomRewardList.AddRange(m_roomRewardGenerator.ResultList);
+        }
         
         private void ClearData()
         {
             m_currentRoomIndex = 0;
             m_leftRoomList.Clear();
             m_rightRoomList.Clear();
+            m_leftRoomRewardList.Clear();
+            m_rightRoomRewardList.Clear();
         }
 
+        public Global.RoomRewardType GetLeftRoomReward()
+        {
+            return m_leftRoomRewardList[m_currentRoomIndex];
+        }
+
+        public Global.RoomRewardType GetRightRoomReward()
+        {
+            return m_rightRoomRewardList[m_currentRoomIndex];
+        }
+        
         public RoomData GetNextLeftRoom()
         {
             m_currentRoomIndex++;

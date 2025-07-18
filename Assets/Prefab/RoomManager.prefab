@@ -72,3 +72,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b98f8e43a4a0380408a86f7ea4934553, type: 2}
   - {fileID: 11400000, guid: 9166a0107dab9d248a142027ee5be1f5, type: 2}
   - {fileID: 11400000, guid: 62fb101cab1029543b03ee7f69948220, type: 2}
+  m_leftRoomRewardList: 040000000500000002000000
+  m_rightRoomRewardList: 020000000400000001000000

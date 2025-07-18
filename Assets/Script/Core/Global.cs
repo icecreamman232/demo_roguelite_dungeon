@@ -48,6 +48,23 @@ namespace SGGames.Script.Core
             Challenge,
         }
 
+        public enum RoomRewardType
+        {
+            None,
+            Coin,
+            Key,
+            Bomb,
+            Item,
+            Weapon,
+            
+            Random,
+            HealingRoom,
+            SacrificeHealthRoom,
+            WeaponSmith,
+            
+            COUNT,
+        }
+
         public enum WeaponState
         {
             Ready,
