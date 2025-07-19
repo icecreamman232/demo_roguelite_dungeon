@@ -1,4 +1,5 @@
 using System.Collections;
+using SGGames.Script.Core;
 using UnityEngine;
 
 namespace SGGames.Script.Pickables
@@ -83,6 +84,17 @@ namespace SGGames.Script.Pickables
                 m_updateMovementDelegate = null;
                 PickedUp();
                 this.gameObject.SetActive(false);
+            }
+        }
+
+        protected override void OnReceiveGameEvent(Global.GameEventType eventType)
+        {
+            if (eventType == Global.GameEventType.RoomCreated)
+            {
+                if (this.gameObject.activeSelf)
+                {
+                    this.gameObject.SetActive(false);
+                }
             }
         }
     }

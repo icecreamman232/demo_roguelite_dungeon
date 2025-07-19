@@ -1,3 +1,4 @@
+using System;
 using SGGames.Script.Core;
 using SGGames.Script.Events;
 using UnityEngine;
@@ -17,6 +18,11 @@ namespace SGGames.Script.Pickables
             m_interactEvent.AddListener(OnReceiveInteractionEvent);
         }
 
+        private void OnEnable()
+        {
+            WarmUp();
+        }
+
         private void OnTriggerEnter2D(Collider2D other)
         {
             if(!other.CompareTag("Player")) return;
@@ -31,13 +37,11 @@ namespace SGGames.Script.Pickables
             CancelInteraction();
         }
 
-        protected override void PickedUp()
+        private void WarmUp()
         {
-            base.PickedUp();
-            m_collider2D.enabled = false;
-            this.gameObject.SetActive(false);
+            m_collider2D.enabled = true;
         }
-
+        
         private void StartInteraction()
         {
             m_interactEvent.Raise(Global.InteractEventType.Interact, gameObject.layer, gameObject.tag);
@@ -59,6 +63,13 @@ namespace SGGames.Script.Pickables
             {
                 PickedUp();
             }
+        }
+
+        protected override void PickedUp()
+        {
+            base.PickedUp();
+            m_collider2D.enabled = false;
+            this.gameObject.SetActive(false);
         }
     }
 }

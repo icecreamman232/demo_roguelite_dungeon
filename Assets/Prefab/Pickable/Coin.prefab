@@ -85,6 +85,7 @@ MonoBehaviour:
   m_pickableType: 0
   m_itemData: {fileID: 11400000, guid: 3b776b203132b6048a4d14b0a14a5c0e, type: 2}
   m_amount: 1
+  m_gameEvent: {fileID: 11400000, guid: 7ac1f24220b2ef14186e0695169f9965, type: 2}
   m_collider: {fileID: 1327076850710633007}
 --- !u!1 &7071903718800874943
 GameObject:
@@ -160,7 +161,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1953545987
-  m_SortingLayer: 4
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -204989822, guid: 826e1aa1ed4749443be8234168559a46, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
