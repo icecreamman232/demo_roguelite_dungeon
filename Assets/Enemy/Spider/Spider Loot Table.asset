@@ -16,3 +16,6 @@ MonoBehaviour:
   - Item: 1
     MinAmount: 5
     MaxAmount: 8
+  - Item: 2
+    MinAmount: 0
+    MaxAmount: 1
