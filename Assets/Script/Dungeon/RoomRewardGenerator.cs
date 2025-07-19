@@ -27,9 +27,10 @@ namespace SGGames.Script.Dungeon
             FillFinalRoom();//There is always 1 room
             
             //Random reward room
-            FillCoinRoom(maxReward); //There are random 1-2 rooms
-            FillBombRoom(maxReward);//There are random 1-2 rooms
-            FillKeyRoom(maxReward);//There are random 1-2 rooms
+            FillCommonObject(maxReward, S_MIN_CURRENCY_NUMBER, S_MAX_CURRENCY_NUMBER, Global.RoomRewardType.Coin); //There are random 1-2 rooms
+            FillCommonObject(maxReward, S_MIN_CURRENCY_NUMBER, S_MAX_CURRENCY_NUMBER, Global.RoomRewardType.Key); //There are random 1-2 rooms
+            FillCommonObject(maxReward, S_MIN_CURRENCY_NUMBER, S_MAX_CURRENCY_NUMBER, Global.RoomRewardType.Bomb); //There are random 1-2 rooms);
+            
             FillRemainingRoom(maxReward);
         }
 
@@ -76,40 +77,26 @@ namespace SGGames.Script.Dungeon
         {
             m_resultList[^1] = Global.RoomRewardType.Item;
         }
+        
+        private void FillCommonObject(int maxReward, int minNumber, int maxNumber, Global.RoomRewardType roomRewardType)
+        {
+            var randomNumber = Random.Range(minNumber, maxNumber + 1);
+            var emptyRoomIndexList = new List<int>();
 
-        private void FillCoinRoom(int maxReward)
-        {
-            var randomNumber = Random.Range(S_MIN_CURRENCY_NUMBER, S_MAX_CURRENCY_NUMBER + 1);
-            while (randomNumber > 0)
+            for (int i = 0; i < maxReward; i++)
             {
-                var randomIndex = Random.Range(0, maxReward);
-                if (m_resultList[randomIndex] != Global.RoomRewardType.None) continue;
-                m_resultList[randomIndex] = Global.RoomRewardType.Coin;
-                randomNumber--;
+                if(m_resultList[i]!= Global.RoomRewardType.None) continue;
+                emptyRoomIndexList.Add(i);
             }
-        }
-        
-        private void FillKeyRoom(int maxReward)
-        {
-            var randomNumber = Random.Range(S_MIN_CURRENCY_NUMBER, S_MAX_CURRENCY_NUMBER + 1);
-            while (randomNumber > 0)
+            
+            if(emptyRoomIndexList.Count == 0) return;
+            
+            while (randomNumber > 0 && emptyRoomIndexList.Count > 0)
             {
-                var randomIndex = Random.Range(0, maxReward);
-                if (m_resultList[randomIndex] != Global.RoomRewardType.None) continue;
-                m_resultList[randomIndex] = Global.RoomRewardType.Key;
+                var randomIndex = Random.Range(0, emptyRoomIndexList.Count);
+                m_resultList[emptyRoomIndexList[randomIndex]] = roomRewardType;
                 randomNumber--;
-            }
-        }
-        
-        private void FillBombRoom(int maxReward)
-        {
-            var randomNumber = Random.Range(S_MIN_CURRENCY_NUMBER, S_MAX_CURRENCY_NUMBER + 1);
-            while (randomNumber > 0)
-            {
-                var randomIndex = Random.Range(0, maxReward);
-                if (m_resultList[randomIndex] != Global.RoomRewardType.None) continue;
-                m_resultList[randomIndex] = Global.RoomRewardType.Bomb;
-                randomNumber--;
+                emptyRoomIndexList.Remove(randomIndex);
             }
         }
 
