@@ -1,3 +1,4 @@
+using System;
 using SGGames.Script.Core;
 using SGGames.Script.Data;
 using SGGames.Script.EditorExtensions;
@@ -19,6 +20,7 @@ namespace SGGames.Script.Entity
         private bool m_canMove;
         private float m_flatSpeedBonus;
         
+        public Action<bool> FlippingModelAction;
         public bool IsHitObstacle => CheckObstacle();
         
         private void Start()
@@ -79,7 +81,8 @@ namespace SGGames.Script.Entity
 
         protected override void FlipModel()
         {
-            m_controller.SpriteRenderer.flipX = m_controller.WeaponHandler.AimDirection.x < 0;
+            FlippingModelAction?.Invoke(m_controller.WeaponHandler.AimDirection.x > 0);
+            //m_controller.SpriteRenderer.flipX = m_controller.WeaponHandler.AimDirection.x < 0;
             base.FlipModel();
         }
 

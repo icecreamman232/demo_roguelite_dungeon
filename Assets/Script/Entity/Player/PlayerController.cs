@@ -1,3 +1,4 @@
+using System;
 using SGGames.Script.HealthSystem;
 using SGGames.Script.StaminaSystem;
 using UnityEngine;
@@ -16,6 +17,7 @@ namespace SGGames.Script.Entity
         [SerializeField] private PlayerStamina m_playerStamina;
         [SerializeField] private PlayerMovement m_playerMovement;
         [SerializeField] private PlayerDash m_playerDash;
+        [SerializeField] private PlayerAnimationController m_animationController;
         
         public BoxCollider2D PlayerCollider => m_collider;
         public GameObject Model => m_spriteRenderer.gameObject;
@@ -25,6 +27,11 @@ namespace SGGames.Script.Entity
         public PlayerStamina PlayerStamina => m_playerStamina;
         public PlayerMovement PlayerMovement => m_playerMovement;
         public PlayerDash PlayerDash => m_playerDash;
-        
+        public PlayerAnimationController AnimationController => m_animationController;
+
+        private void Start()
+        {
+            m_playerMovement.FlippingModelAction = m_animationController.FlipModel;
+        }
     }
 }

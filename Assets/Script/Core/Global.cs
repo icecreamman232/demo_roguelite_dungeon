@@ -2,7 +2,8 @@ namespace SGGames.Script.Core
 {
     public static partial class Global
     {
-        public static readonly float HP_PER_SLOT = 50f;
+        public static float HP_PER_SLOT = 50f;
+        public static float S_FLIPPING_MODEL_SPEED = 5;
         
         public enum MovementType
         {
