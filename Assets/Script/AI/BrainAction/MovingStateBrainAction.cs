@@ -1,6 +1,4 @@
-using SGGames.Script.Entity;
 using SGGames.Scripts.AI;
-using SGGames.Scripts.Entity;
 using UnityEngine;
 
 namespace SGGames.Script.AI
@@ -14,31 +12,23 @@ namespace SGGames.Script.AI
         [SerializeField] private bool m_shouldStop;
         [SerializeField] private bool m_shouldPause;
         
-        private EnemyMovement m_movement;
-
-        public override void Initialize(EnemyBrain brain)
-        {
-            m_movement = brain.Owner.gameObject.GetComponent<EnemyMovement>();
-            base.Initialize(brain);
-        }
-
         public override void OnEnterState()
         {
             if (m_shouldStart)
             {
-                m_movement.StartMoving();
+                m_brain.Owner.Movement.StartMoving();
                 return;
             }
 
             if (m_shouldStop)
             {
-                m_movement.StopMoving();
+                m_brain.Owner.Movement.StopMoving();
                 return;
             }
 
             if (m_shouldPause)
             {
-                m_movement.PauseMoving();
+                m_brain.Owner.Movement.PauseMoving();
             }
             base.OnEnterState();
         }

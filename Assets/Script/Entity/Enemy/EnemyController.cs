@@ -15,12 +15,16 @@ namespace SGGames.Scripts.Entity
         [SerializeField] protected GameEvent m_gameEvent;
         [SerializeField] protected EnemyBrain m_defaultBrain;
         [SerializeField] protected EnemyBrain m_currentBrain;
-        
-        private SpriteRenderer m_spriteRenderer;
-        private EnemyHealth m_health;
+        [SerializeField] protected SpriteRenderer m_spriteRenderer;
+        [SerializeField] protected EnemyHealth m_enemyHealth;
+        [SerializeField] protected EnemyMovement m_enemyMovement;
+        [SerializeField] protected EnemyAnimationController m_animationController;
+
         private List<IDeathCommand> m_deathCommands;
 
         public EnemyBrain CurrentBrain => m_currentBrain;
+        public EnemyMovement Movement => m_enemyMovement;
+        public EnemyHealth Health => m_enemyHealth;
 
         private void Awake()
         {
@@ -28,11 +32,10 @@ namespace SGGames.Scripts.Entity
             m_currentBrain.Initialize(this);
             
             m_gameEvent.AddListener(OnReceiveGameEvent);
-            m_health = GetComponent<EnemyHealth>();
-            m_health.OnDeath += OnEnemyDeath;
-
-            m_spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-
+            m_enemyHealth.OnDeath += OnEnemyDeath;
+            
+            m_enemyMovement.FlippingModelAction = m_animationController.FlipModel;
+            
             var gameManager = ServiceLocator.GetService<GameManager>();
             gameManager.OnGamePauseCallback += OnGamePaused;
             gameManager.OnGameUnPauseCallback += OnGameResumed;
@@ -60,7 +63,7 @@ namespace SGGames.Scripts.Entity
 
         private void RegisterEnemyToRoom()
         {
-            if (m_health.CanRevive) return;
+            if (m_enemyHealth.CanRevive) return;
             
             var room = GetComponentInParent<Room>();
             room.RegisterEnemyToRoom(this);
@@ -80,7 +83,7 @@ namespace SGGames.Scripts.Entity
             }
             else
             {
-                if (!m_health.CanRevive)
+                if (!m_enemyHealth.CanRevive)
                 {
                     room.RegisterEnemyToRoom(this);
                 }
@@ -129,20 +132,14 @@ namespace SGGames.Scripts.Entity
 
         public void FlipSprite(Vector2 direction)
         {
-            if (m_spriteRenderer == null)
-            {
-                Debug.LogError("Sprite Renderer is null");
-                return;
-            }
-            
-            m_spriteRenderer.flipX = direction.x < 0;
+            m_animationController.FlipModel(direction.x > 0);
         }
         #endregion
         
         #region Cheat Code
         public void Kill()
         {
-            m_health.SelfKill();
+            m_enemyHealth.SelfKill();
         }
         #endregion
         

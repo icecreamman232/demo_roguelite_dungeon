@@ -757,6 +757,10 @@ MonoBehaviour:
   m_gameEvent: {fileID: 11400000, guid: 7ac1f24220b2ef14186e0695169f9965, type: 2}
   m_defaultBrain: {fileID: 6110430800030532304}
   m_currentBrain: {fileID: 6110430800030532304}
+  m_spriteRenderer: {fileID: 7984223844477170315}
+  m_enemyHealth: {fileID: 8403957574603744869}
+  m_enemyMovement: {fileID: 4121836022372627583}
+  m_animationController: {fileID: 4545798730409577891}
 --- !u!114 &8403957574603744869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -856,6 +860,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3540184199205951122}
   - component: {fileID: 7984223844477170315}
+  - component: {fileID: 4545798730409577891}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -933,6 +938,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4545798730409577891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7919653215087773685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0700f75ca9560514488ecf745331bddc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8273031204423177537
 GameObject:
   m_ObjectHideFlags: 0

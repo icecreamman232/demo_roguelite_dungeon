@@ -87,6 +87,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2031275111559019935}
   - component: {fileID: 1208306049597145186}
+  - component: {fileID: 5615977613053962027}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -164,6 +165,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5615977613053962027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3188851467663346660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0700f75ca9560514488ecf745331bddc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3965494464855751623
 GameObject:
   m_ObjectHideFlags: 0
@@ -295,6 +308,10 @@ MonoBehaviour:
   m_gameEvent: {fileID: 11400000, guid: 7ac1f24220b2ef14186e0695169f9965, type: 2}
   m_defaultBrain: {fileID: 4238696107163186904}
   m_currentBrain: {fileID: 4238696107163186904}
+  m_spriteRenderer: {fileID: 1208306049597145186}
+  m_enemyHealth: {fileID: 3681058085338316961}
+  m_enemyMovement: {fileID: 8262135198344343122}
+  m_animationController: {fileID: 5615977613053962027}
 --- !u!114 &3681058085338316961
 MonoBehaviour:
   m_ObjectHideFlags: 0

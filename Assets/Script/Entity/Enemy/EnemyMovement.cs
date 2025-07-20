@@ -1,3 +1,4 @@
+using System;
 using SGGames.Script.Core;
 using SGGames.Script.Data;
 using SGGames.Script.Managers;
@@ -22,6 +23,7 @@ namespace SGGames.Script.Entity
         /// </summary>
         private Transform m_target;
 
+        public Action<bool> FlippingModelAction;
         public Vector2 MoveDirection => m_movementDirection;
         
         private void Awake()
@@ -79,14 +81,17 @@ namespace SGGames.Script.Entity
 
         protected override void FlipModel()
         {
+            
             if (m_movementBehaviorType == Global.MovementBehaviorType.FollowingTarget)
             {
                 var direction = (m_target.position - transform.position).normalized;
-                m_spriteRenderer.flipX =  direction.x < 0;
+                //m_spriteRenderer.flipX =  direction.x < 0;
+                FlippingModelAction?.Invoke(direction.x > 0);
             }
             else
             {
-                m_spriteRenderer.flipX = m_movementDirection.x < 0;
+                //m_spriteRenderer.flipX = m_movementDirection.x < 0;
+                FlippingModelAction?.Invoke(m_movementDirection.x > 0);
             }
             
             base.FlipModel();
