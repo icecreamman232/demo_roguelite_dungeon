@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_isLeftRoom: 0
-  m_openSprite: {fileID: -535029256, guid: fa03b5d0f3bdc69438208bd33c164f24, type: 3}
-  m_closeSprite: {fileID: 1937571989, guid: fa03b5d0f3bdc69438208bd33c164f24, type: 3}
+  m_openSprite: {fileID: -1346313413, guid: 53b9ecfbd888ef04889b158188519177, type: 3}
+  m_closeSprite: {fileID: -1408334138, guid: 53b9ecfbd888ef04889b158188519177, type: 3}
   m_exitCollider: {fileID: -1312430912215630222}
   m_obstacleCollider: {fileID: 554859244737048135}
   m_gameEvent: {fileID: 11400000, guid: 7ac1f24220b2ef14186e0695169f9965, type: 2}
@@ -175,7 +175,7 @@ SpriteRenderer:
   m_SortingLayerID: -495655749
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1937571989, guid: fa03b5d0f3bdc69438208bd33c164f24, type: 3}
+  m_Sprite: {fileID: -1408334138, guid: 53b9ecfbd888ef04889b158188519177, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
