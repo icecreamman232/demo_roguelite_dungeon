@@ -38,6 +38,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5ecfd3f0964464845b940f3e91c8612c, type: 2}
   - {fileID: 11400000, guid: 9768e7a427f9b774e8d197ec949a6384, type: 2}
   m_biomesName: 0
+  m_firstRoom: {fileID: 11400000, guid: 8b3257546b2a4e3418d55f17c4a6913b, type: 2}
   m_easyRooms:
   - {fileID: 11400000, guid: 3fc4c70c6b80fcd40b235b56e5d52f81, type: 2}
   - {fileID: 11400000, guid: d07a488d76cec89428fb42b518cb40dd, type: 2}

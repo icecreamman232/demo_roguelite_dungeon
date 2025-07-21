@@ -7,6 +7,7 @@ namespace SGGames.Script.Dungeon
 {
     public class Door : MonoBehaviour
     {
+        [SerializeField] private bool m_isOpenByDefault;
         [SerializeField] private bool m_isLeftRoom;
         [SerializeField] private Sprite m_openSprite;
         [SerializeField] private Sprite m_closeSprite;
@@ -20,7 +21,14 @@ namespace SGGames.Script.Dungeon
         {
             m_gameEvent.AddListener(OnReceiveGameEvent);
             m_renderer = GetComponentInChildren<SpriteRenderer>();
-            CloseDoor();
+            if (m_isOpenByDefault)
+            {
+                OpenDoor();
+            }
+            else
+            {
+                CloseDoor();
+            }
         }
 
         private void OnTriggerEnter2D(Collider2D other)

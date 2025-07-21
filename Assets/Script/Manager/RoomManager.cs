@@ -27,8 +27,7 @@ namespace SGGames.Script.Managers
         [SerializeField] private List<Global.RoomRewardType> m_rightRoomRewardList;
 
         private RoomRewardGenerator m_roomRewardGenerator;
-        
-        public int CurrentBiomesIndex => m_currentBiomesIndex;
+        private RoomGenerator m_roomGenerator;
         
         private void Awake()
         {
@@ -36,74 +35,7 @@ namespace SGGames.Script.Managers
             m_leftRoomList = new List<RoomData>();
             m_rightRoomList = new List<RoomData>();
             m_roomRewardGenerator = new RoomRewardGenerator();
-        }
-        
-        public void GenerateRoomForCurrentBiomes()
-        {
-            ClearData();
-            
-            var shuffledEasyRoomList = new List<RoomData>();
-            shuffledEasyRoomList.AddRange(m_roomContainers[m_currentBiomesIndex].GetEasyRoomList);
-            GameHelper.Shuffle(shuffledEasyRoomList);
-            
-            var shuffledHardRoomList = new List<RoomData>();
-            shuffledHardRoomList.AddRange(m_roomContainers[m_currentBiomesIndex].GetHardRoomList);
-            GameHelper.Shuffle(shuffledHardRoomList);
-            
-            var shuffledChallengeRoomList = new List<RoomData>();
-            shuffledChallengeRoomList.AddRange(m_roomContainers[m_currentBiomesIndex].GetChallengeRoomList);
-            GameHelper.Shuffle(shuffledChallengeRoomList);
-            
-            
-            int numberEasyRoomToSelect = Mathf.Min(m_maxEasyRoom * 2, shuffledEasyRoomList.Count);
-            int numberHardRoomToSelect = Mathf.Min(m_maxHardRoom * 2, shuffledHardRoomList.Count);
-            int numberChallengeRoomToSelect = Mathf.Min(m_maxChallengeRoom * 2, shuffledChallengeRoomList.Count);
-            
-            //Debug.Log($"RoomManager::Pick Easy:{numberEasyRoomToSelect} Hard:{numberHardRoomToSelect} Challenge:{numberChallengeRoomToSelect}");
-            
-            //Easy
-            for (int e = 0; e < numberEasyRoomToSelect/2; e++)
-            {
-                m_leftRoomList.Add(shuffledEasyRoomList[e]);
-            }
-            
-            for (int e = numberEasyRoomToSelect/2; e < numberEasyRoomToSelect; e++)
-            {
-                m_rightRoomList.Add(shuffledEasyRoomList[e]);
-            }
-            
-            //Hard
-            for (int h = 0; h < numberHardRoomToSelect/2; h++)
-            {
-                m_leftRoomList.Add(shuffledHardRoomList[h]);
-            }
-            
-            for (int h = numberHardRoomToSelect/2; h < numberHardRoomToSelect; h++)
-            {
-                m_rightRoomList.Add(shuffledHardRoomList[h]);
-            }
-            
-            //Challenge
-            for (int c = 0; c < numberChallengeRoomToSelect/2; c++)
-            {
-                m_leftRoomList.Add(shuffledChallengeRoomList[c]);
-            }
-            
-            for (int c = numberChallengeRoomToSelect/2; c < numberChallengeRoomToSelect; c++)
-            {
-                m_rightRoomList.Add(shuffledChallengeRoomList[c]);
-            }
-        }
-
-        [ContextMenu("Test Reward Generation")]
-        private void TestRewardGeneration()
-        {
-            m_roomRewardGenerator.GenerateRoomReward(9);
-
-            for (int i = 0; i < m_roomRewardGenerator.ResultList.Count; i++)
-            {
-                Debug.Log($"Reward Room {i} : {m_roomRewardGenerator.ResultList[i].ToString()}");
-            }
+            m_roomGenerator = new RoomGenerator(this);
         }
         
         public void GenerateRoomRewardForCurrentBiomes()
@@ -111,14 +43,14 @@ namespace SGGames.Script.Managers
             m_leftRoomRewardList.Clear();
             m_rightRoomRewardList.Clear();
             
-            m_roomRewardGenerator.GenerateRoomReward(9);
+            m_roomRewardGenerator.GenerateRoomReward(m_maxRoom);
             m_leftRoomRewardList.AddRange(m_roomRewardGenerator.ResultList);
             
-            m_roomRewardGenerator.GenerateRoomReward(9);
+            m_roomRewardGenerator.GenerateRoomReward(m_maxRoom);
             m_rightRoomRewardList.AddRange(m_roomRewardGenerator.ResultList);
         }
-        
-        private void ClearData()
+
+        public void ClearData()
         {
             m_currentRoomIndex = 0;
             m_leftRoomList.Clear();
@@ -169,5 +101,30 @@ namespace SGGames.Script.Managers
         }
         
         public bool IsBossRoom => m_currentRoomIndex == m_maxRoom - 1;
+        public RoomContainer GetCurrentRoomContainer() => m_roomContainers[m_currentBiomesIndex];
+        public int MaxEasyRoom => m_maxEasyRoom;
+        public int MaxHardRoom => m_maxHardRoom;
+        public int MaxChallengeRoom => m_maxChallengeRoom;
+
+        public int CurrentBiomesIndex => m_currentBiomesIndex;
+        
+        public RoomData FirstRoom => m_roomContainers[m_currentBiomesIndex].FirstRoom;
+        
+        public RoomGenerator RoomGenerator
+        {
+            get { return m_roomGenerator; }
+        }
+
+        public List<RoomData> LeftRoomList
+        {
+            get => m_leftRoomList;
+            set => m_leftRoomList = value;
+        }
+
+        public List<RoomData> RightRoomList
+        {
+            get => m_rightRoomList;
+            set => m_rightRoomList = value;
+        }
     }
 }

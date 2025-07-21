@@ -8,6 +8,7 @@ namespace SGGames.Script.Data
     public class RoomContainer : IDataContainer<RoomData>
     {
         [SerializeField] private Global.BiomesName m_biomesName;
+        [SerializeField] private RoomData m_firstRoom;
         [SerializeField] private List<RoomData> m_easyRooms = new List<RoomData>();
         [SerializeField] private List<RoomData> m_hardRooms = new List<RoomData>();
         [SerializeField] private List<RoomData> m_challengeRooms = new List<RoomData>();
@@ -62,6 +63,7 @@ namespace SGGames.Script.Data
             m_bossRooms.Add(roomData);
         }
 
+        public RoomData FirstRoom => m_firstRoom;
         public Global.BiomesName BiomesName => m_biomesName;
         public RoomData GetNPCWeaponShopRoom => m_npcWeaponShop;
         public RoomData GetNPCItemShopRoom => m_npcWeaponShop;

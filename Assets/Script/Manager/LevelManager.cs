@@ -20,7 +20,12 @@ namespace SGGames.Script.Managers
         [SerializeField] private bool m_isUsingTestRoom;
         [SerializeField] private RoomData m_testRoom;
 
+        private const float ROOM_Y_OFFSET = 0.5f;
+        private const float PLAYER_MOVE_DELAY = 0.3f;
+        private const float ROOM_RECT_WIDTH = 14;
+        private const float ROOM_RECT_HEIGHT = 7;
         private readonly float DELAY_TIME = 0.5f;
+        
         private bool m_isLoading;
         private GameObject m_player;
         private GameObject m_currentRoom;
@@ -35,17 +40,40 @@ namespace SGGames.Script.Managers
         {
             ServiceLocator.RegisterService<LevelManager>(this);
             m_gameEvent.AddListener(OnReceiveGameEvent);
-            m_normalRoomRect = new Rect(m_spawnPosition.position.x, m_spawnPosition.position.y + 0.5f, 14, 7);
+            m_normalRoomRect = new Rect(m_spawnPosition.position.x, m_spawnPosition.position.y + ROOM_Y_OFFSET, ROOM_RECT_WIDTH, ROOM_RECT_HEIGHT);
             ConsoleCheatManager.RegisterCommands(this);
         }
         
         private void Start()
         {
             if (m_isLoading) return;
-            StartCoroutine(LoadLevel(fromLeftRoom:true, isFirstLoad:true));
+            StartCoroutine(LoadFirstRoomOfBiomes());
         }
         
-        private IEnumerator LoadLevel(bool fromLeftRoom, bool shouldGenerateRoom = false, bool isFirstLoad = false)
+        private IEnumerator LoadFirstRoomOfBiomes()
+        {
+            var loadingSceneController = ServiceLocator.GetService<LoadingScreenController>();
+            var roomManager = ServiceLocator.GetService<RoomManager>();
+            var inputManager = ServiceLocator.GetService<InputManager>();
+            
+            m_gameEvent.Raise(Global.GameEventType.PauseGame);
+            inputManager.DisableInput();
+            
+            yield return StartCoroutine(FadeOutToBlack(loadingSceneController));
+            yield return StartCoroutine(GenerateRoomsForBiomes(roomManager));
+            yield return StartCoroutine(CreatePlayerFirstTime());  
+            yield return StartCoroutine(InstantiateFirstRoom(roomManager));
+            m_gameEvent.Raise(Global.GameEventType.RoomCreated);
+            m_gameEvent.Raise(Global.GameEventType.UnpauseGame);
+            yield return StartCoroutine(FadeInFromBlack(loadingSceneController));
+            m_gameEvent.Raise(Global.GameEventType.GameStarted);
+            inputManager.EnableInput();
+            
+            m_isLoading = false;
+            yield return null;
+        }
+        
+        private IEnumerator LoadNextRoom(bool fromLeftRoom)
         {
             m_isLoading = true;
             
@@ -56,25 +84,33 @@ namespace SGGames.Script.Managers
             m_gameEvent.Raise(Global.GameEventType.PauseGame);
             inputManager.DisableInput();
             
-            if (isFirstLoad)
-            {
-                yield return StartCoroutine(FadeOutToBlack(loadingSceneController));
-                yield return StartCoroutine(GenerateRoomsForBiomes(roomManager));
-                yield return StartCoroutine(CreatePlayerFirstTime());   
-            }
-            else
-            {
-                yield return StartCoroutine(FadeOutToBlack(loadingSceneController));
-
-                if (shouldGenerateRoom)
-                {
-                    yield return StartCoroutine(GenerateRoomsForBiomes(roomManager));
-                }
-                
-                yield return StartCoroutine(MovePlayerToSpawnPosition());
-            }
-            
+            yield return StartCoroutine(FadeOutToBlack(loadingSceneController));
+            yield return StartCoroutine(MovePlayerToSpawnPosition());
             yield return StartCoroutine(InstantiateRoom(fromLeftRoom, roomManager));
+            m_gameEvent.Raise(Global.GameEventType.RoomCreated);
+            m_gameEvent.Raise(Global.GameEventType.UnpauseGame);
+            yield return StartCoroutine(FadeInFromBlack(loadingSceneController));
+            m_gameEvent.Raise(Global.GameEventType.GameStarted);
+            inputManager.EnableInput();
+            
+            m_isLoading = false;
+        }
+
+        private IEnumerator LoadNextBiomesFirstRoom()
+        {
+            m_isLoading = true;
+            
+            var loadingSceneController = ServiceLocator.GetService<LoadingScreenController>();
+            var roomManager = ServiceLocator.GetService<RoomManager>();
+            var inputManager = ServiceLocator.GetService<InputManager>();
+            
+            m_gameEvent.Raise(Global.GameEventType.PauseGame);
+            inputManager.DisableInput();
+            
+            yield return StartCoroutine(FadeOutToBlack(loadingSceneController));
+            yield return StartCoroutine(GenerateRoomsForBiomes(roomManager));
+            yield return StartCoroutine(MovePlayerToSpawnPosition());
+            yield return StartCoroutine(InstantiateRoom(fromLeftRoom:true, roomManager));
             m_gameEvent.Raise(Global.GameEventType.RoomCreated);
             m_gameEvent.Raise(Global.GameEventType.UnpauseGame);
             yield return StartCoroutine(FadeInFromBlack(loadingSceneController));
@@ -117,8 +153,27 @@ namespace SGGames.Script.Managers
 
         private IEnumerator GenerateRoomsForBiomes(RoomManager roomManager)
         {
-            roomManager.GenerateRoomForCurrentBiomes();
+            roomManager.RoomGenerator.GenerateRoomForCurrentBiomes();
             roomManager.GenerateRoomRewardForCurrentBiomes();
+            yield return new WaitForEndOfFrame();
+        }
+
+        private IEnumerator InstantiateFirstRoom(RoomManager roomManager)
+        {
+#if UNITY_EDITOR
+            if (m_isUsingTestRoom)
+            {
+                m_currentRoom = Instantiate(m_testRoom.RoomPrefab);
+            }
+            else
+            {
+                var roomData = roomManager.FirstRoom;
+                m_currentRoom = Instantiate(roomData.RoomPrefab);
+            }
+            #else
+                var roomData = roomManager.FirstRoom;
+                m_currentRoom = Instantiate(roomData.RoomPrefab);
+            #endif
             yield return new WaitForEndOfFrame();
         }
 
@@ -168,11 +223,11 @@ namespace SGGames.Script.Managers
             {
                 case Global.GameEventType.LoadNextRoomLeftRoom:
                     if (m_isLoading) return;
-                    StartCoroutine(LoadLevel(fromLeftRoom:true));
+                    StartCoroutine(LoadNextRoom(fromLeftRoom:true));
                     break;
                 case Global.GameEventType.LoadNextRoomRightRoom:
                     if (m_isLoading) return;
-                    StartCoroutine(LoadLevel(fromLeftRoom:false));
+                    StartCoroutine(LoadNextRoom(fromLeftRoom:false));
                     break;
                 case Global.GameEventType.PlayBiomesTransition:
                     if (m_isLoading) return;
@@ -180,25 +235,19 @@ namespace SGGames.Script.Managers
                     break;
                 case Global.GameEventType.LoadNextBiomes:
                     if (m_isLoading) return;
-                    StartCoroutine(LoadLevel(fromLeftRoom:true, shouldGenerateRoom:true));
+                    StartCoroutine(LoadNextBiomesFirstRoom());
                     break;
             }
         }
 
         
-        #region TESTING
+        #region Cheat Code
 
         [CheatCode("KillAll","Kill all enemies in room")]
         private void KillAllEnemiesInRoom()
         {
             var roomController = m_currentRoom.GetComponent<Room>();
             roomController.KillAllEnemiesInRoom();
-        }
-        
-        [ContextMenu("Load Level")]
-        private void TestLoadLevel()
-        {
-            StartCoroutine(LoadLevel(fromLeftRoom:true));
         }
         
         #endregion
