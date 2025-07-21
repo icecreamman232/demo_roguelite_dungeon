@@ -44,4 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad352618bba01da48ab8348a23a24ad9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_spawnChestEvent: {fileID: 11400000, guid: bb0fa696d762446469b075bdfcd3d078, type: 2}
   m_treasureChestPrefab: {fileID: 1129506768068534852, guid: e807cdfeb336ec04fbdd9ba7cc06c482, type: 3}

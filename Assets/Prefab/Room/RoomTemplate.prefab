@@ -3663,6 +3663,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_gameEvent: {fileID: 11400000, guid: 7ac1f24220b2ef14186e0695169f9965, type: 2}
+  m_spawnChestEvent: {fileID: 11400000, guid: bb0fa696d762446469b075bdfcd3d078, type: 2}
   m_treasureChestSpawnPoint: {fileID: 2822407672824649755}
 --- !u!1001 &2228018866946738821
 PrefabInstance:
