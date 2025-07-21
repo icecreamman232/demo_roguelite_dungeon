@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 256882742575665036, guid: abf9b6339b399344283412261ed81d86, type: 3}
+      propertyPath: m_isRequireKey
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 589725023648221093, guid: abf9b6339b399344283412261ed81d86, type: 3}
       propertyPath: m_Size.x
       value: 0.875
@@ -26,7 +30,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3071160926173905969, guid: abf9b6339b399344283412261ed81d86, type: 3}
       propertyPath: m_Name
-      value: Lock Treasure Chest
+      value: Require Key Treasure Chest
       objectReference: {fileID: 0}
     - target: {fileID: 4325435449761446805, guid: abf9b6339b399344283412261ed81d86, type: 3}
       propertyPath: m_lootTable

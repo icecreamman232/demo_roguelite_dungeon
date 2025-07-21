@@ -62,6 +62,11 @@ namespace SGGames.Script.Managers
                 m_inventory.RemoveItem(itemID);
             }
         }
+
+        public bool HasKeyNumber(int numberKey)
+        {
+            return m_pocketInventory.TotalKey >= numberKey;
+        }
     }
 }
 

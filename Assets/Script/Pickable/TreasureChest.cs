@@ -1,3 +1,6 @@
+using SGGames.Script.Core;
+using SGGames.Script.Data;
+using SGGames.Script.Managers;
 using SGGames.Script.Modules;
 using UnityEngine;
 
@@ -5,7 +8,10 @@ namespace SGGames.Script.Pickable
 {
     public class TreasureChest : MonoBehaviour, IInteractable
     {
+        [SerializeField] private bool m_isRequireKey;
+        [SerializeField] private int m_numberKeyRequired = 1;
         [SerializeField] private DropLootController m_dropController;
+        [SerializeField] private PocketInventoryEvent m_pocketInventoryEvent;
         
         private void OpenChest()
         {
@@ -15,7 +21,17 @@ namespace SGGames.Script.Pickable
         
         public void Interact()
         {
-            OpenChest();
+            if (m_isRequireKey)
+            {
+                var inventoryManager = ServiceLocator.GetService<InventoryManager>();
+                if (!inventoryManager.HasKeyNumber(m_numberKeyRequired)) return;
+                m_pocketInventoryEvent.Raise(Global.InventoryEventType.Remove, Global.ItemID.Key, m_numberKeyRequired);
+                OpenChest();
+            }
+            else
+            {
+                OpenChest();
+            }
         }
     }
 }

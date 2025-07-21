@@ -99,7 +99,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05dd492441571e645be511c3e597be88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_isRequireKey: 0
+  m_numberKeyRequired: 1
   m_dropController: {fileID: 4325435449761446805}
+  m_pocketInventoryEvent: {fileID: 11400000, guid: e94a91a834927e24a84c3d237dee0eb5, type: 2}
 --- !u!114 &4325435449761446805
 MonoBehaviour:
   m_ObjectHideFlags: 0
