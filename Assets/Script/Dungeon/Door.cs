@@ -1,3 +1,4 @@
+using System;
 using SGGames.Script.Core;
 using SGGames.Script.Events;
 using SGGames.Script.Managers;
@@ -70,8 +71,12 @@ namespace SGGames.Script.Dungeon
             if (eventType == Global.GameEventType.RoomCleared)
             {
                 OpenDoor();
-                m_gameEvent.RemoveListener(OnReceiveGameEvent);
             }
+        }
+
+        private void OnDestroy()
+        {
+            m_gameEvent.RemoveListener(OnReceiveGameEvent);
         }
     }
 }
