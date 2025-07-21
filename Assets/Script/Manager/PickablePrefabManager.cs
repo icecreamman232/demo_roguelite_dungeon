@@ -6,7 +6,7 @@ namespace SGGames.Script.Managers
 {
     public class PickablePrefabManager : MonoBehaviour, IGameService
     {
-        [SerializeField] private PickableContainer m_container;
+        [SerializeField] private ItemPickerContainer m_container;
         [SerializeField] private ObjectPooler m_coinPooler;
         
         private void Awake()

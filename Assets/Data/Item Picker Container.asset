@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eaeef59d560336044967983423a841c1, type: 3}
-  m_Name: Pickable Container
+  m_Name: Item Picker Container
   m_EditorClassIdentifier: 
   m_container:
   - {fileID: 5212737347992751394, guid: afecc2a4b1e6f3e419f1b1fcbb3ae197, type: 3}

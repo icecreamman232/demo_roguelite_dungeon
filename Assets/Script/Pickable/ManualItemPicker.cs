@@ -7,7 +7,7 @@ using UnityEngine;
 namespace SGGames.Script.Pickables
 {
     [RequireComponent(typeof(CircleCollider2D))]
-    public class ManualPickable : Pickable
+    public class ManualItemPicker : ItemPicker
     {
         [SerializeField] private InventoryEvent m_inventoryEvent;
         [SerializeField] private InteractEvent m_interactEvent;

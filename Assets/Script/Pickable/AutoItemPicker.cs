@@ -6,7 +6,7 @@ using UnityEngine;
 namespace SGGames.Script.Pickables
 {
     [RequireComponent(typeof(CircleCollider2D))]
-    public class AutoPickable : Pickable
+    public class AutoItemPicker : ItemPicker
     {
         [SerializeField] private PocketInventoryEvent m_pocketInventoryEvent;
         [SerializeField] private CircleCollider2D m_collider;

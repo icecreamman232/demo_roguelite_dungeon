@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace SGGames.Script.Pickables
 {
-    public class Pickable : MonoBehaviour
+    public class ItemPicker : MonoBehaviour
     {
         [SerializeField] protected Global.PickableType m_pickableType;
         [SerializeField] protected ItemData m_itemData;

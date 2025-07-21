@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1609817546348746675}
   - component: {fileID: 2486743555637620287}
   m_Layer: 0
-  m_Name: PickablePrefabManager
+  m_Name: ItemPickerPrefabManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

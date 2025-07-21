@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace SGGames.Script.Data
 {
-    [CreateAssetMenu(fileName = "Pickable Container", menuName = "SGGames/Data/Pickable Container")]
-    public class PickableContainer : IDataContainer<GameObject>
+    [CreateAssetMenu(fileName = "Item Picker Container", menuName = "SGGames/Data/Item Picker Container")]
+    public class ItemPickerContainer : IDataContainer<GameObject>
     {
         [SerializeField] private List<GameObject> m_autoPickableList;
         [SerializeField] private List<GameObject> m_manualPickableList;

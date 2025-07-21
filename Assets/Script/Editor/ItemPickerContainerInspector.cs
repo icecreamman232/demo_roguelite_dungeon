@@ -6,8 +6,8 @@ using UnityEngine;
 
 namespace SGGames.Script.EditorExtensions
 {
-    [CustomEditor(typeof(PickableContainer))]
-    public class PickableContainerInspector : Editor
+    [CustomEditor(typeof(ItemPickerContainer))]
+    public class ItemPickerContainerInspector : Editor
     {
         public override void OnInspectorGUI()
         {
@@ -21,25 +21,25 @@ namespace SGGames.Script.EditorExtensions
 
         private void FindPickable()
         {
-            ((PickableContainer)target).ClearAllContainer();
+            ((ItemPickerContainer)target).ClearAllContainer();
             
             var allGUIDs = AssetDatabase.FindAssets("t:Prefab");
             foreach (var guid in allGUIDs)
             {
                 var prefabAsset = AssetDatabase.LoadAssetAtPath<GameObject>(AssetDatabase.GUIDToAssetPath(guid));
-                var component = prefabAsset.GetComponent<Pickables.Pickable>();
+                var component = prefabAsset.GetComponent<Pickables.ItemPicker>();
                 if (component != null)
                 {
-                    ((PickableContainer)target).AddPickable(prefabAsset,component.ItemData.ItemID);
+                    ((ItemPickerContainer)target).AddPickable(prefabAsset,component.ItemData.ItemID);
                     
-                    if (component is AutoPickable)
+                    if (component is AutoItemPicker)
                     {
-                        ((PickableContainer)target).AddAutoPickable(prefabAsset);
+                        ((ItemPickerContainer)target).AddAutoPickable(prefabAsset);
                     }
                 }
                 
             }
-            EditorUtility.SetDirty((PickableContainer)target);
+            EditorUtility.SetDirty((ItemPickerContainer)target);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
         }
