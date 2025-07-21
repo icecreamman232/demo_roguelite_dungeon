@@ -45,4 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_spawnChestEvent: {fileID: 11400000, guid: bb0fa696d762446469b075bdfcd3d078, type: 2}
-  m_treasureChestPrefab: {fileID: 1129506768068534852, guid: e807cdfeb336ec04fbdd9ba7cc06c482, type: 3}
+  m_noKeyChestPrefab: {fileID: 1129506768068534852, guid: e807cdfeb336ec04fbdd9ba7cc06c482, type: 3}
+  m_requireKeyChestPrefab: {fileID: 1129506768068534852, guid: 16b2d2e04e2f6214d96e26306173875b, type: 3}
+  m_bossChestPrefab: {fileID: 1129506768068534852, guid: 2ff57e3f4b752124fa6961b7c0b2c442, type: 3}
