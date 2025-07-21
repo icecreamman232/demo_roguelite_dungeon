@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fb9626988a6e664f843389a6c4d5693, type: 3}
+  m_Name: Item Rarity Table
+  m_EditorClassIdentifier: 
+  m_itemRaritySheet:
+  - m_id: Biome 1
+    m_weightSheet:
+    - m_id: Common
+      m_weight: 10
+      m_lowerPercentage: 0
+      m_upperPercentage: 45.454544
+    - m_id: Uncommon
+      m_weight: 8
+      m_lowerPercentage: 45.454544
+      m_upperPercentage: 81.818184
+    - m_id: Rare
+      m_weight: 3
+      m_lowerPercentage: 81.818184
+      m_upperPercentage: 95.454544
+    - m_id: Legendary
+      m_weight: 1
+      m_lowerPercentage: 95.454544
+      m_upperPercentage: 100
+  - m_id: Biome 2
+    m_weightSheet:
+    - m_id: Common
+      m_weight: 10
+      m_lowerPercentage: 0
+      m_upperPercentage: 45.454544
+    - m_id: Uncommon
+      m_weight: 8
+      m_lowerPercentage: 45.454544
+      m_upperPercentage: 81.818184
+    - m_id: Rare
+      m_weight: 3
+      m_lowerPercentage: 81.818184
+      m_upperPercentage: 95.454544
+    - m_id: Legendary
+      m_weight: 1
+      m_lowerPercentage: 95.454544
+      m_upperPercentage: 100
