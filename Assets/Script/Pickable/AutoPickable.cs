@@ -1,5 +1,6 @@
 using System.Collections;
 using SGGames.Script.Core;
+using SGGames.Script.Data;
 using UnityEngine;
 
 namespace SGGames.Script.Pickables
@@ -7,6 +8,7 @@ namespace SGGames.Script.Pickables
     [RequireComponent(typeof(CircleCollider2D))]
     public class AutoPickable : Pickable
     {
+        [SerializeField] private PocketInventoryEvent m_pocketInventoryEvent;
         [SerializeField] private CircleCollider2D m_collider;
         private static float S_FLYING_SPEED = 5f;
         private static float S_FLYING_SPEED_TO_PLAYER = 18f;
@@ -39,18 +41,18 @@ namespace SGGames.Script.Pickables
             m_updateMovementDelegate = UpdateMovementToOffsetPosition;
             m_shouldFly = true;
         }
-
-        private IEnumerator OnDelayBeforeFlyingToPlayer()
-        {
-            m_collider.enabled = false;
-            yield return new WaitForSeconds(S_DELAY_BEFORE_FLY);
-            m_collider.enabled = true;
-        }
         
         private void Update()
         {
             if (!m_shouldFly) return;
             m_updateMovementDelegate?.Invoke();
+        }
+        
+        private IEnumerator OnDelayBeforeFlyingToPlayer()
+        {
+            m_collider.enabled = false;
+            yield return new WaitForSeconds(S_DELAY_BEFORE_FLY);
+            m_collider.enabled = true;
         }
 
         /// <summary>
@@ -96,6 +98,12 @@ namespace SGGames.Script.Pickables
                     this.gameObject.SetActive(false);
                 }
             }
+        }
+
+        protected override void PickedUp()
+        {
+            m_pocketInventoryEvent.Raise(Global.InventoryEventType.Add, m_itemData.ItemID, m_amount);
+            base.PickedUp();
         }
     }
 }

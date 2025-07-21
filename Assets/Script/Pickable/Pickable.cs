@@ -37,7 +37,7 @@ namespace SGGames.Script.Pickables
         /// </summary>
         protected virtual void PickedUp()
         {
-            m_itemData.Picked(m_amount);
+            
         }
 
         protected virtual void OnDestroy()

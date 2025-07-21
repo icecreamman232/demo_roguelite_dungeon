@@ -8,6 +8,14 @@
             ManualPick, //Require player press pick button/prompt to pick it up
         }
 
+        public enum ItemRarity
+        {
+            Common,
+            Uncommon,
+            Rare,
+            Legendary,
+        }
+
         public enum ItemID
         {
             None,

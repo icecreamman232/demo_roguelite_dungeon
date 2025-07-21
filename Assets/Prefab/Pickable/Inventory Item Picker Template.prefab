@@ -173,5 +173,6 @@ MonoBehaviour:
   m_itemData: {fileID: 0}
   m_amount: 1
   m_gameEvent: {fileID: 11400000, guid: 7ac1f24220b2ef14186e0695169f9965, type: 2}
+  m_inventoryEvent: {fileID: 11400000, guid: 13529ca2b65aad543acc50a4d03b8c4b, type: 2}
   m_interactEvent: {fileID: 11400000, guid: 45e12c09bec6ffa4dbb959ea840d16bf, type: 2}
   m_collider2D: {fileID: 4425666012382154964}
