@@ -7,7 +7,10 @@ namespace SGGames.Script.Managers
     public class TreasureChestManager : MonoBehaviour, IGameService
     {
         [SerializeField] private SpawnChestEvent m_spawnChestEvent;
-        [SerializeField] private GameObject m_treasureChestPrefab;
+        [Header("Prefabs")]
+        [SerializeField] private GameObject m_noKeyChestPrefab;
+        [SerializeField] private GameObject m_requireKeyChestPrefab;
+        [SerializeField] private GameObject m_bossChestPrefab;
         
         private void Awake()
         {
@@ -24,7 +27,7 @@ namespace SGGames.Script.Managers
         private GameObject GetTreasureChestWith(int biome)
         {
             //TODO:This is for temporary spawning the chest. It should be based on the biome value to choose the proper chest
-            return m_treasureChestPrefab;
+            return m_noKeyChestPrefab;
             //return null;
         }
         

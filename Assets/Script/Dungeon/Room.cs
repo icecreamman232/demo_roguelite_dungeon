@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
 using SGGames.Script.Core;
 using SGGames.Script.Events;
-using SGGames.Script.Managers;
 using SGGames.Scripts.Entity;
 using UnityEngine;
 
@@ -44,16 +42,8 @@ namespace SGGames.Script.Dungeon
 
         private void RoomClearAndDropChest()
         {
-            try
-            {
-                m_gameEvent.Raise(Global.GameEventType.RoomCleared);
-                m_spawnChestEvent.Raise(m_treasureChestSpawnPoint.position);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.StackTrace);
-                throw;
-            }
+            m_gameEvent.Raise(Global.GameEventType.RoomCleared);
+            m_spawnChestEvent.Raise(m_treasureChestSpawnPoint.position);
         }
 
         public void RegisterEnemyToRoom(EnemyController enemyController)
