@@ -100,4 +100,5 @@ MonoBehaviour:
   m_isRequireKey: 1
   m_numberKeyRequired: 1
   m_pocketInventoryEvent: {fileID: 11400000, guid: e94a91a834927e24a84c3d237dee0eb5, type: 2}
+  m_gameEvent: {fileID: 11400000, guid: 7ac1f24220b2ef14186e0695169f9965, type: 2}
   m_itemDropsEvent: {fileID: 11400000, guid: 1dcb4f4dcfd70a04bbfb71420a857417, type: 2}

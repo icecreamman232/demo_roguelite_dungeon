@@ -1,5 +1,7 @@
+using System;
 using SGGames.Script.Core;
 using SGGames.Script.Data;
+using SGGames.Script.Events;
 using SGGames.Script.Managers;
 using SGGames.Script.Modules;
 using UnityEngine;
@@ -11,6 +13,20 @@ namespace SGGames.Script.Pickable
         [SerializeField] protected bool m_isRequireKey;
         [SerializeField] protected int m_numberKeyRequired = 1;
         [SerializeField] protected PocketInventoryEvent m_pocketInventoryEvent;
+        [SerializeField] protected GameEvent m_gameEvent;
+
+        private void Awake()
+        {
+            m_gameEvent.AddListener(OnReceiveGameEvent);
+        }
+
+        private void OnReceiveGameEvent(Global.GameEventType eventType)
+        {
+            if (eventType == Global.GameEventType.RoomCreated)
+            {
+                Destroy(this.gameObject);
+            }
+        }
 
         protected virtual void OpenChest()
         {
