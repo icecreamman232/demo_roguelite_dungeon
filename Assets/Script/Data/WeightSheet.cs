@@ -11,6 +11,18 @@ namespace SGGames.Script.Data
         
         public string Id => m_id;
         public WeightValue GetWeightValue(int index) => m_weightSheet[index];
+
+        public int GetWeightValue(float percentage)
+        {
+            for (int i = 0; i < m_weightSheet.Length; i++)
+            {
+                if (m_weightSheet[i].LowerPercentage <= percentage && percentage <= m_weightSheet[i].UpperPercentage)
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
         
         public void CalculatePercentage()
         {

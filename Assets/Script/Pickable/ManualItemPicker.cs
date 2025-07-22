@@ -10,6 +10,7 @@ namespace SGGames.Script.Pickables
     public class ManualItemPicker : ItemPicker
     {
         [SerializeField] private InventoryEvent m_inventoryEvent;
+        [SerializeField] private EquipInventoryItemEvent m_equipInventoryItemEvent;
         [SerializeField] private InteractEvent m_interactEvent;
         [SerializeField] private CircleCollider2D m_collider2D;
         
@@ -66,22 +67,12 @@ namespace SGGames.Script.Pickables
                 PickedUp();
             }
         }
-
-        private void ApplyItemEffect()
-        {
-            var itemEffectManager = ServiceLocator.GetService<ItemEffectManager>();
-            var itemEffects = ((InventoryItemData)m_itemData).ItemEffects;
-            foreach (var effect in itemEffects)
-            {
-                itemEffectManager.ApplyItemEffect(effect);
-            }
-        }
-
+        
         protected override void PickedUp()
         {
             base.PickedUp();
             m_inventoryEvent.Raise(Global.InventoryEventType.Add, m_itemData.ItemID, m_amount);
-            ApplyItemEffect();
+            m_equipInventoryItemEvent.Raise((InventoryItemData)m_itemData);
             m_collider2D.enabled = false;
             this.gameObject.SetActive(false);
         }

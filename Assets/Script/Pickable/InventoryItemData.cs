@@ -7,7 +7,6 @@ namespace SGGames.Script.Data
     public class InventoryItemData : ItemData
     {
         [SerializeField] private ItemEffect[] m_itemEffects;
-        [SerializeField] private InventoryEvent m_inventoryEvent;
 
         public ItemEffect[] ItemEffects => m_itemEffects;
     }

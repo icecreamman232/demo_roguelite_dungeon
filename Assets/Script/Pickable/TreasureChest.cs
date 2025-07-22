@@ -8,14 +8,12 @@ namespace SGGames.Script.Pickable
 {
     public class TreasureChest : MonoBehaviour, IInteractable
     {
-        [SerializeField] private bool m_isRequireKey;
-        [SerializeField] private int m_numberKeyRequired = 1;
-        [SerializeField] private DropLootController m_dropController;
-        [SerializeField] private PocketInventoryEvent m_pocketInventoryEvent;
-        
-        private void OpenChest()
+        [SerializeField] protected bool m_isRequireKey;
+        [SerializeField] protected int m_numberKeyRequired = 1;
+        [SerializeField] protected PocketInventoryEvent m_pocketInventoryEvent;
+
+        protected virtual void OpenChest()
         {
-            m_dropController.SpawnLoot();
             this.gameObject.SetActive(false);
         }
         

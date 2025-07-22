@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6443588215276080591
+--- !u!1 &1261828337959540778
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3539186411583911878}
-  - component: {fileID: 20010130204258345}
+  - component: {fileID: 8920999732898370895}
+  - component: {fileID: 6779807555676355629}
   m_Layer: 0
-  m_Name: ItemEffectManager
+  m_Name: ItemManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3539186411583911878
+--- !u!4 &8920999732898370895
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6443588215276080591}
+  m_GameObject: {fileID: 1261828337959540778}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -32,17 +32,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &20010130204258345
+--- !u!114 &6779807555676355629
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6443588215276080591}
+  m_GameObject: {fileID: 1261828337959540778}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0db95b397b66719448c34ab44d24326d, type: 3}
+  m_Script: {fileID: 11500000, guid: 99752db6e3d2ce746a201eb082b8ca97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_equipInventoryItemEvent: {fileID: 11400000, guid: ac789070c038d3b47a5f2db446c36a1a, type: 2}
-  m_appliedItemEffects: []
+  m_itemData:
+  - {fileID: 11400000, guid: f3d9fdda3ae2d6541b3bf431513a0ed0, type: 2}
+  - {fileID: 11400000, guid: 156fc66cd3dc46f45a8345922384849e, type: 2}
+  - {fileID: 11400000, guid: 81b9eaace7648a74f920f594aefa1b36, type: 2}
+  - {fileID: 11400000, guid: f5abe058df49014468bb2d0cd767c150, type: 2}
+  - {fileID: 11400000, guid: 356b91d14ab02d94e86bc1c593e94bea, type: 2}
+  - {fileID: 11400000, guid: 288376c821f087e4da3b7a8e13365ac3, type: 2}
+  m_commonList: []
+  m_uncommonList: []
+  m_rareList: []
+  m_legendaryList: []

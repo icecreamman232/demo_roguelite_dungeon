@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 
 namespace SGGames.Script.Pickable
 {
-    public class DropLootController : MonoBehaviour
+    public class DropLootOnDeath : MonoBehaviour
     {
         [SerializeField] private float m_spawnRange;
         [SerializeField] private LootTable m_lootTable;
@@ -34,7 +34,7 @@ namespace SGGames.Script.Pickable
                 m_health.OnDeath -= SpawnLoot;
             }
             
-            var pickablePrefabManager = ServiceLocator.GetService<PickablePrefabManager>();
+            var pickablePrefabManager = ServiceLocator.GetService<DropsManager>();
 
             foreach (var loot in m_lootTable.GetLootTable())
             {

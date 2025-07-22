@@ -26,6 +26,7 @@ namespace SGGames.Script.Managers
         [SerializeField] private List<Global.RoomRewardType> m_leftRoomRewardList;
         [SerializeField] private List<Global.RoomRewardType> m_rightRoomRewardList;
 
+        private Global.RoomRewardType m_currentRoomReward;
         private RoomRewardGenerator m_roomRewardGenerator;
         private RoomGenerator m_roomGenerator;
         
@@ -72,10 +73,20 @@ namespace SGGames.Script.Managers
         public RoomData GetNextLeftRoom()
         {
             m_currentRoomIndex++;
+            
+            if (m_currentRoomIndex == m_maxRoom - 1)
+            {
+                //TODO:Load default first boss. THis should be another random to choose between bosses for a biome
+                return m_roomContainers[m_currentBiomesIndex].GetBossRoomList[0];
+            }
+            
             if (m_currentRoomIndex >= m_maxRoom)
             {
                 m_currentRoomIndex = 0;
             }
+
+            m_currentRoomReward = GetLeftRoomReward();
+            
             return m_leftRoomList[m_currentRoomIndex];
         }
 
@@ -87,6 +98,8 @@ namespace SGGames.Script.Managers
                 //TODO:Load default first boss. THis should be another random to choose between bosses for a biome
                 return m_roomContainers[m_currentBiomesIndex].GetBossRoomList[0];
             }
+            
+            m_currentRoomReward = GetRightRoomReward();
 
             if (m_currentRoomIndex == m_maxRoom)
             {
@@ -100,6 +113,7 @@ namespace SGGames.Script.Managers
             m_currentBiomesIndex++;
         }
         
+        public Global.RoomRewardType CurrentRoomReward => m_currentRoomReward;
         public bool IsBossRoom => m_currentRoomIndex == m_maxRoom - 1;
         public RoomContainer GetCurrentRoomContainer() => m_roomContainers[m_currentBiomesIndex];
         public int MaxEasyRoom => m_maxEasyRoom;
