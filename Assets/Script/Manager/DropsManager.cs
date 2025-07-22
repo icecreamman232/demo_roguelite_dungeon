@@ -59,6 +59,7 @@ namespace SGGames.Script.Managers
         {
             var roomManager = ServiceLocator.GetService<RoomManager>();
             var chestPrefab = m_treasureChestSelector.GetTreasureChest(roomManager.CurrentRoomReward);
+            if(chestPrefab == null) return;
             Instantiate(chestPrefab, spawnPosition, Quaternion.identity);
         }
 
