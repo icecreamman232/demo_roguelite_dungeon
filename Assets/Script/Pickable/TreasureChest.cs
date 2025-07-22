@@ -20,6 +20,11 @@ namespace SGGames.Script.Pickable
             m_gameEvent.AddListener(OnReceiveGameEvent);
         }
 
+        private void OnDestroy()
+        {
+            m_gameEvent.RemoveListener(OnReceiveGameEvent);
+        }
+
         private void OnReceiveGameEvent(Global.GameEventType eventType)
         {
             if (eventType == Global.GameEventType.RoomCreated)
