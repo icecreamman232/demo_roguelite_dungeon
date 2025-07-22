@@ -11,11 +11,10 @@ namespace SGGames.Script.Data
     {
         [SerializeField] private List<ItemPicker> m_itemPickers;
         
-        private Dictionary<Global.ItemID, GameObject> m_dictionary = new Dictionary<Global.ItemID, GameObject>();
-        
         public GameObject GetPrefabWithID(Global.ItemID id)
         {
-            var item = m_itemPickers.First(item =>item.ItemData.ItemID == id);
+            var item = m_itemPickers.FirstOrDefault(item =>item.ItemData.ItemID == id);
+            if (item == null) return null;
             return item.gameObject;
         }
 

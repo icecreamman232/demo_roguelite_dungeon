@@ -1,0 +1,106 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &2680245396860053109
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 589725023648221093, guid: abf9b6339b399344283412261ed81d86, type: 3}
+      propertyPath: m_Size.x
+      value: 0.875
+      objectReference: {fileID: 0}
+    - target: {fileID: 589725023648221093, guid: abf9b6339b399344283412261ed81d86, type: 3}
+      propertyPath: m_Size.y
+      value: 0.8125
+      objectReference: {fileID: 0}
+    - target: {fileID: 589725023648221093, guid: abf9b6339b399344283412261ed81d86, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1631056593, guid: 7fb07b24af32cb9469721580fd31a15d, type: 3}
+    - target: {fileID: 589725023648221093, guid: abf9b6339b399344283412261ed81d86, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3071160926173905969, guid: abf9b6339b399344283412261ed81d86, type: 3}
+      propertyPath: m_Name
+      value: Key Treasure Chest
+      objectReference: {fileID: 0}
+    - target: {fileID: 4325435449761446805, guid: abf9b6339b399344283412261ed81d86, type: 3}
+      propertyPath: m_lootTable
+      value: 
+      objectReference: {fileID: 11400000, guid: 8863e79019e95c740a91b81fafa48c7a, type: 2}
+    - target: {fileID: 5874547574898793884, guid: abf9b6339b399344283412261ed81d86, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874547574898793884, guid: abf9b6339b399344283412261ed81d86, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874547574898793884, guid: abf9b6339b399344283412261ed81d86, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874547574898793884, guid: abf9b6339b399344283412261ed81d86, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874547574898793884, guid: abf9b6339b399344283412261ed81d86, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874547574898793884, guid: abf9b6339b399344283412261ed81d86, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874547574898793884, guid: abf9b6339b399344283412261ed81d86, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874547574898793884, guid: abf9b6339b399344283412261ed81d86, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874547574898793884, guid: abf9b6339b399344283412261ed81d86, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874547574898793884, guid: abf9b6339b399344283412261ed81d86, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3071160926173905969, guid: abf9b6339b399344283412261ed81d86, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -3475869848823890237}
+  m_SourcePrefab: {fileID: 100100000, guid: abf9b6339b399344283412261ed81d86, type: 3}
+--- !u!1 &1129506768068534852 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3071160926173905969, guid: abf9b6339b399344283412261ed81d86, type: 3}
+  m_PrefabInstance: {fileID: 2680245396860053109}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-3475869848823890237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129506768068534852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca87c92ba818caf43ad4dbc8e778907c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_isRequireKey: 0
+  m_numberKeyRequired: 1
+  m_pocketInventoryEvent: {fileID: 11400000, guid: e94a91a834927e24a84c3d237dee0eb5, type: 2}
+  m_currencyDropsEvent: {fileID: 11400000, guid: 881e0a4dc49de4446ae2074ba42fc980, type: 2}
+  m_currencyID: 2
+  m_baseMinAmount: 1
+  m_baseMaxAmount: 2

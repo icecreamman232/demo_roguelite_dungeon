@@ -45,8 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_spawnChestEvent: {fileID: 11400000, guid: bb0fa696d762446469b075bdfcd3d078, type: 2}
-  m_noKeyChestPrefab: {fileID: 1129506768068534852, guid: e807cdfeb336ec04fbdd9ba7cc06c482, type: 3}
-  m_requireKeyChestPrefab: {fileID: 1129506768068534852, guid: 16b2d2e04e2f6214d96e26306173875b, type: 3}
+  m_coinChestPrefab: {fileID: 1129506768068534852, guid: e807cdfeb336ec04fbdd9ba7cc06c482, type: 3}
+  m_keyChestPrefab: {fileID: 1129506768068534852, guid: ef33704730c399048b1b0d43138ff4cb, type: 3}
+  m_bombChestPrefab: {fileID: 1129506768068534852, guid: 2300e7f31685fee42af366e3e8741758, type: 3}
+  m_itemChestPrefab: {fileID: 1129506768068534852, guid: d1bc71426fbb1d144b674f513d8a3784, type: 3}
+  m_weaponChestPrefab: {fileID: 1129506768068534852, guid: 524ca6931834cb14caa4685a6732d526, type: 3}
   m_bossChestPrefab: {fileID: 1129506768068534852, guid: 2ff57e3f4b752124fa6961b7c0b2c442, type: 3}
   m_itemRarityTable: {fileID: 11400000, guid: e24abe580262f5846b5fb2eba87cbc7e, type: 2}
   m_container: {fileID: 11400000, guid: a8efa868290126f4b812fac70e9e0db0, type: 2}

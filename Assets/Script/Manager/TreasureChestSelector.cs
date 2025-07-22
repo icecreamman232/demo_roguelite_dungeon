@@ -8,17 +8,24 @@ namespace SGGames.Script.Managers
     /// </summary>
     public class TreasureChestSelector
     {
-        private GameObject m_noKeyChestPrefab;
-        private GameObject m_requireKeyChestPrefab;
+        private GameObject m_keyChestPrefab;
+        private GameObject m_coinChestPrefab;
+        private GameObject m_bombChestPrefab;
+        private GameObject m_itemChestPrefab;
+        private GameObject m_weaponChestPrefab;
         private GameObject m_bossChestPrefab;
 
         private ItemSelector m_itemSelector;
 
-        public TreasureChestSelector(GameObject noKeyChestPrefab, GameObject requireKeyChestPrefab, GameObject bossChestPrefab)
+        public TreasureChestSelector(GameObject keyChest, GameObject coinChest, GameObject bombChest,
+            GameObject itemChest, GameObject weaponChest, GameObject bossChest)
         {
-            m_noKeyChestPrefab = noKeyChestPrefab;
-            m_requireKeyChestPrefab = requireKeyChestPrefab;
-            m_bossChestPrefab = bossChestPrefab;
+            m_keyChestPrefab = keyChest;
+            m_coinChestPrefab = coinChest;
+            m_bombChestPrefab = bombChest;
+            m_itemChestPrefab = itemChest;
+            m_weaponChestPrefab = weaponChest;
+            m_bossChestPrefab = bossChest;
         }
         
         public GameObject GetTreasureChest(Global.RoomRewardType roomRewardType)
@@ -32,12 +39,15 @@ namespace SGGames.Script.Managers
                 case Global.RoomRewardType.Random:
                     return null;
                 case Global.RoomRewardType.Coin:
+                    return m_coinChestPrefab;
                 case Global.RoomRewardType.Key:
+                    return m_keyChestPrefab;
                 case Global.RoomRewardType.Bomb:
-                    return m_noKeyChestPrefab;
+                    return m_bombChestPrefab;
                 case Global.RoomRewardType.Item:
+                    return m_itemChestPrefab;
                 case Global.RoomRewardType.Weapon:
-                    return m_requireKeyChestPrefab;
+                    return m_weaponChestPrefab;
             }
             return null;
         }

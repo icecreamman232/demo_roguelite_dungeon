@@ -12,8 +12,11 @@ namespace SGGames.Script.Managers
     {
         [Header("Chest Prefabs")]
         [SerializeField] private SpawnChestEvent m_spawnChestEvent;
-        [SerializeField] private GameObject m_noKeyChestPrefab;
-        [SerializeField] private GameObject m_requireKeyChestPrefab;
+        [SerializeField] private GameObject m_coinChestPrefab;
+        [SerializeField] private GameObject m_keyChestPrefab;
+        [SerializeField] private GameObject m_bombChestPrefab;
+        [SerializeField] private GameObject m_itemChestPrefab;
+        [SerializeField] private GameObject m_weaponChestPrefab;
         [SerializeField] private GameObject m_bossChestPrefab;
         [Header("Item")]
         [SerializeField] private ItemRarityTable m_itemRarityTable;
@@ -39,7 +42,9 @@ namespace SGGames.Script.Managers
             var roomManager = ServiceLocator.GetService<RoomManager>();
             
             //Initialize all helper modules
-            m_treasureChestSelector = new TreasureChestSelector(m_noKeyChestPrefab, m_requireKeyChestPrefab, m_bossChestPrefab);
+            m_treasureChestSelector = new TreasureChestSelector(
+                m_keyChestPrefab, m_coinChestPrefab, m_bombChestPrefab,
+                m_itemChestPrefab, m_weaponChestPrefab, m_bossChestPrefab);
             m_itemSelector = new ItemSelector(itemManager, roomManager, m_itemRarityTable);
         }
 
@@ -52,7 +57,6 @@ namespace SGGames.Script.Managers
         
         private void OnReceiveSpawnChestEvent(Vector3 spawnPosition)
         {
-            Debug.Log("Spawn chest");
             var roomManager = ServiceLocator.GetService<RoomManager>();
             var chestPrefab = m_treasureChestSelector.GetTreasureChest(roomManager.CurrentRoomReward);
             Instantiate(chestPrefab, spawnPosition, Quaternion.identity);
@@ -76,6 +80,7 @@ namespace SGGames.Script.Managers
             if (itemID == Global.ItemID.Coin || itemID == Global.ItemID.Key || itemID == Global.ItemID.Bomb)
             {
                 var itemPrefab = m_container.GetPrefabWithID(itemID);
+                if (itemPrefab == null) return;
                 Vector3 spawnPosition;
                 for (int i = 0; i < amount; i++)
                 {
