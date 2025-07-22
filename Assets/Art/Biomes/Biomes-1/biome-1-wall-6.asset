@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: biomes-1-wall-tile-2
+  m_Name: biome-1-wall-6
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 1036543442, guid: 53b9ecfbd888ef04889b158188519177, type: 3}
+  m_Sprite: {fileID: 557623317, guid: 46f480c54cc6acd41b9c210e1aaba59c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
