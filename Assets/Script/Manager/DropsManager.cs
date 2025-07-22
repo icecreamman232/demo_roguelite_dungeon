@@ -18,11 +18,13 @@ namespace SGGames.Script.Managers
         [Header("Item")]
         [SerializeField] private ItemRarityTable m_itemRarityTable;
         [SerializeField] private ItemPickerContainer m_container;
-        [SerializeField] private ObjectPooler m_coinPooler;
         [SerializeField] private ItemDropsEvent m_itemDropsEvent;
+        [Header("Currency")] 
+        [SerializeField] private CurrencyDropsEvent m_currencyDropsEvent;
         
         private TreasureChestSelector m_treasureChestSelector;
         private ItemSelector m_itemSelector;
+        private const float SPAWN_RANGE_FOR_CURRENCY = 1;
         
         private void Awake()
         {
@@ -45,9 +47,9 @@ namespace SGGames.Script.Managers
         {
             m_itemDropsEvent.AddListener(OnReceiveItemDropsEvent);
             m_spawnChestEvent.AddListener(OnReceiveSpawnChestEvent);
+            m_currencyDropsEvent.AddListener(OnReceiveCurrencyDropsEvent);
         }
         
-
         private void OnReceiveSpawnChestEvent(Vector3 spawnPosition)
         {
             Debug.Log("Spawn chest");
@@ -68,14 +70,19 @@ namespace SGGames.Script.Managers
 
             Instantiate(itemPrefab, spawnPosition, Quaternion.identity);
         }
-
-        public GameObject GetPrefabWith(Global.ItemID id)
+        
+        private void OnReceiveCurrencyDropsEvent(Global.ItemID itemID, Vector3 hostPosition, int amount)
         {
-            if (id == Global.ItemID.Coin)
+            if (itemID == Global.ItemID.Coin || itemID == Global.ItemID.Key || itemID == Global.ItemID.Bomb)
             {
-                return m_coinPooler.GetPooledGameObject();
+                var itemPrefab = m_container.GetPrefabWithID(itemID);
+                Vector3 spawnPosition;
+                for (int i = 0; i < amount; i++)
+                {
+                    spawnPosition = hostPosition + (Vector3)Random.insideUnitCircle * SPAWN_RANGE_FOR_CURRENCY;
+                    Instantiate(itemPrefab, spawnPosition, Quaternion.identity);
+                }
             }
-            return m_container.GetPrefabWithID(id);
         }
     }
 }

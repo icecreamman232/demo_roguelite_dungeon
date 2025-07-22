@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2575238124700554178}
   - component: {fileID: 4933055783692523758}
-  - component: {fileID: 536106891736198799}
+  - component: {fileID: 119446242194439600}
   m_Layer: 10
   m_Name: Key
   m_TagString: Pickable/Item
@@ -70,7 +70,7 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 1
---- !u!114 &536106891736198799
+--- !u!114 &119446242194439600
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -79,16 +79,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 4146664242498638917}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10736db2898afc34e9f5f8ff1397a444, type: 3}
+  m_Script: {fileID: 11500000, guid: 4dc4031b97910d74cb3fe25dec3877b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_pickableType: 1
+  m_pickableType: 0
   m_itemData: {fileID: 11400000, guid: 89e70c7a487a07a47a61834021cf5a2b, type: 2}
   m_amount: 1
   m_gameEvent: {fileID: 11400000, guid: 7ac1f24220b2ef14186e0695169f9965, type: 2}
-  m_inventoryEvent: {fileID: 11400000, guid: 13529ca2b65aad543acc50a4d03b8c4b, type: 2}
-  m_interactEvent: {fileID: 11400000, guid: 45e12c09bec6ffa4dbb959ea840d16bf, type: 2}
-  m_collider2D: {fileID: 4933055783692523758}
+  m_pocketInventoryEvent: {fileID: 11400000, guid: e94a91a834927e24a84c3d237dee0eb5, type: 2}
+  m_collider: {fileID: 4933055783692523758}
 --- !u!1 &4823314039560441995
 GameObject:
   m_ObjectHideFlags: 0

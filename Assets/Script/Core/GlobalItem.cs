@@ -21,6 +21,7 @@
             None,
             Coin,
             Key,
+            Bomb,
             
             GreenMushroom = 10,
             RedMushroom,

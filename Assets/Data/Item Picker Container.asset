@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaeef59d560336044967983423a841c1, type: 3}
   m_Name: Item Picker Container
   m_EditorClassIdentifier: 
-  m_container:
-  - {fileID: 5212737347992751394, guid: afecc2a4b1e6f3e419f1b1fcbb3ae197, type: 3}
-  m_autoPickableList:
-  - {fileID: 5212737347992751394, guid: afecc2a4b1e6f3e419f1b1fcbb3ae197, type: 3}
-  m_manualPickableList: []
+  m_itemPickers:
+  - {fileID: 19737196416436050, guid: afecc2a4b1e6f3e419f1b1fcbb3ae197, type: 3}
+  - {fileID: 5170135043616426501, guid: ae266932d8044e74b8434f920b49285b, type: 3}
+  - {fileID: 119446242194439600, guid: 205eb8c498de81a4280889449f865447, type: 3}

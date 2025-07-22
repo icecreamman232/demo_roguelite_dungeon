@@ -21,24 +21,20 @@ namespace SGGames.Script.EditorExtensions
 
         private void FindPickable()
         {
-            ((ItemPickerContainer)target).ClearAllContainer();
-            
+            ((ItemPickerContainer)target).ClearContainer();
             var allGUIDs = AssetDatabase.FindAssets("t:Prefab");
+            
             foreach (var guid in allGUIDs)
             {
                 var prefabAsset = AssetDatabase.LoadAssetAtPath<GameObject>(AssetDatabase.GUIDToAssetPath(guid));
                 var component = prefabAsset.GetComponent<Pickables.ItemPicker>();
-                if (component != null)
+                if (component != null && component.ItemData != null)
                 {
-                    ((ItemPickerContainer)target).AddPickable(prefabAsset,component.ItemData.ItemID);
-                    
-                    if (component is AutoItemPicker)
-                    {
-                        ((ItemPickerContainer)target).AddAutoPickable(prefabAsset);
-                    }
+                    ((ItemPickerContainer)target).AddItemPicker(component);
                 }
-                
             }
+            
+            
             EditorUtility.SetDirty((ItemPickerContainer)target);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();

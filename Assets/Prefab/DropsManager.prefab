@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4196357807764483631}
   - component: {fileID: 1609817546348746675}
-  - component: {fileID: 2486743555637620287}
   m_Layer: 0
   m_Name: DropsManager
   m_TagString: Untagged
@@ -51,22 +50,5 @@ MonoBehaviour:
   m_bossChestPrefab: {fileID: 1129506768068534852, guid: 2ff57e3f4b752124fa6961b7c0b2c442, type: 3}
   m_itemRarityTable: {fileID: 11400000, guid: e24abe580262f5846b5fb2eba87cbc7e, type: 2}
   m_container: {fileID: 11400000, guid: a8efa868290126f4b812fac70e9e0db0, type: 2}
-  m_coinPooler: {fileID: 2486743555637620287}
   m_itemDropsEvent: {fileID: 11400000, guid: 1dcb4f4dcfd70a04bbfb71420a857417, type: 2}
---- !u!114 &2486743555637620287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1908924170007982583}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbfe5d2fe6527dc40893b1d9a844900b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_autoCreateParentForPool: 0
-  m_parent: {fileID: 1908924170007982583}
-  m_isSharePool: 0
-  m_objectToPool: {fileID: 5212737347992751394, guid: afecc2a4b1e6f3e419f1b1fcbb3ae197, type: 3}
-  m_poolSize: 30
+  m_currencyDropsEvent: {fileID: 11400000, guid: 881e0a4dc49de4446ae2074ba42fc980, type: 2}
