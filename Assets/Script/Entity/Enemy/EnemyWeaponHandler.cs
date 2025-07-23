@@ -8,6 +8,8 @@ namespace SGGames.Script.Entity
         [SerializeField] private Transform m_weaponAttachment;
         [SerializeField] private EnemyDefaultRangeWeapon m_currWeapon;
 
+        public EnemyDefaultRangeWeapon CurrentWeapon => m_currWeapon;
+        
         private void Start()
         {
             m_currWeapon.InitializeWeapon(this);

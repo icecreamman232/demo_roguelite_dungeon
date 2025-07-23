@@ -86,12 +86,12 @@ namespace SGGames.Script.Entity
             {
                 var direction = (m_target.position - transform.position).normalized;
                 //m_spriteRenderer.flipX =  direction.x < 0;
-                FlippingModelAction?.Invoke(direction.x > 0);
+                FlippingModelAction?.Invoke(direction.x < 0);
             }
             else
             {
                 //m_spriteRenderer.flipX = m_movementDirection.x < 0;
-                FlippingModelAction?.Invoke(m_movementDirection.x > 0);
+                FlippingModelAction?.Invoke(m_movementDirection.x < 0);
             }
             
             base.FlipModel();

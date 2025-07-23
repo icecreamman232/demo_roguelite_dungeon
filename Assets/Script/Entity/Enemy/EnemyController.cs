@@ -18,6 +18,7 @@ namespace SGGames.Scripts.Entity
         [SerializeField] protected SpriteRenderer m_spriteRenderer;
         [SerializeField] protected EnemyHealth m_enemyHealth;
         [SerializeField] protected EnemyMovement m_enemyMovement;
+        [SerializeField] protected EnemyWeaponHandler m_enemyWeaponHandler;
         [SerializeField] protected EnemyAnimationController m_animationController;
 
         private List<IDeathCommand> m_deathCommands;
@@ -35,6 +36,11 @@ namespace SGGames.Scripts.Entity
             m_enemyHealth.OnDeath += OnEnemyDeath;
             
             m_enemyMovement.FlippingModelAction = m_animationController.FlipModel;
+
+            if (m_enemyWeaponHandler != null)
+            {
+                m_enemyWeaponHandler.CurrentWeapon.FlipModelingOnShoot  = m_animationController.FlipModel;
+            }
             
             var gameManager = ServiceLocator.GetService<GameManager>();
             gameManager.OnGamePauseCallback += OnGamePaused;
@@ -132,7 +138,7 @@ namespace SGGames.Scripts.Entity
 
         public void FlipSprite(Vector2 direction)
         {
-            m_animationController.FlipModel(direction.x > 0);
+            //m_animationController.FlipModel(direction.x < 0);
         }
         #endregion
         

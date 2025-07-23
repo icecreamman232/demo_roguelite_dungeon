@@ -13,8 +13,8 @@ namespace SGGames.Script.Entity
         {
             if (m_isFlipping) return;
             if (m_isFlipped == isFlipped) return;
-            StartCoroutine(isFlipped ? OnFlippingModel(isFlipped, 0) : OnFlippingModel(isFlipped, 180));
             m_isFlipped = !m_isFlipped;
+            StartCoroutine(isFlipped ? OnFlippingModel(isFlipped, 180) : OnFlippingModel(isFlipped, 0));
         }
 
         private IEnumerator OnFlippingModel(bool isFlipped, float targetAngle)

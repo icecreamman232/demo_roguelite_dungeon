@@ -15,6 +15,9 @@ namespace SGGames.Script.Weapons
         private EnemyController m_controller;
         private IWeaponOwner m_owner;
         private ProjectileBuilder m_projectileBuilder;
+        private Vector2 m_lastAimDirection;
+
+        public Action<bool> FlipModelingOnShoot;
 
         private void Update()
         {
@@ -30,7 +33,7 @@ namespace SGGames.Script.Weapons
                 (Global.WeaponState.CoolDown, new WeaponCoolDownState())
             });
             
-            var coolDownState =m_stateManager.GetState(Global.WeaponState.CoolDown) as WeaponCoolDownState;
+            var coolDownState = m_stateManager.GetState(Global.WeaponState.CoolDown) as WeaponCoolDownState;
             coolDownState.Initialize(m_weaponData);
             
             InitializeProjectileSpawner(new ProjectileBuilder());
@@ -43,7 +46,7 @@ namespace SGGames.Script.Weapons
 
         public void UpdateAnimationOnAttack()
         {
-            
+            FlipModelingOnShoot?.Invoke(m_lastAimDirection.x < 0);
         }
 
         public void Attack()
@@ -75,6 +78,7 @@ namespace SGGames.Script.Weapons
             {
                 var targetPos = target.transform.position + m_weaponData.ShotProperties[i].OffsetPosition;
                 var aimDirection = (targetPos - transform.position).normalized;
+                m_lastAimDirection = aimDirection;
                 var projectileRot = Quaternion.AngleAxis(Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg, Vector3.forward);
                 var projectileGO = m_projectilePooler.GetPooledGameObject();
                 var projectile = projectileGO.GetComponent<Projectile>();

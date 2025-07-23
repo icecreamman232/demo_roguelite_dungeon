@@ -137,6 +137,7 @@ MonoBehaviour:
   m_spriteRenderer: {fileID: 103804058724106057}
   m_enemyHealth: {fileID: 5264068764255280426}
   m_enemyMovement: {fileID: 4363575023723288489}
+  m_enemyWeaponHandler: {fileID: 1761888736921343199}
   m_animationController: {fileID: 6245794238021942204}
 --- !u!114 &5264068764255280426
 MonoBehaviour:
