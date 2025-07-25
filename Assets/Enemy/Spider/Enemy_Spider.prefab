@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1335204143196486305}
   - component: {fileID: 3841972684403088751}
   - component: {fileID: 3240493304709558897}
+  - component: {fileID: 5546669680480170366}
   m_Layer: 7
   m_Name: Enemy_Spider
   m_TagString: Untagged
@@ -134,6 +135,7 @@ MonoBehaviour:
   m_spriteRenderer: {fileID: 5425770317232765121}
   m_enemyHealth: {fileID: 3841972684403088751}
   m_enemyMovement: {fileID: 3240493304709558897}
+  m_enemyWeaponHandler: {fileID: 0}
   m_animationController: {fileID: 442985055372526185}
 --- !u!114 &3841972684403088751
 MonoBehaviour:
@@ -177,6 +179,34 @@ MonoBehaviour:
   m_obstacleLayerMask:
     serializedVersion: 2
     m_Bits: 768
+  m_usePathfinding: 0
+  m_pathFinder: {fileID: 5546669680480170366}
+  m_pathUpdateInterval: 1
+  m_nextWaypointDistance: 0.1
+  m_useWallSliding: 1
+  m_useWallProximityDetection: 1
+  m_usePathOptimization: 1
+  m_avoidOtherEnemies: 1
+  m_wallProximityThreshold: 1
+  m_cornerSlidingSpeed: 1.5
+  m_enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  m_enemyAvoidanceRadius: 1
+  m_enemyAvoidanceForce: 2
+  m_enableDebug: 0
+--- !u!114 &5546669680480170366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4972917664059230652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f2927ef952370b46add70a8a13704d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6005996644028470282
 GameObject:
   m_ObjectHideFlags: 0

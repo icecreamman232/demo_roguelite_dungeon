@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5264068764255280426}
   - component: {fileID: 4363575023723288489}
   - component: {fileID: 1761888736921343199}
+  - component: {fileID: -1795881733591453299}
   m_Layer: 7
   m_Name: Enemy_Ghost
   m_TagString: Untagged
@@ -181,6 +182,22 @@ MonoBehaviour:
   m_obstacleLayerMask:
     serializedVersion: 2
     m_Bits: 768
+  m_usePathfinding: 0
+  m_pathFinder: {fileID: -1795881733591453299}
+  m_pathUpdateInterval: 1
+  m_nextWaypointDistance: 0.1
+  m_useWallSliding: 1
+  m_useWallProximityDetection: 1
+  m_usePathOptimization: 1
+  m_avoidOtherEnemies: 1
+  m_wallProximityThreshold: 1
+  m_cornerSlidingSpeed: 1.5
+  m_enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  m_enemyAvoidanceRadius: 1
+  m_enemyAvoidanceForce: 2
+  m_enableDebug: 0
 --- !u!114 &1761888736921343199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,6 +213,18 @@ MonoBehaviour:
   m_isPermit: 1
   m_weaponAttachment: {fileID: 3291234151704128212}
   m_currWeapon: {fileID: 3651804524659773834}
+--- !u!114 &-1795881733591453299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828738029537270516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f2927ef952370b46add70a8a13704d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2305173086188531156
 GameObject:
   m_ObjectHideFlags: 0

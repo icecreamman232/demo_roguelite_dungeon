@@ -638,6 +638,7 @@ GameObject:
   - component: {fileID: 8403957574603744869}
   - component: {fileID: 4121836022372627583}
   - component: {fileID: 4031663204895293153}
+  - component: {fileID: -4197170573172073043}
   m_Layer: 7
   m_Name: Enemy_Bat
   m_TagString: Untagged
@@ -804,6 +805,22 @@ MonoBehaviour:
   m_obstacleLayerMask:
     serializedVersion: 2
     m_Bits: 768
+  m_usePathfinding: 0
+  m_pathFinder: {fileID: -4197170573172073043}
+  m_pathUpdateInterval: 1
+  m_nextWaypointDistance: 0.1
+  m_useWallSliding: 1
+  m_useWallProximityDetection: 1
+  m_usePathOptimization: 1
+  m_avoidOtherEnemies: 1
+  m_wallProximityThreshold: 1
+  m_cornerSlidingSpeed: 1.5
+  m_enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  m_enemyAvoidanceRadius: 1
+  m_enemyAvoidanceForce: 2
+  m_enableDebug: 0
 --- !u!114 &4031663204895293153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -819,6 +836,18 @@ MonoBehaviour:
   m_isPermit: 1
   m_weaponAttachment: {fileID: 6395817917984953545}
   m_currWeapon: {fileID: 985231345648919768}
+--- !u!114 &-4197170573172073043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7276820154010669371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f2927ef952370b46add70a8a13704d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7822698539900801893
 GameObject:
   m_ObjectHideFlags: 0
