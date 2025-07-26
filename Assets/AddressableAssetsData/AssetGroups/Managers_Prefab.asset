@@ -18,52 +18,68 @@ MonoBehaviour:
   - m_GUID: 14551427138851e45afb765ab8365aed
     m_Address: Assets/Prefab/UI/ConsoleCanvas.prefab
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - GameplaySystem
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1a0250c963f535643b840ce4d7c24104
     m_Address: Assets/Prefab/InventoryManager.prefab
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - GameplaySystem
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2dd9e91b19038884a9c8f78040058205
     m_Address: Assets/Prefab/RoomManager.prefab
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - GameplaySystem
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 33b4746128e678d4d8531493a22cf053
     m_Address: Assets/Prefab/LevelManager.prefab
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - GameplaySystem
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3bae545fbd1c058409296817cc0439b2
     m_Address: Assets/Prefab/ItemEffectManager.prefab
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - GameplaySystem
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 54693e464c767e94a9d94144a816b903
     m_Address: Assets/Prefab/PickablePrefabManager.prefab
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - GameplaySystem
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 550c41379831e8d4ebb6e5258b5ccbaf
     m_Address: Assets/Prefab/InputManager.prefab
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - MandatorySystem
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 57a8cab836ada0a4596670ce35d6ad32
     m_Address: Assets/Prefab/UI/HUD.prefab
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - GameplaySystem
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9fbd32af4d9f8cb49a2ba1e6c5790363
     m_Address: Assets/Prefab/GameManager.prefab
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - GameplaySystem
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c2d825e568812d541ab428e8c3fddcf9
+    m_Address: Assets/Prefab/System/TweenManager.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MandatorySystem
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e1b0510601389a44cae18343a5545958
     m_Address: Assets/Prefab/UI/LoadingScreen.prefab
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - MandatorySystem
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 8cf258e3a231a0945b7eb17f27662218, type: 2}

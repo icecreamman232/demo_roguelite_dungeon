@@ -101,8 +101,9 @@ MonoBehaviour:
     m_ProfileVersion: 1
   m_LabelTable:
     m_LabelNames:
-    - default
     - Player_Prefab
+    - MandatorySystem
+    - GameplaySystem
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: b0034ca40ccb4384bb9a166eb17d30ee, type: 2}

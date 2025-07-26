@@ -1,12 +1,11 @@
 using System.Collections;
 using SGGames.Script.Data;
 using UnityEngine;
-using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace SGGames.Script.Core
 {
     /// <summary>
-    /// Use to initialize all system in order to prevent race condition
+    /// Use to initialize all systems to prevent race condition
     /// </summary>
     public class BootstrapGameObject : MonoBehaviour
     {
@@ -25,22 +24,31 @@ namespace SGGames.Script.Core
 
         private IEnumerator OnInitializeAsync()
         {
-            AsyncOperationHandle<GameObject> nextOperationHandle;
-            foreach (var asset in m_profile.AssetList)
+
+            for (int i = 0; i < m_profile.AssetList.Length; i++)
             {
-                if (asset == null)
+                if (m_profile.AssetList[i] == null)
                 {
                     Debug.LogError($"Null asset in {this.name}");
                     continue;
                 }
-
-                nextOperationHandle = asset.LoadAssetAsync();
-                var handle = nextOperationHandle;
+                
+                var handle = m_profile.AssetList[i].LoadAssetAsync();
                 yield return new WaitUntil(() => handle.IsDone);
-                Instantiate(handle.Result);
+                var createdGameObject = Instantiate(handle.Result);
+                FormatObjectName(createdGameObject, i);
             }
+            
 
             Destroy(this.gameObject);
+        }
+
+        private void FormatObjectName(GameObject inputGO,int index)
+        {
+            var initName = inputGO.name;
+            var updateName = initName.Replace("(Clone)", "");
+            updateName = $"{index}-{updateName}";
+            inputGO.name = updateName;
         }
     }
 }
