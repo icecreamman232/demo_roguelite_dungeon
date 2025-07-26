@@ -16,7 +16,6 @@ namespace SGGames.Script.TweenSystem
 
         private void Update()
         {
-            float deltaTime = Time.deltaTime;
             for (int i = m_activeTweens.Count - 1; i >= 0; i--)
             {
                 if (m_activeTweens[i].Update(Time.deltaTime))
