@@ -23,6 +23,8 @@ namespace SGGames.Script.Managers
         private InputAction m_openConsole;
         private InputAction m_closeUI;
         private InputAction m_interactAction;
+        private InputAction m_skill1Action;
+        private InputAction m_skill2Action;
         
         public bool IsAllowInput => m_isAllowInput;
         public Action<Vector2> OnMoveInputUpdate;
@@ -32,23 +34,15 @@ namespace SGGames.Script.Managers
         public Action OnPressOpenConsole;
         public Action OnPressCloseUI;
         public Action OnPressInteract;
+        public Action OnPressSkill1;
+        public Action OnPressSkill2;
+        
+        #region Unity Methods
         
         private void Awake()
         {
             ServiceLocator.RegisterService<InputManager>(this);
-            m_moveAction = InputSystem.actions.FindAction("Move");
-            m_attackAction = InputSystem.actions.FindAction("Attack");
-            m_dashAction = InputSystem.actions.FindAction("Dash");
-            m_openConsole = InputSystem.actions.FindAction("Open Console");
-            m_closeUI = InputSystem.actions.FindAction("Close UI");
-            m_interactAction = InputSystem.actions.FindAction("Interact");
-            
-            m_attackAction.performed += OnAttackButtonPressed;
-            m_dashAction.performed += OnDashButtonPressed;
-            m_openConsole.performed += OnOpenConsoleButtonPressed;
-            m_closeUI.performed += OnCloseUIButtonPressed;
-            m_interactAction.performed += OnInteractButtonPressed;
-            
+            AssignActions();
             m_camera = Camera.main;
             EnableInput();
         }
@@ -64,6 +58,54 @@ namespace SGGames.Script.Managers
             m_worldMousePosition = ComputeWorldMousePosition();
             WorldMousePositionUpdate?.Invoke(m_worldMousePosition);
         }
+        
+        #endregion
+        
+        /// <summary>
+        /// Enable player input
+        /// </summary>
+        public void EnableInput()
+        {
+            m_isAllowInput = true;
+            m_isAllowGameplayInput = true;
+            InputSystem.actions.Enable();
+        }
+
+        
+        /// <summary>
+        /// Disable player input
+        /// </summary>
+        public void DisableInput()
+        {
+            m_isAllowInput = false;
+            InputSystem.actions.Disable();
+        }
+
+        public void DisableGameplayInput()
+        {
+            m_isAllowGameplayInput = false;
+        }
+
+        private void AssignActions()
+        {
+            m_moveAction = InputSystem.actions.FindAction("Move");
+            m_attackAction = InputSystem.actions.FindAction("Attack");
+            m_dashAction = InputSystem.actions.FindAction("Dash");
+            m_openConsole = InputSystem.actions.FindAction("Open Console");
+            m_closeUI = InputSystem.actions.FindAction("Close UI");
+            m_interactAction = InputSystem.actions.FindAction("Interact");
+            m_skill1Action = InputSystem.actions.FindAction("ActiveSkill_1");
+            m_skill2Action = InputSystem.actions.FindAction("ActiveSkill_2");
+            
+            m_attackAction.performed += OnAttackButtonPressed;
+            m_dashAction.performed += OnDashButtonPressed;
+            m_openConsole.performed += OnOpenConsoleButtonPressed;
+            m_closeUI.performed += OnCloseUIButtonPressed;
+            m_interactAction.performed += OnInteractButtonPressed;
+            m_skill1Action.performed += OnPressSkill1Button;
+            m_skill2Action.performed += OnPressSkill2Button;
+        }
+        #region Callback for Buttons
         
         private Vector3 ComputeWorldMousePosition()
         {
@@ -108,30 +150,18 @@ namespace SGGames.Script.Managers
             OnPressInteract?.Invoke();
         }
         
-        /// <summary>
-        /// Enable player input
-        /// </summary>
-        public void EnableInput()
+        private void OnPressSkill2Button(InputAction.CallbackContext context)
         {
-            m_isAllowInput = true;
-            m_isAllowGameplayInput = true;
-            InputSystem.actions.Enable();
+            if (!m_isAllowInput) return;
+            OnPressSkill1?.Invoke();
         }
 
+        private void OnPressSkill1Button(InputAction.CallbackContext context)
+        {
+            OnPressSkill2?.Invoke();
+        }
         
-        /// <summary>
-        /// Disable player input
-        /// </summary>
-        public void DisableInput()
-        {
-            m_isAllowInput = false;
-            InputSystem.actions.Disable();
-        }
-
-        public void DisableGameplayInput()
-        {
-            m_isAllowGameplayInput = false;
-        }
+        #endregion
     }
 }
 
