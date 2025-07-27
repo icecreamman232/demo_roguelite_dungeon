@@ -99,7 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_isRequireKey: 0
   m_numberKeyRequired: 1
-  m_pocketInventoryEvent: {fileID: 11400000, guid: e94a91a834927e24a84c3d237dee0eb5, type: 2}
+  m_currencyEvent: {fileID: 11400000, guid: 462e5d57e15fb4b428b80fc58616ae99, type: 2}
   m_gameEvent: {fileID: 11400000, guid: 7ac1f24220b2ef14186e0695169f9965, type: 2}
   m_currencyDropsEvent: {fileID: 11400000, guid: 881e0a4dc49de4446ae2074ba42fc980, type: 2}
   m_currencyID: 3

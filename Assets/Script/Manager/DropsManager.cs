@@ -1,7 +1,9 @@
+using System;
 using SGGames.Script.Core;
 using SGGames.Script.Data;
 using SGGames.Script.Events;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace SGGames.Script.Managers
 {
@@ -36,6 +38,12 @@ namespace SGGames.Script.Managers
             RegisterEvents();
         }
 
+        private void OnDestroy()
+        {
+            ServiceLocator.UnregisterService<DropsManager>();
+            UnregisterEvents();
+        }
+
         private void InitializeHelperModules()
         {
             var itemManager = ServiceLocator.GetService<ItemManager>();
@@ -54,6 +62,13 @@ namespace SGGames.Script.Managers
             m_spawnChestEvent.AddListener(OnReceiveSpawnChestEvent);
             m_currencyDropsEvent.AddListener(OnReceiveCurrencyDropsEvent);
         }
+
+        private void UnregisterEvents()
+        {
+            m_itemDropsEvent.RemoveListener(OnReceiveItemDropsEvent);
+            m_spawnChestEvent.RemoveListener(OnReceiveSpawnChestEvent);
+            m_currencyDropsEvent.RemoveListener(OnReceiveCurrencyDropsEvent);
+        }
         
         private void OnReceiveSpawnChestEvent(Vector3 spawnPosition)
         {
@@ -66,7 +81,7 @@ namespace SGGames.Script.Managers
         private void OnReceiveItemDropsEvent(Vector3 spawnPosition)
         {
             var itemID = m_itemSelector.GetItemForChest().ItemID;
-            var itemPrefab = m_container.GetPrefabWithID(itemID);
+            var itemPrefab = m_container.GetItemPrefabWithID(itemID);
             if (itemPrefab == null)
             {
                 Debug.LogError($"Item with id {itemID} not found");
@@ -80,7 +95,7 @@ namespace SGGames.Script.Managers
         {
             if (itemID == Global.ItemID.Coin || itemID == Global.ItemID.Key || itemID == Global.ItemID.Bomb)
             {
-                var itemPrefab = m_container.GetPrefabWithID(itemID);
+                var itemPrefab = m_container.GetCurrencyPrefabWithID(itemID);
                 if (itemPrefab == null) return;
                 Vector3 spawnPosition;
                 for (int i = 0; i < amount; i++)

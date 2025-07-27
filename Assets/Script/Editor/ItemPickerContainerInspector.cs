@@ -13,31 +13,75 @@ namespace SGGames.Script.EditorExtensions
         {
             base.OnInspectorGUI();
             
-            if (GUILayout.Button("Find Pickable"))
+            if (GUILayout.Button("Find All"))
+            {
+                FindPickable();
+                FindCurrency();
+            }
+            
+            if (GUILayout.Button("Find Item"))
             {
                 FindPickable();
             }
+            
+            if (GUILayout.Button("Find Currency"))
+            {
+                FindCurrency();
+            }
+        }
+
+        private void SaveData()
+        {
+            EditorUtility.SetDirty((ItemPickerContainer)target);
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
+        }
+
+        private void ClearCurrencyData()
+        {
+            ((ItemPickerContainer)target).ClearCurrencyData();
+        }
+
+        private void ClearItemData()
+        {
+            ((ItemPickerContainer)target).ClearItemData();
         }
 
         private void FindPickable()
         {
-            ((ItemPickerContainer)target).ClearContainer();
+            ClearItemData();
             var allGUIDs = AssetDatabase.FindAssets("t:Prefab");
             
             foreach (var guid in allGUIDs)
             {
                 var prefabAsset = AssetDatabase.LoadAssetAtPath<GameObject>(AssetDatabase.GUIDToAssetPath(guid));
-                var component = prefabAsset.GetComponent<Pickables.ItemPicker>();
+                var component = prefabAsset.GetComponent<ManualItemPicker>();
                 if (component != null && component.ItemData != null)
                 {
-                    ((ItemPickerContainer)target).AddItemPicker(component);
+                    ((ItemPickerContainer)target).AddManualItemPicker(component);
                 }
             }
+
+            SaveData();
+
+        }
+        
+        private void FindCurrency()
+        {
+            ClearCurrencyData();
+            var allGUIDs = AssetDatabase.FindAssets("t:Prefab");
             
-            
-            EditorUtility.SetDirty((ItemPickerContainer)target);
-            AssetDatabase.SaveAssets();
-            AssetDatabase.Refresh();
+            foreach (var guid in allGUIDs)
+            {
+                var prefabAsset = AssetDatabase.LoadAssetAtPath<GameObject>(AssetDatabase.GUIDToAssetPath(guid));
+                var component = prefabAsset.GetComponent<CurrencyPicker>();
+                if (component != null)
+                {
+                    ((ItemPickerContainer)target).AddCurrencyPicker(component);
+                }
+            }
+
+            SaveData();
         }
     }
 }

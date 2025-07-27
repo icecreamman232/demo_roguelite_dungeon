@@ -8,13 +8,9 @@ namespace SGGames.Script.Pickables
     public class ItemPicker : MonoBehaviour
     {
         [SerializeField] protected Global.PickableType m_pickableType;
-        [SerializeField] protected ItemData m_itemData;
-        [SerializeField] protected int m_amount;
         [SerializeField] protected GameEvent m_gameEvent;
         
         public Global.PickableType PickableType => m_pickableType;
-        public ItemData ItemData => m_itemData;
-        public int Amount => m_amount;
 
         protected virtual void Start()
         {

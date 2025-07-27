@@ -9,23 +9,41 @@ namespace SGGames.Script.Data
     [CreateAssetMenu(fileName = "Item Picker Container", menuName = "SGGames/Data/Item Picker Container")]
     public class ItemPickerContainer : ScriptableObject
     {
-        [SerializeField] private List<ItemPicker> m_itemPickers;
+        [SerializeField] private List<CurrencyPicker> m_currencyPickers;
+        [SerializeField] private List<ManualItemPicker> m_itemPickers;
         
-        public GameObject GetPrefabWithID(Global.ItemID id)
+        public GameObject GetCurrencyPrefabWithID(Global.ItemID id)
+        {
+            var item = m_currencyPickers.FirstOrDefault(item =>item.ItemID == id);
+            if (item == null) return null;
+            return item.gameObject;
+        }
+        
+        public GameObject GetItemPrefabWithID(Global.ItemID id)
         {
             var item = m_itemPickers.FirstOrDefault(item =>item.ItemData.ItemID == id);
             if (item == null) return null;
             return item.gameObject;
         }
 
-        public void AddItemPicker(ItemPicker itemPicker)
+        public void AddManualItemPicker(ManualItemPicker itemPicker)
         {
             m_itemPickers.Add(itemPicker);
         }
-        
-        public void ClearContainer()
+
+        public void AddCurrencyPicker(CurrencyPicker currencyPicker)
+        {
+            m_currencyPickers.Add(currencyPicker);       
+        }
+
+        public void ClearItemData()
         {
             m_itemPickers.Clear();
+        }
+
+        public void ClearCurrencyData()
+        {
+            m_currencyPickers.Clear();
         }
     }
 }

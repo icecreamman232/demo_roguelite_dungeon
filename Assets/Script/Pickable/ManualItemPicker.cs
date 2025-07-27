@@ -1,7 +1,6 @@
 using SGGames.Script.Core;
 using SGGames.Script.Data;
 using SGGames.Script.Events;
-using SGGames.Script.Managers;
 using UnityEngine;
 
 namespace SGGames.Script.Pickables
@@ -9,13 +8,18 @@ namespace SGGames.Script.Pickables
     [RequireComponent(typeof(CircleCollider2D))]
     public class ManualItemPicker : ItemPicker
     {
+        [SerializeField] private ItemData m_itemData;
+        [SerializeField] private int m_amount;
         [SerializeField] private InventoryEvent m_inventoryEvent;
         [SerializeField] private EquipInventoryItemEvent m_equipInventoryItemEvent;
         [SerializeField] private InteractEvent m_interactEvent;
         [SerializeField] private CircleCollider2D m_collider2D;
         
         private bool m_isInteracting;
-
+        
+        public ItemData ItemData => m_itemData;
+        public int Amount => m_amount;
+        
         private void Awake()
         {
             m_interactEvent.AddListener(OnReceiveInteractionEvent);

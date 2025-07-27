@@ -1,3 +1,4 @@
+using System;
 using SGGames.Script.Core;
 using SGGames.Script.Events;
 using UnityEngine;
@@ -21,6 +22,11 @@ namespace SGGames.Script.UI
             {
                 m_view.UpdateCoinView(amount);
             }
+        }
+
+        private void OnDestroy()
+        {
+            m_updateCurrencyUIEvent.RemoveListener(OnReceiveEvent);
         }
     }
 }

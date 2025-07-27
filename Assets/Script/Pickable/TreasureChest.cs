@@ -1,6 +1,4 @@
-using System;
 using SGGames.Script.Core;
-using SGGames.Script.Data;
 using SGGames.Script.Events;
 using SGGames.Script.Managers;
 using SGGames.Script.Modules;
@@ -12,7 +10,7 @@ namespace SGGames.Script.Pickable
     {
         [SerializeField] protected bool m_isRequireKey;
         [SerializeField] protected int m_numberKeyRequired = 1;
-        [SerializeField] protected PocketInventoryEvent m_pocketInventoryEvent;
+        [SerializeField] protected CurrencyEvent m_currencyEvent;
         [SerializeField] protected GameEvent m_gameEvent;
 
         private void Awake()
@@ -44,7 +42,7 @@ namespace SGGames.Script.Pickable
             {
                 var inventoryManager = ServiceLocator.GetService<InventoryManager>();
                 if (!inventoryManager.HasKeyNumber(m_numberKeyRequired)) return;
-                m_pocketInventoryEvent.Raise(Global.InventoryEventType.Remove, Global.ItemID.Key, m_numberKeyRequired);
+                m_currencyEvent.Raise(Global.ItemID.Key, m_numberKeyRequired);
                 OpenChest();
             }
             else

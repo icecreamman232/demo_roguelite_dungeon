@@ -83,10 +83,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_pickableType: 0
-  m_itemData: {fileID: 11400000, guid: 3b776b203132b6048a4d14b0a14a5c0e, type: 2}
-  m_amount: 1
   m_gameEvent: {fileID: 11400000, guid: 7ac1f24220b2ef14186e0695169f9965, type: 2}
-  m_pocketInventoryEvent: {fileID: 11400000, guid: e94a91a834927e24a84c3d237dee0eb5, type: 2}
+  m_currencyID: 1
+  m_amount: 1
+  m_currencyEvent: {fileID: 11400000, guid: 462e5d57e15fb4b428b80fc58616ae99, type: 2}
   m_collider: {fileID: 1327076850710633007}
 --- !u!1 &7071903718800874943
 GameObject:

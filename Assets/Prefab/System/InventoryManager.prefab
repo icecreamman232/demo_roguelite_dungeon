@@ -44,9 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 478e3921c7ba99a49862734b5169ed09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_pocketInventory:
+  currencyInventory:
     m_totalCoin: 0
     m_totalKey: 0
   m_inventoryEvent: {fileID: 11400000, guid: 13529ca2b65aad543acc50a4d03b8c4b, type: 2}
-  m_pocketInventoryEvent: {fileID: 11400000, guid: e94a91a834927e24a84c3d237dee0eb5, type: 2}
+  m_currencyEvent: {fileID: 11400000, guid: 462e5d57e15fb4b428b80fc58616ae99, type: 2}
   m_updateCurrencyUIEvent: {fileID: 11400000, guid: 9a2a3cd3b7567224491db05d547c8c38, type: 2}
