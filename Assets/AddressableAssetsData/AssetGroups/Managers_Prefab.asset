@@ -39,12 +39,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - GameplaySystem
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3bae545fbd1c058409296817cc0439b2
-    m_Address: Assets/Prefab/ItemEffectManager.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - GameplaySystem
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 54693e464c767e94a9d94144a816b903
     m_Address: Assets/Prefab/PickablePrefabManager.prefab
     m_ReadOnly: 0
