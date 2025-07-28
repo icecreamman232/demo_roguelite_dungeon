@@ -37,7 +37,9 @@ namespace SGGames.Script.Skills
             if (LayerManager.IsInLayerMask(other.gameObject.layer, LayerMask.GetMask("Enemy")))
             {
                 var enemyController = other.gameObject.GetComponent<EnemyController>();
+                if (!enemyController) return;
                 enemyController.Movement.ApplyStun(m_stunDuration);
+                    
             }
         }
 

@@ -81,19 +81,14 @@ namespace SGGames.Script.Skills
 
         private void CheckTriggerCondition()
         {
-            var itemToRemove = new List<InventoryItemData>();
             foreach (var item in m_itemToBeTriggeredDictionary)
             {
                 if (item.Value == m_playerEventStatus)
                 {
-                    itemToRemove.Add(item.Key);
                     TriggerItem(item.Key);
                 }
             }
-            foreach (var item in itemToRemove)
-            {
-                m_itemToBeTriggeredDictionary.Remove(item);
-            }
+            
         }
 
         private void TriggerItem(InventoryItemData data)
