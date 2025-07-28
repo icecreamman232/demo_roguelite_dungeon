@@ -18,6 +18,12 @@ namespace SGGames.Script.Core
             Legendary,
         }
 
+        public enum ItemType
+        {
+            Cloak,
+            MagicAccessory,
+        }
+
         [Flags]
         public enum PlayerEvents
         {
