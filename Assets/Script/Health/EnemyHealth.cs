@@ -16,7 +16,7 @@ namespace SGGames.Script.HealthSystem
         [SerializeField] private FloatingTextEvent m_floatingTextEvent;
         private EnemyHealthBarController m_enemyHealthBar;
         private FillOverlayColorOnSprite m_fillOverlayColorOnSprite;
-        private static float SPRITE_FLICKING_FREQUENCY = 0.1f;
+        private const float k_SpriteFlickeringFrequency = 0.1f;
      
         protected override void Start()
         {
@@ -28,13 +28,7 @@ namespace SGGames.Script.HealthSystem
             m_fillOverlayColorOnSprite = GetComponentInChildren<FillOverlayColorOnSprite>();
             UpdateHealthBar();
         }
-
-        [ContextMenu("Flick")]
-        private void Test()
-        {
-            StartCoroutine(OnInvincible(5));
-        }
-
+        
         protected override IEnumerator OnInvincible(float duration)
         {
             m_isInvincible = true;
@@ -44,9 +38,9 @@ namespace SGGames.Script.HealthSystem
             while (Time.time < timeStop)
             {
                 m_fillOverlayColorOnSprite.FillOverlayColor(m_spriteRenderer,Color.red,1);
-                yield return new WaitForSeconds(SPRITE_FLICKING_FREQUENCY);
+                yield return new WaitForSeconds(k_SpriteFlickeringFrequency);
                 m_fillOverlayColorOnSprite.FillOverlayColor(m_spriteRenderer,Color.red,0);
-                yield return new WaitForSeconds(SPRITE_FLICKING_FREQUENCY);
+                yield return new WaitForSeconds(k_SpriteFlickeringFrequency);
             }
             
             m_fillOverlayColorOnSprite.FillOverlayColor(m_spriteRenderer,Color.white,0);

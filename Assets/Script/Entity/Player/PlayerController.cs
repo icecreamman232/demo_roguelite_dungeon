@@ -32,6 +32,7 @@ namespace SGGames.Script.Entity
         private void Start()
         {
             m_playerMovement.FlippingModelAction = m_animationController.FlipModel;
+            m_playerHealth.SetController(this);
         }
     }
 }
