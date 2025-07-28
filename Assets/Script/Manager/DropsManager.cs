@@ -46,14 +46,14 @@ namespace SGGames.Script.Managers
 
         private void InitializeHelperModules()
         {
-            var itemManager = ServiceLocator.GetService<ItemManager>();
+            var itemLibrary = ServiceLocator.GetService<ItemLibrary>();
             var roomManager = ServiceLocator.GetService<RoomManager>();
             
             //Initialize all helper modules
             m_treasureChestSelector = new TreasureChestSelector(
                 m_keyChestPrefab, m_coinChestPrefab, m_bombChestPrefab,
                 m_itemChestPrefab, m_weaponChestPrefab, m_bossChestPrefab);
-            m_itemSelector = new ItemSelector(itemManager, roomManager, m_itemRarityTable);
+            m_itemSelector = new ItemSelector(itemLibrary, roomManager, m_itemRarityTable);
         }
 
         private void RegisterEvents()

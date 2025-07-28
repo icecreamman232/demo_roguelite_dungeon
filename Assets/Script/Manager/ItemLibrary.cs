@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace SGGames.Script.Managers
 {
-    public class ItemManager : MonoBehaviour, IGameService
+    public class ItemLibrary : MonoBehaviour, IGameService
     {
         [SerializeField] private InventoryItemData[] m_itemData;
         [SerializeField] private List<InventoryItemData> m_commonList;
@@ -15,7 +15,7 @@ namespace SGGames.Script.Managers
         
         private void Awake()
         {
-            ServiceLocator.RegisterService<ItemManager>(this);
+            ServiceLocator.RegisterService<ItemLibrary>(this);
             FillItemIntoTheirCategory();
         }
         

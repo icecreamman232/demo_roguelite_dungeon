@@ -11,11 +11,11 @@ namespace SGGames.Script.Managers
     {
         private ItemRarityTable m_itemRarityTable;
         private RoomManager m_roomManager;
-        private ItemManager m_itemManager;
+        private ItemLibrary m_itemLibrary;
         
-        public ItemSelector(ItemManager itemManager, RoomManager roomManager, ItemRarityTable itemRarityTable)
+        public ItemSelector(ItemLibrary itemLibrary, RoomManager roomManager, ItemRarityTable itemRarityTable)
         {
-            m_itemManager = itemManager;
+            m_itemLibrary = itemLibrary;
             m_roomManager = roomManager;
             m_itemRarityTable = itemRarityTable;
         }
@@ -34,13 +34,13 @@ namespace SGGames.Script.Managers
             switch (rarity)
             {
                 case Global.ItemRarity.Common:
-                    return m_itemManager.GetCommonItem();
+                    return m_itemLibrary.GetCommonItem();
                 case Global.ItemRarity.Uncommon:
-                    return m_itemManager.GetUncommonItem();
+                    return m_itemLibrary.GetUncommonItem();
                 case Global.ItemRarity.Rare:
-                    return m_itemManager.GetRareItem();
+                    return m_itemLibrary.GetRareItem();
                 case Global.ItemRarity.Legendary:
-                    return m_itemManager.GetLegendaryItem();
+                    return m_itemLibrary.GetLegendaryItem();
             }
 
             return null;

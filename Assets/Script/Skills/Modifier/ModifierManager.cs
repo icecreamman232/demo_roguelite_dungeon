@@ -9,6 +9,7 @@ namespace SGGames.Script.Skills
 {
     public class ModifierManager : MonoBehaviour, IGameService
     {
+        [SerializeField] private TriggerModifierEvent m_triggerModifierEvent;
         [SerializeField] private ModifierData m_testData;
         private List<Modifier> m_modifierList;
         private PlayerController m_playerController;
@@ -19,11 +20,13 @@ namespace SGGames.Script.Skills
             m_modifierList = new List<Modifier>();
             var lvlManager = ServiceLocator.GetService<LevelManager>();
             m_playerController = lvlManager.Player.GetComponent<PlayerController>();
+            m_triggerModifierEvent.AddListener(OnReceiveTriggerModifierEvent);
         }
 
         private void OnDestroy()
         {
             ServiceLocator.UnregisterService<ModifierManager>();
+            m_triggerModifierEvent.RemoveListener(OnReceiveTriggerModifierEvent);
         }
 
         private void Update()
@@ -41,6 +44,12 @@ namespace SGGames.Script.Skills
                 }
             }
         }
+        
+        private void OnReceiveTriggerModifierEvent(ModifierData data)
+        {
+            AddModifier(data);
+        }
+        
 
         private void AddModifier(ModifierData data)
         {
