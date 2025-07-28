@@ -24,6 +24,7 @@ namespace SGGames.Script.Skills
 
         public override void Execute()
         {
+            Debug.Log("Impact::Created Stun AOE");
             StartCoroutine(OnStunning());
         }
         

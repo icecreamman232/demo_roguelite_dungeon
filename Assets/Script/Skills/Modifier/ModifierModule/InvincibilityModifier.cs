@@ -19,7 +19,7 @@ namespace SGGames.Script.Skills
         {
             m_timeElapsed = m_duration;
             m_playerController.PlayerHealth.SetInvincibleByItem(true);
-            Debug.Log($"Apply Invincibility Modifier");
+            Debug.Log($"Modifier::Apply Invincibility Modifier");
         }
 
         public override void Update()
@@ -38,7 +38,7 @@ namespace SGGames.Script.Skills
         {
             m_playerController.PlayerHealth.SetInvincibleByItem(false);
             m_playerController = null;
-            Debug.Log($"Remove Invincibility Modifier");
+            Debug.Log($"Modifier::Remove Invincibility Modifier");
         }
     }
 }

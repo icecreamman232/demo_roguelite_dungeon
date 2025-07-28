@@ -88,7 +88,6 @@ namespace SGGames.Script.Skills
                     TriggerItem(item.Key);
                 }
             }
-            
         }
 
         private void TriggerItem(InventoryItemData data)
