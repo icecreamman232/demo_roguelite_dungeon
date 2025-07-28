@@ -1,4 +1,6 @@
-﻿namespace SGGames.Script.Core
+﻿using System;
+
+namespace SGGames.Script.Core
 {
     public static partial class Global
     {
@@ -14,6 +16,22 @@
             Uncommon,
             Rare,
             Legendary,
+        }
+
+        [Flags]
+        public enum PlayerEvents
+        {
+            OnDashHitObstacle = 1 << 0,
+            OnDashFinished = 1 << 1,
+            OnTakingHit = 1 << 2, //Getting hit from enemy
+            OnWeaponAttack = 1 << 3 , //Trigger when player attack
+            OnWeaponHit = 1 << 4, //Trigger when attack projectile hit target either obstacle or target
+        }
+
+        public enum WorldEvents
+        {
+            OnEnterNewRoom,
+            OnRoomCleared,
         }
         
         public enum ItemClass
@@ -70,21 +88,6 @@
             GreenMushroom = 10,
             RedMushroom,
             ReboundCowl,
-        }
-        
-        public enum ItemEffectID
-        {
-            IncreasePlayerSize,
-            DecreasePlayerSize,
-            IncreaseFlatDamage,
-            IncreaseFlatMoveSpeed,
-        }
-
-        public enum ItemEffectTag
-        {
-            ModifySize,
-            ModifyDamage,
-            ModifySpeed,
         }
     }
 }

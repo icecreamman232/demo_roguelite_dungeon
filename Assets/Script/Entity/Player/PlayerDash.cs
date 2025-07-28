@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using SGGames.Script.Core;
 using SGGames.Script.Data;
@@ -24,8 +25,11 @@ namespace SGGames.Script.Entity
 
         private IDashCommand[] m_startDashCommands;
         private IDashCommand[] m_endDashCommands;
-        
 
+
+        public Action OnDashHitObstacle;
+        public Action OnDashFinished;
+        
         private void Start()
         {
             m_controller = GetComponent<PlayerController>();
@@ -85,6 +89,7 @@ namespace SGGames.Script.Entity
 
             if (m_controller.PlayerMovement.IsHitObstacle)
             {
+                OnDashHitObstacle?.Invoke();
                 EndDash();
                 return;
             }
@@ -98,6 +103,7 @@ namespace SGGames.Script.Entity
 
             if (transform.position == m_endPosition)
             {
+                OnDashFinished?.Invoke();
                 EndDash();
             }
         }

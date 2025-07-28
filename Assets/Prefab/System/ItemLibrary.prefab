@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7875190244990878657
+--- !u!1 &1261828337959540778
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2771918182141159371}
-  - component: {fileID: 4599090264211951498}
+  - component: {fileID: 8920999732898370895}
+  - component: {fileID: 6779807555676355629}
   m_Layer: 0
-  m_Name: ItemManager
+  m_Name: ItemLibrary
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2771918182141159371
+--- !u!4 &8920999732898370895
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7875190244990878657}
+  m_GameObject: {fileID: 1261828337959540778}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -32,18 +32,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4599090264211951498
+--- !u!114 &6779807555676355629
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7875190244990878657}
+  m_GameObject: {fileID: 1261828337959540778}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac722abc5b0834543b4fe3aa431a708f, type: 3}
+  m_Script: {fileID: 11500000, guid: 99752db6e3d2ce746a201eb082b8ca97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_test: {fileID: 11400000, guid: f3d9fdda3ae2d6541b3bf431513a0ed0, type: 2}
-  m_triggerModifierEvent: {fileID: 11400000, guid: ab348dcc88bbf79448852907c9077415, type: 2}
-  m_equipItemEvent: {fileID: 11400000, guid: ac789070c038d3b47a5f2db446c36a1a, type: 2}
+  m_itemData:
+  - {fileID: 11400000, guid: f3d9fdda3ae2d6541b3bf431513a0ed0, type: 2}
+  m_commonList: []
+  m_uncommonList: []
+  m_rareList: []
+  m_legendaryList: []

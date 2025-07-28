@@ -1,3 +1,4 @@
+using System;
 using SGGames.Script.Core;
 using SGGames.Script.Managers;
 using SGGames.Script.Weapons;
@@ -15,6 +16,8 @@ namespace SGGames.Script.Entity
         private bool m_isAimAtLeftSide;
         
         public Vector3 AimDirection => m_aimDirection;
+
+        public Action OnAttack;
         
         private void Start()
         {
@@ -27,6 +30,7 @@ namespace SGGames.Script.Entity
         private void OnPressAttackButton()
         {
             m_currWeapon.Attack();
+            OnAttack?.Invoke();
         }
 
         private void OnWorldMousePositionChanged(Vector3 mouseWorldPosition)

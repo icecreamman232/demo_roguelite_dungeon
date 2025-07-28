@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using SGGames.Script.Core;
 using SGGames.Script.Entity;
@@ -14,11 +15,12 @@ namespace SGGames.Script.Skills
         private List<Modifier> m_modifierList;
         private PlayerController m_playerController;
 
-        private void Awake()
+        private IEnumerator Start()
         {
             ServiceLocator.RegisterService<ModifierManager>(this);
             m_modifierList = new List<Modifier>();
             var lvlManager = ServiceLocator.GetService<LevelManager>();
+            yield return new WaitUntil(() => lvlManager.Player != null);
             m_playerController = lvlManager.Player.GetComponent<PlayerController>();
             m_triggerModifierEvent.AddListener(OnReceiveTriggerModifierEvent);
         }

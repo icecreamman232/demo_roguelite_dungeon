@@ -10,6 +10,7 @@ namespace SGGames.Script.HealthSystem
         [SerializeField] private PlayerData m_playerData;
         [SerializeField] private UpdatePlayerHealthEvent m_updatePlayerHealthEvent;
         [SerializeField] private DebugSettings m_debugSettings;
+        [SerializeField] private bool m_invincibleByItem;
         
         protected override void Start()
         {
@@ -21,6 +22,8 @@ namespace SGGames.Script.HealthSystem
         protected override bool CanTakeDamage()
         {
             if (m_debugSettings.IsPlayerImmortal) return false;
+            
+            if (m_invincibleByItem) return false;
             
             return base.CanTakeDamage();
         }
@@ -40,6 +43,11 @@ namespace SGGames.Script.HealthSystem
         public void SetInvincible(bool isInvincible)
         {
             m_isInvincible = isInvincible;
+        }
+
+        public void SetInvincibleByItem(bool isInvincible)
+        {
+            m_invincibleByItem = isInvincible;
         }
     }
 }
