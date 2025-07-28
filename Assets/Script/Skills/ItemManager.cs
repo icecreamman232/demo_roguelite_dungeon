@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using SGGames.Script.Core;
@@ -15,6 +14,7 @@ namespace SGGames.Script.Skills
         [SerializeField] private InventoryItemData m_test;
         [SerializeField] private TriggerModifierEvent m_triggerModifierEvent;
         [SerializeField] private EquipInventoryItemEvent m_equipItemEvent;
+        [SerializeField] private TriggerImpactEvent m_triggerImpactEvent;
         private PlayerController m_playerController;
         private List<InventoryItemData> m_equippedItemList;
         private Dictionary<InventoryItemData, ushort> m_itemToBeTriggeredDictionary;
@@ -64,7 +64,6 @@ namespace SGGames.Script.Skills
                 yield return new WaitForSeconds(m_intervalToResetStatus);
                 m_playerEventStatus = 0;
                 m_worldEventStatus = 0;
-                Debug.Log("Reset Status");
             }
         }
 
@@ -72,14 +71,12 @@ namespace SGGames.Script.Skills
         {
             m_playerEventStatus |= (ushort)Global.PlayerEvents.OnWeaponAttack;
             CheckTriggerCondition();
-            Debug.Log($"Event OnAttack {m_playerEventStatus}");
         }
 
         private void OnDashHitObstacle()
         {
             m_playerEventStatus |= (ushort)Global.PlayerEvents.OnDashHitObstacle;
             CheckTriggerCondition();
-            Debug.Log($"Event OnDashHitObstacle {m_playerEventStatus}");
         }
 
         private void CheckTriggerCondition()
@@ -104,6 +101,11 @@ namespace SGGames.Script.Skills
             for (int i = 0; i < data.ModifierData.Count; i++)
             {
                 m_triggerModifierEvent.Raise(data.ModifierData[i]);
+            }
+
+            for (int i = 0; i < data.ImpactParamInfo.Count; i++)
+            {
+                m_triggerImpactEvent.Raise(m_playerController.transform.position, data.ImpactParamInfo[i]);
             }
         }
         

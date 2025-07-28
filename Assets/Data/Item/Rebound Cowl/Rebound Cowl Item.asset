@@ -18,3 +18,5 @@ MonoBehaviour:
   m_playerEventTrigger: 01000000
   m_modifierData:
   - {fileID: 11400000, guid: b356d2a081819c843a034fc16b8837e6, type: 2}
+  m_impactParamInfo:
+  - {fileID: 11400000, guid: 1b369c3220da1f144af4f2fe01584af0, type: 2}

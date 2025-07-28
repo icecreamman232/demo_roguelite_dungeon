@@ -50,6 +50,9 @@ TagManager:
   - name: Pickable
     uniqueID: 2341421309
     locked: 0
+  - name: VFX
+    uniqueID: 1611155067
+    locked: 0
   - name: Player
     uniqueID: 2725457975
     locked: 0

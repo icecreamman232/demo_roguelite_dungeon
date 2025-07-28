@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7875190244990878657
+--- !u!1 &2267058106776834079
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2771918182141159371}
-  - component: {fileID: 4599090264211951498}
+  - component: {fileID: 4643169741048622231}
+  - component: {fileID: 5330566123853333037}
   m_Layer: 0
-  m_Name: ItemManager
+  m_Name: ImpactManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2771918182141159371
+--- !u!4 &4643169741048622231
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7875190244990878657}
+  m_GameObject: {fileID: 2267058106776834079}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -32,19 +32,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4599090264211951498
+--- !u!114 &5330566123853333037
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7875190244990878657}
+  m_GameObject: {fileID: 2267058106776834079}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac722abc5b0834543b4fe3aa431a708f, type: 3}
+  m_Script: {fileID: 11500000, guid: 9328cf93aef6d314585f0255f96607f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_test: {fileID: 11400000, guid: f3d9fdda3ae2d6541b3bf431513a0ed0, type: 2}
-  m_triggerModifierEvent: {fileID: 11400000, guid: ab348dcc88bbf79448852907c9077415, type: 2}
-  m_equipItemEvent: {fileID: 11400000, guid: ac789070c038d3b47a5f2db446c36a1a, type: 2}
-  m_triggerImpactEvent: {fileID: 11400000, guid: 016c0540edf7df14ea01ae11b5308dbc, type: 2}
+  m_impactEvent: {fileID: 11400000, guid: 016c0540edf7df14ea01ae11b5308dbc, type: 2}
+  m_stunAOEImpactPrefab: {fileID: 6436604378204688193, guid: 7e3617886fc7b5e41b6beb898ca62129, type: 3}

@@ -49,23 +49,26 @@ namespace SGGames.Script.Entity
 
         // Target tracking
         private Transform m_target;
-        private const float MinPathRequestInterval = 0.2f;
+        private const float k_MinPathRequestInterval = 0.2f;
 
         // Pathfinding state
         private List<Vector3> m_waypoints = new List<Vector3>();
         private int m_currentWaypointIndex;
-        private bool m_hasPath = false;
-        private bool m_pathPending = false;
-        private bool m_isDirectPathBlocked = false;
-        private bool m_forcedPathfinding = false;
-        private float m_lastPathRequestTime = 0f;
+        private bool m_hasPath;
+        private bool m_pathPending;
+        private bool m_isDirectPathBlocked;
+        private bool m_forcedPathfinding;
+        private float m_lastPathRequestTime;
         
         // Wall sliding state
-        private bool m_isSliding = false;
+        private bool m_isSliding;
         private Vector2 m_slidingDirection = Vector2.zero;
-        private float m_slidingTimer = 0f;
-        private const float MaxSlidingTime = 1.0f;
+        private float m_slidingTimer;
+        private const float k_MaxSlidingTime = 1.0f;
 
+        //Stunning
+        private bool m_isStunned;
+        
         // Events
         public Action<bool> FlippingModelAction;
         
@@ -113,8 +116,16 @@ namespace SGGames.Script.Entity
 
         #endregion
 
-        #region Public API (Called by AI Brain)
+        #region Public API
 
+        public void ApplyStun(float duration)
+        {
+            //TODO: Here is simple stunning mechanic which there is only 1 stun instance could apply on the enemy
+            //Can improve this with override mechanic which stun instance with longer duration will override the shorter one
+            if (m_isStunned) return;
+            StartCoroutine(OnBeingStunned(duration));
+        }
+        
         public void SetDirection(Vector2 dir)
         {
             m_movementDirection = dir;
@@ -211,7 +222,7 @@ namespace SGGames.Script.Entity
                 RequestPathIfNeeded();
             }
         }
-
+        
         #endregion
 
         #region Movement Update Override
@@ -515,7 +526,7 @@ namespace SGGames.Script.Entity
             Vector2 directionToTarget = ((Vector2)m_target.position - (Vector2)transform.position).normalized;
             bool canMoveToTarget = !CheckCollisionForPathfinding(directionToTarget) && !IsPathBlocked(transform.position, m_target.position);
             
-            if (m_slidingTimer >= MaxSlidingTime || canMoveToTarget)
+            if (m_slidingTimer >= k_MaxSlidingTime || canMoveToTarget)
             {
                 m_isSliding = false;
                 
@@ -563,7 +574,7 @@ namespace SGGames.Script.Entity
         {
             if (!m_usePathfinding) return;
             
-            if (Time.time - m_lastPathRequestTime >= MinPathRequestInterval && !m_pathPending)
+            if (Time.time - m_lastPathRequestTime >= k_MinPathRequestInterval && !m_pathPending)
             {
                 StartCoroutine(RequestPath());
                 m_lastPathRequestTime = Time.time;
@@ -759,7 +770,20 @@ namespace SGGames.Script.Entity
         }
 
         #endregion
+        
+        #region Stunning Mechanic
 
+        private IEnumerator OnBeingStunned(float duration)
+        {
+            m_isStunned = true;
+            PauseMoving();
+            yield return new WaitForSeconds(duration);
+            ResumeMoving();
+            m_isStunned = false;
+        }
+        
+        #endregion
+        
         #region Debug
 
         private void OnDrawGizmos()

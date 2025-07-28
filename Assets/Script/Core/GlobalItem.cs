@@ -89,5 +89,10 @@ namespace SGGames.Script.Core
             RedMushroom,
             ReboundCowl,
         }
+
+        public enum ImpactID
+        {
+            StunAOE,
+        }
     }
 }

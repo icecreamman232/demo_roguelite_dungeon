@@ -13,9 +13,12 @@ namespace SGGames.Script.Data
         [SerializeField] private List<Global.PlayerEvents> m_playerEventTrigger;
         [ShowProperties]
         [SerializeField] private List<ModifierData> m_modifierData;
+        [ShowProperties]
+        [SerializeField] private List<ImpactParamInfo> m_impactParamInfo;
         
         public List<Global.PlayerEvents> PlayerEventTrigger => m_playerEventTrigger;
         public List<ModifierData> ModifierData => m_modifierData;
+        public List<ImpactParamInfo> ImpactParamInfo => m_impactParamInfo;
     }
 }
 
