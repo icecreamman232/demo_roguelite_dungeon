@@ -5,10 +5,8 @@ using SGGames.Script.Dungeon;
 using SGGames.Script.EditorExtensions;
 using SGGames.Script.Events;
 using SGGames.Script.UI;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.ResourceProviders;
 
 namespace SGGames.Script.Managers
 {
