@@ -243,6 +243,12 @@ MonoBehaviour:
     m_SubObjectType: 
     m_SubObjectGUID: 
     m_EditorAssetChanged: 1
+  m_mainMenuScene:
+    m_AssetGUID: 86946d09c6d0bbf47a09a562a38f15e4
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0
 --- !u!1 &716255805
 GameObject:
   m_ObjectHideFlags: 0

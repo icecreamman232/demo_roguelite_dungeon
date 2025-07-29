@@ -11,11 +11,13 @@ namespace SGGames.Script.UI
         [SerializeField] private CanvasGroup m_canvasGroup;
 
         private bool m_isLoading = false;
-
+        
+        public const float k_DefaultLoadingTime = 0.5f;
+        public bool IsBlackOut => m_canvasGroup.alpha == 1;
+        
         private void Awake()
         {
             ServiceLocator.RegisterService<LoadingScreenController>(this);
-            m_canvasGroup.alpha = m_isDefaultFadeOut ? 1 : 0;
         }
 
         public void FadeOutToBlack(float duration = 0.5f)

@@ -111,6 +111,7 @@ namespace SGGames.Script.Core
             LoadNextRoomRightRoom,
             PlayBiomesTransition,
             LoadNextBiomes,
+            GameOver,
             
             PauseGame = 30,
             UnpauseGame = 31,

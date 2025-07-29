@@ -18,12 +18,20 @@ MonoBehaviour:
   - m_GUID: 86946d09c6d0bbf47a09a562a38f15e4
     m_Address: Assets/Scenes/MainMenuScene.unity
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - MainMenu_Scene
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8c9cfa26abfee488c85f1582747f6a02
     m_Address: Assets/Scenes/GameplayScene.unity
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - Gameplay_Scene
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f4a2ed46e65f636479b5b1afbb8f7ef8
+    m_Address: Assets/Scenes/PermanentScene.unity
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Permanent_Scene
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 8cf258e3a231a0945b7eb17f27662218, type: 2}

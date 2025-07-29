@@ -1,6 +1,7 @@
 using System.Collections;
 using SGGames.Script.Data;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace SGGames.Script.Core
 {
@@ -24,7 +25,12 @@ namespace SGGames.Script.Core
 
         private IEnumerator OnInitializeAsync()
         {
+            //Waiting for the scene which contains the bootstrap to be activated and setup completely
+            //before initializing to avoid creating objects in an incorrect scene
+            yield return new WaitUntil(()=>SceneManager.GetActiveScene() == gameObject.scene);
 
+            
+            
             for (int i = 0; i < m_profile.AssetList.Length; i++)
             {
                 if (m_profile.AssetList[i] == null)
@@ -36,6 +42,7 @@ namespace SGGames.Script.Core
                 var handle = m_profile.AssetList[i].LoadAssetAsync();
                 yield return new WaitUntil(() => handle.IsDone);
                 var createdGameObject = Instantiate(handle.Result);
+                SceneManager.MoveGameObjectToScene(createdGameObject, gameObject.scene);
                 FormatObjectName(createdGameObject, i);
             }
             

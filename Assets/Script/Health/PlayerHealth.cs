@@ -11,6 +11,7 @@ namespace SGGames.Script.HealthSystem
     public class PlayerHealth : Health
     {
         [SerializeField] private PlayerData m_playerData;
+        [SerializeField] private GameEvent m_gameEvent;
         [SerializeField] private UpdatePlayerHealthEvent m_updatePlayerHealthEvent;
         [SerializeField] private DebugSettings m_debugSettings;
         [SerializeField] private bool m_invincibleByItem;
@@ -76,6 +77,12 @@ namespace SGGames.Script.HealthSystem
             
             m_playerController.SpriteRenderer.color.Alpha1();
             m_isInvincible = false;
+        }
+        
+        protected override void Kill()
+        {
+            base.Kill();
+            m_gameEvent.Raise(Global.GameEventType.GameOver);
         }
     }
 }

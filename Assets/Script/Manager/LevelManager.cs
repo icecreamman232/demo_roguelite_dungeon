@@ -5,8 +5,10 @@ using SGGames.Script.Dungeon;
 using SGGames.Script.EditorExtensions;
 using SGGames.Script.Events;
 using SGGames.Script.UI;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.ResourceProviders;
 
 namespace SGGames.Script.Managers
 {
@@ -136,6 +138,25 @@ namespace SGGames.Script.Managers
             
             m_isLoading = false;
         }
+
+        private IEnumerator OnReturningToMenu()
+        {
+            m_isLoading = true;
+            var loadingSceneController = ServiceLocator.GetService<LoadingScreenController>();
+            var inputManager = ServiceLocator.GetService<InputManager>();
+            
+            inputManager.DisableInput();
+            yield return StartCoroutine(FadeOutToBlack(loadingSceneController));
+            yield return StartCoroutine(OnLoadingScene());
+        }
+        
+        private IEnumerator OnLoadingScene()
+        {
+            var asyncLoadSceneAssetOperationHandle = Addressables.LoadSceneAsync("MainMenu_Scene");
+            yield return new WaitUntil(() => asyncLoadSceneAssetOperationHandle.IsDone);
+            var loadSceneOperation = Addressables.LoadSceneAsync(asyncLoadSceneAssetOperationHandle.Result.Scene);
+            yield return new WaitUntil(() => loadSceneOperation.IsDone);
+        }
         
         #region Coroutines
 
@@ -236,6 +257,10 @@ namespace SGGames.Script.Managers
                 case Global.GameEventType.LoadNextBiomes:
                     if (m_isLoading) return;
                     StartCoroutine(LoadNextBiomesFirstRoom());
+                    break;
+                case Global.GameEventType.GameOver:
+                    if (m_isLoading) return;
+                    StartCoroutine(OnReturningToMenu());
                     break;
             }
         }

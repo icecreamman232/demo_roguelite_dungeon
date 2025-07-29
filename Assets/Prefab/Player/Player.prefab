@@ -171,7 +171,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1569509321
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8df069f59108d404fb0e0f9aaa41f2a0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -350,8 +350,10 @@ MonoBehaviour:
   m_disableOnDeath: 1
   m_delayAfterDeath: 0
   m_playerData: {fileID: 11400000, guid: cb8c5b08840ace34ab97ac1148242ac1, type: 2}
+  m_gameEvent: {fileID: 11400000, guid: 7ac1f24220b2ef14186e0695169f9965, type: 2}
   m_updatePlayerHealthEvent: {fileID: 11400000, guid: 3ea1778f75b556045a3b02555e9cae7b, type: 2}
   m_debugSettings: {fileID: 11400000, guid: 9de6ea07a3c0d8e47937d6be7dfeff25, type: 2}
+  m_invincibleByItem: 0
 --- !u!114 &4111488435508022935
 MonoBehaviour:
   m_ObjectHideFlags: 0
