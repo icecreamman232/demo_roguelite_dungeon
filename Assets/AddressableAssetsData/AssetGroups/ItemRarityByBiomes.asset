@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: ItemRarityByBiomes
+  m_EditorClassIdentifier: 
+  m_GroupName: ItemRarityByBiomes
+  m_GUID: ea0d5b1473cd3304c96ee75201f61a75
+  m_SerializeEntries:
+  - m_GUID: e24abe580262f5846b5fb2eba87cbc7e
+    m_Address: Assets/Data/Room/Item Rarity Table.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 8cf258e3a231a0945b7eb17f27662218, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 93e4705b45dacb0488919bf8e07b6692, type: 2}
+    - {fileID: 11400000, guid: 60542576fbc1e594a87207e97f8576e1, type: 2}

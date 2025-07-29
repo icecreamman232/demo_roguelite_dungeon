@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: PlayerProjectileData
+  m_EditorClassIdentifier: 
+  m_GroupName: PlayerProjectileData
+  m_GUID: 4e411f2537e41f7459b331091aac0fb0
+  m_SerializeEntries:
+  - m_GUID: 44f601df9f34492458967fe82aea32d6
+    m_Address: Assets/Data/Weapon/Player Sword Projectile Data.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 8cf258e3a231a0945b7eb17f27662218, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 632ab10d813ab0a4ba08e78d80aedded, type: 2}
+    - {fileID: 11400000, guid: 3e9f9a485f7ac8348957ef8303654ffb, type: 2}

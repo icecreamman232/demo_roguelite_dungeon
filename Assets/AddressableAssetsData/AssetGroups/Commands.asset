@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Commands
+  m_EditorClassIdentifier: 
+  m_GroupName: Commands
+  m_GUID: 908bb913185d83a46bc28876e3e71168
+  m_SerializeEntries:
+  - m_GUID: a3fc538c341e4f347b8e45b652468f42
+    m_Address: Assets/Data/Command/Disable Collider Command.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b9e9881c3935b914c82040ecf26a5b9c
+    m_Address: Assets/Data/Command/Skeleton Warrior - Play Revive Anim.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: da9906c1558783c4a81ec56d2dafb11f
+    m_Address: Assets/Data/Command/Enable Collider Command.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fb1d702621b87fb49b3659cd58ee5945
+    m_Address: Assets/Data/CommandSequence/Skeleton Revive Command Sequence.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 8cf258e3a231a0945b7eb17f27662218, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 8925048cbe8c6d14eb71409c0967299b, type: 2}
+    - {fileID: 11400000, guid: 1304bcd51ab0444469d0b2dc1097511d, type: 2}
