@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a292117ec8cbef4d94e2ada9dc8048f, type: 3}
   m_Name: Rebound Cowl Item
   m_EditorClassIdentifier: 
+  m_itemType: 0
   m_rarity: 0
   m_itemSprite: {fileID: 640753124, guid: 826e1aa1ed4749443be8234168559a46, type: 3}
   m_itemID: 12
   m_playerEventTrigger: 01000000
   m_modifierData:
-  - {fileID: 11400000, guid: b356d2a081819c843a034fc16b8837e6, type: 2}
+  - {fileID: 11400000, guid: db9bcac007338c140ac432fa6ca17b7d, type: 2}
   m_impactParamInfo:
   - {fileID: 11400000, guid: 1b369c3220da1f144af4f2fe01584af0, type: 2}

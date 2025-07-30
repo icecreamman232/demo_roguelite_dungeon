@@ -16,7 +16,7 @@ namespace SGGames.Script.Entities
             m_currentDamageResistance = m_data.DefaultDamageResistance;
         }
         
-        private void AddDamageResistance(float damageResistance)
+        public void AddDamageResistance(float damageResistance)
         {
             m_currentDamageResistance += damageResistance;
             m_currentDamageResistance = Mathf.Clamp(m_currentDamageResistance, 0, m_data.MaxDamageResistance);

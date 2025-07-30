@@ -8,16 +8,31 @@ namespace SGGames.Script.Skills
     {
         // Delegate for creating a Modifier
         private delegate Modifier ModifierCreator(PlayerController controller, ModifierData data);
-
+        
         // Registry mapping ModifierData types to their creation functions
-        private static readonly Dictionary<Type, ModifierCreator> ModifierCreators = new Dictionary<Type, ModifierCreator>
+        private static readonly Dictionary<Type, ModifierCreator> ModifierCreators = new();
+        
+        // Static constructor to initialize the dictionary
+        static ModifierFactory()
         {
-            {
-                typeof(InvincibilityModifierData),
-                (controller, data) => new InvincibilityModifier(controller, ((InvincibilityModifierData)data).Duration)
-            }
+            RegisterModifier<InvincibilityModifierData>(
+                (controller, data) => new InvincibilityModifier(controller, data.Duration)
+            );
+            
+            RegisterModifier<DamageResistanceModifierData>(
+                (controller, data) => new DamageResistanceModifier(controller, 
+                    ((DamageResistanceModifierData)data).AddingDmgResistance, data.Duration)
+            );
+            
             // Add more mappings for other Modifier types here
-        };
+        }
+
+
+        private static void RegisterModifier<T>(Func<PlayerController, ModifierData, Modifier> creator)
+            where T : ModifierData
+        {
+            ModifierCreators[typeof(T)] = (controller, data) => creator(controller, (T)data);
+        }
 
         public static Modifier CreateModifier(PlayerController controller, ModifierData data)
         {
