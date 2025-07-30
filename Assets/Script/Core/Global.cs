@@ -18,14 +18,6 @@ namespace SGGames.Script.Core
             TowardPoint,
             FollowingTarget,
         }
-        
-        public enum HealthSlotType
-        {
-            Health,
-            HealthDisable,
-            Shield,
-            ShieldDisable,
-        }
 
         public enum BiomesName
         {
