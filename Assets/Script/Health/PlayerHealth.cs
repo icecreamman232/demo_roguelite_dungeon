@@ -1,6 +1,7 @@
 using System.Collections;
 using SGGames.Script.Core;
 using SGGames.Script.Data;
+using SGGames.Script.Entities;
 using SGGames.Script.Entity;
 using SGGames.Script.Events;
 using SGGames.Script.Managers;
@@ -15,7 +16,8 @@ namespace SGGames.Script.HealthSystem
         [SerializeField] private UpdatePlayerHealthEvent m_updatePlayerHealthEvent;
         [SerializeField] private DebugSettings m_debugSettings;
         [SerializeField] private bool m_invincibleByItem;
-        
+
+        private PlayerResistanceController m_resistanceController;
         private PlayerController m_playerController;
         private const float k_FlickeringInterval = 0.1f; 
         
@@ -26,9 +28,10 @@ namespace SGGames.Script.HealthSystem
             m_updatePlayerHealthEvent.Raise(m_currHealth, m_maxHealth, isInitialize:true);
         }
 
-        public void SetController(PlayerController controller)
+        public void Initialize(PlayerController controller, PlayerResistanceController resistanceController)
         {
             m_playerController = controller;
+            m_resistanceController = resistanceController;
         }
         
         public void KillPlayer()
@@ -45,6 +48,13 @@ namespace SGGames.Script.HealthSystem
         public void SetInvincibleByItem(bool isInvincible)
         {
             m_invincibleByItem = isInvincible;
+        }
+
+        protected override void Damage(float damage, GameObject source)
+        {
+            var finalDamage = damage * (1 - MathHelpers.PercentToValue(m_resistanceController.CurrentDamageResistance));
+            m_currHealth -= finalDamage; 
+            OnHit?.Invoke(damage, source);
         }
 
         protected override bool CanTakeDamage()

@@ -66,9 +66,14 @@ namespace SGGames.Script.Core
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static float PercentOf(float value)
+        public static float ValueToPercent(float value)
         {
-            return value / 100;
+            return value * 100;
+        }
+
+        public static float PercentToValue(float percent)
+        {
+            return percent / 100;
         }
 
         /// <summary>
