@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Damage Resistance Modifier - Rebound Cowl
   m_EditorClassIdentifier: 
   m_duration: 3
-  m_addingDmgResistance: 50
+  m_addingDmgResistance: 20
