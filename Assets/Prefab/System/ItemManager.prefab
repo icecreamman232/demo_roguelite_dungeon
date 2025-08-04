@@ -44,7 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac722abc5b0834543b4fe3aa431a708f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_test: {fileID: 11400000, guid: f3d9fdda3ae2d6541b3bf431513a0ed0, type: 2}
-  m_triggerModifierEvent: {fileID: 11400000, guid: ab348dcc88bbf79448852907c9077415, type: 2}
+  m_test: {fileID: 11400000, guid: 587732044c74dbe4790649005c400cc3, type: 2}
   m_equipItemEvent: {fileID: 11400000, guid: ac789070c038d3b47a5f2db446c36a1a, type: 2}
-  m_triggerImpactEvent: {fileID: 11400000, guid: 016c0540edf7df14ea01ae11b5308dbc, type: 2}

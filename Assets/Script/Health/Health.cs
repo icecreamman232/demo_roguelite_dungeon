@@ -59,6 +59,17 @@ namespace SGGames.Script.HealthSystem
         {
             m_currHealth = health;
         }
+
+        public virtual void Heal(float healAmount)
+        {
+            m_currHealth += healAmount;
+            if (m_currHealth > m_maxHealth)
+            {
+                m_currHealth = m_maxHealth;
+            }
+            UpdateHealthBar();
+            Debug.Log($"Heal {healAmount} on {this.gameObject.name}");
+        }
         
         protected virtual bool CanTakeDamage()
         {
