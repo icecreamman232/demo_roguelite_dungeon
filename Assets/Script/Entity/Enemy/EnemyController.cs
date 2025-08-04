@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace SGGames.Scripts.Entity
 {
-    public class EnemyController : EntityBehavior, IRevivable
+    public class EnemyController : EntityBehavior, IRevivable , IEntityIdentifier
     {
         [SerializeField] protected GameEvent m_gameEvent;
         [SerializeField] protected EnemyBrain m_defaultBrain;
@@ -148,7 +148,11 @@ namespace SGGames.Scripts.Entity
             m_enemyHealth.SelfKill();
         }
         #endregion
-        
+
+        public bool IsPlayer()
+        {
+            return false;
+        }
     }
 }
 

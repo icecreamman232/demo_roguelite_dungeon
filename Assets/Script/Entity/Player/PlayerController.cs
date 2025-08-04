@@ -1,4 +1,3 @@
-using System;
 using SGGames.Script.Entities;
 using SGGames.Script.HealthSystem;
 using SGGames.Script.StaminaSystem;
@@ -9,7 +8,7 @@ namespace SGGames.Script.Entity
     /// <summary>
     /// Central component for other components to access other components of player
     /// </summary>
-    public class PlayerController : MonoBehaviour
+    public class PlayerController : MonoBehaviour, IEntityIdentifier
     {
         [SerializeField] private BoxCollider2D m_collider;
         [SerializeField] private SpriteRenderer m_spriteRenderer;
@@ -37,6 +36,11 @@ namespace SGGames.Script.Entity
             m_playerMovement.FlippingModelAction = m_animationController.FlipModel;
             m_playerHealth.Initialize(this, m_resistanceController);
             m_resistanceController.Initialize();
+        }
+
+        public bool IsPlayer()
+        {
+            return true;
         }
     }
 }
