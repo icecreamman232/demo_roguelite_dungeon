@@ -33,12 +33,6 @@ namespace SGGames.Script.Core
             OnWeaponAttack = 1 << 3 , //Trigger when player attack
             OnWeaponHit = 1 << 4, //Trigger when attack projectile hit target either obstacle or target
         }
-
-        public enum WorldEvents
-        {
-            OnEnterNewRoom,
-            OnRoomCleared,
-        }
         
         public enum ItemClass
         {

@@ -20,7 +20,10 @@ namespace SGGames.Script.Skills
 
         public override void Apply()
         {
-            m_playerController.ResistanceController.AddDamageResistance(m_addingDamageResistance);
+            if (m_entity.IsPlayer())
+            {
+                ((PlayerController) m_entity).ResistanceController.AddDamageResistance(m_addingDamageResistance);
+            }
             if (m_duration > 0)
             {
                 m_timeElapsed = m_duration;
@@ -45,7 +48,10 @@ namespace SGGames.Script.Skills
 
         public override void Remove()
         {
-            m_playerController.ResistanceController.AddDamageResistance(-m_addingDamageResistance);
+            if (m_entity.IsPlayer())
+            {
+                ((PlayerController) m_entity).ResistanceController.AddDamageResistance(-m_addingDamageResistance);
+            }
             Debug.Log($"Modifier::Remove {m_addingDamageResistance}% Dmg Resist Modifier");
         }
     }

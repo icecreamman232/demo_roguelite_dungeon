@@ -108,6 +108,8 @@ namespace SGGames.Script.Core
             PauseGame = 30,
             UnpauseGame = 31,
         }
+        
+        
     }
 }
 

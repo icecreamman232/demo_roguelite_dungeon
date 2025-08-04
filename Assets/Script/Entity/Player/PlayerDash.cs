@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using SGGames.Script.Core;
 using SGGames.Script.Data;
+using SGGames.Script.Items;
 using SGGames.Script.Managers;
 using SGGames.Script.Modules;
 using UnityEngine;
@@ -11,6 +12,7 @@ namespace SGGames.Script.Entity
     public class PlayerDash : EntityBehavior
     {
         [SerializeField] private PlayerData m_playerData;
+        [SerializeField] private WorldEvent m_worldEvent;
         [SerializeField] private AnimationCurve m_dashSpeedCurve;
         [SerializeField] private AfterImageFX m_afterImageFX;
         [SerializeField] private SpriteRenderer m_spriteRenderer;
@@ -90,6 +92,7 @@ namespace SGGames.Script.Entity
             if (m_controller.PlayerMovement.IsHitObstacle)
             {
                 OnDashHitObstacle?.Invoke();
+                m_worldEvent.Raise(Global.WorldEventType.OnPlayerDashCanceled, this.gameObject);
                 EndDash();
                 return;
             }
@@ -104,6 +107,7 @@ namespace SGGames.Script.Entity
             if (transform.position == m_endPosition)
             {
                 OnDashFinished?.Invoke();
+                m_worldEvent.Raise(Global.WorldEventType.OnPlayerStopDash, this.gameObject);
                 EndDash();
             }
         }
@@ -120,6 +124,9 @@ namespace SGGames.Script.Entity
             {
                 command.Execute();
             }
+            
+            m_worldEvent.Raise(Global.WorldEventType.OnPlayerStartDash, this.gameObject);
+            
             m_isDashing = true;
         }
 
@@ -130,7 +137,6 @@ namespace SGGames.Script.Entity
             {
                 command.Execute();
             }
-
             StartCoroutine(OnCoolDown());
         }
 

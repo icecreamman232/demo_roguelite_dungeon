@@ -7,14 +7,14 @@ namespace SGGames.Script.Skills
     [Serializable]
     public abstract class Modifier
     {
-        protected PlayerController m_playerController;
+        protected IEntityIdentifier m_entity;
         protected bool m_shouldBeRemoved;
         
         public bool CanRemove => m_shouldBeRemoved;
         
-        public Modifier(PlayerController controller)
+        public Modifier(IEntityIdentifier controller)
         {
-            m_playerController  = controller;
+            m_entity  = controller;
         }
         
         public abstract void Apply();
