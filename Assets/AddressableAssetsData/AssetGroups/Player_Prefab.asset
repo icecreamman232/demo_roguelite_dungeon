@@ -37,6 +37,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f3d9fdda3ae2d6541b3bf431513a0ed0
+    m_Address: Assets/Items/Rebound Cowl/Rebound Cowl Item.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 8cf258e3a231a0945b7eb17f27662218, type: 2}
   m_SchemaSet:

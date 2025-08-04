@@ -12,17 +12,17 @@ namespace SGGames.Script.Skills
     public class ItemManager : MonoBehaviour
     {
         [SerializeField] private InventoryItemData m_test;
-        [SerializeField] private TriggerModifierEvent m_triggerModifierEvent;
+        //[SerializeField] private TriggerModifierEvent m_triggerModifierEvent;
         [SerializeField] private EquipInventoryItemEvent m_equipItemEvent;
-        [SerializeField] private TriggerImpactEvent m_triggerImpactEvent;
+        //[SerializeField] private TriggerImpactEvent m_triggerImpactEvent;
         private PlayerController m_playerController;
         private List<InventoryItemData> m_equippedItemList;
         private Dictionary<InventoryItemData, ushort> m_itemToBeTriggeredDictionary;
 
         private ushort m_playerEventStatus;
         private ushort m_worldEventStatus;
-
         private float m_intervalToResetStatus = 2;
+        private TriggerManager m_triggerManager;
         
         private IEnumerator Start()
         {
@@ -34,7 +34,7 @@ namespace SGGames.Script.Skills
             m_itemToBeTriggeredDictionary = new Dictionary<InventoryItemData, ushort>();
             
             RegisterEvents(m_playerController);
-            StartCoroutine(OnResetStatus());
+            //StartCoroutine(OnResetStatus());
         }
 
         private void OnDestroy()
@@ -92,30 +92,35 @@ namespace SGGames.Script.Skills
 
         private void TriggerItem(InventoryItemData data)
         {
-            for (int i = 0; i < data.ModifierData.Count; i++)
-            {
-                m_triggerModifierEvent.Raise(data.ModifierData[i]);
-            }
-
-            for (int i = 0; i < data.ImpactParamInfo.Count; i++)
-            {
-                m_triggerImpactEvent.Raise(m_playerController.transform.position, data.ImpactParamInfo[i]);
-            }
+            // for (int i = 0; i < data.ModifierData.Count; i++)
+            // {
+            //     m_triggerModifierEvent.Raise(data.ModifierData[i]);
+            // }
+            //
+            // for (int i = 0; i < data.ImpactParamInfo.Count; i++)
+            // {
+            //     m_triggerImpactEvent.Raise(m_playerController.transform.position, data.ImpactParamInfo[i]);
+            // }
         }
         
         private void EquipItem(InventoryItemData data)
         {
-            ushort playerEventStatus = 0;
-            foreach (var eventTrigger in data.PlayerEventTrigger)
-            {
-                playerEventStatus |= (ushort) eventTrigger;
-            }
-            m_equippedItemList.Add(data);
-            if (m_itemToBeTriggeredDictionary == null)
-            {
-                m_itemToBeTriggeredDictionary = new Dictionary<InventoryItemData, ushort>();
-            }
-            m_itemToBeTriggeredDictionary.Add(data, playerEventStatus);
+            // ushort playerEventStatus = 0;
+            // foreach (var eventTrigger in data.PlayerEventTrigger)
+            // {
+            //     playerEventStatus |= (ushort) eventTrigger;
+            // }
+            // m_equippedItemList.Add(data);
+            // if (m_itemToBeTriggeredDictionary == null)
+            // {
+            //     m_itemToBeTriggeredDictionary = new Dictionary<InventoryItemData, ushort>();
+            // }
+            // m_itemToBeTriggeredDictionary.Add(data, playerEventStatus);
+
+
+            var triggerManager = ServiceLocator.GetService<TriggerManager>();
+            triggerManager.AddTrigger(data.TriggerData);
+
         }
         
         [ContextMenu("Test Equip")]

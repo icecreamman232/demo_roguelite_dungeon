@@ -14,12 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GroupName: Item
   m_GUID: ce3eddf8e6a088a409664bc40407a9c0
-  m_SerializeEntries:
-  - m_GUID: 638e1c688b2634b44af22c3fff065a09
-    m_Address: Assets/Data/Item
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 8cf258e3a231a0945b7eb17f27662218, type: 2}
   m_SchemaSet:

@@ -16,7 +16,7 @@ namespace SGGames.Script.Core
         #region Layer Masks
         public static int PlayerMask = 1 << PlayerLayer;
         public static int EnemyMask = 1 << EnemyLayer;
-        public static int ObstacleMask = 1 << EnemyLayer;
+        public static int ObstacleMask = 1 << ObstacleLayer;
         //public static int PlayerMask = DoorMask | WallMask;
         #endregion
         

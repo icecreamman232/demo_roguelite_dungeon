@@ -43,7 +43,6 @@ namespace SGGames.Script.Skills
             {
                 ((PlayerController) m_entity).PlayerHealth.SetInvincibleByItem(false);
             }
-            m_entity = null;
             Debug.Log($"Modifier::Remove Invincibility Modifier");
         }
     }

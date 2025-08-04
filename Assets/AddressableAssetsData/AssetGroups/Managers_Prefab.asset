@@ -75,6 +75,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - GameplaySystem
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ae337a167666ba041987214275f66da0
+    m_Address: Assets/Prefab/System/TriggerManager.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameplaySystem
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c2d825e568812d541ab428e8c3fddcf9
     m_Address: Assets/Prefab/System/TweenManager.prefab
     m_ReadOnly: 0

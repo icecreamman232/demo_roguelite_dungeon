@@ -92,7 +92,7 @@ namespace SGGames.Script.Entity
             if (m_controller.PlayerMovement.IsHitObstacle)
             {
                 OnDashHitObstacle?.Invoke();
-                m_worldEvent.Raise(Global.WorldEventType.OnPlayerDashCanceled, this.gameObject);
+                m_worldEvent.Raise(Global.WorldEventType.OnPlayerDashCanceled, this.gameObject, null);
                 EndDash();
                 return;
             }
@@ -107,7 +107,7 @@ namespace SGGames.Script.Entity
             if (transform.position == m_endPosition)
             {
                 OnDashFinished?.Invoke();
-                m_worldEvent.Raise(Global.WorldEventType.OnPlayerStopDash, this.gameObject);
+                m_worldEvent.Raise(Global.WorldEventType.OnPlayerStopDash, this.gameObject, null);
                 EndDash();
             }
         }
@@ -125,7 +125,7 @@ namespace SGGames.Script.Entity
                 command.Execute();
             }
             
-            m_worldEvent.Raise(Global.WorldEventType.OnPlayerStartDash, this.gameObject);
+            m_worldEvent.Raise(Global.WorldEventType.OnPlayerStartDash, this.gameObject, null);
             
             m_isDashing = true;
         }

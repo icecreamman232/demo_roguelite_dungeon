@@ -9,12 +9,16 @@ namespace SGGames.Script.Data
     [CreateAssetMenu(fileName = "New Inventory Item Data", menuName = "SGGames/Data/Inventory Item")]
     public class InventoryItemData : ItemData
     {
+        [SerializeField] [ShowProperties] private TriggerData m_triggerData;
+        
         [Tooltip("Player event required to trigger this item")]
         [SerializeField] private List<Global.PlayerEvents> m_playerEventTrigger;
         [ShowProperties]
         [SerializeField] private List<ModifierData> m_modifierData;
         [ShowProperties]
         [SerializeField] private List<ImpactParamInfo> m_impactParamInfo;
+        
+        public TriggerData TriggerData => m_triggerData;
         
         public List<Global.PlayerEvents> PlayerEventTrigger => m_playerEventTrigger;
         public List<ModifierData> ModifierData => m_modifierData;

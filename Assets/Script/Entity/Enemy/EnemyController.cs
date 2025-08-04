@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using SGGames.Script.Core;
 using SGGames.Script.Dungeon;
@@ -10,6 +11,7 @@ using UnityEngine;
 
 namespace SGGames.Scripts.Entity
 {
+    [Serializable]
     public class EnemyController : EntityBehavior, IRevivable , IEntityIdentifier
     {
         [SerializeField] protected GameEvent m_gameEvent;

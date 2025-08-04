@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44aba7273f124b34eb4d1abfa81f911c, type: 3}
+  m_Name: Create Stun AOE Impact - Rebound Cowl
+  m_EditorClassIdentifier: 
+  m_impactParamInfo: {fileID: 11400000, guid: 1b369c3220da1f144af4f2fe01584af0, type: 2}
+  m_impactEvent: {fileID: 11400000, guid: 016c0540edf7df14ea01ae11b5308dbc, type: 2}
+  m_isCreateAtSourcePosition: 1
