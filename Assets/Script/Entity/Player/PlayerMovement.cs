@@ -21,6 +21,7 @@ namespace SGGames.Script.Entity
         private float m_flatSpeedBonus;
         
         public Action<bool> FlippingModelAction;
+        public LayerMask ObstacleLayerMask => m_obstacleLayerMask;
         public bool IsHitObstacle => CheckObstacle();
         
         private void Start()

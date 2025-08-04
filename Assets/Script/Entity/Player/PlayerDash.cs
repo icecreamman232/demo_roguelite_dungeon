@@ -111,12 +111,37 @@ namespace SGGames.Script.Entity
                 EndDash();
             }
         }
+        
+        private Vector3 FindSafeDashEndPosition(Vector3 startPos, Vector3 desiredEndPos)
+        {
+            Vector3 direction = (desiredEndPos - startPos).normalized;
+            float maxDistance = Vector3.Distance(startPos, desiredEndPos);
+    
+            var playerCollider = m_controller.PlayerCollider;
+    
+            // Step backwards from desired position to find safe spot
+            for (float distance = maxDistance; distance > 0.1f; distance -= 0.1f)
+            {
+                Vector3 testPosition = startPos + direction * distance;
+        
+                // Check if this position would cause a collision
+                var hit = Physics2D.OverlapBox(testPosition, playerCollider.size, 0, m_controller.PlayerMovement.ObstacleLayerMask);
+        
+                if (hit == null)
+                {
+                    return testPosition;
+                }
+            }
+    
+            return startPos;
+        }
+
 
         private void PrepareBeforeDash()
         {
             m_startPosition = transform.position;
-            m_endPosition = m_startPosition + (Vector3)m_lastMoveInput * m_playerData.DashDistance;
-            
+            var desiredEndPosition = m_startPosition + (Vector3)m_lastMoveInput * m_playerData.DashDistance;
+            m_endPosition = FindSafeDashEndPosition(m_startPosition, desiredEndPosition);
             m_distanceToTarget = Vector3.Distance(m_startPosition, m_endPosition);
             m_traveledDistance = 0;
             
