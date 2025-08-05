@@ -2,41 +2,26 @@ using System;
 using SGGames.Script.Entity;
 using UnityEngine;
 
-namespace SGGames.Script.Skills
+namespace SGGames.Script.Items
 {
     [Serializable]
-    public class InvincibilityModifier : Modifier
+    public class InvincibilityModifier : DurationBasedModifier
     {
-        private float m_duration;
-        private float m_timeElapsed;
-        
-        public InvincibilityModifier(PlayerController controller, float duration = 0) : base(controller)
+        public InvincibilityModifier(PlayerController controller, float duration = 0) : base(controller, duration)
         {
-            m_duration = duration;
+            
         }
 
         public override void Apply()
         {
-            m_timeElapsed = m_duration;
             if (m_entity.IsPlayer())
             {
                 ((PlayerController) m_entity).PlayerHealth.SetInvincibleByItem(true);
             }
+            base.Apply();
             Debug.Log($"Modifier::Apply Invincibility Modifier");
         }
-
-        public override void Update()
-        {
-            if (m_timeElapsed < 0)
-            {
-                m_shouldBeRemoved = true;
-                return;
-            }
-
-            m_timeElapsed -= Time.deltaTime;
-            base.Update();
-        }
-
+        
         public override void Remove()
         {
             if (m_entity.IsPlayer())

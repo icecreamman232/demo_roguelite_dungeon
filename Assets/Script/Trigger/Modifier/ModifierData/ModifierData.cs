@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SGGames.Script.Skills
+namespace SGGames.Script.Items
 {
     public abstract class ModifierData : ScriptableObject
     {

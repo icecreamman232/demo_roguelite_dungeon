@@ -2,20 +2,17 @@ using System;
 using SGGames.Script.Entity;
 using UnityEngine;
 
-namespace SGGames.Script.Skills
+namespace SGGames.Script.Items
 {
     [Serializable]
-    public class DamageResistanceModifier : Modifier
+    public class DamageResistanceModifier : DurationBasedModifier
     {
         private float m_addingDamageResistance;
-        private float m_duration;
-        private float m_timeElapsed; 
         
         public DamageResistanceModifier(PlayerController controller, float addingDamageResistance, float duration)
-            : base(controller)
+            : base(controller, duration)
         {
             m_addingDamageResistance = addingDamageResistance;
-            m_duration = duration;
         }
 
         public override void Apply()
@@ -24,28 +21,10 @@ namespace SGGames.Script.Skills
             {
                 ((PlayerController) m_entity).ResistanceController.AddDamageResistance(m_addingDamageResistance);
             }
-            if (m_duration > 0)
-            {
-                m_timeElapsed = m_duration;
-            }
+            base.Apply();
             Debug.Log($"Modifier::Apply {m_addingDamageResistance}% Dmg Resist Modifier");
         }
         
-        public override void Update()
-        {
-            //Permanent type so duration will be -1, we no need to update
-            if (m_duration == -1) return;
-            
-            if (m_timeElapsed < 0)
-            {
-                m_shouldBeRemoved = true;
-                return;
-            }
-
-            m_timeElapsed -= Time.deltaTime;
-            base.Update();
-        }
-
         public override void Remove()
         {
             if (m_entity.IsPlayer())

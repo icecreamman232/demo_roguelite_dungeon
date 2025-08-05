@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace SGGames.Script.Skills
+namespace SGGames.Script.Items
 {
     [CreateAssetMenu(menuName = "SGGames/Event/Trigger Modifier", fileName = "Trigger Modifier Event")]
     public class TriggerModifierEvent : ScriptableObject

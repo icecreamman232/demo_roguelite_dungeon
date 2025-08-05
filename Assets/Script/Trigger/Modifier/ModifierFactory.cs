@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using SGGames.Script.Entity;
+using SGGames.Script.Skills;
 
-namespace SGGames.Script.Skills
+namespace SGGames.Script.Items
 {
     public static class ModifierFactory
     {

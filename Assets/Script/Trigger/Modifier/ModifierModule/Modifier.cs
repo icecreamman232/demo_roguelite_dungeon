@@ -1,8 +1,6 @@
 using System;
-using SGGames.Script.Entity;
 
-
-namespace SGGames.Script.Skills
+namespace SGGames.Script.Items
 {
     [Serializable]
     public abstract class Modifier
@@ -12,7 +10,7 @@ namespace SGGames.Script.Skills
         
         public bool CanRemove => m_shouldBeRemoved;
         
-        public Modifier(IEntityIdentifier controller)
+        protected Modifier(IEntityIdentifier controller)
         {
             m_entity  = controller;
         }

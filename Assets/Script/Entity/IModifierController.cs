@@ -1,4 +1,4 @@
-using SGGames.Script.Skills;
+using SGGames.Script.Items;
 
 namespace SGGames.Script.Entities
 {

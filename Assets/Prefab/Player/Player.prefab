@@ -490,6 +490,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_isPermit: 1
+  m_worldEvent: {fileID: 11400000, guid: 99cdaba5340f5944f93746bbfbafa9ad, type: 2}
 --- !u!1001 &5209779157902029133
 PrefabInstance:
   m_ObjectHideFlags: 0

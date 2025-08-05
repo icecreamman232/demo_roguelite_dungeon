@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using SGGames.Script.Core;
@@ -6,7 +5,7 @@ using SGGames.Script.Entity;
 using SGGames.Script.Managers;
 using UnityEngine;
 
-namespace SGGames.Script.Skills
+namespace SGGames.Script.Items
 {
     public class ModifierManager : MonoBehaviour, IGameService
     {
