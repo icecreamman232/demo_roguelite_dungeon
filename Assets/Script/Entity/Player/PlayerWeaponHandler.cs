@@ -36,19 +36,12 @@ namespace SGGames.Script.Entity
         private void OnWorldMousePositionChanged(Vector3 mouseWorldPosition)
         {
             m_aimDirection = (mouseWorldPosition - transform.position).normalized;
-            m_aimAngle = Mathf.Atan2(m_aimDirection.y, m_aimDirection.x) * Mathf.Rad2Deg;
+            m_aimAngle = Mathf.Atan2(m_aimDirection.y, m_aimDirection.x) * Mathf.Rad2Deg - 90f;
             m_weaponAttachment.rotation = Quaternion.AngleAxis(m_aimAngle, Vector3.forward);
+            
+            m_isAimAtLeftSide = m_aimAngle is <= -90 or >= 90;
 
-            m_currWeapon.transform.localScale = Vector3.one;
-            m_isAimAtLeftSide = false;
-            
-            if ((m_aimAngle <= -90) || (m_aimAngle >= 90))
-            {
-                m_currWeapon.transform.localScale = new Vector3(1, -1, 1);
-                m_isAimAtLeftSide = true;
-            }
-            
-            m_currWeapon.SetAttackOnLeft(m_isAimAtLeftSide);
+            //m_currWeapon.SetAttackOnLeft(m_isAimAtLeftSide);
         }
     }
 }

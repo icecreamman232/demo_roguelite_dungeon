@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2240817558458299825}
   - component: {fileID: 4307130433912636171}
   - component: {fileID: 1692213337825253617}
-  - component: {fileID: 6665478808903390545}
   m_Layer: 0
   m_Name: Knight Default Sword
   m_TagString: Untagged
@@ -34,6 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1582318557517566224}
+  - {fileID: 5327444765057094190}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2240817558458299825
@@ -50,6 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_weaponData: {fileID: 11400000, guid: 2474eaf0ff861f546a1eb95a298883e7, type: 2}
   m_projectilePooler: {fileID: 1692213337825253617}
+  m_shootingPivot: {fileID: 5327444765057094190}
 --- !u!114 &4307130433912636171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,28 +88,37 @@ MonoBehaviour:
   m_isSharePool: 0
   m_objectToPool: {fileID: 2609813097702135230, guid: 7cba39db18a8cbf469df28c58c48ef2f, type: 3}
   m_poolSize: 20
---- !u!95 &6665478808903390545
-Animator:
-  serializedVersion: 7
+--- !u!1 &4734573511806625906
+GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 889536631991159096}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 69966f5b84d78be4f893da89fc02e17d, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5327444765057094190}
+  m_Layer: 0
+  m_Name: ShootingPivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5327444765057094190
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4734573511806625906}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.83, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5800393206498180067}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7261112394907250830
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,13 +144,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7261112394907250830}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.13052624, w: 0.9914449}
-  m_LocalPosition: {x: 0.25, y: -0.3, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5800393206498180067}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -15}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3305354111687994920
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -183,9 +193,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1569509321
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 0260387228028544490e9d4d573b29d2, type: 3}
+  m_Sprite: {fileID: 1017264368, guid: a98516c26e0e88a43a58067515e74bd5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

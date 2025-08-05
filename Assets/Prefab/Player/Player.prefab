@@ -173,12 +173,12 @@ SpriteRenderer:
   m_SortingLayerID: -1569509321
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8df069f59108d404fb0e0f9aaa41f2a0, type: 3}
+  m_Sprite: {fileID: 1657951557, guid: a98516c26e0e88a43a58067515e74bd5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.25, y: 0.25}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -501,6 +501,10 @@ PrefabInstance:
     - target: {fileID: 889536631991159096, guid: aa0b65a8007b434479cbdfa2f24f6217, type: 3}
       propertyPath: m_Name
       value: Knight Default Sword
+      objectReference: {fileID: 0}
+    - target: {fileID: 1582318557517566224, guid: aa0b65a8007b434479cbdfa2f24f6217, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 5800393206498180067, guid: aa0b65a8007b434479cbdfa2f24f6217, type: 3}
       propertyPath: m_LocalPosition.x

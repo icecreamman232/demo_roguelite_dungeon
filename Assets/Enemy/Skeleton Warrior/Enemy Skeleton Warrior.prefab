@@ -246,6 +246,22 @@ MonoBehaviour:
   m_obstacleLayerMask:
     serializedVersion: 2
     m_Bits: 768
+  m_usePathfinding: 0
+  m_pathFinder: {fileID: 0}
+  m_pathUpdateInterval: 1
+  m_nextWaypointDistance: 0.1
+  m_useWallSliding: 1
+  m_useWallProximityDetection: 1
+  m_usePathOptimization: 1
+  m_avoidOtherEnemies: 1
+  m_wallProximityThreshold: 1
+  m_cornerSlidingSpeed: 1.5
+  m_enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  m_enemyAvoidanceRadius: 1
+  m_enemyAvoidanceForce: 2
+  m_enableDebug: 0
 --- !u!114 &8187148818719575173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -430,9 +446,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2029056537
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1644955684130295614, guid: ef40648214e69a9448fad30b4c8ceaa8, type: 3}
+  m_Sprite: {fileID: 914646557392291735, guid: b5040d7cdedf4684985693bbefcfdcab, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

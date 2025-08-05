@@ -25,6 +25,8 @@ namespace SGGames.Script.Entity
         private float m_distanceToTarget;
         private Vector2 m_lastMoveInput;
 
+        private float m_dashSpeedMultipleFromItem = 1f;
+
         private IDashCommand[] m_startDashCommands;
         private IDashCommand[] m_endDashCommands;
 
@@ -43,6 +45,23 @@ namespace SGGames.Script.Entity
             m_lastMoveInput = Vector2.right;
 
             SetupCommands();
+        }
+
+        public void SetBonusDashSpeedFromItem(float bonusSpeed)
+        {
+            m_dashSpeedMultipleFromItem = bonusSpeed;
+        }
+        
+        protected override void OnGamePaused()
+        {
+            SetPermission(false);
+            base.OnGamePaused();
+        }
+
+        protected override void OnGameResumed()
+        {
+            SetPermission(true);
+            base.OnGameResumed();
         }
 
         private void SetupCommands()
@@ -99,7 +118,8 @@ namespace SGGames.Script.Entity
             
             var traveledTime = MathHelpers.Remap(m_traveledDistance,0,m_distanceToTarget,0,1);
             var speedMultiplier = m_dashSpeedCurve.Evaluate(traveledTime);
-            transform.position = Vector3.MoveTowards(transform.position,m_endPosition, speedMultiplier * m_playerData.DashSpeed * Time.deltaTime);
+            var finalDashSpeed = (speedMultiplier * m_playerData.DashSpeed) * m_dashSpeedMultipleFromItem;
+            transform.position = Vector3.MoveTowards(transform.position,m_endPosition, finalDashSpeed * Time.deltaTime);
             m_traveledDistance = Vector3.Distance(m_startPosition, transform.position);
 
             m_afterImageFX.DropImageFX(m_spriteRenderer.sprite, m_spriteRenderer.flipX);
@@ -168,18 +188,6 @@ namespace SGGames.Script.Entity
         private IEnumerator OnCoolDown()
         {
             yield return new WaitForSeconds(m_playerData.DashCooldown);
-        }
-
-        protected override void OnGamePaused()
-        {
-            SetPermission(false);
-            base.OnGamePaused();
-        }
-
-        protected override void OnGameResumed()
-        {
-            SetPermission(true);
-            base.OnGameResumed();
         }
     }
 }

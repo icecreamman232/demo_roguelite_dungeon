@@ -11,24 +11,27 @@ namespace SGGames.Script.Weapons
     public class PlayerDefaultRangedWeapon : MonoBehaviour, IWeapon, IProjectileSpawner
     {
         [SerializeField] private WeaponData m_weaponData;
-        [SerializeField]private ObjectPooler m_projectilePooler;
+        [SerializeField] private ObjectPooler m_projectilePooler;
+        [SerializeField] private Transform m_shootingPivot;
         private WeaponStateManager m_stateManager;
-        private DefaultPlayerWeaponAnimator m_defaultPlayerWeaponAnimator;
+        //private DefaultPlayerWeaponAnimator m_defaultPlayerWeaponAnimator;
         private PlayerWeaponHandler m_playerWeaponHandler;
         private ProjectileBuilder m_projectileBuilder;
         private IWeaponOwner m_owner;
         private GameObject m_ownerGameObject;
         
-        private void Start()
-        {
-            var animator = GetComponent<Animator>();
-            if (animator == null)
-            {
-                Debug.LogError("Animator not found");
-            }
-            m_defaultPlayerWeaponAnimator = new DefaultPlayerWeaponAnimator();
-            m_defaultPlayerWeaponAnimator.Initialize(animator);
-        }
+        public bool IsReady => m_stateManager.IsReady;
+        
+        // private void Start()
+        // {
+        //     var animator = GetComponent<Animator>();
+        //     if (animator == null)
+        //     {
+        //         Debug.LogError("Animator not found");
+        //     }
+        //     m_defaultPlayerWeaponAnimator = new DefaultPlayerWeaponAnimator();
+        //     m_defaultPlayerWeaponAnimator.Initialize(animator);
+        // }
 
         private void Update()
         {
@@ -37,7 +40,7 @@ namespace SGGames.Script.Weapons
         
         public void SetAttackOnLeft(bool isAttackOnLeft)
         {
-            m_defaultPlayerWeaponAnimator.SetAttackDirection(isAttackOnLeft);
+            //m_defaultPlayerWeaponAnimator.SetAttackDirection(isAttackOnLeft);
         }
 
         public void InitializeWeapon(IWeaponOwner owner)
@@ -64,7 +67,7 @@ namespace SGGames.Script.Weapons
 
         public void UpdateAnimationOnAttack()
         {
-            m_defaultPlayerWeaponAnimator.UpdateAnimation();
+            //m_defaultPlayerWeaponAnimator.UpdateAnimation();
         }
 
         public void Attack()
@@ -89,10 +92,8 @@ namespace SGGames.Script.Weapons
             projectile.Spawn(m_projectileBuilder
                 .SetOwner(m_ownerGameObject)
                 .SetDirection(m_playerWeaponHandler.AimDirection)
-                .SetPosition(transform.position)
+                .SetPosition(m_shootingPivot.position)
                 .SetRotation(projectileRot));
         }
-        
-        public bool IsReady => m_stateManager.IsReady;
     }
 }
