@@ -14,17 +14,17 @@ namespace SGGames.Script.Entity
         /// <summary>
         /// List of modifier that will be removed when their live time is over
         /// </summary>
-        private List<Modifier> m_durationBasedModifiers;
+        private List<DurationBasedModifier> m_durationBasedModifiers;
         
         /// <summary>
         /// List of modifier that will be removed when there's specific event triggered
         /// </summary>
-        private List<Modifier> m_eventBasedModifier;
+        private List<EventBasedModifier> m_eventBasedModifier;
 
         private void Start()
         {
-            m_durationBasedModifiers = new List<Modifier>();
-            m_eventBasedModifier = new List<Modifier>();
+            m_durationBasedModifiers = new List<DurationBasedModifier>();
+            m_eventBasedModifier = new List<EventBasedModifier>();
             m_worldEvent.AddListener(OnReceiveWorldEvent);
         }
 
@@ -47,7 +47,15 @@ namespace SGGames.Script.Entity
         public void AddModifier(ModifierData modifierData)
         {
             var modifier = ModifierFactory.CreateModifier(m_controller, modifierData);
-            m_durationBasedModifiers.Add(modifier);
+            if (modifier is DurationBasedModifier)
+            {
+                m_durationBasedModifiers.Add((DurationBasedModifier)modifier);
+            }
+            else
+            {
+                m_eventBasedModifier.Add((EventBasedModifier)modifier);
+            }
+            
             modifier.Apply();
         }
         
@@ -70,7 +78,10 @@ namespace SGGames.Script.Entity
         
         private void OnReceiveWorldEvent(Global.WorldEventType eventType, GameObject source, GameObject target)
         {
-            
+            foreach (var modifier in m_eventBasedModifier)
+            {
+                modifier.CheckEvent(eventType);
+            }
         }
     }
 }

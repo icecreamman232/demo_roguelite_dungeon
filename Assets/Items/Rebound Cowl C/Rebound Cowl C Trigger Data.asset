@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190069e36f73f0e47945f298e1c70ee4, type: 3}
+  m_Name: Rebound Cowl C Trigger Data
+  m_EditorClassIdentifier: 
+  m_evenTrigger: 301
+  m_conditions:
+  - {fileID: 11400000, guid: 46c5f65108ad3274dacbd7d2f00c7f6e, type: 2}
+  m_actions:
+  - {fileID: 11400000, guid: a57b462dc5a09814a95ef4185fa0d316, type: 2}
+  - {fileID: 11400000, guid: 5553e48fea95c444cbf5b87027de3906, type: 2}

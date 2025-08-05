@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using SGGames.Script.Entity;
-using SGGames.Script.Skills;
 
 namespace SGGames.Script.Items
 {
@@ -23,6 +22,14 @@ namespace SGGames.Script.Items
             RegisterModifier<DamageResistanceModifierData>(
                 (controller, data) => new DamageResistanceModifier(controller, 
                     ((DamageResistanceModifierData)data).AddingDmgResistance, data.Duration)
+            );
+            
+            RegisterModifier<DashSpeedEventBasedModifierData>(
+                (controller, data) => new DashSpeedEventBasedModifier(controller, 
+                    ((DashSpeedEventBasedModifierData)data).WorldEventType, 
+                    ((DashSpeedEventBasedModifierData)data).NumberTrigger,
+                    ((DashSpeedEventBasedModifierData)data).IsFlatValue,
+                    ((DashSpeedEventBasedModifierData)data).BonusSpeed)
             );
             
             // Add more mappings for other Modifier types here

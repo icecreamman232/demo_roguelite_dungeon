@@ -12,11 +12,15 @@ namespace SGGames.Script.Entity
     public class PlayerDash : EntityBehavior
     {
         [SerializeField] private PlayerData m_playerData;
+        [SerializeField] private float m_currentSpeed;
         [SerializeField] private WorldEvent m_worldEvent;
         [SerializeField] private AnimationCurve m_dashSpeedCurve;
         [SerializeField] private AfterImageFX m_afterImageFX;
         [SerializeField] private SpriteRenderer m_spriteRenderer;
 
+        private PercentageStackController m_percentageStackController;
+        private float m_flatSpeedBonus;
+        
         private PlayerController m_controller;
         private bool m_isDashing;
         private Vector3 m_startPosition;
@@ -25,18 +29,18 @@ namespace SGGames.Script.Entity
         private float m_distanceToTarget;
         private Vector2 m_lastMoveInput;
 
-        private float m_dashSpeedMultipleFromItem = 1f;
-
         private IDashCommand[] m_startDashCommands;
         private IDashCommand[] m_endDashCommands;
-
-
+        
+        public float CurrentSpeed => m_currentSpeed;
+        
         public Action OnDashHitObstacle;
         public Action OnDashFinished;
         
         private void Start()
         {
             m_controller = GetComponent<PlayerController>();
+            m_percentageStackController = new PercentageStackController();
             
             var inputManager = ServiceLocator.GetService<InputManager>();
             inputManager.OnMoveInputUpdate += UpdateMoveInput;
@@ -44,13 +48,37 @@ namespace SGGames.Script.Entity
 
             m_lastMoveInput = Vector2.right;
 
+            m_currentSpeed = m_playerData.DashSpeed;
+            
             SetupCommands();
         }
-
-        public void SetBonusDashSpeedFromItem(float bonusSpeed)
+        
+        #region Dash speed modifier
+        public void AddPercentageBonusSpeedFromItem(Guid guid, float percentageBonus)
         {
-            m_dashSpeedMultipleFromItem = bonusSpeed;
+            m_percentageStackController.AddPercentage(guid, percentageBonus);
+            m_currentSpeed = m_percentageStackController.GetValueWithPercentageStack(m_currentSpeed);
+            Debug.Log($"Apply dash speed modifier {percentageBonus} % - Current Spd: {m_currentSpeed}");
         }
+
+        public void RemovePercentageBonusSpeedFromItem(Guid guid)
+        {
+            m_percentageStackController.RemovePercentage(guid);
+            m_currentSpeed = m_percentageStackController.GetValueWithPercentageStack(m_playerData.DashSpeed);
+            Debug.Log($"Remove dash speed modifier - Current Spd: {m_currentSpeed}");
+        }
+
+        public void AddFlatBonusSpeedFromItem(float bonusSpeed)
+        {
+            m_flatSpeedBonus += bonusSpeed;
+        }
+
+        public void RemoveFlatBonusSpeedFromItem(float bonusSpeed)
+        {
+            m_flatSpeedBonus -= bonusSpeed;
+        }
+        
+        #endregion
         
         protected override void OnGamePaused()
         {
@@ -118,7 +146,7 @@ namespace SGGames.Script.Entity
             
             var traveledTime = MathHelpers.Remap(m_traveledDistance,0,m_distanceToTarget,0,1);
             var speedMultiplier = m_dashSpeedCurve.Evaluate(traveledTime);
-            var finalDashSpeed = (speedMultiplier * m_playerData.DashSpeed) * m_dashSpeedMultipleFromItem;
+            var finalDashSpeed = (speedMultiplier * m_currentSpeed);
             transform.position = Vector3.MoveTowards(transform.position,m_endPosition, finalDashSpeed * Time.deltaTime);
             m_traveledDistance = Vector3.Distance(m_startPosition, transform.position);
 
