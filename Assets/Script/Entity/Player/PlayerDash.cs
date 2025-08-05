@@ -147,6 +147,7 @@ namespace SGGames.Script.Entity
             var traveledTime = MathHelpers.Remap(m_traveledDistance,0,m_distanceToTarget,0,1);
             var speedMultiplier = m_dashSpeedCurve.Evaluate(traveledTime);
             var finalDashSpeed = (speedMultiplier * m_currentSpeed);
+            finalDashSpeed = Mathf.Clamp(finalDashSpeed,m_playerData.DashSpeed,m_playerData.MaxDashSpeed);
             transform.position = Vector3.MoveTowards(transform.position,m_endPosition, finalDashSpeed * Time.deltaTime);
             m_traveledDistance = Vector3.Distance(m_startPosition, transform.position);
 

@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &736813636720338009
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 269974495209769267, guid: c295bcf2f8d9aad42807ba1e7e5300b5, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 3184763798101779785, guid: 2c8d48969ed8195408348cf2c32a668a, type: 3}
+    - target: {fileID: 269974495209769267, guid: c295bcf2f8d9aad42807ba1e7e5300b5, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5618718224392613468, guid: c295bcf2f8d9aad42807ba1e7e5300b5, type: 3}
+      propertyPath: m_itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: f3d9fdda3ae2d6541b3bf431513a0ed0, type: 2}
+    - target: {fileID: 8282435197619493601, guid: c295bcf2f8d9aad42807ba1e7e5300b5, type: 3}
+      propertyPath: m_Name
+      value: Rebound Cowl Healing Item Picker
+      objectReference: {fileID: 0}
+    - target: {fileID: 8588094985685401512, guid: c295bcf2f8d9aad42807ba1e7e5300b5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8588094985685401512, guid: c295bcf2f8d9aad42807ba1e7e5300b5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8588094985685401512, guid: c295bcf2f8d9aad42807ba1e7e5300b5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8588094985685401512, guid: c295bcf2f8d9aad42807ba1e7e5300b5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8588094985685401512, guid: c295bcf2f8d9aad42807ba1e7e5300b5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8588094985685401512, guid: c295bcf2f8d9aad42807ba1e7e5300b5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8588094985685401512, guid: c295bcf2f8d9aad42807ba1e7e5300b5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8588094985685401512, guid: c295bcf2f8d9aad42807ba1e7e5300b5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8588094985685401512, guid: c295bcf2f8d9aad42807ba1e7e5300b5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8588094985685401512, guid: c295bcf2f8d9aad42807ba1e7e5300b5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c295bcf2f8d9aad42807ba1e7e5300b5, type: 3}

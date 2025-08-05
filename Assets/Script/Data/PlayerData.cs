@@ -14,6 +14,9 @@ namespace SGGames.Script.Data
         [SerializeField] private int m_staminaCostForDash;
         [Header("Resistance(%)")]
         [SerializeField][Range(0,100)] private float m_defaultDamageResistance;
+
+        [Header("Limitation")] 
+        [SerializeField] private float m_maxDashSpeed;
         [SerializeField][Range(0,100)] private float m_maxDamageResistance;
         
         public float MaxHealth => m_maxHealth;
@@ -21,6 +24,7 @@ namespace SGGames.Script.Data
         public float DashDistance => m_dashDistance;
         public float DashSpeed => m_dashSpeed;
         public float DashCooldown => m_dashCooldown;
+        public float MaxDashSpeed => m_maxDashSpeed;
         public int StaminaCostForDash => m_staminaCostForDash;
         public float DefaultDamageResistance => m_defaultDamageResistance;
         public float MaxDamageResistance => m_maxDamageResistance;

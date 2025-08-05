@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: 269974495209769267, guid: c295bcf2f8d9aad42807ba1e7e5300b5, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 640753124, guid: 826e1aa1ed4749443be8234168559a46, type: 3}
+      objectReference: {fileID: 753072640299626105, guid: 2c8d48969ed8195408348cf2c32a668a, type: 3}
     - target: {fileID: 269974495209769267, guid: c295bcf2f8d9aad42807ba1e7e5300b5, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -22,7 +22,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: f3d9fdda3ae2d6541b3bf431513a0ed0, type: 2}
     - target: {fileID: 8282435197619493601, guid: c295bcf2f8d9aad42807ba1e7e5300b5, type: 3}
       propertyPath: m_Name
-      value: GreenMushroom Item Picker
+      value: Rebound Cowl Increase Dash Spd Item Picker
       objectReference: {fileID: 0}
     - target: {fileID: 8588094985685401512, guid: c295bcf2f8d9aad42807ba1e7e5300b5, type: 3}
       propertyPath: m_LocalPosition.x
