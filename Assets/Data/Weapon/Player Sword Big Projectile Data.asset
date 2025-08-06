@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32be3065037cc9d42b994be74addbe0e, type: 3}
   m_Name: Player Sword Big Projectile Data
   m_EditorClassIdentifier: 
-  m_speed: 15
-  m_range: 3.5
+  m_speed: 10
+  m_range: 1
