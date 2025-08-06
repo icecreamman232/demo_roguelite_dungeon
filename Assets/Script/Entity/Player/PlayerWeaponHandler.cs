@@ -43,5 +43,10 @@ namespace SGGames.Script.Entity
 
             //m_currWeapon.SetAttackOnLeft(m_isAimAtLeftSide);
         }
+
+        public void ForceResetCombo()
+        {
+            m_currWeapon.ForceResetCombo();
+        }
     }
 }

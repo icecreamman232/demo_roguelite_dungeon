@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using SGGames.Script.Core;
 using SGGames.Script.Data;
@@ -19,6 +20,7 @@ namespace SGGames.Script.HealthSystem
 
         private PlayerResistanceController m_resistanceController;
         private PlayerController m_playerController;
+        private Action OnWeaponComboInterrupted;
         private const float k_FlickeringInterval = 0.1f; 
         
         protected override void Start()
@@ -28,10 +30,11 @@ namespace SGGames.Script.HealthSystem
             m_updatePlayerHealthEvent.Raise(m_currHealth, m_maxHealth, isInitialize:true);
         }
 
-        public void Initialize(PlayerController controller, PlayerResistanceController resistanceController)
+        public void Initialize(PlayerController controller, PlayerResistanceController resistanceController, Action weaponInterruptedCallback)
         {
             m_playerController = controller;
             m_resistanceController = resistanceController;
+            OnWeaponComboInterrupted = weaponInterruptedCallback;
         }
         
         public void KillPlayer()
@@ -55,6 +58,7 @@ namespace SGGames.Script.HealthSystem
             var finalDamage = damage * (1 - MathHelpers.PercentToValue(m_resistanceController.CurrentDamageResistance));
             m_currHealth -= finalDamage; 
             OnHit?.Invoke(damage, source);
+            OnWeaponComboInterrupted?.Invoke();
         }
 
         protected override bool CanTakeDamage()

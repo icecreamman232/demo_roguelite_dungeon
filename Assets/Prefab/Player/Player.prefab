@@ -426,6 +426,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_isPermit: 1
   m_playerData: {fileID: 11400000, guid: cb8c5b08840ace34ab97ac1148242ac1, type: 2}
+  m_currentSpeed: 0
   m_worldEvent: {fileID: 11400000, guid: 99cdaba5340f5944f93746bbfbafa9ad, type: 2}
   m_dashSpeedCurve:
     serializedVersion: 2

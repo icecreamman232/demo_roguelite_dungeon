@@ -1,6 +1,7 @@
 using SGGames.Script.Core;
 using SGGames.Script.Data;
 using SGGames.Script.Entity;
+using SGGames.Script.Items;
 using UnityEngine;
 
 namespace SGGames.Script.Weapons
@@ -10,15 +11,25 @@ namespace SGGames.Script.Weapons
     /// </summary>
     public class PlayerDefaultRangedWeapon : MonoBehaviour, IWeapon, IProjectileSpawner
     {
+        [SerializeField] private WorldEvent m_worldEvent;
         [SerializeField] private WeaponData m_weaponData;
         [SerializeField] private ObjectPooler m_projectilePooler;
+        [SerializeField] private ObjectPooler m_specialProjectilePooler;
         [SerializeField] private Transform m_shootingPivot;
         private WeaponStateManager m_stateManager;
         //private DefaultPlayerWeaponAnimator m_defaultPlayerWeaponAnimator;
         private PlayerWeaponHandler m_playerWeaponHandler;
         private ProjectileBuilder m_projectileBuilder;
+        private ProjectileBuilder m_specialProjectileBuilder;
         private IWeaponOwner m_owner;
         private GameObject m_ownerGameObject;
+
+        private bool m_isInComboWindow;
+        private int m_currentComboCount = 0;
+        private float m_comboWindowTimer = 0;
+        [SerializeField] private float m_comboWindowDuration = 0.5f;
+        
+        private const int k_MaxComboCount = 3;
         
         public bool IsReady => m_stateManager.IsReady;
         
@@ -36,8 +47,20 @@ namespace SGGames.Script.Weapons
         private void Update()
         {
             m_stateManager?.Update();
+            UpdateComboWindow();
         }
-        
+
+        private void UpdateComboWindow()
+        {
+            if (!m_isInComboWindow) return;
+            
+            m_comboWindowTimer -= Time.deltaTime;
+            if (m_comboWindowTimer <= 0)
+            {
+                ResetCombo();
+            }
+        }
+
         public void SetAttackOnLeft(bool isAttackOnLeft)
         {
             //m_defaultPlayerWeaponAnimator.SetAttackDirection(isAttackOnLeft);
@@ -51,13 +74,18 @@ namespace SGGames.Script.Weapons
             m_stateManager = new WeaponStateManager(this,
                 new (Global.WeaponState stateType, IWeaponState state)[]
                 {
-                    (Global.WeaponState.CoolDown, new WeaponCoolDownState())
+                    (Global.WeaponState.CoolDown, new WeaponCoolDownState()),
+                    (Global.WeaponState.AttackCombo, new WeaponAttackComboState())
                 });
 
             var coolDownState =m_stateManager.GetState(Global.WeaponState.CoolDown) as WeaponCoolDownState;
             coolDownState.Initialize(m_weaponData);
             
-            InitializeProjectileSpawner(new ProjectileBuilder());;
+            var attackComboState =m_stateManager.GetState(Global.WeaponState.AttackCombo) as WeaponAttackComboState;
+            attackComboState.Initialize(m_weaponData);
+            
+            InitializeProjectileSpawner(new ProjectileBuilder());
+            m_specialProjectileBuilder = new ProjectileBuilder();
         }
 
         public void ChangeState(Global.WeaponState nextState)
@@ -73,14 +101,72 @@ namespace SGGames.Script.Weapons
         public void Attack()
         {
             if (!IsReady) return;
-            SpawnProjectile();
-            UpdateAnimationOnAttack();
+
+            bool isComboAttack = m_isInComboWindow && m_currentComboCount > 0;
+
+            if (isComboAttack && m_currentComboCount < k_MaxComboCount)
+            {
+                if (m_currentComboCount == k_MaxComboCount - 1)
+                {
+                    SpawnSpecialProjectile();
+                    UpdateAnimationOnAttack();
+                    ResetCombo();
+                }
+                else
+                {
+                    SpawnProjectile();
+                    UpdateAnimationOnAttack();
+                }
+                m_currentComboCount++;
+            }
+            else if(m_currentComboCount == 0)
+            {
+                SpawnProjectile();
+                UpdateAnimationOnAttack();
+                m_currentComboCount = 1;
+            }
+
+            StartComboWindow();
+            
+            m_stateManager.SetState(Global.WeaponState.AttackCombo);
+        }
+
+        private void StartComboWindow()
+        {
+            m_isInComboWindow = true;
+            m_comboWindowTimer = m_comboWindowDuration;
+        }
+
+        public void ForceResetCombo()
+        {
+            ResetCombo();
+            m_worldEvent.Raise(Global.WorldEventType.OnComboInterrupted,((PlayerWeaponHandler)m_owner).gameObject,null);
+        }
+        
+        private void ResetCombo()
+        {
+            m_currentComboCount = 0;
+            m_isInComboWindow = false;
+            m_comboWindowTimer = 0;
             m_stateManager.SetState(Global.WeaponState.CoolDown);
         }
         
         public void InitializeProjectileSpawner(ProjectileBuilder builder)
         {
             m_projectileBuilder = builder;
+        }
+
+        private void SpawnSpecialProjectile()
+        {
+            var direction = ((PlayerWeaponHandler)m_owner).AimDirection;
+            var projectileRot = Quaternion.AngleAxis(Mathf.Atan2(direction.y,direction.x) * Mathf.Rad2Deg, Vector3.forward);
+            var projectileGO = m_specialProjectilePooler.GetPooledGameObject();
+            var projectile = projectileGO.GetComponent<Projectile>();
+            projectile.Spawn(m_specialProjectileBuilder
+                .SetOwner(m_ownerGameObject)
+                .SetDirection(m_playerWeaponHandler.AimDirection)
+                .SetPosition(m_shootingPivot.position)
+                .SetRotation(projectileRot));
         }
 
         public void SpawnProjectile()

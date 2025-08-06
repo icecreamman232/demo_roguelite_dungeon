@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7273346060848923032}
   - component: {fileID: 5308555457938306830}
   m_Layer: 0
-  m_Name: PlayerSwordProjectile
+  m_Name: Player Sword Projectile Big
   m_TagString: PlayerProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -69,7 +69,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.04898949, y: 0.0014409274}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -79,7 +79,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.4, y: 0.7}
+  m_Size: {x: 0.42365298, y: 0.8760854}
   m_EdgeRadius: 0
 --- !u!114 &7273346060848923032
 MonoBehaviour:
@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f7f865b5c13e544b9dd96281b1ed9a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_projectileData: {fileID: 11400000, guid: 44f601df9f34492458967fe82aea32d6, type: 2}
+  m_projectileData: {fileID: 11400000, guid: 0c3f17ac3585973419d866609355f86b, type: 2}
   m_movingDirection: {x: 0, y: 0}
   m_damageHandler: {fileID: 5308555457938306830}
   m_obstacleLayerMask:
@@ -117,8 +117,8 @@ MonoBehaviour:
   m_targetMask:
     serializedVersion: 2
     m_Bits: 128
-  m_minDamage: 50
-  m_maxDamage: 50
+  m_minDamage: 100
+  m_maxDamage: 100
   m_invincibilityDuration: 0.3
   m_knockBackForce: 5
   m_knockDuration: 0.1
@@ -198,9 +198,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1569509321
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 3
-  m_Sprite: {fileID: 5413184319536607785, guid: cebfab842c0c19b4d932ec5f44e46a11, type: 3}
+  m_Sprite: {fileID: -1738504573, guid: cebfab842c0c19b4d932ec5f44e46a11, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

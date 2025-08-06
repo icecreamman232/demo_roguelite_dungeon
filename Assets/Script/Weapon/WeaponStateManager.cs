@@ -11,7 +11,7 @@ namespace SGGames.Script.Weapons
         private IWeaponState m_currentState;
         private Dictionary<Global.WeaponState, IWeaponState> m_cacheStateDictionary;
 
-        public bool IsReady => m_currentState is WeaponReadyState;
+        public bool IsReady => m_currentState is WeaponReadyState || m_currentState is WeaponAttackComboState;
         
         public WeaponStateManager(IWeapon weapon, (Global.WeaponState stateType, IWeaponState state)[] states)
         {

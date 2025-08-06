@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2240817558458299825}
   - component: {fileID: 4307130433912636171}
   - component: {fileID: 1692213337825253617}
+  - component: {fileID: 1380291672061190629}
   m_Layer: 0
   m_Name: Knight Default Sword
   m_TagString: Untagged
@@ -48,9 +49,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a654874fb7da2de49b747c43d2a88bc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_worldEvent: {fileID: 11400000, guid: 99cdaba5340f5944f93746bbfbafa9ad, type: 2}
   m_weaponData: {fileID: 11400000, guid: 2474eaf0ff861f546a1eb95a298883e7, type: 2}
   m_projectilePooler: {fileID: 1692213337825253617}
+  m_specialProjectilePooler: {fileID: 1380291672061190629}
   m_shootingPivot: {fileID: 5327444765057094190}
+  m_comboWindowDuration: 0.5
 --- !u!114 &4307130433912636171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,6 +91,23 @@ MonoBehaviour:
   m_parent: {fileID: 0}
   m_isSharePool: 0
   m_objectToPool: {fileID: 2609813097702135230, guid: 7cba39db18a8cbf469df28c58c48ef2f, type: 3}
+  m_poolSize: 20
+--- !u!114 &1380291672061190629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 889536631991159096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbfe5d2fe6527dc40893b1d9a844900b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_autoCreateParentForPool: 1
+  m_parent: {fileID: 0}
+  m_isSharePool: 0
+  m_objectToPool: {fileID: 2609813097702135230, guid: 55e88c08f205d0c4abd608673ed8ff71, type: 3}
   m_poolSize: 20
 --- !u!1 &4734573511806625906
 GameObject:

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 32be3065037cc9d42b994be74addbe0e, type: 3}
-  m_Name: Player Sword Projectile Data
+  m_Name: Player Sword Big Projectile Data
   m_EditorClassIdentifier: 
   m_speed: 15
-  m_range: 2
+  m_range: 3.5

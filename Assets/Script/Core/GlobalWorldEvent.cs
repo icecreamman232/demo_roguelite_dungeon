@@ -15,6 +15,8 @@ namespace SGGames.Script.Core
             OnPlayerDashCanceled, //For when player dash into obstacles
             OnPlayerStopDash,
             
+            OnComboInterrupted,
+            
             //ENEMIES
             OnEnemyDeath = 900,
         }

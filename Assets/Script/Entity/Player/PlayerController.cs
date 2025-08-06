@@ -38,7 +38,7 @@ namespace SGGames.Script.Entity
         private void Start()
         {
             m_playerMovement.FlippingModelAction = m_animationController.FlipModel;
-            m_playerHealth.Initialize(this, m_resistanceController);
+            m_playerHealth.Initialize(this, m_resistanceController, m_weaponHandler.ForceResetCombo);
             m_resistanceController.Initialize();
             ModifierController.Initialize(this);
         }
@@ -46,6 +46,11 @@ namespace SGGames.Script.Entity
         public bool IsPlayer()
         {
             return true;
+        }
+
+        public void ForceResetCombo()
+        {
+            m_weaponHandler.ForceResetCombo();
         }
     }
 }
