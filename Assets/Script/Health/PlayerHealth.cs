@@ -5,6 +5,7 @@ using SGGames.Script.Data;
 using SGGames.Script.Entities;
 using SGGames.Script.Entity;
 using SGGames.Script.Events;
+using SGGames.Script.Items;
 using SGGames.Script.Managers;
 using UnityEngine;
 
@@ -12,16 +13,23 @@ namespace SGGames.Script.HealthSystem
 {
     public class PlayerHealth : Health
     {
-        [SerializeField] private PlayerData m_playerData;
+        [Header("Events")]
+        [SerializeField] private WorldEvent m_worldEvent;
         [SerializeField] private GameEvent m_gameEvent;
         [SerializeField] private UpdatePlayerHealthEvent m_updatePlayerHealthEvent;
-        [SerializeField] private DebugSettings m_debugSettings;
+        [Header("Invincibility Settings")]
         [SerializeField] private bool m_invincibleByItem;
-
-        private PlayerResistanceController m_resistanceController;
+        [SerializeField] private bool m_invincibleByDash;
+        [Header("Others")]
+        [SerializeField] private PlayerData m_playerData;
+        [SerializeField] private DebugSettings m_debugSettings;
+        
         private PlayerController m_playerController;
         private Action OnWeaponComboInterrupted;
         private const float k_FlickeringInterval = 0.1f; 
+        
+        private float CurrentDamageResistance => m_playerController.ResistanceController.CurrentDamageResistance;
+        private bool CanDodgeThisAttack => m_playerController.PlayerDodge.CanDodgeThisAttack();
         
         protected override void Start()
         {
@@ -30,10 +38,9 @@ namespace SGGames.Script.HealthSystem
             m_updatePlayerHealthEvent.Raise(m_currHealth, m_maxHealth, isInitialize:true);
         }
 
-        public void Initialize(PlayerController controller, PlayerResistanceController resistanceController, Action weaponInterruptedCallback)
+        public void Initialize(PlayerController controller, Action weaponInterruptedCallback)
         {
             m_playerController = controller;
-            m_resistanceController = resistanceController;
             OnWeaponComboInterrupted = weaponInterruptedCallback;
         }
         
@@ -53,9 +60,14 @@ namespace SGGames.Script.HealthSystem
             m_invincibleByItem = isInvincible;
         }
 
+        public void SetInvincibleByDash(bool isInvincible)
+        {
+            m_invincibleByDash = isInvincible;
+        }
+
         protected override void Damage(float damage, GameObject source)
         {
-            var finalDamage = damage * (1 - MathHelpers.PercentToValue(m_resistanceController.CurrentDamageResistance));
+            var finalDamage = damage * (1 - MathHelpers.PercentToValue(CurrentDamageResistance));
             m_currHealth -= finalDamage; 
             OnHit?.Invoke(damage, source);
             OnWeaponComboInterrupted?.Invoke();
@@ -66,8 +78,20 @@ namespace SGGames.Script.HealthSystem
             if (m_debugSettings.IsPlayerImmortal) return false;
             
             if (m_invincibleByItem) return false;
+
+            if (m_invincibleByDash)
+            {
+                m_worldEvent.Raise(Global.WorldEventType.OnPlayerPerfectDodge, this.gameObject, null);
+                return false;
+            }
             
-            return base.CanTakeDamage();
+            if (m_isInvincible) return false;
+
+            if (CanDodgeThisAttack) return false;
+            
+            if(m_currHealth <= 0) return false;
+            
+            return true;
         }
 
         protected override void UpdateHealthBar()

@@ -14,6 +14,7 @@ namespace SGGames.Script.Core
             OnPlayerStartDash = 300,
             OnPlayerDashCanceled, //For when player dash into obstacles
             OnPlayerStopDash,
+            OnPlayerPerfectDodge,
             
             OnComboInterrupted,
             

@@ -17,6 +17,7 @@ namespace SGGames.Script.Core
 
         private void OnDestroy()
         {
+            m_worldEvent.RemoveListener(OnReceiveWorldEvent);
             ServiceLocator.UnregisterService<TriggerManager>();
         }
         
@@ -27,6 +28,8 @@ namespace SGGames.Script.Core
         
         private void OnReceiveWorldEvent(Global.WorldEventType eventType, GameObject source, GameObject target)
         {
+            //Debug.Assert(eventType == Global.WorldEventType.OnPlayerPerfectDodge, "Player Did Perfect Dodge");
+            
             foreach (var triggerData in m_triggerDataList)
             {
                 if (triggerData.CheckEvent(eventType))

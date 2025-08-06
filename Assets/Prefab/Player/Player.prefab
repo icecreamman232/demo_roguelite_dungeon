@@ -215,6 +215,7 @@ GameObject:
   - component: {fileID: 8463624038284965936}
   - component: {fileID: -5217333942266810330}
   - component: {fileID: 3555579561468918608}
+  - component: {fileID: 977378331000385504}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -335,6 +336,7 @@ MonoBehaviour:
   m_animationController: {fileID: 4637560375643844596}
   m_resistanceController: {fileID: -5217333942266810330}
   m_modifierController: {fileID: 3555579561468918608}
+  m_dodge: {fileID: 977378331000385504}
 --- !u!114 &1171857828541800924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -353,11 +355,13 @@ MonoBehaviour:
   m_isInvincible: 0
   m_disableOnDeath: 1
   m_delayAfterDeath: 0
-  m_playerData: {fileID: 11400000, guid: cb8c5b08840ace34ab97ac1148242ac1, type: 2}
+  m_worldEvent: {fileID: 11400000, guid: 99cdaba5340f5944f93746bbfbafa9ad, type: 2}
   m_gameEvent: {fileID: 11400000, guid: 7ac1f24220b2ef14186e0695169f9965, type: 2}
   m_updatePlayerHealthEvent: {fileID: 11400000, guid: 3ea1778f75b556045a3b02555e9cae7b, type: 2}
-  m_debugSettings: {fileID: 11400000, guid: 9de6ea07a3c0d8e47937d6be7dfeff25, type: 2}
   m_invincibleByItem: 0
+  m_invincibleByDash: 0
+  m_playerData: {fileID: 11400000, guid: cb8c5b08840ace34ab97ac1148242ac1, type: 2}
+  m_debugSettings: {fileID: 11400000, guid: 9de6ea07a3c0d8e47937d6be7dfeff25, type: 2}
 --- !u!114 &4111488435508022935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -492,6 +496,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_isPermit: 1
   m_worldEvent: {fileID: 11400000, guid: 99cdaba5340f5944f93746bbfbafa9ad, type: 2}
+--- !u!114 &977378331000385504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9048246708849386775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37ab547d039d86d4786d09b1c947b366, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_isPermit: 1
+  m_worldEvent: {fileID: 11400000, guid: 99cdaba5340f5944f93746bbfbafa9ad, type: 2}
+  m_data: {fileID: 11400000, guid: cb8c5b08840ace34ab97ac1148242ac1, type: 2}
+  m_currentDodge: 0
 --- !u!1001 &5209779157902029133
 PrefabInstance:
   m_ObjectHideFlags: 0

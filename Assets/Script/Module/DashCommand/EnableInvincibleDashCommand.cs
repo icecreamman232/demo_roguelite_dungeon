@@ -14,7 +14,7 @@ namespace SGGames.Script.Modules
 
         public void Execute()
         {
-            m_playerHealth.SetInvincible(true);
+            m_playerHealth.SetInvincibleByDash(true);
         }
     }
 

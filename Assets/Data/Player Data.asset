@@ -19,5 +19,7 @@ MonoBehaviour:
   m_dashCooldown: 1.5
   m_staminaCostForDash: 1
   m_defaultDamageResistance: 0
+  m_dodgeChance: 20
   m_maxDashSpeed: 50
   m_maxDamageResistance: 80
+  m_maxDodgeChance: 80

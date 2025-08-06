@@ -1,6 +1,7 @@
 using System;
 using SGGames.Script.Entities;
 using SGGames.Script.HealthSystem;
+using SGGames.Script.Items;
 using SGGames.Script.StaminaSystem;
 using UnityEngine;
 
@@ -22,7 +23,8 @@ namespace SGGames.Script.Entity
         [SerializeField] private PlayerAnimationController m_animationController;
         [SerializeField] private PlayerResistanceController m_resistanceController;
         [SerializeField] private PlayerModifierController m_modifierController;
-        
+        [SerializeField] private PlayerDodge m_dodge;
+
         public BoxCollider2D PlayerCollider => m_collider;
         public GameObject Model => m_spriteRenderer.gameObject;
         public SpriteRenderer SpriteRenderer => m_spriteRenderer;
@@ -34,11 +36,12 @@ namespace SGGames.Script.Entity
         public PlayerAnimationController AnimationController => m_animationController;
         public PlayerResistanceController ResistanceController => m_resistanceController;
         public PlayerModifierController ModifierController => m_modifierController;
+        public PlayerDodge PlayerDodge => m_dodge;
 
         private void Start()
         {
             m_playerMovement.FlippingModelAction = m_animationController.FlipModel;
-            m_playerHealth.Initialize(this, m_resistanceController, m_weaponHandler.ForceResetCombo);
+            m_playerHealth.Initialize(this, m_weaponHandler.ForceResetCombo);
             m_resistanceController.Initialize();
             ModifierController.Initialize(this);
         }
