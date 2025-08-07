@@ -16,7 +16,7 @@ namespace SGGames.Script.Items
         {
             if (m_entity.IsPlayer())
             {
-                ((PlayerController) m_entity).PlayerHealth.SetInvincibleByItem(true);
+                ((PlayerController) m_entity).Health.SetInvincibleByItem(true);
             }
             base.Apply();
             Debug.Log($"Modifier::Apply Invincibility Modifier");
@@ -26,7 +26,7 @@ namespace SGGames.Script.Items
         {
             if (m_entity.IsPlayer())
             {
-                ((PlayerController) m_entity).PlayerHealth.SetInvincibleByItem(false);
+                ((PlayerController) m_entity).Health.SetInvincibleByItem(false);
             }
             Debug.Log($"Modifier::Remove Invincibility Modifier");
         }

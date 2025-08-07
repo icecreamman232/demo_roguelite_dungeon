@@ -1,9 +1,45 @@
+using System;
+using UnityEngine;
+
 namespace SGGames.Script.Core
 {
     public static partial class Global
     {
         public static float HP_PER_SLOT = 50f;
         public static float S_FLIPPING_MODEL_SPEED = 3;
+
+        public enum ComparisonType
+        {
+            LesserAndEqual,
+            Lesser,
+            Equal,
+            Greater,
+            GreaterAndEqual,
+        }
+
+        public static bool ComparisionBetweenFloat(float leftVal, float rightVal, ComparisonType comparisonType)
+        {
+            switch (comparisonType)
+            {
+                case ComparisonType.LesserAndEqual:
+                    if (leftVal <= rightVal) return true;
+                    break;
+                case ComparisonType.Lesser:
+                    if (leftVal < rightVal) return true;
+                    break;
+                case ComparisonType.Equal:
+                    if (leftVal == rightVal) return true;
+                    break;
+                case ComparisonType.Greater:
+                    if (leftVal > rightVal) return true;
+                    break;
+                case ComparisonType.GreaterAndEqual:
+                    if (leftVal >= rightVal) return true;
+                    break;
+            }
+            Debug.Log("False Comparison");
+            return false;
+        }
         
         public enum MovementType
         {

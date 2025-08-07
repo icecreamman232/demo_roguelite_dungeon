@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_itemType: 0
   m_rarity: 0
-  m_itemSprite: {fileID: 640753124, guid: 826e1aa1ed4749443be8234168559a46, type: 3}
+  m_itemSprite: {fileID: 3184763798101779785, guid: 2c8d48969ed8195408348cf2c32a668a, type: 3}
   m_itemID: 12
   m_triggerData: {fileID: 11400000, guid: 3084a65dcfe249d46ad2c165a6776e42, type: 2}

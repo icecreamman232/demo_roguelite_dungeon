@@ -29,7 +29,7 @@ namespace SGGames.Script.Entity
         public GameObject Model => m_spriteRenderer.gameObject;
         public SpriteRenderer SpriteRenderer => m_spriteRenderer;
         public PlayerWeaponHandler WeaponHandler => m_weaponHandler;
-        public PlayerHealth PlayerHealth => m_playerHealth;
+        public PlayerHealth Health => m_playerHealth;
         public PlayerStamina PlayerStamina => m_playerStamina;
         public PlayerMovement PlayerMovement => m_playerMovement;
         public PlayerDash PlayerDash => m_playerDash;

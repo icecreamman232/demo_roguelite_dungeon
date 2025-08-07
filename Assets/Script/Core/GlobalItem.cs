@@ -22,6 +22,7 @@ namespace SGGames.Script.Core
         {
             Cloak,
             MagicAccessory,
+            DefensiveEquipment,
         }
         
         public enum ItemClass
@@ -78,6 +79,7 @@ namespace SGGames.Script.Core
             GreenMushroom = 10,
             RedMushroom,
             ReboundCowl,
+            SpectralMantle,
         }
 
         public enum ImpactID

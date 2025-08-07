@@ -18,12 +18,10 @@ namespace SGGames.Script.Items
             RegisterModifier<InvincibilityModifierData>(
                 (controller, data) => new InvincibilityModifier(controller, data.Duration)
             );
-            
             RegisterModifier<DamageResistanceModifierData>(
                 (controller, data) => new DamageResistanceModifier(controller, 
                     ((DamageResistanceModifierData)data).AddingDmgResistance, data.Duration)
             );
-            
             RegisterModifier<DashSpeedEventBasedModifierData>(
                 (controller, data) => new DashSpeedEventBasedModifier(controller, 
                     ((DashSpeedEventBasedModifierData)data).WorldEventType, 
@@ -31,7 +29,12 @@ namespace SGGames.Script.Items
                     ((DashSpeedEventBasedModifierData)data).IsFlatValue,
                     ((DashSpeedEventBasedModifierData)data).BonusSpeed)
             );
-            
+            RegisterModifier<PlayerMoveSpeedModifierData>((controller, data) => new PlayerMoveSpeedModifier(controller,
+                ((PlayerMoveSpeedModifierData)data).IsFlatValue,
+                ((PlayerMoveSpeedModifierData)data).BonusSpeed,
+                data.Duration)
+            );
+
             // Add more mappings for other Modifier types here
         }
 

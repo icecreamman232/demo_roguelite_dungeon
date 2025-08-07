@@ -14,11 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_itemType: 0
   m_rarity: 0
-  m_itemSprite: {fileID: 640753124, guid: 826e1aa1ed4749443be8234168559a46, type: 3}
+  m_itemSprite: {fileID: -7504809550408317770, guid: 2c8d48969ed8195408348cf2c32a668a, type: 3}
   m_itemID: 12
   m_triggerData: {fileID: 11400000, guid: 027a30c81e571e446be0acd2ac01cc1d, type: 2}
-  m_playerEventTrigger: 01000000
-  m_modifierData:
-  - {fileID: 11400000, guid: db9bcac007338c140ac432fa6ca17b7d, type: 2}
-  m_impactParamInfo:
-  - {fileID: 11400000, guid: 1b369c3220da1f144af4f2fe01584af0, type: 2}

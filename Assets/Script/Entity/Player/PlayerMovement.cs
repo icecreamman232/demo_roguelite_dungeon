@@ -4,6 +4,7 @@ using SGGames.Script.Data;
 using SGGames.Script.EditorExtensions;
 using SGGames.Script.Events;
 using SGGames.Script.Managers;
+using SGGames.Script.Modules;
 using UnityEngine;
 
 namespace SGGames.Script.Entity
@@ -18,6 +19,7 @@ namespace SGGames.Script.Entity
 
         private PlayerController m_controller;
         private bool m_canMove;
+        private PercentageStackController m_percentageStackController;
         private float m_flatSpeedBonus;
         
         public Action<bool> FlippingModelAction;
@@ -26,6 +28,8 @@ namespace SGGames.Script.Entity
         
         private void Start()
         {
+            m_percentageStackController = new PercentageStackController();
+            
             var inputManager = ServiceLocator.GetService<InputManager>();
             inputManager.OnMoveInputUpdate += UpdateMoveInput;
             m_moveSpeed = m_playerData.MoveSpeed;
@@ -42,15 +46,48 @@ namespace SGGames.Script.Entity
             
             ConsoleCheatManager.RegisterCommands(this);
         }
-
-        private void OnReceiveGameEvent(Global.GameEventType eventType)
+        
+        private void OnDisable()
         {
-            if (eventType == Global.GameEventType.SpawnPlayer)
+            var inputManager = ServiceLocator.GetService<InputManager>();
+            if (inputManager != null)
             {
-                m_movementDirection = Vector2.zero;
+                inputManager.OnMoveInputUpdate -= UpdateMoveInput;
             }
+            m_gameEvent.RemoveListener(OnReceiveGameEvent);
+        }
+        
+        public void PauseMovement()
+        {
+            m_canMove = false;    
         }
 
+        public void ResumeMovement()
+        {
+            m_canMove = true;
+        }
+
+        public void AddFlatSpeedBonus(float bonus)
+        {
+            m_flatSpeedBonus += bonus;
+        }
+        public void RemoveFlatSpeedBonus(float bonus)
+        {
+            m_flatSpeedBonus -= bonus;
+        }
+
+        public void AddPercentageSpeedBonus(Guid guid, float percentageBonus)
+        {
+            m_percentageStackController.AddPercentage(guid, percentageBonus);
+            m_moveSpeed = m_percentageStackController.GetValueWithPercentageStack(m_playerData.MoveSpeed);
+        }
+
+        public void RemovePercentageSpeedBonus(Guid guid)
+        {
+            m_percentageStackController.RemovePercentage(guid);
+            m_moveSpeed = m_percentageStackController.GetValueWithPercentageStack(m_playerData.MoveSpeed);
+        }
+        
         protected override void OnGamePaused()
         {
             m_canMove = false;
@@ -103,30 +140,12 @@ namespace SGGames.Script.Entity
             m_movementDirection = moveInput;
         }
         
-
-        private void OnDisable()
+        private void OnReceiveGameEvent(Global.GameEventType eventType)
         {
-            var inputManager = ServiceLocator.GetService<InputManager>();
-            if (inputManager != null)
+            if (eventType == Global.GameEventType.SpawnPlayer)
             {
-                inputManager.OnMoveInputUpdate -= UpdateMoveInput;
+                m_movementDirection = Vector2.zero;
             }
-            m_gameEvent.RemoveListener(OnReceiveGameEvent);
-        }
-
-        public void PauseMovement()
-        {
-            m_canMove = false;    
-        }
-
-        public void ResumeMovement()
-        {
-            m_canMove = true;
-        }
-
-        public void AddFlatSpeedBonus(float bonus)
-        {
-            m_flatSpeedBonus += bonus;
         }
 
         [CheatCode("test","Description Here")]

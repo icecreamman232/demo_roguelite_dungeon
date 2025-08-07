@@ -57,7 +57,7 @@ namespace SGGames.Script.Entity
         public void AddPercentageBonusSpeedFromItem(Guid guid, float percentageBonus)
         {
             m_percentageStackController.AddPercentage(guid, percentageBonus);
-            m_currentSpeed = m_percentageStackController.GetValueWithPercentageStack(m_currentSpeed);
+            m_currentSpeed = m_percentageStackController.GetValueWithPercentageStack(m_playerData.DashSpeed);
             Debug.Log($"Apply dash speed modifier {percentageBonus} % - Current Spd: {m_currentSpeed}");
         }
 
