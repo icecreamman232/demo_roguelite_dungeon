@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a292117ec8cbef4d94e2ada9dc8048f, type: 3}
-  m_Name: Spectral Mantle Wraith Resurgence
+  m_Name: Spectral Mantle Phantom Stride
   m_EditorClassIdentifier: 
   m_itemType: 2
   m_rarity: 0
-  m_itemSprite: {fileID: 286016453, guid: 2c8d48969ed8195408348cf2c32a668a, type: 3}
+  m_itemSprite: {fileID: 1263749080, guid: 2c8d48969ed8195408348cf2c32a668a, type: 3}
   m_itemID: 13
-  m_triggerData: {fileID: 11400000, guid: 681f2e0f09bdd43418a8bb65d2079240, type: 2}
+  m_triggerData: {fileID: 11400000, guid: 8a3c5fa3cedfcf8469b20d57a6bda7b0, type: 2}

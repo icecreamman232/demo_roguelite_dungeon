@@ -127,7 +127,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -149,7 +149,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -171,7 +171,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -180,6 +180,72 @@ TextureImporter:
       bones: []
       spriteID: 6b404f0e97f89d790800000000000000
       internalID: -7504809550408317770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item-spectal-mantle-phantom-stride
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 745c47b3d5f1fdd4eb8692f28a9ee536
+      internalID: 1263749080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item-spectral-mantle-spectral-reversal
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28c912e162fe2f549af5a3643a71b899
+      internalID: -1295708990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item-spectral-mantle-wraith-resurgence
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47996bfe7fd82db40a0ec7dfea0a5192
+      internalID: 286016453
       vertices: []
       indices: 
       edges: []
@@ -201,6 +267,9 @@ TextureImporter:
       item-rebound-cowl-dmg-resistance: -7504809550408317770
       item-rebound-cowl-hp-regen: 3184763798101779785
       item-rebound-cowl-increase-dash-speed: 753072640299626105
+      item-spectal-mantle-phantom-stride: 1263749080
+      item-spectral-mantle-spectral-reversal: -1295708990
+      item-spectral-mantle-wraith-resurgence: 286016453
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
