@@ -13,6 +13,8 @@ namespace SGGames.Script.Weapons
 
         public bool IsReady => m_currentState is WeaponReadyState || m_currentState is WeaponAttackComboState;
         
+        public IWeaponState CurrentState => m_currentState;
+        
         public WeaponStateManager(IWeapon weapon, (Global.WeaponState stateType, IWeaponState state)[] states)
         {
             m_weapon = weapon;

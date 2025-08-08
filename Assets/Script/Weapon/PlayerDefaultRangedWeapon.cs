@@ -100,11 +100,14 @@ namespace SGGames.Script.Weapons
 
         public void Attack()
         {
-            if (!IsReady) return;
+            if (!IsReady)
+            {
+                return;
+            }
 
             bool isComboAttack = m_isInComboWindow && m_currentComboCount > 0;
 
-            if (isComboAttack && m_currentComboCount < k_MaxComboCount)
+            if (isComboAttack)
             {
                 if (m_currentComboCount == k_MaxComboCount - 1)
                 {
@@ -115,20 +118,19 @@ namespace SGGames.Script.Weapons
                 else
                 {
                     SpawnProjectile();
+                    StartComboWindow();
                     UpdateAnimationOnAttack();
+                    m_currentComboCount++;
                 }
-                m_currentComboCount++;
             }
-            else if(m_currentComboCount == 0)
+            else
             {
                 SpawnProjectile();
+                StartComboWindow();
                 UpdateAnimationOnAttack();
                 m_currentComboCount = 1;
+                m_stateManager.SetState(Global.WeaponState.AttackCombo);
             }
-
-            StartComboWindow();
-            
-            m_stateManager.SetState(Global.WeaponState.AttackCombo);
         }
 
         private void StartComboWindow()
