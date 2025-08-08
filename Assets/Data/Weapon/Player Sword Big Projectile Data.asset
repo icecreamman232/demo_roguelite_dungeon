@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Player Sword Big Projectile Data
   m_EditorClassIdentifier: 
   m_speed: 10
-  m_range: 1
+  m_range: 1.5
