@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Globalization;
 using SGGames.Script.Data;
 using SGGames.Script.Modules;
 using SGGames.Script.UI;
@@ -16,6 +15,7 @@ namespace SGGames.Script.HealthSystem
         [SerializeField] private FloatingTextEvent m_floatingTextEvent;
         private EnemyHealthBarController m_enemyHealthBar;
         private FillOverlayColorOnSprite m_fillOverlayColorOnSprite;
+        private BloodSplashVFX m_bloodSplashVFX;
         private const float k_SpriteFlickeringFrequency = 0.1f;
      
         protected override void Start()
@@ -26,6 +26,7 @@ namespace SGGames.Script.HealthSystem
             m_spriteRenderer = GetComponentInChildren<SpriteRenderer>();
             m_enemyHealthBar = GetComponentInChildren<EnemyHealthBarController>();
             m_fillOverlayColorOnSprite = GetComponentInChildren<FillOverlayColorOnSprite>();
+            m_bloodSplashVFX = GetComponentInChildren<BloodSplashVFX>();
             UpdateHealthBar();
         }
         
@@ -51,6 +52,8 @@ namespace SGGames.Script.HealthSystem
         protected override void Damage(float damage, GameObject source)
         {
             base.Damage(damage, source);
+            var attackDirection = (transform.position - source.transform.position).normalized;
+            m_bloodSplashVFX.PlayAtDirection(attackDirection);
             m_floatingTextEvent.Raise(damage.ToString(), transform.position);
         }
 
