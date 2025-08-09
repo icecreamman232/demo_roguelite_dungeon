@@ -36,7 +36,12 @@ namespace SGGames.Script.StaminaSystem
 
         private void UpdateStaminaBar(bool isInitialize = false)
         {
-            m_updatePlayerStaminaEvent.Raise(m_currentStamina, m_maxStamina, isInitialize);
+            m_updatePlayerStaminaEvent.Raise(new UpdatePlayerStaminaEventData
+            {
+                CurrentStamina = m_currentStamina,
+                MaxStamina = m_maxStamina,
+                IsInitialize = isInitialize
+            });
         }
         
         public bool HaveEnoughStamina(int stamina)

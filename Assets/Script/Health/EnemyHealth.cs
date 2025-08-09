@@ -54,7 +54,11 @@ namespace SGGames.Script.HealthSystem
             base.Damage(damage, source);
             var attackDirection = (transform.position - source.transform.position).normalized;
             m_bloodSplashVFX.PlayAtDirection(attackDirection);
-            m_floatingTextEvent.Raise(damage.ToString(), transform.position);
+            m_floatingTextEvent.Raise(new FloatingTextData
+            {
+                Content = damage.ToString(),
+                Position = transform.position
+            });
         }
 
         protected override void UpdateHealthBar()

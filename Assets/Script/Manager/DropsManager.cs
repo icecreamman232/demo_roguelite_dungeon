@@ -91,16 +91,16 @@ namespace SGGames.Script.Managers
             Instantiate(itemPrefab, spawnPosition, Quaternion.identity);
         }
         
-        private void OnReceiveCurrencyDropsEvent(Global.ItemID itemID, Vector3 hostPosition, int amount)
+        private void OnReceiveCurrencyDropsEvent(CurrencyDropData currencyDropData)
         {
-            if (itemID == Global.ItemID.Coin || itemID == Global.ItemID.Key || itemID == Global.ItemID.Bomb)
+            if (currencyDropData.ItemID == Global.ItemID.Coin || currencyDropData.ItemID == Global.ItemID.Key || currencyDropData.ItemID == Global.ItemID.Bomb)
             {
-                var itemPrefab = m_container.GetCurrencyPrefabWithID(itemID);
+                var itemPrefab = m_container.GetCurrencyPrefabWithID(currencyDropData.ItemID);
                 if (itemPrefab == null) return;
                 Vector3 spawnPosition;
-                for (int i = 0; i < amount; i++)
+                for (int i = 0; i < currencyDropData.Amount; i++)
                 {
-                    spawnPosition = hostPosition + (Vector3)Random.insideUnitCircle * SPAWN_RANGE_FOR_CURRENCY;
+                    spawnPosition = currencyDropData.HostPosition + (Vector3)Random.insideUnitCircle * SPAWN_RANGE_FOR_CURRENCY;
                     Instantiate(itemPrefab, spawnPosition, Quaternion.identity);
                 }
             }

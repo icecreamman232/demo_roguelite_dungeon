@@ -33,17 +33,22 @@ namespace SGGames.Script.UI
         private void InteractActionOnPerformed()
         {
             if (m_currentInteractLayer == -1) return;
-            m_interactEvent.Raise(Global.InteractEventType.Finish,m_currentInteractLayer,m_currentInteractTag);
+            m_interactEvent.Raise(new InteractEventData
+            {
+                InteractEventType = Global.InteractEventType.Finish,
+                Layer = m_currentInteractLayer,
+                Tag = m_currentInteractTag
+            });
         }
 
-        private void OnReceiveInteractEvent(Global.InteractEventType eventType, int interactLayer, string interactTag)
+        private void OnReceiveInteractEvent(InteractEventData interactEventData)
         {
-            switch (eventType)
+            switch (interactEventData.InteractEventType)
             {
                 case Global.InteractEventType.Interact:
                     m_canvasGroup.alpha = 1;
-                    m_currentInteractLayer = interactLayer;
-                    m_currentInteractTag = interactTag;
+                    m_currentInteractLayer = interactEventData.Layer;
+                    m_currentInteractTag = interactEventData.Tag;
                     break;
                 case Global.InteractEventType.Cancel:
                 case Global.InteractEventType.Finish:

@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using SGGames.Script.Core;
 using SGGames.Script.Data;
@@ -8,7 +7,7 @@ using SGGames.Script.Events;
 using SGGames.Script.UI;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-using UnityEngine.SceneManagement;
+
 
 namespace SGGames.Script.Managers
 {

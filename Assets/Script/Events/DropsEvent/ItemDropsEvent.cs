@@ -1,27 +1,7 @@
-using System;
-
 using UnityEngine;
 
 namespace SGGames.Script.Events
 {
     [CreateAssetMenu(fileName ="Item Drops Event", menuName = "SGGames/Event/Item Drops ")]
-    public class ItemDropsEvent : ScriptableObject
-    {
-        private Action<Vector3> m_listener;
-
-        public void AddListener(Action<Vector3> addListener)
-        {
-            m_listener += addListener;
-        }
-
-        public void RemoveListener(Action<Vector3> removeListener)
-        {
-            m_listener -= removeListener;
-        }
-
-        public void Raise(Vector3 dropPosition)
-        {
-            m_listener?.Invoke(dropPosition);
-        }
-    }
+    public class ItemDropsEvent : ScriptableEvent<Vector3> { }
 }

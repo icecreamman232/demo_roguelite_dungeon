@@ -25,15 +25,15 @@ namespace SGGames.Script.UI
             m_view.UpdateHealthBar(currentHealth, maxHealth);
         }
 
-        private void OnReceiveUpdateHealthEvent(float currentHealth, float maxHealth, bool isInitialize)
+        private void OnReceiveUpdateHealthEvent(UpdatePlayerHealthEventData updatePlayerHealthEventData)
         {
-            if (isInitialize)
+            if (updatePlayerHealthEventData.IsInitialize)
             {
-                Initialize(currentHealth, maxHealth);
+                Initialize(updatePlayerHealthEventData.CurrentHealth, updatePlayerHealthEventData.MaxHealth);
             }
             else
             {
-                UpdateHealthUI(currentHealth, maxHealth);
+                UpdateHealthUI(updatePlayerHealthEventData.CurrentHealth, updatePlayerHealthEventData.MaxHealth);
             }
         }
 

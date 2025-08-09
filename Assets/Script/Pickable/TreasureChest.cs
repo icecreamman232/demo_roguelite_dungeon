@@ -42,7 +42,11 @@ namespace SGGames.Script.Pickable
             {
                 var inventoryManager = ServiceLocator.GetService<InventoryManager>();
                 if (!inventoryManager.HasKeyNumber(m_numberKeyRequired)) return;
-                m_currencyEvent.Raise(Global.ItemID.Key, m_numberKeyRequired);
+                m_currencyEvent.Raise(new CurrencyUpdateData
+                {
+                    ItemID = Global.ItemID.Key,
+                    Amount = m_numberKeyRequired
+                });
                 OpenChest();
             }
             else

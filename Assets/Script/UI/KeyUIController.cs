@@ -16,11 +16,11 @@ namespace SGGames.Script.UI
             m_view.UpdateCoinView(0);
         }
 
-        private void OnReceiveEvent(Global.ItemID item, int amount)
+        private void OnReceiveEvent(CurrencyUpdateData currencyUpdateData)
         {
-            if (item == Global.ItemID.Key)
+            if (currencyUpdateData.ItemID == Global.ItemID.Key)
             {
-                m_view.UpdateCoinView(amount);
+                m_view.UpdateCoinView(currencyUpdateData.Amount);
             }
         }
 

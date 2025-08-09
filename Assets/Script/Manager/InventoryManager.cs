@@ -34,29 +34,37 @@ namespace SGGames.Script.Managers
             switch (itemID)
             {
                 case Global.ItemID.Coin:
-                    m_updateCurrencyUIEvent.Raise(itemID,currencyInventory.TotalCoin);
+                    m_updateCurrencyUIEvent.Raise(new CurrencyUpdateData
+                    {
+                        ItemID = itemID,
+                        Amount = currencyInventory.TotalCoin
+                    });
                     break;
                 case Global.ItemID.Key:
-                    m_updateCurrencyUIEvent.Raise(itemID,currencyInventory.TotalKey);
+                    m_updateCurrencyUIEvent.Raise(new CurrencyUpdateData
+                    {
+                        ItemID = itemID,
+                        Amount = currencyInventory.TotalKey
+                    });
                     break;
             }
         }
 
-        private void OnReceiveCurrencyEvent(Global.ItemID itemID,int amount)
+        private void OnReceiveCurrencyEvent(CurrencyUpdateData currencyUpdateData)
         {
-            currencyInventory.AddItem(itemID, amount);
-            UpdateCurrencyUI(itemID);
+            currencyInventory.AddItem(currencyUpdateData.ItemID, currencyUpdateData.Amount);
+            UpdateCurrencyUI(currencyUpdateData.ItemID);
         }
 
-        private void OnReceiveInventoryEvent(Global.InventoryEventType eventType,Global.ItemID itemID, int amount)
+        private void OnReceiveInventoryEvent(InventoryEventData inventoryEventData)
         {
-            if(eventType == Global.InventoryEventType.Add)
+            if(inventoryEventData.InventoryEventType == Global.InventoryEventType.Add)
             {
-                m_inventory.AddItem(itemID, amount );
+                m_inventory.AddItem(inventoryEventData.ItemID, inventoryEventData.Amount);
             }
-            else if (eventType == Global.InventoryEventType.Remove)
+            else if (inventoryEventData.InventoryEventType == Global.InventoryEventType.Remove)
             {
-                m_inventory.RemoveItem(itemID);
+                m_inventory.RemoveItem(inventoryEventData.ItemID);
             }
         }
 

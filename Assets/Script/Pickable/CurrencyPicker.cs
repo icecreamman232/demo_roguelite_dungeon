@@ -108,7 +108,11 @@ namespace SGGames.Script.Pickables
 
         protected override void PickedUp()
         {
-            m_currencyEvent?.Raise(m_currencyID, m_amount);
+            m_currencyEvent?.Raise(new CurrencyUpdateData
+            {
+                ItemID = m_currencyID,
+                Amount = m_amount
+            });
             base.PickedUp();
         }
     }

@@ -35,7 +35,12 @@ namespace SGGames.Script.HealthSystem
         {
             m_maxHealth = m_playerData.MaxHealth;
             base.Start();
-            m_updatePlayerHealthEvent.Raise(m_currHealth, m_maxHealth, isInitialize:true);
+            m_updatePlayerHealthEvent.Raise(new UpdatePlayerHealthEventData
+            {
+                CurrentHealth = m_currHealth,
+                MaxHealth = m_maxHealth,
+                IsInitialize = true
+            });
         }
 
         public void Initialize(PlayerController controller, Action weaponInterruptedCallback)
@@ -96,7 +101,12 @@ namespace SGGames.Script.HealthSystem
 
         protected override void UpdateHealthBar()
         {
-            m_updatePlayerHealthEvent.Raise(m_currHealth, m_maxHealth, isInitialize:false);
+            m_updatePlayerHealthEvent.Raise(new UpdatePlayerHealthEventData
+            {
+                CurrentHealth = m_currHealth,
+                MaxHealth = m_maxHealth,
+                IsInitialize = false
+            });
             base.UpdateHealthBar();
         }
 

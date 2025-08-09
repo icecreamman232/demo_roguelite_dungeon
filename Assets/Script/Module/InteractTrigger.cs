@@ -33,7 +33,12 @@ namespace SGGames.Script.Modules
             if (m_isInteracting) return;
             m_isInteracting = true;
             m_spriteRenderer.material = m_outlineMaterial;
-            m_interactEvent.Raise(Global.InteractEventType.Interact, gameObject.layer, gameObject.tag);
+            m_interactEvent.Raise(new InteractEventData
+            {
+                InteractEventType = Global.InteractEventType.Interact,
+                Layer = gameObject.layer,
+                Tag = gameObject.tag
+            });
         }
 
         private void OnTriggerExit2D(Collider2D other)
@@ -42,13 +47,18 @@ namespace SGGames.Script.Modules
             if (!m_isInteracting) return;
             m_isInteracting = false;
             m_spriteRenderer.material = m_defaultMaterial;
-            m_interactEvent.Raise(Global.InteractEventType.Cancel, gameObject.layer, gameObject.tag);
+            m_interactEvent.Raise(new InteractEventData
+            {
+                InteractEventType = Global.InteractEventType.Cancel,
+                Layer = gameObject.layer,
+                Tag = gameObject.tag
+            });
         }
         
-        private void OnReceiveEvent(Global.InteractEventType eventType, int interactLayer, string interactTag)
+        private void OnReceiveEvent(InteractEventData interactEventData)
         {
-            if (eventType == Global.InteractEventType.Finish
-                && m_isInteracting && gameObject.layer == interactLayer && gameObject.CompareTag(interactTag))
+            if (interactEventData.InteractEventType == Global.InteractEventType.Finish
+                && m_isInteracting && gameObject.layer == interactEventData.Layer && gameObject.CompareTag(interactEventData.Tag))
             {
                 m_interactable.Interact();
             }

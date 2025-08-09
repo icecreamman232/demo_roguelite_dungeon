@@ -58,22 +58,32 @@ namespace SGGames.Script.Pickables
         
         private void StartInteraction()
         {
-            m_interactEvent.Raise(Global.InteractEventType.Interact, gameObject.layer, gameObject.tag);
+            m_interactEvent.Raise(new InteractEventData
+            {
+                InteractEventType = Global.InteractEventType.Interact,
+                Layer = gameObject.layer,
+                Tag = gameObject.tag
+            });
             m_isInteracting = true;
         }
 
         private void CancelInteraction()
         {
-            m_interactEvent.Raise(Global.InteractEventType.Cancel, gameObject.layer, gameObject.tag);
+            m_interactEvent.Raise(new InteractEventData
+            {
+                InteractEventType = Global.InteractEventType.Cancel,
+                Layer = gameObject.layer,
+                Tag = gameObject.tag
+            });
             m_isInteracting = false;
         }
         
-        private void OnReceiveInteractionEvent(Global.InteractEventType eventType, int interactLayer, string interactTag)
+        private void OnReceiveInteractionEvent(InteractEventData interactEventData)
         {
-            if (eventType == Global.InteractEventType.Finish 
+            if (interactEventData.InteractEventType == Global.InteractEventType.Finish 
                 && m_isInteracting
-                && gameObject.layer == interactLayer
-                && gameObject.CompareTag(interactTag))
+                && gameObject.layer == interactEventData.Layer
+                && gameObject.CompareTag(interactEventData.Tag))
             {
                 PickedUp();
             }
@@ -82,7 +92,12 @@ namespace SGGames.Script.Pickables
         protected override void PickedUp()
         {
             base.PickedUp();
-            m_inventoryEvent.Raise(Global.InventoryEventType.Add, m_itemData.ItemID, m_amount);
+            m_inventoryEvent.Raise(new InventoryEventData
+            {
+                InventoryEventType = Global.InventoryEventType.Add,
+                ItemID = m_itemData.ItemID,
+                Amount = m_amount
+            });
             m_equipInventoryItemEvent.Raise((InventoryItemData)m_itemData);
             m_collider2D.enabled = false;
             this.gameObject.SetActive(false);

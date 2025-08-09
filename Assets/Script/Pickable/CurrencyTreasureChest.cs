@@ -15,7 +15,12 @@ namespace SGGames.Script.Pickable
 
         protected override void OpenChest()
         {
-            m_currencyDropsEvent.Raise(m_currencyID,transform.position, GetBaseAmount());
+            m_currencyDropsEvent.Raise(new CurrencyDropData
+            {
+                ItemID = m_currencyID,
+                HostPosition = transform.position,
+                Amount = GetBaseAmount()
+            });
             base.OpenChest();
         }
     }

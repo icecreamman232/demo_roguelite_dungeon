@@ -1,3 +1,4 @@
+using SGGames.Script.Core;
 using SGGames.Script.Data;
 using SGGames.Script.Events;
 using SGGames.Script.HealthSystem;
@@ -34,7 +35,12 @@ namespace SGGames.Script.Pickable
             {
                 var amount = Random.Range(loot.MinAmount, loot.MaxAmount);
                 var hostPosition = m_health ? m_health.transform.position : transform.position;
-                m_currencyDropsEvent.Raise(loot.Item,hostPosition, amount);   
+                m_currencyDropsEvent.Raise(new CurrencyDropData
+                {
+                    ItemID = loot.Item,
+                    HostPosition = hostPosition,
+                    Amount = amount
+                });
             }
         }
     }

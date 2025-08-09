@@ -15,11 +15,11 @@ namespace SGGames.Script.Modules
             m_floatingTextEvent.AddListener(OnReceiveSpawnEvent);
         }
         
-        private void OnReceiveSpawnEvent(string content, Vector3 spawnPosition)
+        private void OnReceiveSpawnEvent(FloatingTextData floatingTextData)
         {
             var textObject = m_textPooler.GetPooledGameObject();
             var floatingText = textObject.GetComponent<FloatingText>();
-            floatingText.SetupFloatingText(content, spawnPosition, m_textLifeTime);
+            floatingText.SetupFloatingText(floatingTextData.Content, floatingTextData.Position, m_textLifeTime);
         }
 
         private void OnDestroy()

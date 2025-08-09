@@ -19,15 +19,15 @@ namespace SGGames.Scripts.UI
             m_updatePlayerStaminaEvent.RemoveListener(OnReceiveStaminaUpdateEvent);
         }
 
-        private void OnReceiveStaminaUpdateEvent(int current, int max, bool isInitialized)
+        private void OnReceiveStaminaUpdateEvent(UpdatePlayerStaminaEventData updatePlayerStaminaEventData)
         {
-            if (isInitialized)
+            if (updatePlayerStaminaEventData.IsInitialize)
             {
-                m_view.SetupView(max);
+                m_view.SetupView(updatePlayerStaminaEventData.MaxStamina);
             }
             else
             {
-                m_view.UpdateView(current, max);
+                m_view.UpdateView(updatePlayerStaminaEventData.CurrentStamina, updatePlayerStaminaEventData.MaxStamina);
             }
         }
     }
