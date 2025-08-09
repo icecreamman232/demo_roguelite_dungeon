@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using SGGames.Script.Core;
 using SGGames.Script.Data;
@@ -7,6 +8,7 @@ using SGGames.Script.Events;
 using SGGames.Script.UI;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.SceneManagement;
 
 namespace SGGames.Script.Managers
 {
@@ -49,7 +51,16 @@ namespace SGGames.Script.Managers
             if (m_isLoading) return;
             StartCoroutine(LoadFirstRoomOfBiomes());
         }
-        
+
+        private void OnDestroy()
+        {
+            if (m_playerPrefab.OperationHandle.IsValid())
+            {
+                m_playerPrefab.ReleaseAsset();
+            }
+            ServiceLocator.UnregisterService<LevelManager>();
+        }
+
         private IEnumerator LoadFirstRoomOfBiomes()
         {
             var loadingSceneController = ServiceLocator.GetService<LoadingScreenController>();
@@ -144,18 +155,12 @@ namespace SGGames.Script.Managers
             var inputManager = ServiceLocator.GetService<InputManager>();
             
             inputManager.DisableInput();
+            
             yield return StartCoroutine(FadeOutToBlack(loadingSceneController));
-            yield return StartCoroutine(OnLoadingScene());
+            
+            loadingSceneController.LoadGameplayToMenu();
         }
-        
-        private IEnumerator OnLoadingScene()
-        {
-            var asyncLoadSceneAssetOperationHandle = Addressables.LoadSceneAsync("MainMenu_Scene");
-            yield return new WaitUntil(() => asyncLoadSceneAssetOperationHandle.IsDone);
-            var loadSceneOperation = Addressables.LoadSceneAsync(asyncLoadSceneAssetOperationHandle.Result.Scene);
-            yield return new WaitUntil(() => loadSceneOperation.IsDone);
-        }
-        
+    
         #region Coroutines
 
         private IEnumerator FadeInFromBlack(LoadingScreenController loadingSceneController)

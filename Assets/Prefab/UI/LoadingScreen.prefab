@@ -130,6 +130,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_isDefaultFadeOut: 1
   m_canvasGroup: {fileID: 6950732958380161594}
+  m_loadingScreenEvent: {fileID: 11400000, guid: f2e5cb9f40e99a041be16b07e4c7b698, type: 2}
+  m_gameplayScene:
+    m_AssetGUID: 8c9cfa26abfee488c85f1582747f6a02
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0
+  m_menuScene:
+    m_AssetGUID: 86946d09c6d0bbf47a09a562a38f15e4
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0
 --- !u!1 &4038164788505330923
 GameObject:
   m_ObjectHideFlags: 0

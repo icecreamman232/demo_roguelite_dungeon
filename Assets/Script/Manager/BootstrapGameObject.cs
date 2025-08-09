@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using SGGames.Script.Data;
 using UnityEngine;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.SceneManagement;
 
 namespace SGGames.Script.Core
@@ -16,7 +18,7 @@ namespace SGGames.Script.Core
         {
             Initialize();
         }
-
+        
         [ContextMenu("Initialize")]
         private void Initialize()
         {
@@ -28,8 +30,6 @@ namespace SGGames.Script.Core
             //Waiting for the scene which contains the bootstrap to be activated and setup completely
             //before initializing to avoid creating objects in an incorrect scene
             yield return new WaitUntil(()=>SceneManager.GetActiveScene() == gameObject.scene);
-
-            
             
             for (int i = 0; i < m_profile.AssetList.Length; i++)
             {
@@ -38,16 +38,25 @@ namespace SGGames.Script.Core
                     Debug.LogError($"Null asset in {this.name}");
                     continue;
                 }
-                
-                var handle = m_profile.AssetList[i].LoadAssetAsync();
-                yield return new WaitUntil(() => handle.IsDone);
-                var createdGameObject = Instantiate(handle.Result);
-                SceneManager.MoveGameObjectToScene(createdGameObject, gameObject.scene);
-                FormatObjectName(createdGameObject, i);
-            }
-            
 
-            Destroy(this.gameObject);
+                if (m_profile.AssetList[i].IsValid())
+                {
+                    CreateGameObjectAndMoveToScene(m_profile.AssetList[i].OperationHandle, i);
+                }
+                else
+                {
+                    var handle = m_profile.AssetList[i].LoadAssetAsync();
+                    yield return new WaitUntil(() => handle.IsDone);
+                    CreateGameObjectAndMoveToScene(handle, i);
+                }
+            }
+        }
+
+        private void CreateGameObjectAndMoveToScene(AsyncOperationHandle handle, int index)
+        {
+            var createdGameObject = Instantiate((GameObject)handle.Result);
+            SceneManager.MoveGameObjectToScene(createdGameObject, gameObject.scene);
+            FormatObjectName(createdGameObject, index);
         }
 
         private void FormatObjectName(GameObject inputGO,int index)

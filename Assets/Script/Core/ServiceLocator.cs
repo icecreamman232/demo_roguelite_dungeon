@@ -24,6 +24,11 @@ namespace SGGames.Script.Core
             }
             throw new KeyNotFoundException("Service not registered");
         }
+        
+        public static bool HasService<T>() where T : IGameService
+        {
+            return m_services.ContainsKey(typeof(T));
+        }
 
         public static void UnregisterService<T>()
         {

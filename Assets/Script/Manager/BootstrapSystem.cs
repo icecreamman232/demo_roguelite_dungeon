@@ -28,18 +28,21 @@ namespace SGGames.Script.Managers
             var loadLoadingSceneOpt = Addressables.LoadSceneAsync(m_loadingScene,LoadSceneMode.Additive, activateOnLoad:true);
             yield return new WaitUntil(()=> loadLoadingSceneOpt.IsDone);
             
-            var loadMenuSceneOpt = Addressables.LoadSceneAsync(m_mainMenuScene, LoadSceneMode.Additive);
-            yield return new WaitUntil(()=> loadMenuSceneOpt.IsDone);
-
-            SceneManager.SetActiveScene(loadMenuSceneOpt.Result.Scene);
+            var loadingScreenController = ServiceLocator.GetService<LoadingScreenController>();
+            loadingScreenController.LoadBootstrapToMenu();
             
-            var loadingSceneController = ServiceLocator.GetService<LoadingScreenController>();
-            loadingSceneController.FadeInFromBlack();
-            yield return new WaitForSeconds(LoadingScreenController.k_DefaultLoadingTime);
-            
-            // Unload the bootstrap scene
-            var unloadBootstrapOpt = SceneManager.UnloadSceneAsync("BootstrapScene");
-            yield return new WaitUntil(()=> unloadBootstrapOpt.isDone);
+            // var loadMenuSceneOpt = Addressables.LoadSceneAsync(m_mainMenuScene, LoadSceneMode.Additive);
+            // yield return new WaitUntil(()=> loadMenuSceneOpt.IsDone);
+            //
+            // SceneManager.SetActiveScene(loadMenuSceneOpt.Result.Scene);
+            //
+            // yield return new WaitUntil(() => ServiceLocator.HasService<MainMenuController>());
+            // var mainMenuController = ServiceLocator.GetService<MainMenuController>();
+            // mainMenuController.LoadMenu();
+            //
+            // // Unload the bootstrap scene
+            // var unloadBootstrapOpt = SceneManager.UnloadSceneAsync("BootstrapScene");
+            // yield return new WaitUntil(()=> unloadBootstrapOpt.isDone);
         }
     }
 }

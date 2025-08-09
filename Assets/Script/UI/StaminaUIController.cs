@@ -1,3 +1,4 @@
+using System;
 using SGGames.Script.Events;
 using UnityEngine;
 
@@ -11,6 +12,11 @@ namespace SGGames.Scripts.UI
         private void Awake()
         {
             m_updatePlayerStaminaEvent.AddListener(OnReceiveStaminaUpdateEvent);
+        }
+
+        private void OnDestroy()
+        {
+            m_updatePlayerStaminaEvent.RemoveListener(OnReceiveStaminaUpdateEvent);
         }
 
         private void OnReceiveStaminaUpdateEvent(int current, int max, bool isInitialized)
