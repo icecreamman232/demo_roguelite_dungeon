@@ -9,17 +9,17 @@ namespace SGGames.Script.Events
     {
         private Action<Global.ItemID, Vector3, int> m_listener;
 
-        public virtual void AddListener(Action<Global.ItemID, Vector3, int> addListener)
+        public void AddListener(Action<Global.ItemID, Vector3, int> addListener)
         {
             m_listener += addListener;
         }
 
-        public virtual void RemoveListener(Action<Global.ItemID, Vector3, int> removeListener)
+        public void RemoveListener(Action<Global.ItemID, Vector3, int> removeListener)
         {
             m_listener -= removeListener;
         }
 
-        public virtual void Raise(Global.ItemID itemID, Vector3 hostPosition, int amount)
+        public void Raise(Global.ItemID itemID, Vector3 hostPosition, int amount)
         {
             m_listener?.Invoke(itemID, hostPosition, amount);
         }

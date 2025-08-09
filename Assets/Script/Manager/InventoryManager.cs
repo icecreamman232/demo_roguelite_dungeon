@@ -23,6 +23,12 @@ namespace SGGames.Script.Managers
             m_currencyEvent.AddListener(OnReceiveCurrencyEvent);
         }
 
+        private void OnDestroy()
+        {
+            m_inventoryEvent.RemoveListener(OnReceiveInventoryEvent);
+            m_currencyEvent.RemoveListener(OnReceiveCurrencyEvent);
+        }
+
         private void UpdateCurrencyUI(Global.ItemID itemID)
         {
             switch (itemID)

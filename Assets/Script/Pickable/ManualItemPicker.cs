@@ -25,6 +25,13 @@ namespace SGGames.Script.Pickables
             m_interactEvent.AddListener(OnReceiveInteractionEvent);
         }
 
+        protected override void OnDestroy()
+        {
+            m_interactEvent.RemoveListener(OnReceiveInteractionEvent);
+            base.OnDestroy();
+        }
+
+
         private void OnEnable()
         {
             WarmUp();

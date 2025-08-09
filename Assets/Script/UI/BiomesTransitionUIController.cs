@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using SGGames.Script.Core;
 using SGGames.Script.Data;
@@ -27,8 +28,13 @@ namespace SGGames.Script.UI
         {
             m_biomesTransitionUIEvent.AddListener(OnReceiveTransitionEvent);
         }
-        
-        #if UNITY_EDITOR
+
+        private void OnDestroy()
+        {
+            m_biomesTransitionUIEvent.RemoveListener(OnReceiveTransitionEvent);
+        }
+
+#if UNITY_EDITOR
         [ContextMenu("Test")]
         private void Test()
         {

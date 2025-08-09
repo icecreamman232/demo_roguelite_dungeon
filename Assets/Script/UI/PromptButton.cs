@@ -1,3 +1,4 @@
+using System;
 using SGGames.Script.Core;
 using SGGames.Script.Events;
 using SGGames.Script.Managers;
@@ -21,7 +22,13 @@ namespace SGGames.Script.UI
             var inputManager = ServiceLocator.GetService<InputManager>();
             inputManager.OnPressInteract += InteractActionOnPerformed;
         }
-        
+
+        private void OnDestroy()
+        {
+            var inputManager = ServiceLocator.GetService<InputManager>();
+            inputManager.OnPressInteract -= InteractActionOnPerformed;
+            m_interactEvent.RemoveListener(OnReceiveInteractEvent);
+        }
 
         private void InteractActionOnPerformed()
         {

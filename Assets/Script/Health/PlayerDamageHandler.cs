@@ -15,6 +15,11 @@ namespace SGGames.Script.HealthSystem
             m_playerProjectileDamageEvent.AddListener(OnReceiveDamageEvent);
         }
 
+        private void OnDestroy()
+        {
+            m_playerProjectileDamageEvent.RemoveListener(OnReceiveDamageEvent);
+        }
+
         private void OnReceiveDamageEvent(float modifierValue)
         {
             m_flatDamageModifier += modifierValue;

@@ -1,3 +1,4 @@
+using System;
 using SGGames.Script.Core;
 using SGGames.Script.Events;
 using UnityEngine;
@@ -20,7 +21,12 @@ namespace SGGames.Script.Modules
             m_interactable = GetComponent<IInteractable>();
             m_defaultMaterial = m_spriteRenderer.material;
         }
-        
+
+        private void OnDestroy()
+        {
+            m_interactEvent.RemoveListener(OnReceiveEvent);
+        }
+
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (!other.CompareTag("Player")) return;

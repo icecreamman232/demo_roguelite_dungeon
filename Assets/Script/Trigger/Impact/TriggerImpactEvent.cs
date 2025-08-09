@@ -9,17 +9,17 @@ namespace SGGames.Script.Skills
     {
         private Action<Vector3, ImpactParamInfo> m_listener;
 
-        public virtual void AddListener(Action<Vector3, ImpactParamInfo> addListener)
+        public void AddListener(Action<Vector3, ImpactParamInfo> addListener)
         {
             m_listener += addListener;
         }
 
-        public virtual void RemoveListener(Action<Vector3, ImpactParamInfo> removeListener)
+        public void RemoveListener(Action<Vector3, ImpactParamInfo> removeListener)
         {
             m_listener -= removeListener;
         }
 
-        public virtual void Raise(Vector3 position, ImpactParamInfo paramInfo)
+        public void Raise(Vector3 position, ImpactParamInfo paramInfo)
         {
             m_listener?.Invoke(position, paramInfo);
         }
