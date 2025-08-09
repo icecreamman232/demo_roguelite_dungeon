@@ -35,13 +35,27 @@ namespace SGGames.Script.Entity
 
         private void OnWorldMousePositionChanged(Vector3 mouseWorldPosition)
         {
-            m_aimDirection = (mouseWorldPosition - transform.position).normalized;
-            m_aimAngle = Mathf.Atan2(m_aimDirection.y, m_aimDirection.x) * Mathf.Rad2Deg - 90f;
-            m_weaponAttachment.rotation = Quaternion.AngleAxis(m_aimAngle, Vector3.forward);
+            Vector3 rawDirection = (mouseWorldPosition - transform.position).normalized;
+    
+            // Calculate the angle in degrees
+            float rawAngle = Mathf.Atan2(rawDirection.y, rawDirection.x) * Mathf.Rad2Deg;
+    
+            // Snap to 8 directions (45-degree increments)
+            float snappedAngle = Mathf.Round(rawAngle / 45f) * 45f;
+    
+            // Convert back to direction vector
+            float angleInRadians = snappedAngle * Mathf.Deg2Rad;
+            m_aimDirection = new Vector3(Mathf.Cos(angleInRadians), Mathf.Sin(angleInRadians), 0f);
+    
+            // Apply the -90 degree offset for weapon rotation
+            m_aimAngle = snappedAngle - 90f;
             
+            //Rotate using raw angle for smooth visual
+            m_weaponAttachment.rotation = Quaternion.AngleAxis(rawAngle - 90f, Vector3.forward);
+    
             m_isAimAtLeftSide = m_aimAngle is <= -90 or >= 90;
-
             //m_currWeapon.SetAttackOnLeft(m_isAimAtLeftSide);
+
         }
 
         public void ForceResetCombo()
