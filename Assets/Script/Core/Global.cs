@@ -9,6 +9,12 @@ namespace SGGames.Script.Core
         public static float S_FLIPPING_MODEL_SPEED = 3;
         public const float k_DefaultLoadingTime = 0.5f;
 
+        public enum TurnBaseType
+        {
+            Player,
+            Enemy,
+        }
+        
         public enum ComparisonType
         {
             LesserAndEqual,

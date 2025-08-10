@@ -27,6 +27,11 @@ MonoBehaviour:
     m_SerializedLabels:
     - Player_Prefab
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3776205dabfdd9d4290a7ef167911b69
+    m_Address: Assets/Prefab/System/TurnbaseManager.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 391aac97798acbf4ea99f2718fcde1f8
     m_Address: Assets/Prefab/GridManager.prefab
     m_ReadOnly: 0
