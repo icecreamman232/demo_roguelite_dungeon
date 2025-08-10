@@ -14,12 +14,12 @@ namespace SGGames.Script.Managers
         
         private void Awake()
         {
-            ServiceLocator.RegisterService<TurnBaseManager>(this);    
+            InitializeInternal();
         }
 
         private void Start()
         {
-            Initialize();
+            InitializeExternal();
         }
 
         private void OnDestroy()
@@ -27,10 +27,15 @@ namespace SGGames.Script.Managers
             m_switchTurnEvent.RemoveListener(OnSwitchTurn);
         }
 
-        private void Initialize()
+        private void InitializeInternal()
         {
             m_turnBaseType = Global.TurnBaseType.Player;
             m_switchTurnEvent.AddListener(OnSwitchTurn);
+        }
+
+        private void InitializeExternal()
+        {
+            ServiceLocator.RegisterService<TurnBaseManager>(this);  
         }
 
         private void SwitchToPlayerTurn()

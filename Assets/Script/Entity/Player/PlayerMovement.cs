@@ -21,30 +21,19 @@ namespace SGGames.Script.Entity
         private bool m_canMove;
         private PercentageStackController m_percentageStackController;
         private float m_flatSpeedBonus;
-        
-        public Action<bool> FlippingModelAction;
+
         public LayerMask ObstacleLayerMask => m_obstacleLayerMask;
         public bool IsHitObstacle => CheckObstacle();
-        
+
+        protected override void Awake()
+        {
+            InternalInitialize();
+            base.Awake();
+        }
+
         private void Start()
         {
-            m_percentageStackController = new PercentageStackController();
-            
-            var inputManager = ServiceLocator.GetService<InputManager>();
-            inputManager.OnMoveInputUpdate += UpdateMoveInput;
-            m_moveSpeed = m_playerData.MoveSpeed;
-            m_gameEvent.AddListener(OnReceiveGameEvent);
-            
-            
-            m_controller = GetComponent<PlayerController>();
-            var gameManager = ServiceLocator.GetService<GameManager>();
-            gameManager.OnGamePauseCallback += OnGamePaused;
-            gameManager.OnGameUnPauseCallback += OnGameResumed;
-
-            SetMovementType(Global.MovementType.Normal);
-            m_canMove = true;
-            
-            ConsoleCheatManager.RegisterCommands(this);
+            ExternalInitialize();
         }
         
         private void OnDisable()
@@ -55,6 +44,27 @@ namespace SGGames.Script.Entity
                 inputManager.OnMoveInputUpdate -= UpdateMoveInput;
             }
             m_gameEvent.RemoveListener(OnReceiveGameEvent);
+        }
+
+        private void InternalInitialize()
+        {
+            m_controller = GetComponent<PlayerController>();
+            SetMovementType(Global.MovementType.Normal);
+            m_percentageStackController = new PercentageStackController();
+            m_canMove = true;
+        }
+
+        private void ExternalInitialize()
+        {
+            var inputManager = ServiceLocator.GetService<InputManager>();
+            inputManager.OnMoveInputUpdate += UpdateMoveInput;
+            
+            var gameManager = ServiceLocator.GetService<GameManager>();
+            gameManager.OnGamePauseCallback += OnGamePaused;
+            gameManager.OnGameUnPauseCallback += OnGameResumed;
+            
+            m_gameEvent.AddListener(OnReceiveGameEvent);
+            ConsoleCheatManager.RegisterCommands(this);
         }
         
         public void PauseMovement()
@@ -76,18 +86,6 @@ namespace SGGames.Script.Entity
             m_flatSpeedBonus -= bonus;
         }
 
-        public void AddPercentageSpeedBonus(Guid guid, float percentageBonus)
-        {
-            m_percentageStackController.AddPercentage(guid, percentageBonus);
-            m_moveSpeed = m_percentageStackController.GetValueWithPercentageStack(m_playerData.MoveSpeed);
-        }
-
-        public void RemovePercentageSpeedBonus(Guid guid)
-        {
-            m_percentageStackController.RemovePercentage(guid);
-            m_moveSpeed = m_percentageStackController.GetValueWithPercentageStack(m_playerData.MoveSpeed);
-        }
-        
         protected override void OnGamePaused()
         {
             m_canMove = false;
@@ -111,19 +109,6 @@ namespace SGGames.Script.Entity
             base.UpdateMovement();
         }
 
-        protected override void UpdateNormalMovement()
-        {
-            base.UpdateNormalMovement();
-            FlipModel();
-        }
-
-        protected override void FlipModel()
-        {
-            FlippingModelAction?.Invoke(m_controller.WeaponHandler.AimDirection.x > 0);
-            //m_controller.SpriteRenderer.flipX = m_controller.WeaponHandler.AimDirection.x < 0;
-            base.FlipModel();
-        }
-
         private bool CheckObstacle()
         {
             var hit = Physics2D.BoxCast(transform.position, m_controller.PlayerCollider.size, 0, m_movementDirection,m_raycastDistance,m_obstacleLayerMask);
@@ -137,7 +122,19 @@ namespace SGGames.Script.Entity
 
         private void UpdateMoveInput(Vector2 moveInput)
         {
+            if (m_currentMovementState != Global.MovementState.Ready) return;
+            
             m_movementDirection = moveInput;
+            if (m_movementDirection != Vector2.zero)
+            {
+                CalculateNextPosition();
+                SetMovementState(Global.MovementState.Moving);
+            }
+        }
+
+        private void CalculateNextPosition()
+        {
+            m_nextPosition = transform.position + (Vector3)m_movementDirection;
         }
         
         private void OnReceiveGameEvent(Global.GameEventType eventType)

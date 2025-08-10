@@ -18,32 +18,13 @@ namespace SGGames.Script.Items
 
         public override void Apply()
         {
-            if (m_entity.IsPlayer())
-            {
-                var playerMovement = ((PlayerController)m_entity).PlayerMovement;
-                if (m_isFlatValue)
-                {
-                    playerMovement.AddFlatSpeedBonus(m_bonusSpeed);
-                }
-                else
-                {
-                    playerMovement.AddPercentageSpeedBonus(m_guid, m_bonusSpeed);
-                }
-            }
+            
             base.Apply();
         }
 
         public override void Remove()
         {
-            var playerMovement = ((PlayerController)m_entity).PlayerMovement;
-            if (m_isFlatValue)
-            {
-                playerMovement.RemoveFlatSpeedBonus(m_bonusSpeed);
-            }
-            else
-            {
-                playerMovement.RemovePercentageSpeedBonus(m_guid);
-            }
+            
             base.Remove();
         }
     }

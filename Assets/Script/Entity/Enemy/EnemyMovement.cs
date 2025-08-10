@@ -80,7 +80,6 @@ namespace SGGames.Script.Entity
         
         private void Awake()
         {
-            m_moveSpeed = m_enemyData.MoveSpeed;
             var gameManager = ServiceLocator.GetService<GameManager>();
             gameManager.OnGamePauseCallback += OnGamePaused;
             gameManager.OnGameUnPauseCallback += OnGameResumed;
@@ -227,7 +226,7 @@ namespace SGGames.Script.Entity
 
         #region Movement Update Override
 
-        protected override void UpdateMovement()
+        protected override void Update()
         {
             // Handle collision for normal movement only when not using pathfinding
             if (!m_usePathfinding && IsCollideWithObstacle())
@@ -238,7 +237,7 @@ namespace SGGames.Script.Entity
             base.UpdateMovement();
         }
 
-        protected override void UpdateNormalMovement()
+        protected override void UpdateMovement()
         {
             if (m_movementBehaviorType == Global.MovementBehaviorType.FollowingTarget)
             {
@@ -250,15 +249,13 @@ namespace SGGames.Script.Entity
                 else
                 {
                     // Simple direct movement to target
-                    transform.position = Vector3.MoveTowards(transform.position, m_target.position, m_moveSpeed * Time.deltaTime);
+                    transform.position = Vector3.MoveTowards(transform.position, m_target.position, Time.deltaTime);
                 }
             }
             else
             {
-                base.UpdateNormalMovement();
+                base.UpdateMovement();
             }
-            
-            FlipModel();
         }
 
         #endregion
@@ -305,7 +302,7 @@ namespace SGGames.Script.Entity
                 {
                     SetDirection(directionToTarget);
                     // Use base movement to apply the direction
-                    base.UpdateNormalMovement();
+                    base.UpdateMovement();
                 }
                 else
                 {
@@ -356,7 +353,7 @@ namespace SGGames.Script.Entity
                 {
                     SetDirection(direction);
                     // Use base movement to apply the direction
-                    base.UpdateNormalMovement();
+                    base.UpdateMovement();
                 }
                 else
                 {
@@ -542,7 +539,7 @@ namespace SGGames.Script.Entity
             {
                 SetDirection(m_slidingDirection);
                 // Apply sliding speed multiplier by directly moving transform
-                transform.Translate(m_movementDirection * (m_moveSpeed * m_cornerSlidingSpeed * Time.deltaTime));
+                transform.Translate(m_movementDirection * (m_cornerSlidingSpeed * Time.deltaTime));
                 
                 Vector2 diagonalDirection = (m_slidingDirection + directionToTarget).normalized;
                 if (!CheckCollisionForPathfinding(diagonalDirection))
@@ -752,24 +749,6 @@ namespace SGGames.Script.Entity
 
         #endregion
 
-        #region Model Flipping
-
-        protected override void FlipModel()
-        {
-            if (m_movementBehaviorType == Global.MovementBehaviorType.FollowingTarget && m_target != null)
-            {
-                var direction = (m_target.position - transform.position).normalized;
-                FlippingModelAction?.Invoke(direction.x < 0);
-            }
-            else
-            {
-                FlippingModelAction?.Invoke(m_movementDirection.x < 0);
-            }
-            
-            base.FlipModel();
-        }
-
-        #endregion
         
         #region Stunning Mechanic
 

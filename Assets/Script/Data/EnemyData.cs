@@ -9,13 +9,11 @@ namespace SGGames.Script.Data
         [SerializeField] private Global.EnemyGrade m_enemyGrade;
         [SerializeField] private Global.EnemyProperties m_enemyProperties;
         [SerializeField] private float m_maxHealth;
-        [SerializeField] private float m_moveSpeed;
 
         public Global.EnemyGrade EnemyGrade => m_enemyGrade;
 
         public Global.EnemyProperties EnemyProperties => m_enemyProperties;
         public float MaxHealth => m_maxHealth;
-        public float MoveSpeed => m_moveSpeed;
     }
 }
 

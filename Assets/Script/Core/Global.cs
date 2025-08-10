@@ -51,8 +51,14 @@ namespace SGGames.Script.Core
         public enum MovementType
         {
             Normal,
-            KnockBack,
             Stop,
+        }
+
+        public enum MovementState
+        {
+            Ready,
+            Moving,
+            DelayAfterMoving,
         }
 
         public enum MovementBehaviorType

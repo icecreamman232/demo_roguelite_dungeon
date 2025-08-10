@@ -1,37 +1,51 @@
+using System;
 using SGGames.Script.Core;
+using SGGames.Script.Modules;
 using UnityEngine;
 
 namespace SGGames.Script.Entity
 {
     public class EntityMovement : EntityBehavior
     {
-        [Header("Movement")]
+        [Header("Movement")] 
         [SerializeField] protected Global.MovementType m_movementType;
-        [SerializeField] protected float m_moveSpeed;
+        [SerializeField] protected Global.MovementState m_currentMovementState;
         [SerializeField] protected Vector2 m_movementDirection;
 
-        protected float m_knockBackSpeed;
-        protected Global.MovementType m_prevMovementType;
-        protected Vector2 m_prevMovementDirection;
-        protected float m_knockBackEndTime;
-        protected delegate void UpdateMovementDelegate();
+        private TimerClock m_delayAfterMovingTimer;
+        protected Vector3 m_currentPosition;
+        protected Vector3 m_nextPosition;
+        private float m_lerpValue;
+        private Action m_updateMovementAction;
         
-        protected UpdateMovementDelegate m_movementDelegateMethod;
+        private const float k_MovementSpeed = 5;
+        private const float k_DelayAfterMoving = 0.3f;
+
+        protected virtual void Awake()
+        {
+            m_delayAfterMovingTimer = new TimerClock();
+            m_currentPosition = transform.position;
+            m_nextPosition = transform.position;
+            m_movementDirection = Vector2.zero;
+        }
         
         protected virtual void Update()
         {
             if (!m_isPermit) return;
             
-            UpdateInput();
-            UpdateMovement();
+            m_updateMovementAction?.Invoke();
         }
-
-        /// <summary>
-        /// Base method to update all input involved momevent
-        /// </summary>
-        protected virtual void UpdateInput()
+        
+        private void UpdateDelayAfterMoving()
         {
-            
+            if (m_delayAfterMovingTimer.IsRunning)
+            {
+                m_delayAfterMovingTimer.Update();
+            }
+            else
+            {
+                SetMovementState(Global.MovementState.Ready);
+            }
         }
         
         /// <summary>
@@ -39,70 +53,45 @@ namespace SGGames.Script.Entity
         /// </summary>
         protected virtual void UpdateMovement()
         {
-            m_movementDelegateMethod?.Invoke();
-        }
-
-        protected virtual void UpdateNormalMovement()
-        {
-            transform.Translate((m_moveSpeed * Time.deltaTime) * m_movementDirection);
-        }
-
-        protected virtual void UpdateKnockBackMovement()
-        {
-            if (Time.time > m_knockBackEndTime
-                || m_knockBackSpeed <= 0)
+            m_lerpValue += Time.deltaTime * k_MovementSpeed;
+            transform.position = Vector3.Lerp(m_currentPosition, m_nextPosition, m_lerpValue);
+            if (m_lerpValue >= 1)
             {
-                //End knockback update
-                m_movementType = m_prevMovementType;
-                m_movementDirection = m_prevMovementDirection;
-                SetMovementType(m_movementType);
+                m_lerpValue = 0;
+                m_currentPosition = m_nextPosition;
+                SetMovementState(Global.MovementState.DelayAfterMoving);
             }
-            
-            m_knockBackSpeed -= Time.deltaTime;
-            //m_knockBackSpeed = Mathf.Clamp(m_knockBackSpeed, 0, m_moveSpeed);
-            transform.Translate(m_movementDirection * (m_knockBackSpeed * Time.deltaTime));
         }
-
-        protected virtual void UpdateStopMovement()
+        
+        protected void SetMovementState(Global.MovementState movementState)
         {
-            
+            switch (movementState)
+            {
+                case Global.MovementState.Ready:
+                    m_currentMovementState = Global.MovementState.Ready;
+                    m_updateMovementAction = null;
+                    break;
+                case Global.MovementState.Moving:
+                    m_currentMovementState = Global.MovementState.Moving;
+                    m_updateMovementAction = UpdateMovement;
+                    break;
+                case Global.MovementState.DelayAfterMoving:
+                    m_currentMovementState = Global.MovementState.DelayAfterMoving;
+                    m_delayAfterMovingTimer.Start(k_DelayAfterMoving);
+                    m_updateMovementAction = UpdateDelayAfterMoving;
+                    break;
+            }
         }
-
-        protected virtual void FlipModel()
-        {
-            
-        }
-
-        public void ApplyKnockBack(Vector2 direction, float force, float duration)
-        {
-            if (m_movementType == Global.MovementType.KnockBack) return;
-
-            //Save previous state value
-            m_prevMovementDirection = m_movementDirection;
-            m_prevMovementType = m_movementType;
-
-            m_movementDirection = direction;
-            m_knockBackSpeed = force;
-            m_knockBackEndTime = duration + Time.time;
-            
-            SetMovementType(Global.MovementType.KnockBack);
-        }
-
+        
         public void SetMovementType(Global.MovementType movementType)
         {
             switch (movementType)
             {
                 case Global.MovementType.Normal:
                     m_movementType = Global.MovementType.Normal;
-                    m_movementDelegateMethod = UpdateNormalMovement;
-                    break;
-                case Global.MovementType.KnockBack:
-                    m_movementType = Global.MovementType.KnockBack;
-                    m_movementDelegateMethod = UpdateKnockBackMovement;
                     break;
                 case Global.MovementType.Stop:
                     m_movementType = Global.MovementType.Stop;
-                    m_movementDelegateMethod = UpdateStopMovement;
                     break;
             }
         }

@@ -362,7 +362,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_isPermit: 1
   m_movementType: 0
-  m_moveSpeed: 0
+  m_currentMovementState: 0
   m_movementDirection: {x: 0, y: 0}
   m_movementBehaviorType: 0
   m_enemyData: {fileID: 11400000, guid: 3a4d342279c43b74ba18ff85db68f046, type: 2}
@@ -493,8 +493,6 @@ MonoBehaviour:
   m_minDamage: 50
   m_maxDamage: 50
   m_invincibilityDuration: 0.3
-  m_knockBackForce: 0
-  m_knockDuration: 0
 --- !u!61 &2933225535416741485
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -789,7 +787,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1600937096399333733
 Transform:
   m_ObjectHideFlags: 0

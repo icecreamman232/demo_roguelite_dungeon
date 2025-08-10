@@ -6,7 +6,6 @@ namespace SGGames.Script.Data
     public class PlayerData : ScriptableObject
     {
         [SerializeField] private float m_maxHealth;
-        [SerializeField] private float m_moveSpeed;
         [Header("Dash Data")]
         [SerializeField] private float m_dashDistance;
         [SerializeField] private float m_dashSpeed;
@@ -23,7 +22,6 @@ namespace SGGames.Script.Data
         [SerializeField][Min(0)] private float m_maxDodgeChance;
         
         public float MaxHealth => m_maxHealth;
-        public float MoveSpeed => m_moveSpeed;
         public float DashDistance => m_dashDistance;
         public float DashSpeed => m_dashSpeed;
         public float DashCooldown => m_dashCooldown;
