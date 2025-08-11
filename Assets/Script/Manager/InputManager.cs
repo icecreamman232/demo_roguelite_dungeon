@@ -52,8 +52,8 @@ namespace SGGames.Script.Managers
             if (!m_isAllowInput) return;
             if (!m_isAllowGameplayInput) return;
 
-            m_movementInput = m_moveAction.ReadValue<Vector2>();
-            OnMoveInputUpdate?.Invoke(m_movementInput);
+            // m_movementInput = m_moveAction.ReadValue<Vector2>();
+            // OnMoveInputUpdate?.Invoke(m_movementInput);
 
             m_worldMousePosition = ComputeWorldMousePosition();
             WorldMousePositionUpdate?.Invoke(m_worldMousePosition);
@@ -96,7 +96,8 @@ namespace SGGames.Script.Managers
             m_interactAction = InputSystem.actions.FindAction("Interact");
             m_skill1Action = InputSystem.actions.FindAction("ActiveSkill_1");
             m_skill2Action = InputSystem.actions.FindAction("ActiveSkill_2");
-            
+
+            m_moveAction.performed += OnMoveInputPressed;
             m_attackAction.performed += OnAttackButtonPressed;
             m_dashAction.performed += OnDashButtonPressed;
             m_openConsole.performed += OnOpenConsoleButtonPressed;
@@ -105,6 +106,9 @@ namespace SGGames.Script.Managers
             m_skill1Action.performed += OnPressSkill1Button;
             m_skill2Action.performed += OnPressSkill2Button;
         }
+
+        
+
         #region Callback for Buttons
         
         private Vector3 ComputeWorldMousePosition()
@@ -113,6 +117,14 @@ namespace SGGames.Script.Managers
             mousePos = m_camera.ScreenToWorldPoint(mousePos);
             mousePos.z = 0;
             return mousePos;    
+        }
+        
+        private void OnMoveInputPressed(InputAction.CallbackContext context)
+        {
+            if (!m_isAllowInput) return;
+            if (!m_isAllowGameplayInput) return;
+            m_movementInput = context.ReadValue<Vector2>();
+            OnMoveInputUpdate?.Invoke(m_movementInput);
         }
 
         private void OnAttackButtonPressed(InputAction.CallbackContext context)

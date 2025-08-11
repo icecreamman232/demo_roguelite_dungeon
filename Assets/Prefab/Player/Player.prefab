@@ -106,6 +106,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7709283956711992361}
   - component: {fileID: 3941868291613530036}
+  - component: {fileID: 901726642164222204}
   - component: {fileID: 4637560375643844596}
   m_Layer: 0
   m_Name: Model
@@ -184,6 +185,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &901726642164222204
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5928035885629875951}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 46273f9b882e9304ca9a43bb0ef44141, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &4637560375643844596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,6 +219,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1620817c97273f745b39b7ed95787f92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_model: {fileID: 7709283956711992361}
+  m_animator: {fileID: 901726642164222204}
 --- !u!1 &9048246708849386775
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,6 +241,7 @@ GameObject:
   - component: {fileID: -5217333942266810330}
   - component: {fileID: 3555579561468918608}
   - component: {fileID: 977378331000385504}
+  - component: {fileID: 3123490272856798815}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -330,6 +356,7 @@ MonoBehaviour:
   m_spriteRenderer: {fileID: 3941868291613530036}
   m_weaponHandler: {fileID: 7672955217685612132}
   m_playerHealth: {fileID: 1171857828541800924}
+  m_actionPoint: {fileID: 3123490272856798815}
   m_playerStamina: {fileID: 4111488435508022935}
   m_playerMovement: {fileID: 5377102226311233767}
   m_playerDash: {fileID: 8463624038284965936}
@@ -402,6 +429,7 @@ MonoBehaviour:
     m_Bits: 256
   m_playerData: {fileID: 11400000, guid: cb8c5b08840ace34ab97ac1148242ac1, type: 2}
   m_gameEvent: {fileID: 11400000, guid: 7ac1f24220b2ef14186e0695169f9965, type: 2}
+  m_playerUseActionPointEvent: {fileID: 11400000, guid: 172316abaaec8d9438a3a5e8258b9478, type: 2}
 --- !u!114 &7672955217685612132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -513,6 +541,25 @@ MonoBehaviour:
   m_worldEvent: {fileID: 11400000, guid: 99cdaba5340f5944f93746bbfbafa9ad, type: 2}
   m_data: {fileID: 11400000, guid: cb8c5b08840ace34ab97ac1148242ac1, type: 2}
   m_currentDodge: 0
+--- !u!114 &3123490272856798815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9048246708849386775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 914bb0874cd93934392f8c636e7dec71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_isPermit: 1
+  m_data: {fileID: 11400000, guid: cb8c5b08840ace34ab97ac1148242ac1, type: 2}
+  m_playerUseActionPointEvent: {fileID: 11400000, guid: 172316abaaec8d9438a3a5e8258b9478, type: 2}
+  m_updateActionPointUIEvent: {fileID: 11400000, guid: 62962d335f343ef4eada9907c8fea45d, type: 2}
+  m_switchTurnEvent: {fileID: 11400000, guid: 311f02bcf056f7b4a89524a610155650, type: 2}
+  m_maxActionPoint: 0
+  m_currentActionPoint: 0
 --- !u!1001 &5209779157902029133
 PrefabInstance:
   m_ObjectHideFlags: 0

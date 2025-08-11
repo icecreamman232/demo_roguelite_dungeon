@@ -1,10 +1,8 @@
-using System;
 using SGGames.Script.Core;
 using SGGames.Script.Data;
 using SGGames.Script.EditorExtensions;
 using SGGames.Script.Events;
 using SGGames.Script.Managers;
-using SGGames.Script.Modules;
 using UnityEngine;
 
 namespace SGGames.Script.Entity
@@ -15,7 +13,9 @@ namespace SGGames.Script.Entity
         [SerializeField] private float m_raycastDistance;
         [SerializeField] private LayerMask m_obstacleLayerMask;
         [SerializeField] private PlayerData m_playerData;
+        [Header("Events")]
         [SerializeField] private GameEvent m_gameEvent;
+        [SerializeField] private PlayerUseActionPointEvent m_playerUseActionPointEvent;
 
         private PlayerController m_controller;
         private bool m_canMove;
@@ -100,9 +100,11 @@ namespace SGGames.Script.Entity
 
         protected override void OnFinishMovement()
         {
-            m_controller.FinishedTurn();
             base.OnFinishMovement();
-            SetPermission(false);
+            if (!m_controller.ActionPoint.StillHavePoints())
+            {
+                m_controller.FinishedTurn();
+            }
         }
 
         private bool CheckObstacle()
@@ -116,14 +118,29 @@ namespace SGGames.Script.Entity
             return false;
         }
 
+        private bool CanMove()
+        {
+            if (m_currentMovementState != Global.MovementState.Ready) return false;
+            if (!m_controller.ActionPoint.CanUsePoint(1)) return false;
+            return true;
+        }
+
         private void UpdateMoveInput(Vector2 moveInput)
         {
-            if (m_currentMovementState != Global.MovementState.Ready) return;
+            if (!CanMove())
+            {
+                if (moveInput != Vector2.zero)
+                {
+                    m_controller.AnimationController.PlayCantMoveAnimation();
+                }
+                return;
+            }
             
             m_movementDirection = moveInput;
             if (m_movementDirection != Vector2.zero)
             {
                 CalculateNextPosition();
+                m_playerUseActionPointEvent.Raise(1);
                 SetMovementState(Global.MovementState.Moving);
             }
         }

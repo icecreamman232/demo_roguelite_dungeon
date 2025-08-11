@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Player Data
   m_EditorClassIdentifier: 
   m_maxHealth: 150
-  m_moveSpeed: 5
+  m_actionPoints: 3
   m_dashDistance: 4
   m_dashSpeed: 20
   m_dashCooldown: 1.5
