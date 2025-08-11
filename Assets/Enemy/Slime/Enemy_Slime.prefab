@@ -229,7 +229,6 @@ Transform:
   - {fileID: 2031275111559019935}
   - {fileID: 5840590667823870289}
   - {fileID: 1600937096399333733}
-  - {fileID: 822247248639807549}
   - {fileID: 1429293973967328094}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -319,6 +318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_isPermit: 1
+  m_switchTurnEvent: {fileID: 11400000, guid: 311f02bcf056f7b4a89524a610155650, type: 2}
   m_gameEvent: {fileID: 11400000, guid: 7ac1f24220b2ef14186e0695169f9965, type: 2}
   m_defaultBrain: {fileID: 4238696107163186904}
   m_currentBrain: {fileID: 4238696107163186904}
@@ -369,7 +369,7 @@ MonoBehaviour:
   m_obstacleLayerMask:
     serializedVersion: 2
     m_Bits: 768
-  m_usePathfinding: 0
+  m_usePathfinding: 1
   m_pathFinder: {fileID: 3278343070005187421}
   m_pathUpdateInterval: 1
   m_nextWaypointDistance: 0.1
@@ -384,7 +384,7 @@ MonoBehaviour:
     m_Bits: 128
   m_enemyAvoidanceRadius: 1
   m_enemyAvoidanceForce: 2
-  m_enableDebug: 0
+  m_enableDebug: 1
 --- !u!114 &3278343070005187421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,51 +397,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f2927ef952370b46add70a8a13704d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &5149597996681181693
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1672591950504359603}
-  - component: {fileID: 4022840773939663347}
-  m_Layer: 7
-  m_Name: Decisions
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1672591950504359603
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5149597996681181693}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 822247248639807549}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4022840773939663347
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5149597996681181693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c07a3be150d0a44fb282e08d5b9787c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Label: Next state
 --- !u!1 &5186698784688324723
 GameObject:
   m_ObjectHideFlags: 0
@@ -646,131 +601,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Label: Switch to Chase Brain
-  m_brainToSwap: {fileID: 4021202799187469324}
+  m_brainToSwap: {fileID: 0}
   m_keepTarget: 1
---- !u!1 &6541293024980648712
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4215852766421772835}
-  - component: {fileID: 2584562588577761201}
-  - component: {fileID: 8686885022042657787}
-  m_Layer: 7
-  m_Name: Actions
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4215852766421772835
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6541293024980648712}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 822247248639807549}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2584562588577761201
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6541293024980648712}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fc0cd9003d79d5408e7a8a67597bb9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Label: Do nothing
---- !u!114 &8686885022042657787
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6541293024980648712}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c8e14b62c79a2d43b6d6d0ec222dc8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Label: Set to follow target
---- !u!1 &6723685410594409744
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 822247248639807549}
-  - component: {fileID: 4021202799187469324}
-  m_Layer: 7
-  m_Name: ChasingBrain
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &822247248639807549
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6723685410594409744}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 4215852766421772835}
-  - {fileID: 1672591950504359603}
-  m_Father: {fileID: 7830288532704342732}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4021202799187469324
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6723685410594409744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be6acd2bf091d6a46b03cf6a74a20106, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  States:
-  - StateName: Set to follow target
-    Actions:
-    - {fileID: 8686885022042657787}
-    Transitions:
-    - BrainDecision: {fileID: 4022840773939663347}
-      TrueStateName: Following target
-      FalseStateName: 
-  - StateName: Following target
-    Actions:
-    - {fileID: 2584562588577761201}
-    Transitions: []
-  Target: {fileID: 0}
-  CurrentState:
-    StateName: 
-    Actions: []
-    Transitions: []
-  TimeInState: 0
 --- !u!1 &6826449856746761153
 GameObject:
   m_ObjectHideFlags: 0
@@ -782,7 +614,7 @@ GameObject:
   - component: {fileID: 1600937096399333733}
   - component: {fileID: 4238696107163186904}
   m_Layer: 7
-  m_Name: WanderingBrain
+  m_Name: ChasePlayerBrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -818,45 +650,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   States:
-  - StateName: Rest
-    Actions:
-    - {fileID: 2730162077209167473}
-    Transitions:
-    - BrainDecision: {fileID: 7818494068028227214}
-      TrueStateName: Switch to Chase Brain
-      FalseStateName: 
-    - BrainDecision: {fileID: 8502416664518272981}
-      TrueStateName: Choose direction
-      FalseStateName: 
-  - StateName: Choose direction
-    Actions:
-    - {fileID: 7746153819058170496}
-    - {fileID: 3121427044389998984}
-    Transitions:
-    - BrainDecision: {fileID: 5570278051322064981}
-      TrueStateName: Flying
-      FalseStateName: 
-  - StateName: Flying
-    Actions:
-    - {fileID: 2730162077209167473}
-    Transitions:
-    - BrainDecision: {fileID: 7818494068028227214}
-      TrueStateName: Switch to Chase Brain
-      FalseStateName: 
-    - BrainDecision: {fileID: 7330007277093028541}
-      TrueStateName: Stop flying
-      FalseStateName: 
-  - StateName: Stop flying
-    Actions:
-    - {fileID: 6125285981914534825}
-    Transitions:
-    - BrainDecision: {fileID: 5570278051322064981}
-      TrueStateName: Rest
-      FalseStateName: 
-  - StateName: Switch to Chase Brain
-    Actions:
-    - {fileID: 6125285981914534825}
-    - {fileID: 5700814372054199496}
+  - StateName: 
+    Actions: []
     Transitions: []
   Target: {fileID: 0}
   CurrentState:

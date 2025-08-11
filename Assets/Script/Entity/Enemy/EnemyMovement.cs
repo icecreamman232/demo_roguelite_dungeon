@@ -6,6 +6,7 @@ using SGGames.Script.Core;
 using SGGames.Script.Data;
 using SGGames.Script.Managers;
 using SGGames.Script.PathFindings;
+using SGGames.Scripts.Entity;
 using UnityEngine;
 
 namespace SGGames.Script.Entity
@@ -43,13 +44,13 @@ namespace SGGames.Script.Entity
         [SerializeField] private bool m_enableDebug = false;
 
         // Components and services
+        private EnemyController m_controller;
         private BoxCollider2D m_collider2D;
         private RaycastHit2D m_collisionHit;
         private GridManager m_gridManager;
 
         // Target tracking
         private Transform m_target;
-        private const float k_MinPathRequestInterval = 0.2f;
 
         // Pathfinding state
         private List<Vector3> m_waypoints = new List<Vector3>();
@@ -60,25 +61,15 @@ namespace SGGames.Script.Entity
         private bool m_forcedPathfinding;
         private float m_lastPathRequestTime;
         
-        // Wall sliding state
-        private bool m_isSliding;
-        private Vector2 m_slidingDirection = Vector2.zero;
-        private float m_slidingTimer;
-        private const float k_MaxSlidingTime = 1.0f;
-
         //Stunning
         private bool m_isStunned;
         
-        // Events
-        public Action<bool> FlippingModelAction;
-        
         // Properties
         public Vector2 MoveDirection => m_movementDirection;
-        public bool IsUsingPathfinding => m_usePathfinding;
         
         #region Unity Lifecycle
         
-        private void Awake()
+        protected override void Awake()
         {
             var gameManager = ServiceLocator.GetService<GameManager>();
             gameManager.OnGamePauseCallback += OnGamePaused;
@@ -86,6 +77,7 @@ namespace SGGames.Script.Entity
 
             m_collider2D = GetComponent<BoxCollider2D>();
             SetMovementType(Global.MovementType.Normal);
+            base.Awake();
         }
 
         private void Start()
@@ -116,7 +108,11 @@ namespace SGGames.Script.Entity
         #endregion
 
         #region Public API
-
+        public void Initialize(EnemyController controller)
+        {
+            m_controller = controller;
+        }
+        
         public void ApplyStun(float duration)
         {
             //TODO: Here is simple stunning mechanic which there is only 1 stun instance could apply on the enemy
@@ -155,7 +151,6 @@ namespace SGGames.Script.Entity
             m_hasPath = false;
             m_waypoints.Clear();
             m_forcedPathfinding = false;
-            m_isSliding = false;
         }
 
         public void SetFollowingTarget(Transform followingTarget)
@@ -163,443 +158,43 @@ namespace SGGames.Script.Entity
             m_target = followingTarget;
             SetMovementType(Global.MovementType.Normal);
             SetMovementBehaviorType(Global.MovementBehaviorType.FollowingTarget);
-            EnablePathfinding(true);
         }
 
         public void SetMovementBehaviorType(Global.MovementBehaviorType movementBehaviorType)
         {
             m_movementBehaviorType = movementBehaviorType;
         }
-
-        /// <summary>
-        /// Enable pathfinding mode - called by AI brain when complex navigation is needed
-        /// </summary>
-        public void EnablePathfinding(bool enable = true)
-        {
-            if (m_usePathfinding != enable)
-            {
-                m_usePathfinding = enable;
-                
-                if (enable)
-                {
-                    // Start pathfinding coroutine and update movement delegate
-                    if (m_target != null)
-                    {
-                        StartCoroutine(UpdatePathRoutine());
-                    }
-                    // Force delegate refresh to use pathfinding version
-                    SetMovementType(m_movementType);
-                }
-                else
-                {
-                    // Clear pathfinding state
-                    StopAllCoroutines();
-                    m_hasPath = false;
-                    m_waypoints.Clear();
-                    m_forcedPathfinding = false;
-                    m_isSliding = false;
-                    // Force delegate refresh to use normal version
-                    SetMovementType(m_movementType);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Switch to pathfinding mode temporarily (automatically switches back when target is reached)
-        /// </summary>
-        public void UsePathfindingToTarget(Transform target)
-        {
-            m_target = target;
-            m_forcedPathfinding = true;
-            
-            if (!m_usePathfinding)
-            {
-                EnablePathfinding(true);
-            }
-            else
-            {
-                RequestPathIfNeeded();
-            }
-        }
         
+       
         #endregion
 
         #region Movement Update Override
 
-        protected override void Update()
+        protected override void OnFinishMovement()
         {
-            // Handle collision for normal movement only when not using pathfinding
-            if (!m_usePathfinding && IsCollideWithObstacle())
-            {
-                StopMoving();
-            }
-            
-            base.UpdateMovement();
-        }
-
-        protected override void UpdateMovement()
-        {
-            if (m_movementBehaviorType == Global.MovementBehaviorType.FollowingTarget)
-            {
-                if (m_usePathfinding)
-                {
-                    // Use pathfinding movement logic
-                    UpdatePathfindingMovement();
-                }
-                else
-                {
-                    // Simple direct movement to target
-                    transform.position = Vector3.MoveTowards(transform.position, m_target.position, Time.deltaTime);
-                }
-            }
-            else
-            {
-                base.UpdateMovement();
-            }
+            m_controller.FinishTurn();
+            base.OnFinishMovement();
+            SetPermission(false);
         }
 
         #endregion
-
-        #region Pathfinding Movement Logic
-
-        private void UpdatePathfindingMovement()
+        
+        
+        #region Pathfinding
+        [ContextMenu("Find path")]
+        public void TestPathFinding()
         {
-            if (m_target == null) return;
-            
-            // Handle sliding only if enabled
-            if (m_useWallSliding && m_isSliding)
-            {
-                HandleSliding();
-                return;
-            }
-            
-            // Check if there's a direct line of sight to the target
-            Vector2 directionToTarget = ((Vector2)m_target.position - (Vector2)transform.position).normalized;
-            
-            // Apply local enemy avoidance if enabled
-            if (m_avoidOtherEnemies)
-            {
-                Vector2 avoidanceForce = CalculateLocalEnemyAvoidance();
-                if (avoidanceForce.magnitude > 0.1f)
-                {
-                    directionToTarget = (directionToTarget + avoidanceForce * m_enemyAvoidanceForce).normalized;
-                }
-            }
-            
-            // Test if there's a direct path to target
-            m_isDirectPathBlocked = IsPathBlocked(transform.position, m_target.position);
-            
-            // Check if we're too close to walls (only if feature is enabled)
-            bool tooCloseToWalls = m_useWallProximityDetection && IsNearWalls(transform.position, m_wallProximityThreshold);
-            
-            // If there's a clear path to the target and we're not in forced pathfinding mode
-            if (!m_isDirectPathBlocked && !m_forcedPathfinding && !tooCloseToWalls)
-            {
-                m_hasPath = false;
-                m_waypoints.Clear();
-                
-                if (!CheckCollisionForPathfinding(directionToTarget))
-                {
-                    SetDirection(directionToTarget);
-                    // Use base movement to apply the direction
-                    base.UpdateMovement();
-                }
-                else
-                {
-                    if (m_useWallSliding)
-                    {
-                        TrySlideAlongObstacle(directionToTarget);
-                    }
-                    
-                    if (!m_isSliding)
-                    {
-                        m_forcedPathfinding = true;
-                        RequestPathIfNeeded();
-                    }
-                }
-                return;
-            }
-            
-            // If we have a path and need to use it
-            if (m_hasPath && m_waypoints.Count > 0)
-            {
-                Vector3 currentWaypoint = m_waypoints[m_currentWaypointIndex];
-                if (Vector2.Distance(transform.position, currentWaypoint) < m_nextWaypointDistance)
-                {
-                    m_currentWaypointIndex++;
-                    
-                    if (m_currentWaypointIndex >= m_waypoints.Count)
-                    {
-                        m_hasPath = false;
-                        m_forcedPathfinding = false;
-                        RequestPathIfNeeded();
-                        return;
-                    }
-                }
-
-                Vector2 direction = ((Vector2)currentWaypoint - (Vector2)transform.position).normalized;
-                
-                // Apply local avoidance to waypoint direction as well
-                if (m_avoidOtherEnemies)
-                {
-                    Vector2 avoidanceForce = CalculateLocalEnemyAvoidance();
-                    if (avoidanceForce.magnitude > 0.1f)
-                    {
-                        direction = (direction + avoidanceForce * m_enemyAvoidanceForce * 0.5f).normalized;
-                    }
-                }
-                
-                if (!CheckCollisionForPathfinding(direction))
-                {
-                    SetDirection(direction);
-                    // Use base movement to apply the direction
-                    base.UpdateMovement();
-                }
-                else
-                {
-                    if (m_useWallSliding)
-                    {
-                        TrySlideAlongObstacle(direction);
-                    }
-                    
-                    if (!m_isSliding)
-                    {
-                        RequestPathIfNeeded();
-                    }
-                }
-            }
-            else if ((m_isDirectPathBlocked || m_forcedPathfinding || tooCloseToWalls) && !m_pathPending)
-            {
-                RequestPathIfNeeded();
-            }
+            m_target = ServiceLocator.GetService<LevelManager>().Player.transform;
+            SetNextPosition();
+            SetMovementState(Global.MovementState.Moving);
         }
 
-        #endregion
-
-        #region Collision Detection
-
-        protected virtual bool IsCollideWithObstacle()
+        private void SetNextPosition()
         {
-            m_collisionHit = Physics2D.BoxCast(transform.position, m_collider2D.size, 0, m_movementDirection, k_RaycastDistance, m_obstacleLayerMask);    
-            return m_collisionHit.collider != null;
-        }
-
-        private bool CheckCollisionForPathfinding(Vector2 direction)
-        {
-            var hitResult = Physics2D.BoxCast(transform.position, Vector2.one * 0.8f, 0f, direction, 0.2f, m_obstacleLayerMask);
-            if (hitResult.collider != null)
-                return true;
-                
-            // Also check for enemy collisions for immediate collision detection
-            if (m_avoidOtherEnemies)
-            {
-                var enemyHit = Physics2D.BoxCast(transform.position, Vector2.one * 0.8f, 0f, direction, 0.2f, m_enemyLayer);
-                if (enemyHit.collider != null && enemyHit.collider.gameObject != gameObject)
-                    return true;
-            }
-            
-            return false;
-        }
-
-        private bool IsPathBlocked(Vector3 start, Vector3 end)
-        {
-            Vector2 direction = ((Vector2)end - (Vector2)start).normalized;
-            float distance = Vector2.Distance(start, end);
-            
-            RaycastHit2D hitCenter = Physics2D.Raycast((Vector2)start, direction, distance, m_obstacleLayerMask);
-            if (hitCenter.collider != null)
-                return true;
-                
-            Vector2 perpendicular = new Vector2(-direction.y, direction.x).normalized;
-            float checkWidth = 0.4f;
-            
-            RaycastHit2D hitLeft = Physics2D.Raycast((Vector2)start + perpendicular * checkWidth, direction, distance, m_obstacleLayerMask);
-            if (hitLeft.collider != null)
-                return true;
-                
-            RaycastHit2D hitRight = Physics2D.Raycast((Vector2)start - perpendicular * checkWidth, direction, distance, m_obstacleLayerMask);
-            if (hitRight.collider != null)
-                return true;
-            
-            return false;
-        }
-
-        private bool IsNearWalls(Vector3 position, float threshold)
-        {
-            if (!m_useWallProximityDetection) return false;
-            
-            Vector2[] directions = new Vector2[]
-            {
-                Vector2.up, new Vector2(0.7f, 0.7f).normalized, Vector2.right,
-                new Vector2(0.7f, -0.7f).normalized, Vector2.down, new Vector2(-0.7f, -0.7f).normalized,
-                Vector2.left, new Vector2(-0.7f, 0.7f).normalized
-            };
-            
-            for (int i = 0; i < directions.Length; i++)
-            {
-                RaycastHit2D hit = Physics2D.Raycast((Vector2)position, directions[i], threshold, m_obstacleLayerMask);
-                if (hit.collider != null)
-                {
-                    return true;
-                }
-            }
-            
-            return false;
-        }
-
-        #endregion
-
-        #region Enemy Avoidance
-
-        private Vector2 CalculateLocalEnemyAvoidance()
-        {
-            Vector2 avoidanceForce = Vector2.zero;
-            
-            // Find nearby enemies using physics overlap (this is for immediate steering, not pathfinding)
-            Collider2D[] nearbyEnemies = Physics2D.OverlapCircleAll(transform.position, m_enemyAvoidanceRadius, m_enemyLayer);
-            
-            foreach (Collider2D enemyCollider in nearbyEnemies)
-            {
-                if (enemyCollider.gameObject != gameObject)
-                {
-                    Vector2 directionAway = ((Vector2)transform.position - (Vector2)enemyCollider.transform.position);
-                    float distance = directionAway.magnitude;
-                    
-                    if (distance > 0.1f && distance < m_enemyAvoidanceRadius)
-                    {
-                        float avoidanceStrength = (m_enemyAvoidanceRadius - distance) / m_enemyAvoidanceRadius;
-                        avoidanceForce += directionAway.normalized * avoidanceStrength;
-                    }
-                }
-            }
-            
-            return avoidanceForce;
-        }
-
-        #endregion
-
-        #region Wall Sliding
-
-        private void TrySlideAlongObstacle(Vector2 blockedDirection)
-        {
-            if (!m_useWallSliding) return;
-            
-            Vector2 rightPerpendicular = new Vector2(-blockedDirection.y, blockedDirection.x);
-            Vector2 leftPerpendicular = new Vector2(blockedDirection.y, -blockedDirection.x);
-            
-            bool canSlideRight = !CheckCollisionForPathfinding(rightPerpendicular);
-            bool canSlideLeft = !CheckCollisionForPathfinding(leftPerpendicular);
-            
-            if (canSlideRight || canSlideLeft)
-            {
-                m_isSliding = true;
-                m_slidingTimer = 0f;
-                
-                if (canSlideRight && canSlideLeft)
-                {
-                    Vector2 toTarget = (Vector2)m_target.position - (Vector2)transform.position;
-                    float dotRight = Vector2.Dot(rightPerpendicular, toTarget.normalized);
-                    float dotLeft = Vector2.Dot(leftPerpendicular, toTarget.normalized);
-                    
-                    m_slidingDirection = (dotRight > dotLeft) ? rightPerpendicular : leftPerpendicular;
-                }
-                else
-                {
-                    m_slidingDirection = canSlideRight ? rightPerpendicular : leftPerpendicular;
-                }
-            }
+            UpdatePath();
+            m_nextPosition = m_waypoints[1];
         }
         
-        private void HandleSliding()
-        {
-            if (!m_useWallSliding)
-            {
-                m_isSliding = false;
-                return;
-            }
-            
-            m_slidingTimer += Time.deltaTime;
-            
-            Vector2 directionToTarget = ((Vector2)m_target.position - (Vector2)transform.position).normalized;
-            bool canMoveToTarget = !CheckCollisionForPathfinding(directionToTarget) && !IsPathBlocked(transform.position, m_target.position);
-            
-            if (m_slidingTimer >= k_MaxSlidingTime || canMoveToTarget)
-            {
-                m_isSliding = false;
-                
-                if (!canMoveToTarget && m_usePathfinding)
-                {
-                    m_forcedPathfinding = true;
-                    RequestPathIfNeeded();
-                }
-                return;
-            }
-            
-            if (!CheckCollisionForPathfinding(m_slidingDirection))
-            {
-                SetDirection(m_slidingDirection);
-                // Apply sliding speed multiplier by directly moving transform
-                transform.Translate(m_movementDirection * (m_cornerSlidingSpeed * Time.deltaTime));
-                
-                Vector2 diagonalDirection = (m_slidingDirection + directionToTarget).normalized;
-                if (!CheckCollisionForPathfinding(diagonalDirection))
-                {
-                    SetDirection(diagonalDirection);
-                }
-            }
-            else
-            {
-                m_slidingDirection = -m_slidingDirection;
-                
-                if (CheckCollisionForPathfinding(m_slidingDirection))
-                {
-                    m_isSliding = false;
-                    if (m_usePathfinding)
-                    {
-                        m_forcedPathfinding = true;
-                        RequestPathIfNeeded();
-                    }
-                }
-            }
-        }
-
-        #endregion
-
-        #region Pathfinding
-
-        private void RequestPathIfNeeded()
-        {
-            if (!m_usePathfinding) return;
-            
-            if (Time.time - m_lastPathRequestTime >= k_MinPathRequestInterval && !m_pathPending)
-            {
-                StartCoroutine(RequestPath());
-                m_lastPathRequestTime = Time.time;
-            }
-        }
-
-        private IEnumerator UpdatePathRoutine()
-        {
-            while (m_usePathfinding)
-            {
-                yield return new WaitForSeconds(m_pathUpdateInterval);
-                
-                if (m_target != null && m_pathFinder != null && !m_pathPending && !m_isSliding &&
-                    (m_isDirectPathBlocked || m_forcedPathfinding || (m_useWallProximityDetection && IsNearWalls(transform.position, m_wallProximityThreshold))))
-                {
-                    RequestPathIfNeeded();
-                }
-            }
-        }
-
-        private IEnumerator RequestPath()
-        {
-            m_pathPending = true;
-            yield return null;
-            UpdatePath();
-            m_pathPending = false;
-        }
-
         private void UpdatePath()
         {
             if (!m_usePathfinding || m_pathFinder == null || m_gridManager == null) return;
@@ -612,7 +207,6 @@ namespace SGGames.Script.Entity
             if (gridPath != null && gridPath.Length > 0)
             {
                 ProcessPath(gridPath);
-                m_currentWaypointIndex = FindClosestWaypointIndex();
                 m_hasPath = true;
             }
             else
@@ -638,7 +232,7 @@ namespace SGGames.Script.Entity
                 rawWaypoints.Add(worldPos);
             }
             
-            m_waypoints = m_usePathOptimization ? PathSimplification(rawWaypoints) : rawWaypoints;
+            m_waypoints = rawWaypoints;
         }
         
         private List<Vector3> PathSimplification(List<Vector3> path)
@@ -748,7 +342,6 @@ namespace SGGames.Script.Entity
         }
 
         #endregion
-
         
         #region Stunning Mechanic
 
@@ -779,28 +372,9 @@ namespace SGGames.Script.Entity
                     
                     if (i < m_waypoints.Count - 1)
                     {
-                        Gizmos.color = Color.yellow;
+                        Gizmos.color = Color.green;
                         Gizmos.DrawLine(m_waypoints[i], m_waypoints[i + 1]);
                     }
-                }
-            }
-            
-            // Draw line to target with status colors
-            if (m_target != null)
-            {
-                bool nearWalls = m_useWallProximityDetection && IsNearWalls(transform.position, m_wallProximityThreshold);
-                Gizmos.color = (m_useWallSliding && m_isSliding) ? Color.magenta : 
-                              (m_isDirectPathBlocked ? Color.red : 
-                              (m_forcedPathfinding ? Color.yellow : 
-                              (nearWalls ? Color.cyan : Color.green)));
-                               
-                Gizmos.DrawLine(transform.position, m_target.position);
-                
-                // Draw enemy avoidance radius
-                if (m_avoidOtherEnemies)
-                {
-                    Gizmos.color = Color.blue;
-                    Gizmos.DrawWireSphere(transform.position, m_enemyAvoidanceRadius);
                 }
             }
         }

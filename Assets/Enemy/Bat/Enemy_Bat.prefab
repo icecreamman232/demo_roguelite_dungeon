@@ -753,6 +753,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_isPermit: 1
+  m_switchTurnEvent: {fileID: 11400000, guid: 311f02bcf056f7b4a89524a610155650, type: 2}
   m_gameEvent: {fileID: 11400000, guid: 7ac1f24220b2ef14186e0695169f9965, type: 2}
   m_defaultBrain: {fileID: 6110430800030532304}
   m_currentBrain: {fileID: 6110430800030532304}
@@ -796,7 +797,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_isPermit: 1
   m_movementType: 0
-  m_moveSpeed: 0
+  m_currentMovementState: 0
   m_movementDirection: {x: 0, y: 0}
   m_movementBehaviorType: 0
   m_enemyData: {fileID: 11400000, guid: 016adb8f7453c2449bff74fb74c392fd, type: 2}
@@ -1029,8 +1030,6 @@ MonoBehaviour:
   m_minDamage: 50
   m_maxDamage: 50
   m_invincibilityDuration: 0.3
-  m_knockBackForce: 0
-  m_knockDuration: 0
 --- !u!61 &3580966054706626734
 BoxCollider2D:
   m_ObjectHideFlags: 0

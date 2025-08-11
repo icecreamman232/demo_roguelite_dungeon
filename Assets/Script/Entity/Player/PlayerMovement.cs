@@ -19,8 +19,6 @@ namespace SGGames.Script.Entity
 
         private PlayerController m_controller;
         private bool m_canMove;
-        private PercentageStackController m_percentageStackController;
-        private float m_flatSpeedBonus;
 
         public LayerMask ObstacleLayerMask => m_obstacleLayerMask;
         public bool IsHitObstacle => CheckObstacle();
@@ -50,7 +48,7 @@ namespace SGGames.Script.Entity
         {
             m_controller = GetComponent<PlayerController>();
             SetMovementType(Global.MovementType.Normal);
-            m_percentageStackController = new PercentageStackController();
+            SetMovementState(Global.MovementState.Ready);
             m_canMove = true;
         }
 
@@ -77,15 +75,6 @@ namespace SGGames.Script.Entity
             m_canMove = true;
         }
 
-        public void AddFlatSpeedBonus(float bonus)
-        {
-            m_flatSpeedBonus += bonus;
-        }
-        public void RemoveFlatSpeedBonus(float bonus)
-        {
-            m_flatSpeedBonus -= bonus;
-        }
-
         protected override void OnGamePaused()
         {
             m_canMove = false;
@@ -107,6 +96,13 @@ namespace SGGames.Script.Entity
                 m_movementDirection = Vector2.zero;
             }
             base.UpdateMovement();
+        }
+
+        protected override void OnFinishMovement()
+        {
+            m_controller.FinishedTurn();
+            base.OnFinishMovement();
+            SetPermission(false);
         }
 
         private bool CheckObstacle()

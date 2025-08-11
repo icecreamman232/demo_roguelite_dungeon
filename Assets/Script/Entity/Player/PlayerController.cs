@@ -1,5 +1,7 @@
 using System;
+using SGGames.Script.Core;
 using SGGames.Script.Entities;
+using SGGames.Script.Events;
 using SGGames.Script.HealthSystem;
 using SGGames.Script.Items;
 using SGGames.Script.StaminaSystem;
@@ -24,6 +26,7 @@ namespace SGGames.Script.Entity
         [SerializeField] private PlayerResistanceController m_resistanceController;
         [SerializeField] private PlayerModifierController m_modifierController;
         [SerializeField] private PlayerDodge m_dodge;
+        [SerializeField] private SwitchTurnEvent m_switchTurnEvent;
 
         public BoxCollider2D PlayerCollider => m_collider;
         public GameObject Model => m_spriteRenderer.gameObject;
@@ -40,14 +43,32 @@ namespace SGGames.Script.Entity
 
         private void Start()
         {
+            m_switchTurnEvent.AddListener(OnSwitchTurn);
             m_playerHealth.Initialize(this, m_weaponHandler.ForceResetCombo);
             m_resistanceController.Initialize();
             ModifierController.Initialize(this);
         }
 
+        private void OnSwitchTurn(TurnBaseEventData turnBaseEventData)
+        {
+            if (turnBaseEventData.TurnBaseState == Global.TurnBaseState.PlayerTakeTurn)
+            {
+                m_playerMovement.SetPermission(true);
+            }
+        }
+
         public bool IsPlayer()
         {
             return true;
+        }
+
+        public void FinishedTurn()
+        {
+            m_switchTurnEvent.Raise(new TurnBaseEventData
+            {
+                TurnBaseState = Global.TurnBaseState.PlayerFinishedTurn,
+                EntityIndex = 0
+            });
         }
 
         public void ForceResetCombo()

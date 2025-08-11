@@ -44,8 +44,13 @@ namespace SGGames.Script.Entity
             }
             else
             {
-                SetMovementState(Global.MovementState.Ready);
+                SetMovementState(Global.MovementState.Finish);
             }
+        }
+
+        protected virtual void OnFinishMovement()
+        {
+            SetMovementState(Global.MovementState.Ready);
         }
         
         /// <summary>
@@ -79,6 +84,9 @@ namespace SGGames.Script.Entity
                     m_currentMovementState = Global.MovementState.DelayAfterMoving;
                     m_delayAfterMovingTimer.Start(k_DelayAfterMoving);
                     m_updateMovementAction = UpdateDelayAfterMoving;
+                    break;
+                case Global.MovementState.Finish:
+                    OnFinishMovement();
                     break;
             }
         }

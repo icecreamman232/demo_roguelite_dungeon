@@ -337,6 +337,7 @@ MonoBehaviour:
   m_resistanceController: {fileID: -5217333942266810330}
   m_modifierController: {fileID: 3555579561468918608}
   m_dodge: {fileID: 977378331000385504}
+  m_switchTurnEvent: {fileID: 11400000, guid: 311f02bcf056f7b4a89524a610155650, type: 2}
 --- !u!114 &1171857828541800924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,7 +394,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_isPermit: 1
   m_movementType: 0
-  m_moveSpeed: 2
+  m_currentMovementState: 0
   m_movementDirection: {x: 0, y: 0}
   m_raycastDistance: 0.15
   m_obstacleLayerMask:

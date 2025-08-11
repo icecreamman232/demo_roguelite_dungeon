@@ -17,8 +17,6 @@ namespace SGGames.Script.Weapons
         private ProjectileBuilder m_projectileBuilder;
         private Vector2 m_lastAimDirection;
 
-        public Action<bool> FlipModelingOnShoot;
-
         private void Update()
         {
             m_stateManager?.Update();
@@ -46,7 +44,7 @@ namespace SGGames.Script.Weapons
 
         public void UpdateAnimationOnAttack()
         {
-            FlipModelingOnShoot?.Invoke(m_lastAimDirection.x < 0);
+            
         }
 
         public void Attack()

@@ -14,6 +14,7 @@ namespace SGGames.Scripts.Entity
     [Serializable]
     public class EnemyController : EntityBehavior, IRevivable , IEntityIdentifier
     {
+        [SerializeField] protected SwitchTurnEvent m_switchTurnEvent;
         [SerializeField] protected GameEvent m_gameEvent;
         [SerializeField] protected EnemyBrain m_defaultBrain;
         [SerializeField] protected EnemyBrain m_currentBrain;
@@ -22,27 +23,24 @@ namespace SGGames.Scripts.Entity
         [SerializeField] protected EnemyMovement m_enemyMovement;
         [SerializeField] protected EnemyWeaponHandler m_enemyWeaponHandler;
         [SerializeField] protected EnemyAnimationController m_animationController;
-
+        
         private List<IDeathCommand> m_deathCommands;
-
+        private int m_orderIndex;
         public EnemyBrain CurrentBrain => m_currentBrain;
         public EnemyMovement Movement => m_enemyMovement;
         public EnemyHealth Health => m_enemyHealth;
 
         private void Awake()
         {
-            m_currentBrain = m_defaultBrain;
-            m_currentBrain.Initialize(this);
+            if (m_defaultBrain != null)
+            {
+                m_currentBrain = m_defaultBrain;
+                m_currentBrain.Initialize(this);
+            }
             
             m_gameEvent.AddListener(OnReceiveGameEvent);
             m_enemyHealth.OnDeath += OnEnemyDeath;
             
-            m_enemyMovement.FlippingModelAction = m_animationController.FlipModel;
-
-            if (m_enemyWeaponHandler != null)
-            {
-                m_enemyWeaponHandler.CurrentWeapon.FlipModelingOnShoot  = m_animationController.FlipModel;
-            }
             
             var gameManager = ServiceLocator.GetService<GameManager>();
             gameManager.OnGamePauseCallback += OnGamePaused;
@@ -59,7 +57,15 @@ namespace SGGames.Scripts.Entity
                 command.Initialize(this);
             }
         }
-        
+
+        private void Start()
+        {
+            m_enemyMovement.Initialize(this);
+            m_switchTurnEvent.AddListener(OnSwitchTurn);
+            var turnBaseManager = ServiceLocator.GetService<TurnBaseManager>();
+            turnBaseManager.RegisterEnemy(this);
+        }
+
         private void OnDestroy()
         {
             var gameManager = ServiceLocator.GetService<GameManager>();
@@ -67,6 +73,31 @@ namespace SGGames.Scripts.Entity
             gameManager.OnGameUnPauseCallback -= OnGameResumed;
             
             m_gameEvent.RemoveListener(OnReceiveGameEvent);
+            m_switchTurnEvent.RemoveListener(OnSwitchTurn);
+        }
+
+        public void SetOrderIndex(int orderIndex)
+        {
+            m_orderIndex = orderIndex;
+        }
+
+        public void FinishTurn()
+        {
+            m_switchTurnEvent.Raise(new TurnBaseEventData
+            {
+                TurnBaseState = Global.TurnBaseState.EnemyFinishedTurn,
+                EntityIndex = m_orderIndex
+            });
+        }
+        
+        private void OnSwitchTurn(TurnBaseEventData turnBaseEventData)
+        {
+            if (turnBaseEventData.TurnBaseState == Global.TurnBaseState.EnemyTakeTurn
+                && turnBaseEventData.EntityIndex == m_orderIndex)
+            {
+                m_enemyMovement.SetPermission(true);
+                m_enemyMovement.TestPathFinding();
+            }
         }
 
         private void RegisterEnemyToRoom()
@@ -106,6 +137,7 @@ namespace SGGames.Scripts.Entity
             }
             else if(eventType ==  Global.GameEventType.GameStarted)
             {
+                if (m_currentBrain == null) return;
                 m_currentBrain.ActivateBrain(true);
             }
         }

@@ -8,11 +8,13 @@ namespace SGGames.Script.Core
         public static float HP_PER_SLOT = 50f;
         public static float S_FLIPPING_MODEL_SPEED = 3;
         public const float k_DefaultLoadingTime = 0.5f;
-
-        public enum TurnBaseType
+        
+        public enum TurnBaseState
         {
-            Player,
-            Enemy,
+            PlayerTakeTurn,
+            PlayerFinishedTurn,
+            EnemyTakeTurn,
+            EnemyFinishedTurn,
         }
         
         public enum ComparisonType
@@ -59,6 +61,7 @@ namespace SGGames.Script.Core
             Ready,
             Moving,
             DelayAfterMoving,
+            Finish
         }
 
         public enum MovementBehaviorType
