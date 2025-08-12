@@ -44,11 +44,6 @@ namespace SGGames.Script.AI
             }
             base.UpdateAction();
         }
-
-        public override void DoAction()
-        {
-            
-        }
     }
 }
 

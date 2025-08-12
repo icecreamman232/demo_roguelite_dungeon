@@ -12,11 +12,6 @@ namespace SGGames.Script.AI
             m_brain.Owner.Movement.SetDirection((new Vector2(randomX, randomY)).normalized);
             SetActionState(Core.Global.ActionState.InProgress);
         }
-
-        public override void DoAction()
-        {
-            
-        }
     } 
 }
 

@@ -36,7 +36,13 @@ namespace SGGames.Script.HealthSystem
             m_animator = GetComponentInChildren<Animator>();
             m_reviveComponent = GetComponent<ReviveComponent>();
         }
-        
+
+        private void OnDestroy()
+        {
+            OnHit = null;
+            OnDeath = null;
+        }
+
         public virtual void TakeDamage(float damage, GameObject source, float invincibleDuration)
         {
             if (!CanTakeDamage()) return;

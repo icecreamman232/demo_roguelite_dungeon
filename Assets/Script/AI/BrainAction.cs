@@ -23,12 +23,12 @@ namespace SGGames.Scripts.AI
         protected virtual void SetActionState(Global.ActionState state)
         {
             m_currentState = state;
-            Debug.Log($"Action State Changed to {state}");
         }
-        
-        public virtual void OnEnterState(){}
-        public abstract void DoAction();
-        public virtual void OnExitState(){}
+
+        public virtual void ResetAction()
+        {
+            SetActionState(Global.ActionState.NotStarted);
+        }
     }
 }
 

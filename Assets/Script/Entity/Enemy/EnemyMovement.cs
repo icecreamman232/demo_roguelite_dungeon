@@ -14,7 +14,6 @@ namespace SGGames.Script.Entity
     public class EnemyMovement : EntityMovement
     {
         [Header("Enemy Basic Settings")] 
-        [SerializeField] private Global.MovementBehaviorType m_movementBehaviorType;
         [SerializeField] private EnemyData m_enemyData;
         [SerializeField] private LayerMask m_obstacleLayerMask;
         private const float k_RaycastDistance = 0.15f;
@@ -129,7 +128,6 @@ namespace SGGames.Script.Entity
 
         public void StartMoving()
         {
-            Debug.Log("Start Moving");
             SetMovementType(Global.MovementType.Normal);
             SetPermission(true);
             SetNextPosition();
@@ -150,7 +148,6 @@ namespace SGGames.Script.Entity
         {
             m_movementDirection = Vector2.zero;
             SetMovementType(Global.MovementType.Stop);
-            SetMovementBehaviorType(Global.MovementBehaviorType.Normal);
             
             // Clear pathfinding state
             m_hasPath = false;
@@ -162,22 +159,14 @@ namespace SGGames.Script.Entity
         {
             m_target = followingTarget;
             SetMovementType(Global.MovementType.Normal);
-            SetMovementBehaviorType(Global.MovementBehaviorType.FollowingTarget);
         }
 
-        public void SetMovementBehaviorType(Global.MovementBehaviorType movementBehaviorType)
-        {
-            m_movementBehaviorType = movementBehaviorType;
-        }
-        
-       
         #endregion
 
         #region Movement Update Override
 
         protected override void OnFinishMovement()
         {
-            //m_controller.FinishTurn();
             base.OnFinishMovement();
             SetPermission(false);
         }

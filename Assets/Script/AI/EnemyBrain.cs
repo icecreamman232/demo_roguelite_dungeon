@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using SGGames.Script.Core;
 using SGGames.Script.Events;
@@ -14,10 +13,9 @@ namespace SGGames.Scripts.Entity
         private EnemyController m_owner;
         public Transform Target;
         private bool m_brainActive;
-        public BrainState CurrentState;
-
-        public float TimeInState;
         
+        public BrainState CurrentState { get;private set; }
+        public float TimeInState { get; private set; }
         public bool IsBrainActive => m_brainActive;
         
         public EnemyController Owner
@@ -54,10 +52,6 @@ namespace SGGames.Scripts.Entity
         public void ActivateBrain(bool isActive)
         {
             m_brainActive = isActive;
-            if (m_brainActive && CurrentState != null)
-            {
-                CurrentState.EnterState();
-            }
         }
 
         public void ResetBrain()
@@ -65,6 +59,10 @@ namespace SGGames.Scripts.Entity
             CurrentState = m_states[0];
             foreach (var state in m_states)
             {
+                foreach (var action in state.Actions)
+                {
+                    action.ResetAction();
+                }
                 foreach (var transition in state.Transitions)
                 {
                     transition.BrainDecision.OnReset();
@@ -77,23 +75,6 @@ namespace SGGames.Scripts.Entity
             if (CurrentState == null)
             {
                 CurrentState = FindState(stateName);
-                if (CurrentState != null)
-                {
-                    CurrentState.EnterState();
-                }
-
-                return;
-            }
-
-            if (stateName != CurrentState.StateName)
-            {
-                CurrentState.ExitState();
-                TimeInState = 0;
-                CurrentState = FindState(stateName);
-                if (CurrentState != null)
-                {
-                    CurrentState.EnterState();
-                }
             }
         }
 
@@ -137,7 +118,6 @@ namespace SGGames.Scripts.Entity
 
         private void StartTurn()
         {
-            Debug.Log("Start Turn");
             ExecuteTurn();
         }
         

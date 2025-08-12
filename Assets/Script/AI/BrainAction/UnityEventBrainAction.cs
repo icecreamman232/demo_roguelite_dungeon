@@ -14,11 +14,6 @@ namespace SGGames.Script.AI
             m_event?.Invoke();
             SetActionState(Global.ActionState.Completed);
         }
-
-        public override void DoAction()
-        {
-            m_event?.Invoke();
-        }
     }
 }
 

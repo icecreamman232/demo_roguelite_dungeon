@@ -83,7 +83,6 @@ namespace SGGames.Script.Managers
 
         private void OnSwitchTurn(TurnBaseEventData turnBaseEventData)
         {
-            Debug.Log($"TURN::{turnBaseEventData.TurnBaseState}");
             switch (turnBaseEventData.TurnBaseState)
             {
                 case Global.TurnBaseState.EnemyFinishedTurn:

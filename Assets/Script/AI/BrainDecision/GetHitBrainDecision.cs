@@ -43,12 +43,6 @@ namespace SGGames.Script.AI
                 m_brain.Target = playerProjectile.Owner.transform;
             }
         }
-
-        private void OnDestroy()
-        {
-            var health = m_brain.Owner.GetComponent<EnemyHealth>();
-            health.OnHit -= EnemyGetHit;
-        }
     }
 }
 

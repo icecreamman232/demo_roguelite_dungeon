@@ -72,13 +72,6 @@ namespace SGGames.Script.Core
             Finish
         }
 
-        public enum MovementBehaviorType
-        {
-            Normal,
-            TowardPoint,
-            FollowingTarget,
-        }
-
         public enum BiomesName
         {
             Biome1,

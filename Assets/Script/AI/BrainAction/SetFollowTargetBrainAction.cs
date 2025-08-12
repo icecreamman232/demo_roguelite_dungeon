@@ -16,10 +16,5 @@ namespace SGGames.Script.AI
             m_brain.Owner.Movement.SetFollowingTarget(m_brain.Target);
             SetActionState(Global.ActionState.Completed);
         }
-        
-        public override void DoAction()
-        {
-            
-        }
     }
 }

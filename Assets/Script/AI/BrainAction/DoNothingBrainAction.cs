@@ -11,11 +11,5 @@ namespace SGGames.Script.AI
         {
             
         }
-
-        public override void DoAction()
-        {
-            
-        }
     }
-
 }

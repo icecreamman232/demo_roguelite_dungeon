@@ -28,11 +28,6 @@ namespace SGGames.Script.AI
             
             SetActionState(Global.ActionState.Completed);
         }
-
-        public override void DoAction()
-        {
-           
-        }
+        
     }
-
 }

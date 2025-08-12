@@ -34,22 +34,6 @@ namespace SGGames.Scripts.AI
             }
         }
 
-        public void EnterState()
-        {
-            foreach (var action in Actions)
-            {
-                action.OnEnterState();
-            }
-            
-            foreach (var transition in Transitions)
-            {
-                if (transition.BrainDecision != null)
-                {
-                    transition.BrainDecision.OnEnterState();
-                }
-            }
-        }
-
         public void DoActions()
         {
             if (Actions.Count == 0)
@@ -131,23 +115,6 @@ namespace SGGames.Scripts.AI
                             break;
                         }
                     }
-                }
-            }
-        }
-        
-        
-        public void ExitState()
-        {
-            foreach (var action in Actions)
-            {
-                action.OnExitState();
-            }
-            
-            foreach (var transition in Transitions)
-            {
-                if (transition.BrainDecision != null)
-                {
-                    transition.BrainDecision.OnExitState();
                 }
             }
         }
