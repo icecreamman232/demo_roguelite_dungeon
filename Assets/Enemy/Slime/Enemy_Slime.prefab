@@ -266,7 +266,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.19164807}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -276,7 +276,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.76, y: 0.64670384}
+  m_Size: {x: 0.8, y: 0.8}
   m_EdgeRadius: 0
 --- !u!50 &7196371615395540728
 Rigidbody2D:
@@ -482,7 +482,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.21497613}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -492,7 +492,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.76, y: 0.6000477}
+  m_Size: {x: 0.8, y: 0.8}
   m_EdgeRadius: 0
 --- !u!1 &6099111199674941156
 GameObject:
@@ -650,9 +650,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   States:
-  - StateName: 
-    Actions: []
-    Transitions: []
+  - StateName: Choose random direction
+    Actions:
+    - {fileID: 7746153819058170496}
+    Transitions:
+    - BrainDecision: {fileID: 5570278051322064981}
+      TrueStateName: Moving
+      FalseStateName: 
+  - StateName: Choose random direction
+    Actions:
+    - {fileID: 3121427044389998984}
+    Transitions:
+    - BrainDecision: {fileID: 5570278051322064981}
+      TrueStateName: Move to next position
+      FalseStateName: 
   Target: {fileID: 0}
   CurrentState:
     StateName: 

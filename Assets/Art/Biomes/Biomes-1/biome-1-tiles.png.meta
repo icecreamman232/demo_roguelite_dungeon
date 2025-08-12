@@ -429,6 +429,50 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: biome-1-placeholder-floor-1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60713977ec6c7674aa6cf56d6cbe1caf
+      internalID: 1276605668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: biome-1-placeholder-floor-2
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9edd69ed334a4c041ad3fd494d2e7845
+      internalID: -1153918953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -448,6 +492,8 @@ TextureImporter:
       biome-1-floor-1: 5738412300007198449
       biome-1-floor-2: 7527100142620628038
       biome-1-floor-3: -3293148784041352865
+      biome-1-placeholder-floor-1: 1276605668
+      biome-1-placeholder-floor-2: -1153918953
       biome-1-tiles_8: 659562071
       biome-1-wall-1: -8626808320056172739
       biome-1-wall-2: 1666810862
