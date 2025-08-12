@@ -19,7 +19,7 @@ namespace SGGames.Script.Entity
         private Action m_updateMovementAction;
         
         private const float k_MovementSpeed = 5;
-        private const float k_DelayAfterMoving = 0.3f;
+        private const float k_DelayAfterMoving = 0.1f;
 
         protected virtual void Awake()
         {

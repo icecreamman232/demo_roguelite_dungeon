@@ -423,6 +423,7 @@ MonoBehaviour:
   m_movementType: 0
   m_currentMovementState: 0
   m_movementDirection: {x: 0, y: 0}
+  m_movementDirectionType: 0
   m_raycastDistance: 1
   m_obstacleLayerMask:
     serializedVersion: 2

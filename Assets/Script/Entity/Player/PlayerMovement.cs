@@ -10,6 +10,7 @@ namespace SGGames.Script.Entity
     public class PlayerMovement : EntityMovement
     {
         [Header("Player")] 
+        [SerializeField] private Global.MovementDirectionType m_movementDirectionType;
         [SerializeField] private float m_raycastDistance;
         [SerializeField] private LayerMask m_obstacleLayerMask;
         [SerializeField] private PlayerData m_playerData;
@@ -124,6 +125,20 @@ namespace SGGames.Script.Entity
 
         private void UpdateMoveInput(Vector2 moveInput)
         {
+            if (m_movementDirectionType == Global.MovementDirectionType.FourDirections)
+            {
+                //Limit to 4 directions movement
+                if (Mathf.Abs(moveInput.x) > Mathf.Abs(moveInput.y))
+                {
+                    moveInput = new Vector2(moveInput.x, 0);
+                }
+                else if (Mathf.Abs(moveInput.y) > 0)
+                {
+                    moveInput = new Vector2(0, moveInput.y);
+                }
+            }
+            
+            
             if (!CanMove() || CheckObstacle(moveInput))
             {
                 if (moveInput != Vector2.zero)
@@ -133,7 +148,7 @@ namespace SGGames.Script.Entity
                 return;
             }
             
-            m_movementDirection = moveInput;
+            m_movementDirection= moveInput;
             if (m_movementDirection != Vector2.zero)
             {
                 CalculateNextPosition();
