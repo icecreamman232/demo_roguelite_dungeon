@@ -8,6 +8,14 @@ namespace SGGames.Script.Core
         public static float HP_PER_SLOT = 50f;
         public static float S_FLIPPING_MODEL_SPEED = 3;
         public const float k_DefaultLoadingTime = 0.5f;
+
+        //For enemy AI
+        public enum ActionState
+        {
+            NotStarted,
+            InProgress,
+            Completed,
+        }
         
         public enum TurnBaseState
         {

@@ -4,6 +4,11 @@ namespace SGGames.Script.AI
 {
     public class FlipTowardTargetBrainAction : BrainAction
     {
+        public override void StartTurnAction()
+        {
+            
+        }
+
         public override void DoAction()
         {
             if(m_brain.Target == null) return;

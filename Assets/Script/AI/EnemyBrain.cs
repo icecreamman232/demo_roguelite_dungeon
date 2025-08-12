@@ -1,4 +1,7 @@
+using System;
 using System.Collections.Generic;
+using SGGames.Script.Core;
+using SGGames.Script.Events;
 using SGGames.Scripts.AI;
 using UnityEngine;
 
@@ -6,7 +9,8 @@ namespace SGGames.Scripts.Entity
 {
     public class EnemyBrain : MonoBehaviour
     {
-        [SerializeField] private List<BrainState> States;
+        [SerializeField] private SwitchTurnEvent m_switchTurnEvent;
+        [SerializeField] private List<BrainState> m_states;
         private EnemyController m_owner;
         public Transform Target;
         private bool m_brainActive;
@@ -22,34 +26,35 @@ namespace SGGames.Scripts.Entity
             set => m_owner = value;
         }
 
-        // private void Start()
-        // {
-        //     m_owner = GetComponentInParent<EnemyController>();
-        //     foreach (var state in States)
-        //     {
-        //         state.Initialize(this);
-        //     }
-        //
-        //     CurrentState = States[0];
-        //     CurrentState.EnterState();
-        // }
+        private void Update()
+        {
+            if (!m_brainActive) return;
+
+            if (CurrentState != null)
+            {
+                CurrentState.UpdateActionProgress();
+            }
+        }
 
         public void Initialize(EnemyController controller)
         {
             m_owner = controller;
-            foreach (var state in States)
+            foreach (var state in m_states)
             {
                 state.Initialize(this);
             }
-
-            CurrentState = States[0];
-            CurrentState.EnterState();
+            m_switchTurnEvent.AddListener(OnSwitchTurnEvent);
         }
 
+        public void CleanUp()
+        {
+            m_switchTurnEvent.RemoveListener(OnSwitchTurnEvent);
+        }
+        
         public void ActivateBrain(bool isActive)
         {
             m_brainActive = isActive;
-            if (m_brainActive)
+            if (m_brainActive && CurrentState != null)
             {
                 CurrentState.EnterState();
             }
@@ -57,8 +62,8 @@ namespace SGGames.Scripts.Entity
 
         public void ResetBrain()
         {
-            CurrentState = States[0];
-            foreach (var state in States)
+            CurrentState = m_states[0];
+            foreach (var state in m_states)
             {
                 foreach (var transition in state.Transitions)
                 {
@@ -67,21 +72,6 @@ namespace SGGames.Scripts.Entity
             }
         }
         
-        private void Update()
-        {
-            if (!m_brainActive) return;
-
-            if (CurrentState == null) return;
-            
-            CurrentState.DoActions();
-            
-            if (!m_brainActive) return;
-            
-            CurrentState.CheckTransitions();
-
-            TimeInState += Time.deltaTime;
-        }
-
         public void TransitionToState(string stateName)
         {
             if (CurrentState == null)
@@ -109,7 +99,7 @@ namespace SGGames.Scripts.Entity
 
         public BrainState FindState(string stateName)
         {
-            foreach (var state in States)
+            foreach (var state in m_states)
             {
                 if (state.StateName == stateName)
                 {
@@ -125,6 +115,44 @@ namespace SGGames.Scripts.Entity
             return null;
         }
         
+        public void CompleteTurn()
+        {
+            m_owner.FinishTurn();
+        }
+        
+        private void ExecuteTurn()
+        {
+            if (!m_brainActive) return;
+
+            if (CurrentState == null) return;
+            
+            CurrentState.DoActions();
+            
+            if (!m_brainActive) return;
+            
+            CurrentState.CheckTransitions();
+
+            TimeInState += 1;
+        }
+
+        private void StartTurn()
+        {
+            Debug.Log("Start Turn");
+            ExecuteTurn();
+        }
+        
+        private void OnSwitchTurnEvent(TurnBaseEventData turnBaseEventData)
+        {
+            if (turnBaseEventData.TurnBaseState == Global.TurnBaseState.EnemyTakeTurn
+                && turnBaseEventData.EntityIndex == m_owner.OrderIndex)
+            {
+                ResetBrain();
+                ActivateBrain(true);
+                StartTurn();
+            }
+        }
+        
+        #region Editor
         public BrainAction[] GetAttachedActions()
         {
             var actions = GetComponentsInChildren<BrainAction>();
@@ -136,5 +164,7 @@ namespace SGGames.Scripts.Entity
             var decisions = GetComponentsInChildren<BrainDecision>();
             return decisions;
         }
+        
+        #endregion
     }
 }

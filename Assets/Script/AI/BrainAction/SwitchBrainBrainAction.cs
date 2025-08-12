@@ -1,3 +1,4 @@
+using SGGames.Script.Core;
 using SGGames.Scripts.AI;
 using SGGames.Scripts.Entity;
 using UnityEngine;
@@ -9,7 +10,7 @@ namespace SGGames.Script.AI
         [SerializeField] private EnemyBrain m_brainToSwap;
         [SerializeField] private bool m_keepTarget;
 
-        public override void DoAction()
+        public override void StartTurnAction()
         {
             m_brain.ActivateBrain(false);
             m_brain.ResetBrain();
@@ -24,6 +25,13 @@ namespace SGGames.Script.AI
             m_brainToSwap.Owner.SetActiveBrain(m_brainToSwap);
             m_brainToSwap.gameObject.SetActive(true);
             m_brainToSwap.ActivateBrain(true);
+            
+            SetActionState(Global.ActionState.Completed);
+        }
+
+        public override void DoAction()
+        {
+           
         }
     }
 

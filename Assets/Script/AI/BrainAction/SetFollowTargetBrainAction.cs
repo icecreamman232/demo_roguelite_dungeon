@@ -1,14 +1,12 @@
-using SGGames.Script.Entity;
+using SGGames.Script.Core;
 using SGGames.Scripts.AI;
-using SGGames.Scripts.Entity;
 using UnityEngine;
 
 namespace SGGames.Script.AI
 {
     public class SetFollowTargetBrainAction : BrainAction
     {
-
-        public override void OnEnterState()
+        public override void StartTurnAction()
         {
             if (m_brain.Target == null)
             {
@@ -16,9 +14,9 @@ namespace SGGames.Script.AI
                 return;
             }
             m_brain.Owner.Movement.SetFollowingTarget(m_brain.Target);
-            base.OnEnterState();
+            SetActionState(Global.ActionState.Completed);
         }
-
+        
         public override void DoAction()
         {
             

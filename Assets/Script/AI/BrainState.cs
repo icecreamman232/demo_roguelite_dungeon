@@ -13,6 +13,7 @@ namespace SGGames.Scripts.AI
         public List<BrainTransition> Transitions;
 
         private EnemyBrain m_brain;
+        private bool m_actionsCompleted = false;
         
         public void Initialize(EnemyBrain brain)
         {
@@ -51,13 +52,20 @@ namespace SGGames.Scripts.AI
 
         public void DoActions()
         {
-            if (Actions.Count == 0) return;
+            if (Actions.Count == 0)
+            {
+                m_actionsCompleted = true;
+                CheckTransitionsAndComplete();
+                return;
+            }
+
+            m_actionsCompleted = false;
 
             foreach (var action in Actions)
             {
                 if (action != null)
                 {
-                    action.DoAction();
+                    action.StartTurnAction();
                 }
                 else
                 {
@@ -65,6 +73,39 @@ namespace SGGames.Scripts.AI
                 }
             }
         }
+
+        public void UpdateActionProgress()
+        {
+            if (m_actionsCompleted) return;
+            bool allActionsCompleted = true;
+            foreach (var action in Actions)
+            {
+                action.UpdateAction();
+                if (!action.IsCompleted)
+                {
+                    allActionsCompleted = false;
+                }
+            }
+
+            if (allActionsCompleted)
+            {
+                m_actionsCompleted = true;
+                CheckTransitionsAndComplete();
+            }
+        }
+        
+        private void CheckTransitionsAndComplete()
+        {
+            // Check for state transitions after actions complete
+            CheckTransitions();
+        
+            // If no transition occurred, complete the turn
+            if (m_brain.CurrentState == this)
+            {
+                m_brain.CompleteTurn();
+            }
+        }
+
 
         public void CheckTransitions()
         {

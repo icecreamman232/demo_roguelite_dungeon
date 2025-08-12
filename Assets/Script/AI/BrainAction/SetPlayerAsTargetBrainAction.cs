@@ -5,10 +5,17 @@ namespace SGGames.Scripts.AI
 {
     public class SetPlayerAsTargetBrainAction : BrainAction
     {
-        public override void DoAction()
+        public override void StartTurnAction()
         {
             var lvlManager = ServiceLocator.GetService<LevelManager>();
             m_brain.Target = lvlManager.Player.transform;
+            
+            SetActionState(Global.ActionState.Completed);
+        }
+
+        public override void DoAction()
+        {
+            
         }
     }
 }

@@ -26,6 +26,7 @@ namespace SGGames.Scripts.Entity
         
         private List<IDeathCommand> m_deathCommands;
         private int m_orderIndex;
+        public int OrderIndex => m_orderIndex;
         public EnemyBrain CurrentBrain => m_currentBrain;
         public EnemyMovement Movement => m_enemyMovement;
         public EnemyHealth Health => m_enemyHealth;
@@ -61,7 +62,6 @@ namespace SGGames.Scripts.Entity
         private void Start()
         {
             m_enemyMovement.Initialize(this);
-            m_switchTurnEvent.AddListener(OnSwitchTurn);
             var turnBaseManager = ServiceLocator.GetService<TurnBaseManager>();
             turnBaseManager.RegisterEnemy(this);
         }
@@ -72,8 +72,8 @@ namespace SGGames.Scripts.Entity
             gameManager.OnGamePauseCallback -= OnGamePaused;
             gameManager.OnGameUnPauseCallback -= OnGameResumed;
             
+            m_currentBrain.CleanUp();
             m_gameEvent.RemoveListener(OnReceiveGameEvent);
-            m_switchTurnEvent.RemoveListener(OnSwitchTurn);
         }
 
         public void SetOrderIndex(int orderIndex)
@@ -88,16 +88,6 @@ namespace SGGames.Scripts.Entity
                 TurnBaseState = Global.TurnBaseState.EnemyFinishedTurn,
                 EntityIndex = m_orderIndex
             });
-        }
-        
-        private void OnSwitchTurn(TurnBaseEventData turnBaseEventData)
-        {
-            if (turnBaseEventData.TurnBaseState == Global.TurnBaseState.EnemyTakeTurn
-                && turnBaseEventData.EntityIndex == m_orderIndex)
-            {
-                m_enemyMovement.SetPermission(true);
-                m_enemyMovement.TestPathFinding();
-            }
         }
 
         private void RegisterEnemyToRoom()
@@ -135,22 +125,17 @@ namespace SGGames.Scripts.Entity
             {
                 RegisterEnemyToRoom();
             }
-            else if(eventType ==  Global.GameEventType.GameStarted)
-            {
-                if (m_currentBrain == null) return;
-                m_currentBrain.ActivateBrain(true);
-            }
         }
 
         protected override void OnGamePaused()
         {
-            m_currentBrain.ActivateBrain(false);
+            //m_currentBrain.ActivateBrain(false);
             base.OnGamePaused();
         }
 
         protected override void OnGameResumed()
         {
-            m_currentBrain.ActivateBrain(true);
+            //m_currentBrain.ActivateBrain(true);
             base.OnGameResumed();
         }
 

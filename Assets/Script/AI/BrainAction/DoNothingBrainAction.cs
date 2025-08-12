@@ -7,6 +7,11 @@ namespace SGGames.Script.AI
     /// </summary>
     public class DoNothingBrainAction : BrainAction
     {
+        public override void StartTurnAction()
+        {
+            
+        }
+
         public override void DoAction()
         {
             

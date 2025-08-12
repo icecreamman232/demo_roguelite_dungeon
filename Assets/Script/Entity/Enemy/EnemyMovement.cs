@@ -66,6 +66,7 @@ namespace SGGames.Script.Entity
         
         // Properties
         public Vector2 MoveDirection => m_movementDirection;
+        public Global.MovementState CurrentMovementState => m_currentMovementState;
         
         #region Unity Lifecycle
         
@@ -128,7 +129,11 @@ namespace SGGames.Script.Entity
 
         public void StartMoving()
         {
+            Debug.Log("Start Moving");
             SetMovementType(Global.MovementType.Normal);
+            SetPermission(true);
+            SetNextPosition();
+            SetMovementState(Global.MovementState.Moving);
         }
 
         public void PauseMoving()
@@ -172,7 +177,7 @@ namespace SGGames.Script.Entity
 
         protected override void OnFinishMovement()
         {
-            m_controller.FinishTurn();
+            //m_controller.FinishTurn();
             base.OnFinishMovement();
             SetPermission(false);
         }

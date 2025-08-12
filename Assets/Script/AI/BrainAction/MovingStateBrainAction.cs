@@ -1,3 +1,4 @@
+using SGGames.Script.Core;
 using SGGames.Scripts.AI;
 using UnityEngine;
 
@@ -11,8 +12,8 @@ namespace SGGames.Script.AI
         [SerializeField] private bool m_shouldStart;
         [SerializeField] private bool m_shouldStop;
         [SerializeField] private bool m_shouldPause;
-        
-        public override void OnEnterState()
+
+        public override void StartTurnAction()
         {
             if (m_shouldStart)
             {
@@ -30,7 +31,18 @@ namespace SGGames.Script.AI
             {
                 m_brain.Owner.Movement.PauseMoving();
             }
-            base.OnEnterState();
+            
+            SetActionState(Global.ActionState.InProgress);
+        }
+
+        public override void UpdateAction()
+        {
+            if (m_brain.Owner.Movement.CurrentMovementState == Global.MovementState.Ready)
+            {
+                SetActionState(Global.ActionState.Completed);
+                return;
+            }
+            base.UpdateAction();
         }
 
         public override void DoAction()
