@@ -136,13 +136,13 @@ namespace SGGames.Script.Entity
             if (!m_isPermit) return;
             if (!m_isDashing) return;
 
-            if (m_controller.PlayerMovement.IsHitObstacle)
-            {
-                OnDashHitObstacle?.Invoke();
-                m_worldEvent.Raise(Global.WorldEventType.OnPlayerDashCanceled, this.gameObject, null);
-                EndDash();
-                return;
-            }
+            // if (m_controller.PlayerMovement.IsHitObstacle)
+            // {
+            //     OnDashHitObstacle?.Invoke();
+            //     m_worldEvent.Raise(Global.WorldEventType.OnPlayerDashCanceled, this.gameObject, null);
+            //     EndDash();
+            //     return;
+            // }
             
             var traveledTime = MathHelpers.Remap(m_traveledDistance,0,m_distanceToTarget,0,1);
             var speedMultiplier = m_dashSpeedCurve.Evaluate(traveledTime);

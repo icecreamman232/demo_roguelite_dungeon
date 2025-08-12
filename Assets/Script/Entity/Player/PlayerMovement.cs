@@ -21,7 +21,7 @@ namespace SGGames.Script.Entity
         private bool m_canMove;
 
         public LayerMask ObstacleLayerMask => m_obstacleLayerMask;
-        public bool IsHitObstacle => CheckObstacle();
+        public bool IsHitObstacle(Vector3 direction) => CheckObstacle(direction);
 
         protected override void Awake()
         {
@@ -91,10 +91,6 @@ namespace SGGames.Script.Entity
         {
             if (!m_canMove) return;
             
-            if (CheckObstacle())
-            {
-                m_movementDirection = Vector2.zero;
-            }
             base.UpdateMovement();
         }
 
@@ -107,9 +103,9 @@ namespace SGGames.Script.Entity
             }
         }
 
-        private bool CheckObstacle()
+        private bool CheckObstacle(Vector3 direction)
         {
-            var hit = Physics2D.BoxCast(transform.position, m_controller.PlayerCollider.size, 0, m_movementDirection,m_raycastDistance,m_obstacleLayerMask);
+            var hit = Physics2D.BoxCast(transform.position, m_controller.PlayerCollider.size, 0, direction,m_raycastDistance,m_obstacleLayerMask);
             if (hit.collider != null)
             {
                 return true;
@@ -122,12 +118,13 @@ namespace SGGames.Script.Entity
         {
             if (m_currentMovementState != Global.MovementState.Ready) return false;
             if (!m_controller.ActionPoint.CanUsePoint(1)) return false;
+            
             return true;
         }
 
         private void UpdateMoveInput(Vector2 moveInput)
         {
-            if (!CanMove())
+            if (!CanMove() || CheckObstacle(moveInput))
             {
                 if (moveInput != Vector2.zero)
                 {

@@ -11,7 +11,7 @@ namespace SGGames.Script.Entity
     /// <summary>
     /// Central component for other components to access other components of player
     /// </summary>
-    [Serializable]
+    [SelectionBase]
     public class PlayerController : MonoBehaviour, IEntityIdentifier
     {
         [SerializeField] private BoxCollider2D m_collider;
