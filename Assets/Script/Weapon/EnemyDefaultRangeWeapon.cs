@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace SGGames.Script.Weapons
 {
-    public class EnemyDefaultRangeWeapon : MonoBehaviour, IWeapon, IProjectileSpawner
+    public class EnemyDefaultRangeWeapon : Weapon, IProjectileSpawner
     {
         [SerializeField] private ObjectPooler m_projectilePooler;
         [SerializeField] private WeaponData m_weaponData;
@@ -23,7 +23,7 @@ namespace SGGames.Script.Weapons
         }
 
         #region Weapon
-        public void InitializeWeapon(IWeaponOwner owner)
+        public override void InitializeWeapon(IWeaponOwner owner)
         {
             m_controller = ((EnemyWeaponHandler)owner).GetComponent<EnemyController>();
             m_stateManager = new WeaponStateManager(this, new (Global.WeaponState stateType, IWeaponState state)[]
@@ -37,7 +37,7 @@ namespace SGGames.Script.Weapons
             InitializeProjectileSpawner(new ProjectileBuilder());
         }
         
-        public void ChangeState(Global.WeaponState nextState)
+        public override void ChangeState(Global.WeaponState nextState)
         {
             m_stateManager.SetState(nextState);
         }
@@ -47,7 +47,7 @@ namespace SGGames.Script.Weapons
             
         }
 
-        public void Attack()
+        public override void Attack()
         {
             if (!IsReady) return;
             SpawnProjectile();

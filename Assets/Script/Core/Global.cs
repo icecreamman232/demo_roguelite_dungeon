@@ -64,6 +64,12 @@ namespace SGGames.Script.Core
             Stop,
         }
 
+        public enum MovementDirectionType
+        {
+            FourDirections,
+            EightDirections,
+        }
+
         public enum MovementState
         {
             Ready,

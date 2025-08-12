@@ -7,7 +7,7 @@ namespace SGGames.Script.Weapons
 {
     public class WeaponStateManager
     {
-        private IWeapon m_weapon;
+        private Weapon m_weapon;
         private IWeaponState m_currentState;
         private Dictionary<Global.WeaponState, IWeaponState> m_cacheStateDictionary;
 
@@ -15,7 +15,7 @@ namespace SGGames.Script.Weapons
         
         public IWeaponState CurrentState => m_currentState;
         
-        public WeaponStateManager(IWeapon weapon, (Global.WeaponState stateType, IWeaponState state)[] states)
+        public WeaponStateManager(Weapon weapon, (Global.WeaponState stateType, IWeaponState state)[] states)
         {
             m_weapon = weapon;
             m_cacheStateDictionary = new Dictionary<Global.WeaponState, IWeaponState>();

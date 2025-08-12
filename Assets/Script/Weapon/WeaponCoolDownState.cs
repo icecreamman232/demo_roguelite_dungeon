@@ -14,12 +14,12 @@ namespace SGGames.Script.Weapons
             m_cooldown = data.Cooldown;
         }
 
-        public void Enter(IWeapon weapon)
+        public void Enter(Weapon weapon)
         {
             m_timer = m_cooldown;
         }
 
-        public void Update(IWeapon weapon)
+        public void Update(Weapon weapon)
         {
             m_timer -= Time.deltaTime;
             if (m_timer <= 0)
@@ -29,7 +29,7 @@ namespace SGGames.Script.Weapons
             }
         }
 
-        public void Exit(IWeapon weapon)
+        public void Exit(Weapon weapon)
         {
             
         }

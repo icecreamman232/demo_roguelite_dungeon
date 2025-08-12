@@ -9,7 +9,7 @@ namespace SGGames.Script.Weapons
     /// <summary>
     /// HybridWeapon is the one that looks like a melee weapon but still spawns the projectiles on attacking.
     /// </summary>
-    public class PlayerDefaultRangedWeapon : MonoBehaviour, IWeapon, IProjectileSpawner
+    public class PlayerDefaultRangedWeapon : Weapon, IProjectileSpawner
     {
         [SerializeField] private WorldEvent m_worldEvent;
         [SerializeField] private WeaponData m_weaponData;
@@ -66,7 +66,7 @@ namespace SGGames.Script.Weapons
             //m_defaultPlayerWeaponAnimator.SetAttackDirection(isAttackOnLeft);
         }
 
-        public void InitializeWeapon(IWeaponOwner owner)
+        public override void InitializeWeapon(IWeaponOwner owner)
         {
             m_owner = owner;
             m_playerWeaponHandler = (PlayerWeaponHandler)owner;
@@ -88,7 +88,7 @@ namespace SGGames.Script.Weapons
             m_specialProjectileBuilder = new ProjectileBuilder();
         }
 
-        public void ChangeState(Global.WeaponState nextState)
+        public override void ChangeState(Global.WeaponState nextState)
         {
             m_stateManager.SetState(nextState);
         }
@@ -98,7 +98,7 @@ namespace SGGames.Script.Weapons
             //m_defaultPlayerWeaponAnimator.UpdateAnimation();
         }
 
-        public void Attack()
+        public override void Attack()
         {
             if (!IsReady)
             {

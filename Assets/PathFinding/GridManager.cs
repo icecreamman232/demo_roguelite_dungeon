@@ -11,6 +11,8 @@ namespace SGGames.Script.PathFindings
         [SerializeField] private int m_roomWidth;
         [SerializeField] private int m_roomHeight;
         [SerializeField] private Tilemap m_tilemap;
+        [Header("Debug")]
+        [SerializeField] private bool m_showGrid;
         
         public const float k_TileMapOffset = 0.5f;
         private GridController m_gridController;
@@ -136,6 +138,8 @@ namespace SGGames.Script.PathFindings
         
         private void OnDrawGizmos()
         {
+            if (!m_showGrid) return;
+            
             if (m_gridController == null) return;
         
             for (int y = -m_roomHeight/2; y < m_roomHeight/2; y++)

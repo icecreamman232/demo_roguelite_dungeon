@@ -9,17 +9,17 @@ public class WeaponAttackComboState : IWeaponState
         
     }
 
-    public void Enter(IWeapon weapon)
+    public void Enter(Weapon weapon)
     {
         
     }
 
-    public void Update(IWeapon weapon)
+    public void Update(Weapon weapon)
     {
         
     }
 
-    public void Exit(IWeapon weapon)
+    public void Exit(Weapon weapon)
     {
         
     }

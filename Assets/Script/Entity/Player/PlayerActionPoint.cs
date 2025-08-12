@@ -67,7 +67,7 @@ namespace SGGames.Script.Entities
             });
         }
 
-        private void UsePoints(int points)
+        public void UsePoints(int points)
         {
             if (points > m_currentActionPoint) return;
             m_currentActionPoint -= points;
