@@ -30,6 +30,7 @@ namespace SGGames.Scripts.Entity
         public EnemyBrain CurrentBrain => m_currentBrain;
         public EnemyMovement Movement => m_enemyMovement;
         public EnemyHealth Health => m_enemyHealth;
+        public EnemyWeaponHandler WeaponHandler => m_enemyWeaponHandler;
 
         private void Awake()
         {
@@ -62,6 +63,7 @@ namespace SGGames.Scripts.Entity
         private void Start()
         {
             m_enemyMovement.Initialize(this);
+            m_enemyWeaponHandler.Initialize(this);
             var turnBaseManager = ServiceLocator.GetService<TurnBaseManager>();
             turnBaseManager.RegisterEnemy(this);
         }
@@ -137,6 +139,30 @@ namespace SGGames.Scripts.Entity
         {
             //m_currentBrain.ActivateBrain(true);
             base.OnGameResumed();
+        }
+
+        public Global.Direction DirectionToTarget()
+        {
+            var target = m_currentBrain.Target;
+            var directionToTarget = (target.transform.position - transform.position).normalized;
+            var directionEnumValue = Global.Direction.Left;
+            if (directionToTarget == Vector3.left)
+            {
+                directionEnumValue = Global.Direction.Left;
+            }
+            else if (directionToTarget == Vector3.right)
+            {
+                directionEnumValue = Global.Direction.Right;
+            }
+            else if (directionToTarget == Vector3.up)
+            {
+                directionEnumValue = Global.Direction.Up;
+            }
+            else if (directionToTarget == Vector3.down)
+            {
+                directionEnumValue = Global.Direction.Down;
+            }
+            return directionEnumValue;
         }
 
         public void SetActiveBrain(EnemyBrain newBrain)

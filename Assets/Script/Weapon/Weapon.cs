@@ -12,6 +12,10 @@ namespace SGGames.Script.Weapons
         public virtual void UpdateAnimationOnAttack(){}
 
         public virtual void Attack(){}
+        public virtual bool IsAttacking()
+        {
+            return false;
+        }
     }
 }
 

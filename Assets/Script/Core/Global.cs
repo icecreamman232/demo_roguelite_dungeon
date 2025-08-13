@@ -174,6 +174,14 @@ namespace SGGames.Script.Core
             PauseGame = 30,
             UnpauseGame = 31,
         }
+
+        public enum Direction
+        {
+            Up,
+            Down,
+            Left,
+            Right,
+        }
     }
 }
 
