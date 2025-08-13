@@ -8,12 +8,14 @@ namespace SGGames.Script.Weapons
     public class PlayerDefaultMeleeWeapon : Weapon
     {
         [SerializeField] private int m_actionPointCost;
+        [SerializeField] private Animator m_animator;
         [SerializeField] private Collider2D[] m_weaponColliders;
 
         private bool m_isAttacking;
         private PlayerController m_playerController;
         private IWeaponOwner m_owner;
         private const float k_DELAY_AFTER_ENABLE_WEAPON_COLLIDER = 0.25f;
+        private readonly int k_ATTACK_ANIM_TRIGGER = Animator.StringToHash("Attack");
         
         public override void InitializeWeapon(IWeaponOwner owner)
         {
@@ -23,6 +25,7 @@ namespace SGGames.Script.Weapons
             {
                 weaponCollider.enabled = false;
             }
+            m_animator.gameObject.SetActive(false);
         }
 
         public override void ChangeState(Global.WeaponState nextState)
@@ -32,7 +35,7 @@ namespace SGGames.Script.Weapons
 
         public override void UpdateAnimationOnAttack()
         {
-            
+            m_animator.SetTrigger(k_ATTACK_ANIM_TRIGGER);
         }
 
         public override void RotateWeapon(Vector3 aimdirection, float aimAngle)
@@ -53,15 +56,19 @@ namespace SGGames.Script.Weapons
             base.Attack();
         }
 
-        private IEnumerator OnAttackProcess()
+        private void EnableAttack()
         {
             m_isAttacking = true;
-            
             foreach (var weaponCollider in m_weaponColliders)
             {
                 weaponCollider.enabled = true;
             }
-            yield return new WaitForSeconds(k_DELAY_AFTER_ENABLE_WEAPON_COLLIDER);
+            m_animator.gameObject.SetActive(true);
+            UpdateAnimationOnAttack();
+        }
+
+        private void DisableAttack()
+        {
             foreach (var weaponCollider in m_weaponColliders)
             {
                 weaponCollider.enabled = false;
@@ -71,8 +78,15 @@ namespace SGGames.Script.Weapons
             {
                 m_playerController.FinishedTurn();
             }
-
+            m_animator.gameObject.SetActive(false);
             m_isAttacking = false;
+        }
+
+        private IEnumerator OnAttackProcess()
+        {
+            EnableAttack();
+            yield return new WaitForSeconds(k_DELAY_AFTER_ENABLE_WEAPON_COLLIDER);
+            DisableAttack();
         }
     }
 }
