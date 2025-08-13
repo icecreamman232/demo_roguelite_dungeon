@@ -11,6 +11,7 @@ namespace SGGames.Script.Entity
         [SerializeField] private Transform m_aimingCursor;
         [SerializeReference] private Weapon m_currWeapon;
         
+        private PlayerController m_playerController;
         private Vector3 m_aimDirection;
         private float m_aimAngle;
         
@@ -26,8 +27,14 @@ namespace SGGames.Script.Entity
             m_currWeapon.InitializeWeapon(this);
         }
 
+        public void Initialize(PlayerController playerController)
+        {
+            m_playerController = playerController;
+        }
+        
         private void OnPressAttackButton()
         {
+            if (m_playerController.PlayerMovement.CurrentMovementState != Global.MovementState.Ready) return;
             m_currWeapon.Attack();
             OnAttack?.Invoke();
         }

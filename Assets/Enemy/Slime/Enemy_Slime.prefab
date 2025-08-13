@@ -9,10 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5482309834516350217}
-  - component: {fileID: 8502416664518272981}
-  - component: {fileID: 7330007277093028541}
   - component: {fileID: 5570278051322064981}
-  - component: {fileID: 7818494068028227214}
+  - component: {fileID: 3908786499643796042}
   m_Layer: 7
   m_Name: Decisions
   m_TagString: Untagged
@@ -35,36 +33,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1600937096399333733}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8502416664518272981
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 81754200236588280}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 966765b42d774ed4698c08cd460bb807, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Label: Wait after flying
-  m_minDuration: 0.5
-  m_maxDuration: 1
---- !u!114 &7330007277093028541
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 81754200236588280}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 966765b42d774ed4698c08cd460bb807, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Label: Flying duration
-  m_minDuration: 2
-  m_maxDuration: 4
 --- !u!114 &5570278051322064981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Label: Next state
---- !u!114 &7818494068028227214
+--- !u!114 &3908786499643796042
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -87,10 +55,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 81754200236588280}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43bd51e0f81dd4848a27dc733f654fee, type: 3}
+  m_Script: {fileID: 11500000, guid: a53aae06873dc074997e1cb21fa3471c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Label: Get hit?
+  Label: Check target in rage
+  m_range: 1
 --- !u!1 &3188851467663346660
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,7 +333,6 @@ MonoBehaviour:
   m_movementType: 0
   m_currentMovementState: 0
   m_movementDirection: {x: 0, y: 0}
-  m_movementBehaviorType: 0
   m_enemyData: {fileID: 11400000, guid: 3a4d342279c43b74ba18ff85db68f046, type: 2}
   m_obstacleLayerMask:
     serializedVersion: 2
@@ -506,6 +474,7 @@ GameObject:
   - component: {fileID: 3121427044389998984}
   - component: {fileID: 3234454769832748143}
   - component: {fileID: 7693720423130175912}
+  - component: {fileID: 6469218419234285295}
   m_Layer: 7
   m_Name: Actions
   m_TagString: Untagged
@@ -573,6 +542,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_currentState: 0
   Label: Set follow target
+--- !u!114 &6469218419234285295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6099111199674941156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fc0cd9003d79d5408e7a8a67597bb9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_currentState: 0
+  Label: Do nothings
 --- !u!1 &6826449856746761153
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,18 +604,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_switchTurnEvent: {fileID: 11400000, guid: 311f02bcf056f7b4a89524a610155650, type: 2}
   m_states:
-  - StateName: Follow player
+  - StateName: Set player as target
+    ConsumeTurn: 0
     Actions:
+    - {fileID: 6469218419234285295}
     - {fileID: 3234454769832748143}
     - {fileID: 7693720423130175912}
+    Transitions:
+    - BrainDecision: {fileID: 3908786499643796042}
+      TrueStateName: Attack
+      FalseStateName: Follow player
+  - StateName: Follow player
+    ConsumeTurn: 1
+    Actions:
     - {fileID: 3121427044389998984}
-    Transitions: []
+    Transitions:
+    - BrainDecision: {fileID: 3908786499643796042}
+      TrueStateName: Attack
+      FalseStateName: 
+  - StateName: Attack
+    ConsumeTurn: 1
+    Actions:
+    - {fileID: 3234454769832748143}
+    Transitions:
+    - BrainDecision: {fileID: 3908786499643796042}
+      TrueStateName: 
+      FalseStateName: Follow player
   Target: {fileID: 0}
-  CurrentState:
-    StateName: 
-    Actions: []
-    Transitions: []
-  TimeInState: 0
 --- !u!1001 &8216822588990585005
 PrefabInstance:
   m_ObjectHideFlags: 0

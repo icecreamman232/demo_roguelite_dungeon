@@ -9,6 +9,7 @@ namespace SGGames.Scripts.AI
     public class BrainState
     {
         public string StateName;
+        public bool ConsumeTurn = true;
         public List<BrainAction> Actions;
         public List<BrainTransition> Transitions;
 
@@ -84,8 +85,9 @@ namespace SGGames.Scripts.AI
             CheckTransitions();
         
             // If no transition occurred, complete the turn
-            if (m_brain.CurrentState == this)
+            if (m_brain.CurrentState == this && ConsumeTurn)
             {
+                Debug.Log($"Complete State {StateName}");
                 m_brain.CompleteTurn();
             }
         }

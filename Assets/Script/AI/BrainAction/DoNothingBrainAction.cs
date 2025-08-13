@@ -1,3 +1,4 @@
+using SGGames.Script.Core;
 using SGGames.Scripts.AI;
 
 namespace SGGames.Script.AI
@@ -9,7 +10,7 @@ namespace SGGames.Script.AI
     {
         public override void StartTurnAction()
         {
-            
+            SetActionState(Global.ActionState.Completed);
         }
     }
 }

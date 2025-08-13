@@ -20,6 +20,8 @@ namespace SGGames.Script.Entity
 
         private PlayerController m_controller;
         private bool m_canMove;
+        
+        public Global.MovementState CurrentMovementState => m_currentMovementState;
 
         public LayerMask ObstacleLayerMask => m_obstacleLayerMask;
         public bool IsHitObstacle(Vector3 direction) => CheckObstacle(direction);

@@ -13,8 +13,8 @@ namespace SGGames.Scripts.Entity
         private EnemyController m_owner;
         public Transform Target;
         private bool m_brainActive;
-        
-        public BrainState CurrentState { get;private set; }
+
+        public BrainState CurrentState;
         public float TimeInState { get; private set; }
         public bool IsBrainActive => m_brainActive;
         
@@ -37,6 +37,7 @@ namespace SGGames.Scripts.Entity
         public void Initialize(EnemyController controller)
         {
             m_owner = controller;
+            CurrentState = null;
             foreach (var state in m_states)
             {
                 state.Initialize(this);
@@ -56,7 +57,11 @@ namespace SGGames.Scripts.Entity
 
         public void ResetBrain()
         {
-            CurrentState = m_states[0];
+            if (CurrentState == null)
+            {
+                CurrentState = m_states[0];
+            }
+            
             foreach (var state in m_states)
             {
                 foreach (var action in state.Actions)
@@ -72,10 +77,12 @@ namespace SGGames.Scripts.Entity
         
         public void TransitionToState(string stateName)
         {
-            if (CurrentState == null)
+            CurrentState = FindState(stateName);
+            if (CurrentState != null)
             {
-                CurrentState = FindState(stateName);
+                StartTurn();
             }
+            Debug.Log($"Transitioning to state {stateName}");
         }
 
         public BrainState FindState(string stateName)

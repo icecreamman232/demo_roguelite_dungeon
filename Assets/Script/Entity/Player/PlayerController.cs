@@ -48,6 +48,7 @@ namespace SGGames.Script.Entity
             m_playerHealth.Initialize(this, m_weaponHandler.ForceResetCombo);
             m_resistanceController.Initialize();
             ModifierController.Initialize(this);
+            m_weaponHandler.Initialize(this);
         }
 
         private void OnSwitchTurn(TurnBaseEventData turnBaseEventData)
@@ -76,6 +77,14 @@ namespace SGGames.Script.Entity
         public void ForceResetCombo()
         {
             m_weaponHandler.ForceResetCombo();
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyUp(KeyCode.F))
+            {
+                FinishedTurn();
+            }
         }
     }
 }

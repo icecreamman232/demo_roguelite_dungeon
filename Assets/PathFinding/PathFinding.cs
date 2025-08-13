@@ -46,13 +46,13 @@ namespace SGGames.Script.PathFindings
             Vector2Int[] directions = new Vector2Int[]
             {
                 new Vector2Int(0, 1),   // Up
-                new Vector2Int(1, 1),   // Up-Right (diagonal)
+                //new Vector2Int(1, 1),   // Up-Right (diagonal)
                 new Vector2Int(1, 0),   // Right
-                new Vector2Int(1, -1),  // Down-Right (diagonal)
+                //new Vector2Int(1, -1),  // Down-Right (diagonal)
                 new Vector2Int(0, -1),  // Down
-                new Vector2Int(-1, -1), // Down-Left (diagonal)
+                //new Vector2Int(-1, -1), // Down-Left (diagonal)
                 new Vector2Int(-1, 0),  // Left
-                new Vector2Int(-1, 1)   // Up-Left (diagonal)
+                //new Vector2Int(-1, 1)   // Up-Left (diagonal)
             };
 
             Vector2Int[] foundPath = null;
@@ -78,17 +78,17 @@ namespace SGGames.Script.PathFindings
                         m_gridManager.GetWalkable(nextPos.x, nextPos.y) &&
                         !visited.Contains(nextPos))
                     {
-                        // For diagonal movement, also check that both adjacent cells are walkable
-                        if (Mathf.Abs(dir.x) == 1 && Mathf.Abs(dir.y) == 1)
-                        {
-                            bool horizontalNeighborWalkable = m_gridManager.GetWalkable(currentPos.x + dir.x, currentPos.y);
-                            bool verticalNeighborWalkable = m_gridManager.GetWalkable(currentPos.x, currentPos.y + dir.y);
-                        
-                            if (!horizontalNeighborWalkable || !verticalNeighborWalkable)
-                            {
-                                continue;
-                            }
-                        }
+                        // // For diagonal movement, also check that both adjacent cells are walkable
+                        // if (Mathf.Abs(dir.x) == 1 && Mathf.Abs(dir.y) == 1)
+                        // {
+                        //     bool horizontalNeighborWalkable = m_gridManager.GetWalkable(currentPos.x + dir.x, currentPos.y);
+                        //     bool verticalNeighborWalkable = m_gridManager.GetWalkable(currentPos.x, currentPos.y + dir.y);
+                        //
+                        //     if (!horizontalNeighborWalkable || !verticalNeighborWalkable)
+                        //     {
+                        //         continue;
+                        //     }
+                        // }
                     
                         visited.Add(nextPos);
                         Vector3Int nextPosV3 = new Vector3Int(nextPos.x, nextPos.y, 0);
