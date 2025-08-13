@@ -36,7 +36,10 @@ namespace SGGames.Script.Managers
         public Action OnPressInteract;
         public Action OnPressSkill1;
         public Action OnPressSkill2;
-        
+        private float m_attackCooldownTimer;
+        private bool m_isAttacking;
+        private float m_attackCooldownTime = 0.1f;
+
         #region Unity Methods
         
         private void Awake()
@@ -52,12 +55,16 @@ namespace SGGames.Script.Managers
             if (!m_isAllowInput) return;
             if (!m_isAllowGameplayInput) return;
 
-            // m_movementInput = m_moveAction.ReadValue<Vector2>();
-            // OnMoveInputUpdate?.Invoke(m_movementInput);
+            // Update attack cooldown timer
+            if (m_attackCooldownTimer > 0)
+            {
+                m_attackCooldownTimer -= Time.deltaTime;
+            }
 
             m_worldMousePosition = ComputeWorldMousePosition();
             WorldMousePositionUpdate?.Invoke(m_worldMousePosition);
         }
+
         
         #endregion
         
@@ -99,6 +106,7 @@ namespace SGGames.Script.Managers
 
             m_moveAction.performed += OnMoveInputPressed;
             m_attackAction.performed += OnAttackButtonPressed;
+            m_attackAction.canceled += OnAttackButtonReleased;
             m_dashAction.performed += OnDashButtonPressed;
             m_openConsole.performed += OnOpenConsoleButtonPressed;
             m_closeUI.performed += OnCloseUIButtonPressed;
@@ -106,8 +114,16 @@ namespace SGGames.Script.Managers
             m_skill1Action.performed += OnPressSkill1Button;
             m_skill2Action.performed += OnPressSkill2Button;
         }
-
         
+        /// <summary>
+        /// Check if attack has priority over movement
+        /// </summary>
+        private bool ShouldBlockMovement()
+        {
+            return m_isAttacking || m_attackCooldownTimer > 0;
+        }
+
+
 
         #region Callback for Buttons
         
@@ -123,6 +139,7 @@ namespace SGGames.Script.Managers
         {
             if (!m_isAllowInput) return;
             if (!m_isAllowGameplayInput) return;
+            if (ShouldBlockMovement()) return;
             m_movementInput = context.ReadValue<Vector2>();
             OnMoveInputUpdate?.Invoke(m_movementInput);
         }
@@ -132,6 +149,18 @@ namespace SGGames.Script.Managers
             if (!m_isAllowInput) return;
             if (!m_isAllowGameplayInput) return;
             OnPressAttack?.Invoke();
+            m_isAttacking = true;
+            m_attackCooldownTimer = m_attackCooldownTime;
+            // Stop movement when attacking
+            m_movementInput = Vector2.zero;
+            OnMoveInputUpdate?.Invoke(m_movementInput);
+        }
+        
+        private void OnAttackButtonReleased(InputAction.CallbackContext context)
+        {
+            if (!m_isAllowInput) return;
+            if (!m_isAllowGameplayInput) return;
+            m_isAttacking = false;
         }
         
         private void OnDashButtonPressed(InputAction.CallbackContext context)

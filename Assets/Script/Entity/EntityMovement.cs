@@ -40,7 +40,7 @@ namespace SGGames.Script.Entity
         {
             if (m_delayAfterMovingTimer.IsRunning)
             {
-                m_delayAfterMovingTimer.Update();
+                m_delayAfterMovingTimer.Update(Time.deltaTime);
             }
             else
             {
@@ -86,6 +86,7 @@ namespace SGGames.Script.Entity
                     m_updateMovementAction = UpdateDelayAfterMoving;
                     break;
                 case Global.MovementState.Finish:
+                    m_updateMovementAction = null;
                     OnFinishMovement();
                     break;
             }

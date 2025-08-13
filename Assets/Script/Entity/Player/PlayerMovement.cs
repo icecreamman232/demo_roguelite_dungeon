@@ -92,7 +92,15 @@ namespace SGGames.Script.Entity
 
         protected override void UpdateMovement()
         {
-            if (!m_canMove) return;
+            if (!m_canMove)
+            {
+                // If movement is disabled while moving, reset to Ready state
+                if (m_currentMovementState == Global.MovementState.Moving)
+                {
+                    SetMovementState(Global.MovementState.Ready);
+                }
+                return;
+            }
             
             base.UpdateMovement();
         }

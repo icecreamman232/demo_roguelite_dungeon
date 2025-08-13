@@ -17,10 +17,10 @@ namespace SGGames.Script.Modules
             m_isRunning = true;
         }
 
-        public void Update()
+        public void Update(float deltaTime)
         {
             if (!m_isRunning) return;
-            m_elapsedTime -= Time.deltaTime;
+            m_elapsedTime -= deltaTime;
             if (m_elapsedTime <= 0f)
             {
                 m_elapsedTime = 0;
