@@ -25,7 +25,7 @@ namespace SGGames.Script.Weapons
             if (m_timer <= 0)
             {
                 m_timer = 0;
-                weapon.ChangeState(Global.WeaponState.Ready);
+                //weapon.ChangeState(Global.WeaponState.Ready);
             }
         }
 

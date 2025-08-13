@@ -16,7 +16,7 @@ namespace SGGames.Script.Entity
         private float m_aimAngle;
         
         public Vector3 AimDirection => m_aimDirection;
-
+        public PlayerController Controller => m_playerController;
         public Action OnAttack;
         
         private void Start()

@@ -6,9 +6,6 @@ using UnityEngine;
 
 namespace SGGames.Script.Weapons
 {
-    /// <summary>
-    /// HybridWeapon is the one that looks like a melee weapon but still spawns the projectiles on attacking.
-    /// </summary>
     public class PlayerDefaultRangedWeapon : Weapon, IProjectileSpawner
     {
         [SerializeField] private WorldEvent m_worldEvent;
@@ -87,12 +84,7 @@ namespace SGGames.Script.Weapons
             InitializeProjectileSpawner(new ProjectileBuilder());
             m_specialProjectileBuilder = new ProjectileBuilder();
         }
-
-        public override void ChangeState(Global.WeaponState nextState)
-        {
-            m_stateManager.SetState(nextState);
-        }
-
+        
         public void UpdateAnimationOnAttack()
         {
             //m_defaultPlayerWeaponAnimator.UpdateAnimation();

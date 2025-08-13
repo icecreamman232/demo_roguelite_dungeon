@@ -26,7 +26,7 @@ namespace SGGames.Script.Entities
             base.InitializeWeapon(owner);
         }
 
-        public override void UpdateAnimationOnAttack()
+        protected override void UpdateAnimationOnAttack()
         {
             m_animationController.PlayBodySlamAnimation(m_owner.Controller.DirectionToTarget());
             base.UpdateAnimationOnAttack();

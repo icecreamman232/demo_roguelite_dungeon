@@ -20,22 +20,17 @@ namespace SGGames.Script.Weapons
         public override void InitializeWeapon(IWeaponOwner owner)
         {
             m_owner = owner;
-            m_playerController = ((PlayerWeaponHandler)owner).GetComponent<PlayerController>();
+            m_playerController = ((PlayerWeaponHandler)owner).Controller;
             foreach (var weaponCollider in m_weaponColliders)
             {
                 weaponCollider.enabled = false;
             }
-            m_animator.gameObject.SetActive(false);
         }
-
-        public override void ChangeState(Global.WeaponState nextState)
-        {
-            
-        }
-
-        public override void UpdateAnimationOnAttack()
+        
+        protected override void UpdateAnimationOnAttack()
         {
             m_animator.SetTrigger(k_ATTACK_ANIM_TRIGGER);
+            base.UpdateAnimationOnAttack();
         }
 
         public override void RotateWeapon(Vector3 aimdirection, float aimAngle)
@@ -63,7 +58,6 @@ namespace SGGames.Script.Weapons
             {
                 weaponCollider.enabled = true;
             }
-            m_animator.gameObject.SetActive(true);
             UpdateAnimationOnAttack();
         }
 
@@ -78,7 +72,6 @@ namespace SGGames.Script.Weapons
             {
                 m_playerController.FinishedTurn();
             }
-            m_animator.gameObject.SetActive(false);
             m_isAttacking = false;
         }
 

@@ -37,11 +37,6 @@ namespace SGGames.Script.Weapons
             InitializeProjectileSpawner(new ProjectileBuilder());
         }
         
-        public override void ChangeState(Global.WeaponState nextState)
-        {
-            m_stateManager.SetState(nextState);
-        }
-
         public void UpdateAnimationOnAttack()
         {
             

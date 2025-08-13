@@ -8,7 +8,7 @@ namespace SGGames.Script.AI
         [SerializeField] private int m_range;
         public override bool CheckDecision()
         {
-            var currentDistance = Vector2.Distance(m_brain.transform.position, m_brain.Target.position);
+            var currentDistance = Vector2.Distance(m_brain.Owner.transform.position, m_brain.Target.position);
             return currentDistance <= m_range;
         }
     }
