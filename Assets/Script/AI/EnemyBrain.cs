@@ -133,6 +133,7 @@ namespace SGGames.Scripts.Entity
             if (turnBaseEventData.TurnBaseState == Global.TurnBaseState.EnemyTakeTurn
                 && turnBaseEventData.EntityIndex == m_owner.OrderIndex)
             {
+                return;
                 ResetBrain();
                 ActivateBrain(true);
                 StartTurn();

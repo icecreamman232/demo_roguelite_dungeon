@@ -7,6 +7,7 @@ using SGGames.Script.Events;
 using SGGames.Script.HealthSystem;
 using SGGames.Script.Managers;
 using SGGames.Script.Modules;
+using SGGames.Scripts.AI;
 using UnityEngine;
 
 namespace SGGames.Scripts.Entity
@@ -23,11 +24,13 @@ namespace SGGames.Scripts.Entity
         [SerializeField] protected EnemyMovement m_enemyMovement;
         [SerializeField] protected EnemyWeaponHandler m_enemyWeaponHandler;
         [SerializeField] protected EnemyAnimationController m_animationController;
+        [SerializeField] protected AIBrain m_aiBrain;
         
         private List<IDeathCommand> m_deathCommands;
         private int m_orderIndex;
         public int OrderIndex => m_orderIndex;
         public EnemyBrain CurrentBrain => m_currentBrain;
+        public AIBrain AIBrain => m_aiBrain;
         public EnemyMovement Movement => m_enemyMovement;
         public EnemyHealth Health => m_enemyHealth;
         public EnemyWeaponHandler WeaponHandler => m_enemyWeaponHandler;
@@ -64,6 +67,7 @@ namespace SGGames.Scripts.Entity
         {
             m_enemyMovement.Initialize(this);
             m_enemyWeaponHandler.Initialize(this);
+            m_aiBrain.Initialize(this);
             var turnBaseManager = ServiceLocator.GetService<TurnBaseManager>();
             turnBaseManager.RegisterEnemy(this);
         }
@@ -143,7 +147,7 @@ namespace SGGames.Scripts.Entity
 
         public Global.Direction DirectionToTarget()
         {
-            var target = m_currentBrain.Target;
+            var target = m_aiBrain.Target;
             var directionToTarget = (target.transform.position - transform.position).normalized;
             var directionEnumValue = Global.Direction.Left;
             if (directionToTarget == Vector3.left)

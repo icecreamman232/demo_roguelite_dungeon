@@ -129,7 +129,8 @@ namespace SGGames.Script.Entity
         public void StartMoving()
         {
             SetMovementType(Global.MovementType.Normal);
-            SetPermission(true);
+            m_target = m_controller.AIBrain.Target;
+            //SetPermission(true);
             SetNextPosition();
             SetMovementState(Global.MovementState.Moving);
         }
@@ -168,7 +169,7 @@ namespace SGGames.Script.Entity
         protected override void OnFinishMovement()
         {
             base.OnFinishMovement();
-            SetPermission(false);
+            //SetPermission(false);
         }
 
         #endregion

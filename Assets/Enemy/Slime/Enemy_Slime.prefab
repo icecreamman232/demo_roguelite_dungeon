@@ -272,6 +272,7 @@ Transform:
   - {fileID: 1600937096399333733}
   - {fileID: 1429293973967328094}
   - {fileID: 7101332920102582707}
+  - {fileID: 5719765201705198509}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &8671893149805557974
@@ -369,6 +370,7 @@ MonoBehaviour:
   m_enemyMovement: {fileID: 8262135198344343122}
   m_enemyWeaponHandler: {fileID: 8975557050080255171}
   m_animationController: {fileID: 3306650169166805087}
+  m_aiBrain: {fileID: 7627031024155809371}
 --- !u!114 &3681058085338316961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -453,6 +455,82 @@ MonoBehaviour:
   m_isPermit: 1
   m_weaponAttachment: {fileID: 0}
   m_currWeapon: {fileID: 896521030116690375}
+--- !u!1 &4662264174105308099
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 333483039102296515}
+  - component: {fileID: 8050610503509939168}
+  - component: {fileID: 5246128733582093609}
+  - component: {fileID: 1884679670017994585}
+  m_Layer: 0
+  m_Name: Actions
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &333483039102296515
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4662264174105308099}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5719765201705198509}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8050610503509939168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4662264174105308099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14736df459bcaaf4fa6a5255b49496ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Label: Set player as target
+  m_currentState: 0
+--- !u!114 &5246128733582093609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4662264174105308099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86812248a23a8b34db6ed3cac13c79a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Label: Use weapon
+  m_currentState: 0
+--- !u!114 &1884679670017994585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4662264174105308099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49821d770d9a3df488f9e81c6fa7acf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Label: Start moving
+  m_currentState: 0
 --- !u!1 &5186698784688324723
 GameObject:
   m_ObjectHideFlags: 0
@@ -739,6 +817,157 @@ MonoBehaviour:
     ConsumeTurn: 1
     Actions: []
     Transitions: []
+--- !u!1 &7111102373090438985
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5719765201705198509}
+  - component: {fileID: 7627031024155809371}
+  m_Layer: 0
+  m_Name: NewAI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5719765201705198509
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7111102373090438985}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 333483039102296515}
+  - {fileID: 7815209740638295790}
+  m_Father: {fileID: 7830288532704342732}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7627031024155809371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7111102373090438985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28221271fef03dc4aadf752233ddb647, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_switchTurnEvent: {fileID: 11400000, guid: 311f02bcf056f7b4a89524a610155650, type: 2}
+  m_isActivated: 0
+  m_target: {fileID: 0}
+  m_states:
+  - StateName: Set target for brain
+    m_consumeTurn: 0
+    m_actionsCompleted: 0
+    m_decisions:
+    - {fileID: 3934118860436507891}
+    m_actions:
+    - {fileID: 8050610503509939168}
+  - StateName: Check target in range
+    m_consumeTurn: 1
+    m_actionsCompleted: 0
+    m_decisions:
+    - {fileID: 1323806803736894871}
+    m_actions:
+    - {fileID: 5246128733582093609}
+  - StateName: Move toward target
+    m_consumeTurn: 1
+    m_actionsCompleted: 0
+    m_decisions:
+    - {fileID: 4104905445585812831}
+    m_actions:
+    - {fileID: 1884679670017994585}
+  m_currentState:
+    StateName: 
+    m_consumeTurn: 0
+    m_actionsCompleted: 0
+    m_decisions: []
+    m_actions: []
+--- !u!1 &8729509806085182398
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7815209740638295790}
+  - component: {fileID: 1323806803736894871}
+  - component: {fileID: 3934118860436507891}
+  - component: {fileID: 4104905445585812831}
+  m_Layer: 0
+  m_Name: Decisions
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7815209740638295790
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8729509806085182398}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5719765201705198509}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1323806803736894871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8729509806085182398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aeb8596889d7d3d45ab8bb61699b8bb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Label: Check target in range
+  m_range: 1
+--- !u!114 &3934118860436507891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8729509806085182398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 174f1b33c66a59840899fca4c39f1f5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Label: Is there a target
+--- !u!114 &4104905445585812831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8729509806085182398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36572c0a3b30ce546a8c6f978a302052, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Label: Default true
 --- !u!1001 &8216822588990585005
 PrefabInstance:
   m_ObjectHideFlags: 0
