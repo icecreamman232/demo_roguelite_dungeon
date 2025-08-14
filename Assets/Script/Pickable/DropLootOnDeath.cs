@@ -1,4 +1,3 @@
-using SGGames.Script.Core;
 using SGGames.Script.Data;
 using SGGames.Script.Events;
 using SGGames.Script.HealthSystem;

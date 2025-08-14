@@ -2,6 +2,7 @@ using System;
 using SGGames.Script.Core;
 using SGGames.Script.UI;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 namespace SGGames.Script.Managers
@@ -148,6 +149,7 @@ namespace SGGames.Script.Managers
         {
             if (!m_isAllowInput) return;
             if (!m_isAllowGameplayInput) return;
+            if (EventSystem.current.currentSelectedGameObject != null) return;
             OnPressAttack?.Invoke();
             m_isAttacking = true;
             m_attackCooldownTimer = m_attackCooldownTime;

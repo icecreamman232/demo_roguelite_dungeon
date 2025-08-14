@@ -1,5 +1,3 @@
-
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using SGGames.Script.Core;
@@ -21,30 +19,13 @@ namespace SGGames.Script.Entity
         [Header("Pathfinding Settings")]
         [SerializeField] private bool m_usePathfinding = false;
         [SerializeField] private PathFinding m_pathFinder;
-        [SerializeField] private float m_pathUpdateInterval = 1f;
         [SerializeField] private float m_nextWaypointDistance = 0.1f;
-        
-        [Header("Advanced Movement Features")]
-        [SerializeField] private bool m_useWallSliding = true;
-        [SerializeField] private bool m_useWallProximityDetection = true;
-        [SerializeField] private bool m_usePathOptimization = true;
-        [SerializeField] private bool m_avoidOtherEnemies = true;
-        
-        [Header("Wall Sliding Settings")]
-        [SerializeField] private float m_wallProximityThreshold = 1.0f;
-        [SerializeField] private float m_cornerSlidingSpeed = 1.5f;
-        
-        [Header("Enemy Avoidance")]
-        [SerializeField] private LayerMask m_enemyLayer;
-        [SerializeField] private float m_enemyAvoidanceRadius = 1.0f;
-        [SerializeField] private float m_enemyAvoidanceForce = 2.0f;
         
         [Header("Debug")]
         [SerializeField] private bool m_enableDebug = false;
 
         // Components and services
         private EnemyController m_controller;
-        private BoxCollider2D m_collider2D;
         private RaycastHit2D m_collisionHit;
         private GridManager m_gridManager;
 
@@ -56,8 +37,6 @@ namespace SGGames.Script.Entity
         private int m_currentWaypointIndex;
         private bool m_hasPath;
         private bool m_pathPending;
-        private bool m_isDirectPathBlocked;
-        private bool m_forcedPathfinding;
         private float m_lastPathRequestTime;
         
         //Stunning
@@ -74,8 +53,7 @@ namespace SGGames.Script.Entity
             var gameManager = ServiceLocator.GetService<GameManager>();
             gameManager.OnGamePauseCallback += OnGamePaused;
             gameManager.OnGameUnPauseCallback += OnGameResumed;
-
-            m_collider2D = GetComponent<BoxCollider2D>();
+            
             SetMovementType(Global.MovementType.Normal);
             base.Awake();
         }
@@ -153,7 +131,6 @@ namespace SGGames.Script.Entity
             // Clear pathfinding state
             m_hasPath = false;
             m_waypoints.Clear();
-            m_forcedPathfinding = false;
         }
 
         public void SetFollowingTarget(Transform followingTarget)
@@ -228,96 +205,6 @@ namespace SGGames.Script.Entity
             }
             
             m_waypoints = rawWaypoints;
-        }
-        
-        private List<Vector3> PathSimplification(List<Vector3> path)
-        {
-            if (path.Count <= 2)
-                return new List<Vector3>(path);
-                
-            List<Vector3> simplified = new List<Vector3>();
-            simplified.Add(path[0]);
-            
-            int currentPoint = 0;
-            
-            while (currentPoint < path.Count - 1)
-            {
-                int furthestVisible = currentPoint + 1;
-                
-                for (int i = currentPoint + 2; i < path.Count; i++)
-                {
-                    if (HasLineOfSight(path[currentPoint], path[i]))
-                    {
-                        furthestVisible = i;
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-                
-                simplified.Add(path[furthestVisible]);
-                currentPoint = furthestVisible;
-            }
-            
-            return simplified;
-        }
-        
-        private bool HasLineOfSight(Vector3 start, Vector3 end)
-        {
-            Vector3 direction = end - start;
-            float distance = direction.magnitude;
-            direction.Normalize();
-            
-            int steps = Mathf.CeilToInt(distance / 0.5f);
-            
-            for (int i = 1; i < steps; i++)
-            {
-                Vector3 point = start + direction * (distance * i / steps);
-                if (IsWallAt(point))
-                {
-                    return false;
-                }
-            }
-            
-            return true;
-        }
-        
-        private bool IsWallAt(Vector3 position)
-        {
-            if (!m_usePathfinding || m_pathFinder == null || m_gridManager == null) return false;
-            
-            Vector3Int cellPos = m_gridManager.Tilemap.WorldToCell(position);
-            Vector2Int gridPos = m_gridManager.TilePosToGrid(cellPos);
-            
-            if (gridPos.x >= 0 && gridPos.x < m_gridManager.RoomWidth &&
-                gridPos.y >= 0 && gridPos.y < m_gridManager.RoomHeight)
-            {
-                return !m_gridManager.GetWalkable(gridPos.x, gridPos.y);
-            }
-            
-            return true;
-        }
-        
-        private int FindClosestWaypointIndex()
-        {
-            if (m_waypoints.Count == 0)
-                return 0;
-                
-            int closestIndex = 0;
-            float closestDistance = float.MaxValue;
-            
-            for (int i = 0; i < m_waypoints.Count; i++)
-            {
-                float distance = Vector3.Distance(transform.position, m_waypoints[i]);
-                if (distance < closestDistance)
-                {
-                    closestDistance = distance;
-                    closestIndex = i;
-                }
-            }
-            
-            return Mathf.Min(closestIndex + 1, m_waypoints.Count - 1);
         }
 
         #endregion
