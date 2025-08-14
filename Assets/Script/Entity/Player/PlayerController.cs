@@ -66,7 +66,6 @@ namespace SGGames.Script.Entity
 
         public void FinishedTurn()
         {
-            m_playerMovement.SetPermission(false);
             m_switchTurnEvent.Raise(new TurnBaseEventData
             {
                 TurnBaseState = Global.TurnBaseState.PlayerFinishedTurn,
