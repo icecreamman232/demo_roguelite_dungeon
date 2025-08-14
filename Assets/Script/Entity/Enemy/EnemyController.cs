@@ -17,8 +17,6 @@ namespace SGGames.Scripts.Entity
     {
         [SerializeField] protected SwitchTurnEvent m_switchTurnEvent;
         [SerializeField] protected GameEvent m_gameEvent;
-        [SerializeField] protected EnemyBrain m_defaultBrain;
-        [SerializeField] protected EnemyBrain m_currentBrain;
         [SerializeField] protected SpriteRenderer m_spriteRenderer;
         [SerializeField] protected EnemyHealth m_enemyHealth;
         [SerializeField] protected EnemyMovement m_enemyMovement;
@@ -29,7 +27,6 @@ namespace SGGames.Scripts.Entity
         private List<IDeathCommand> m_deathCommands;
         private int m_orderIndex;
         public int OrderIndex => m_orderIndex;
-        public EnemyBrain CurrentBrain => m_currentBrain;
         public AIBrain AIBrain => m_aiBrain;
         public EnemyMovement Movement => m_enemyMovement;
         public EnemyHealth Health => m_enemyHealth;
@@ -37,12 +34,6 @@ namespace SGGames.Scripts.Entity
 
         private void Awake()
         {
-            if (m_defaultBrain != null)
-            {
-                m_currentBrain = m_defaultBrain;
-                m_currentBrain.Initialize(this);
-            }
-            
             m_gameEvent.AddListener(OnReceiveGameEvent);
             m_enemyHealth.OnDeath += OnEnemyDeath;
             
@@ -77,8 +68,6 @@ namespace SGGames.Scripts.Entity
             var gameManager = ServiceLocator.GetService<GameManager>();
             gameManager.OnGamePauseCallback -= OnGamePaused;
             gameManager.OnGameUnPauseCallback -= OnGameResumed;
-            
-            m_currentBrain.CleanUp();
             m_gameEvent.RemoveListener(OnReceiveGameEvent);
         }
 
@@ -168,20 +157,10 @@ namespace SGGames.Scripts.Entity
             }
             return directionEnumValue;
         }
-
-        public void SetActiveBrain(EnemyBrain newBrain)
-        {
-            m_currentBrain = newBrain;
-            m_currentBrain.Initialize(this);
-        }
         
         public void OnRevive()
         {
-            m_currentBrain = m_defaultBrain;
             
-            m_currentBrain.gameObject.SetActive(true);
-            m_currentBrain.ResetBrain();
-            m_currentBrain.ActivateBrain(true);
         }
         #region Facade Methods
 

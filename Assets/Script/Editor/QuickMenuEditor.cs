@@ -1,3 +1,4 @@
+using SGGames.Scripts.AI;
 using SGGames.Scripts.Entity;
 using UnityEditor;
 using UnityEngine;
@@ -11,7 +12,7 @@ namespace SGGames.Script.EditorExtensions
         {
             GameObject brain = new GameObject();
             brain.name = "New Empty Brain";
-            brain.AddComponent<EnemyBrain>();
+            brain.AddComponent<AIBrain>();
             
             GameObject selection = Selection.activeGameObject;
             brain.transform.SetParent(selection.transform);
