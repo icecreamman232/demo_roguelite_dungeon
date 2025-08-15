@@ -2,6 +2,7 @@ using SGGames.Script.Core;
 using SGGames.Script.Data;
 using SGGames.Script.Entity;
 using SGGames.Script.Items;
+using SGGames.Script.Modules;
 using UnityEngine;
 
 namespace SGGames.Script.Weapons
@@ -13,7 +14,7 @@ namespace SGGames.Script.Weapons
         [SerializeField] private ObjectPooler m_projectilePooler;
         [SerializeField] private ObjectPooler m_specialProjectilePooler;
         [SerializeField] private Transform m_shootingPivot;
-        private WeaponStateManager m_stateManager;
+        private PlayerWeaponStateMachine m_stateManager;
         //private DefaultPlayerWeaponAnimator m_defaultPlayerWeaponAnimator;
         private PlayerWeaponHandler m_playerWeaponHandler;
         private ProjectileBuilder m_projectileBuilder;
@@ -28,7 +29,7 @@ namespace SGGames.Script.Weapons
         
         private const int k_MaxComboCount = 3;
         
-        public bool IsReady => m_stateManager.IsReady;
+        public bool IsReady => m_stateManager.CurrentState is WeaponReadyState;
         
         // private void Start()
         // {
@@ -68,8 +69,8 @@ namespace SGGames.Script.Weapons
             m_owner = owner;
             m_playerWeaponHandler = (PlayerWeaponHandler)owner;
             m_ownerGameObject = m_playerWeaponHandler.gameObject;
-            m_stateManager = new WeaponStateManager(this,
-                new (Global.WeaponState stateType, IWeaponState state)[]
+            m_stateManager = new PlayerWeaponStateMachine(this,
+                new (Global.WeaponState stateType, IState<Weapon> state)[]
                 {
                     (Global.WeaponState.CoolDown, new WeaponCoolDownState()),
                     (Global.WeaponState.AttackCombo, new WeaponAttackComboState())

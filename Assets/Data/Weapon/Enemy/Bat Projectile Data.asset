@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Bat Projectile Data
   m_EditorClassIdentifier: 
   m_speed: 5
-  m_range: 10
+  m_range: 3

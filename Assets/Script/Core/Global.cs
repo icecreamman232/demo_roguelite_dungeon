@@ -112,7 +112,8 @@ namespace SGGames.Script.Core
             Ready,
             InProgress,
             CoolDown,
-            AttackCombo
+            AttackCombo,
+            Complete
         }
 
         public enum InteractEventType

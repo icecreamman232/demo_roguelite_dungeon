@@ -6,7 +6,6 @@ namespace SGGames.Script.Entity
 {
     public class EnemyWeaponHandler : EntityBehavior, IWeaponOwner
     {
-        [SerializeField] private Transform m_weaponAttachment;
         [SerializeField] private Weapon m_currWeapon;
         
         private EnemyController m_controller;

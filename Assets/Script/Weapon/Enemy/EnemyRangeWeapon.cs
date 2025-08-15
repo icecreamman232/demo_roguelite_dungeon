@@ -1,45 +1,51 @@
-using System;
 using SGGames.Script.Core;
 using SGGames.Script.Data;
 using SGGames.Script.Entity;
+using SGGames.Script.Modules;
 using SGGames.Scripts.Entity;
 using UnityEngine;
 
 namespace SGGames.Script.Weapons
 {
-    public class EnemyDefaultRangeWeapon : Weapon, IProjectileSpawner
+    public class EnemyRangeWeapon : Weapon, IProjectileSpawner, IStateTransitioner<Global.WeaponState>
     {
         [SerializeField] private ObjectPooler m_projectilePooler;
         [SerializeField] private WeaponData m_weaponData;
-        private WeaponStateManager m_stateManager;
+        private EnemyWeaponStateMachine m_stateMachine;
         private EnemyController m_controller;
         private IWeaponOwner m_owner;
         private ProjectileBuilder m_projectileBuilder;
-        private Vector2 m_lastAimDirection;
+        
+        public int NumberSpawnedProjectile { get; set; }
 
+        public bool IsReady => m_stateMachine.CurrentState is EnemyWeaponReadyState;
+        
         private void Update()
         {
-            m_stateManager?.Update();
+            m_stateMachine?.Update();
         }
 
         #region Weapon
         public override void InitializeWeapon(IWeaponOwner owner)
         {
             m_controller = ((EnemyWeaponHandler)owner).GetComponent<EnemyController>();
-            m_stateManager = new WeaponStateManager(this, new (Global.WeaponState stateType, IWeaponState state)[]
+            m_stateMachine = new EnemyWeaponStateMachine(this, new (Global.WeaponState stateType, IState<Weapon> state)[]
             {
-                (Global.WeaponState.CoolDown, new WeaponCoolDownState())
+                (Global.WeaponState.Ready, new EnemyWeaponReadyState()),
+                (Global.WeaponState.InProgress, new EnemyWeaponInProgressState()),
+                (Global.WeaponState.Complete, new EnemyWeaponCompleteState(this)),
+                (Global.WeaponState.CoolDown, new WeaponCoolDownState()),
             });
             
-            var coolDownState = m_stateManager.GetState(Global.WeaponState.CoolDown) as WeaponCoolDownState;
+            var coolDownState = m_stateMachine.GetState(Global.WeaponState.CoolDown) as WeaponCoolDownState;
             coolDownState.Initialize(m_weaponData);
             
             InitializeProjectileSpawner(new ProjectileBuilder());
         }
-        
-        public void UpdateAnimationOnAttack()
+
+        public override bool IsAttacking()
         {
-            
+            return !IsReady;
         }
 
         public override void Attack()
@@ -47,7 +53,7 @@ namespace SGGames.Script.Weapons
             if (!IsReady) return;
             SpawnProjectile();
             UpdateAnimationOnAttack();
-            m_stateManager.SetState(Global.WeaponState.CoolDown);
+            m_stateMachine.SetState(Global.WeaponState.InProgress);
         }
         
         #endregion
@@ -71,7 +77,6 @@ namespace SGGames.Script.Weapons
             {
                 var targetPos = target.transform.position + m_weaponData.ShotProperties[i].OffsetPosition;
                 var aimDirection = (targetPos - transform.position).normalized;
-                m_lastAimDirection = aimDirection;
                 var projectileRot = Quaternion.AngleAxis(Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg, Vector3.forward);
                 var projectileGO = m_projectilePooler.GetPooledGameObject();
                 var projectile = projectileGO.GetComponent<Projectile>();
@@ -80,12 +85,25 @@ namespace SGGames.Script.Weapons
                     .SetDirection(aimDirection)
                     .SetPosition(transform.position)
                     .SetRotation(projectileRot));
+                projectile.OnProjectileStopped = OnProjectileStopped;
             }
         }
-        
+
+        private void OnProjectileStopped()
+        {
+            NumberSpawnedProjectile--;
+            if (NumberSpawnedProjectile <= 0)
+            {
+                m_stateMachine.SetState(Global.WeaponState.Complete);
+            }
+        }
+
+        public void ChangeState(Global.WeaponState newState)
+        {
+            m_stateMachine.SetState(newState);
+        }
+
         #endregion
-        
-        public bool IsReady => m_stateManager.IsReady;
     }
 }
 
