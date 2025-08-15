@@ -50,7 +50,6 @@ namespace SGGames.Script.Entity
         private void InternalInitialize()
         {
             m_controller = GetComponent<PlayerController>();
-            SetMovementType(Global.MovementType.Normal);
             SetMovementState(Global.MovementState.Ready);
             m_canMove = true;
         }
@@ -117,12 +116,7 @@ namespace SGGames.Script.Entity
         private bool CheckObstacle(Vector3 direction)
         {
             var hit = Physics2D.BoxCast(transform.position, m_controller.PlayerCollider.size, 0, direction,m_raycastDistance,m_obstacleLayerMask);
-            if (hit.collider != null)
-            {
-                return true;
-            }
-
-            return false;
+            return hit.collider != null;
         }
 
         private bool CanMove()
@@ -179,7 +173,7 @@ namespace SGGames.Script.Entity
                 m_movementDirection = Vector2.zero;
             }
         }
-
+        
         [CheatCode("test","Description Here")]
         public void TestCheatCode(int testValue)
         {

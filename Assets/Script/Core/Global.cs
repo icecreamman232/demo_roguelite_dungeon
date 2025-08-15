@@ -1,12 +1,9 @@
-using System;
 using UnityEngine;
 
 namespace SGGames.Script.Core
 {
     public static partial class Global
     {
-        public static float HP_PER_SLOT = 50f;
-        public static float S_FLIPPING_MODEL_SPEED = 3;
         public const float k_DefaultLoadingTime = 0.5f;
 
         //For enemy AI
@@ -54,16 +51,9 @@ namespace SGGames.Script.Core
                     if (leftVal >= rightVal) return true;
                     break;
             }
-            Debug.Log("False Comparison");
             return false;
         }
         
-        public enum MovementType
-        {
-            Normal,
-            Stop,
-        }
-
         public enum MovementDirectionType
         {
             FourDirections,

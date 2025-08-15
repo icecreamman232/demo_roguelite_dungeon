@@ -14,8 +14,7 @@ namespace SGGames.Script.Entity
         [Header("Enemy Basic Settings")] 
         [SerializeField] private EnemyData m_enemyData;
         [SerializeField] private LayerMask m_obstacleLayerMask;
-        private const float k_RaycastDistance = 0.15f;
-
+        
         [Header("Pathfinding Settings")]
         [SerializeField] private bool m_usePathfinding = false;
         [SerializeField] private PathFinding m_pathFinder;
@@ -36,41 +35,24 @@ namespace SGGames.Script.Entity
         private List<Vector3> m_waypoints = new List<Vector3>();
         private int m_currentWaypointIndex;
         private bool m_hasPath;
-        private bool m_pathPending;
-        private float m_lastPathRequestTime;
         
         //Stunning
         private bool m_isStunned;
         
         // Properties
-        public Vector2 MoveDirection => m_movementDirection;
         public Global.MovementState CurrentMovementState => m_currentMovementState;
         
         #region Unity Lifecycle
         
         protected override void Awake()
         {
-            var gameManager = ServiceLocator.GetService<GameManager>();
-            gameManager.OnGamePauseCallback += OnGamePaused;
-            gameManager.OnGameUnPauseCallback += OnGameResumed;
-            
-            SetMovementType(Global.MovementType.Normal);
+            InternalInitialize();
             base.Awake();
         }
 
         private void Start()
         {
-            m_gridManager = ServiceLocator.GetService<GridManager>();
-            
-            // Get PathFinding component if not assigned and pathfinding is enabled
-            if (m_usePathfinding && m_pathFinder == null)
-            {
-                m_pathFinder = GetComponent<PathFinding>();
-                if (m_pathFinder == null)
-                {
-                    Debug.LogError($"PathFinding component not found on {gameObject.name}! Please attach a PathFinding component.");
-                }
-            }
+            ExternalInitialize();
         }
         
         private void OnDestroy()
@@ -106,28 +88,23 @@ namespace SGGames.Script.Entity
 
         public void StartMoving()
         {
-            SetMovementType(Global.MovementType.Normal);
-            m_target = m_controller.AIBrain.Target;
-            //SetPermission(true);
             SetNextPosition();
             SetMovementState(Global.MovementState.Moving);
         }
 
         public void PauseMoving()
         {
-            SetMovementType(Global.MovementType.Stop);
+            
         }
 
         public void ResumeMoving()
         {
-            SetMovementType(Global.MovementType.Normal);
+           
         }
 
         public void StopMoving()
         {
             m_movementDirection = Vector2.zero;
-            SetMovementType(Global.MovementType.Stop);
-            
             // Clear pathfinding state
             m_hasPath = false;
             m_waypoints.Clear();
@@ -136,21 +113,34 @@ namespace SGGames.Script.Entity
         public void SetFollowingTarget(Transform followingTarget)
         {
             m_target = followingTarget;
-            SetMovementType(Global.MovementType.Normal);
-        }
-
-        #endregion
-
-        #region Movement Update Override
-
-        protected override void OnFinishMovement()
-        {
-            base.OnFinishMovement();
-            //SetPermission(false);
+            StartMoving();
         }
 
         #endregion
         
+        #region Initialize
+
+        private void InternalInitialize()
+        {
+            // Get PathFinding component if not assigned and pathfinding is enabled
+            if (m_usePathfinding && m_pathFinder == null)
+            {
+                m_pathFinder = GetComponent<PathFinding>();
+                if (m_pathFinder == null)
+                {
+                    Debug.LogError($"PathFinding component not found on {gameObject.name}! Please attach a PathFinding component.");
+                }
+            }
+        }
+
+        private void ExternalInitialize()
+        {
+            m_gridManager = ServiceLocator.GetService<GridManager>();
+            var gameManager = ServiceLocator.GetService<GameManager>();
+            gameManager.OnGamePauseCallback += OnGamePaused;
+            gameManager.OnGameUnPauseCallback += OnGameResumed;
+        }
+        #endregion
         
         #region Pathfinding
         [ContextMenu("Find path")]

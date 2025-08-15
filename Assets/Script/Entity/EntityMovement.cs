@@ -8,7 +8,6 @@ namespace SGGames.Script.Entity
     public class EntityMovement : EntityBehavior
     {
         [Header("Movement")] 
-        [SerializeField] protected Global.MovementType m_movementType;
         [SerializeField] protected Global.MovementState m_currentMovementState;
         [SerializeField] protected Vector2 m_movementDirection;
 
@@ -36,18 +35,6 @@ namespace SGGames.Script.Entity
             m_updateMovementAction?.Invoke();
         }
         
-        private void UpdateDelayAfterMoving()
-        {
-            if (m_delayAfterMovingTimer.IsRunning)
-            {
-                m_delayAfterMovingTimer.Update(Time.deltaTime);
-            }
-            else
-            {
-                SetMovementState(Global.MovementState.Finish);
-            }
-        }
-
         protected virtual void OnFinishMovement()
         {
             SetMovementState(Global.MovementState.Ready);
@@ -92,16 +79,15 @@ namespace SGGames.Script.Entity
             }
         }
         
-        public void SetMovementType(Global.MovementType movementType)
+        private void UpdateDelayAfterMoving()
         {
-            switch (movementType)
+            if (m_delayAfterMovingTimer.IsRunning)
             {
-                case Global.MovementType.Normal:
-                    m_movementType = Global.MovementType.Normal;
-                    break;
-                case Global.MovementType.Stop:
-                    m_movementType = Global.MovementType.Stop;
-                    break;
+                m_delayAfterMovingTimer.Update(Time.deltaTime);
+            }
+            else
+            {
+                SetMovementState(Global.MovementState.Finish);
             }
         }
     }

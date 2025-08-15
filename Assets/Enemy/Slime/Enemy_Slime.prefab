@@ -342,7 +342,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_isPermit: 1
-  m_movementType: 0
   m_currentMovementState: 0
   m_movementDirection: {x: 0, y: 0}
   m_enemyData: {fileID: 11400000, guid: 3a4d342279c43b74ba18ff85db68f046, type: 2}
@@ -351,19 +350,7 @@ MonoBehaviour:
     m_Bits: 768
   m_usePathfinding: 1
   m_pathFinder: {fileID: 3278343070005187421}
-  m_pathUpdateInterval: 1
   m_nextWaypointDistance: 0.1
-  m_useWallSliding: 1
-  m_useWallProximityDetection: 1
-  m_usePathOptimization: 1
-  m_avoidOtherEnemies: 1
-  m_wallProximityThreshold: 1
-  m_cornerSlidingSpeed: 1.5
-  m_enemyLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  m_enemyAvoidanceRadius: 1
-  m_enemyAvoidanceForce: 2
   m_enableDebug: 1
 --- !u!114 &3278343070005187421
 MonoBehaviour:
@@ -403,7 +390,7 @@ GameObject:
   - component: {fileID: 333483039102296515}
   - component: {fileID: 8050610503509939168}
   - component: {fileID: 5246128733582093609}
-  - component: {fileID: 1884679670017994585}
+  - component: {fileID: 877142554521365402}
   m_Layer: 0
   m_Name: Actions
   m_TagString: Untagged
@@ -454,7 +441,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Label: Use weapon
   m_currentState: 0
---- !u!114 &1884679670017994585
+--- !u!114 &877142554521365402
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -463,10 +450,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4662264174105308099}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49821d770d9a3df488f9e81c6fa7acf0, type: 3}
+  m_Script: {fileID: 11500000, guid: f2eade5b6cd714144addb391c744c219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Label: Start moving
+  Label: Following target
   m_currentState: 0
 --- !u!1 &5186698784688324723
 GameObject:
@@ -635,7 +622,7 @@ MonoBehaviour:
     m_decisions:
     - {fileID: 4104905445585812831}
     m_actions:
-    - {fileID: 1884679670017994585}
+    - {fileID: 877142554521365402}
   m_currentState:
     StateName: 
     m_consumeTurn: 0

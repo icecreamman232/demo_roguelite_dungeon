@@ -71,20 +71,6 @@ namespace SGGames.Scripts.Entity
             m_gameEvent.RemoveListener(OnReceiveGameEvent);
         }
 
-        public void SetOrderIndex(int orderIndex)
-        {
-            m_orderIndex = orderIndex;
-        }
-
-        public void FinishTurn()
-        {
-            m_switchTurnEvent.Raise(new TurnBaseEventData
-            {
-                TurnBaseState = Global.TurnBaseState.EnemyFinishedTurn,
-                EntityIndex = m_orderIndex
-            });
-        }
-
         private void RegisterEnemyToRoom()
         {
             if (m_enemyHealth.CanRevive) return;
@@ -162,13 +148,25 @@ namespace SGGames.Scripts.Entity
         {
             
         }
-        #region Facade Methods
-
-        public void FlipSprite(Vector2 direction)
+        
+        public bool IsPlayer()
         {
-            //m_animationController.FlipModel(direction.x < 0);
+            return false;
         }
-        #endregion
+        
+        public void SetOrderIndex(int orderIndex)
+        {
+            m_orderIndex = orderIndex;
+        }
+
+        public void FinishTurn()
+        {
+            m_switchTurnEvent.Raise(new TurnBaseEventData
+            {
+                TurnBaseState = Global.TurnBaseState.EnemyFinishedTurn,
+                EntityIndex = m_orderIndex
+            });
+        }
         
         #region Cheat Code
         public void Kill()
@@ -177,10 +175,7 @@ namespace SGGames.Scripts.Entity
         }
         #endregion
 
-        public bool IsPlayer()
-        {
-            return false;
-        }
+       
     }
 }
 
