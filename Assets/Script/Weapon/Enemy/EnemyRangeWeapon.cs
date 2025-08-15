@@ -86,6 +86,7 @@ namespace SGGames.Script.Weapons
                     .SetPosition(transform.position)
                     .SetRotation(projectileRot));
                 projectile.OnProjectileStopped = OnProjectileStopped;
+                NumberSpawnedProjectile++;
             }
         }
 
