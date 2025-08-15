@@ -325,7 +325,7 @@ MonoBehaviour:
   m_currHealth: 0
   m_isInvincible: 0
   m_disableOnDeath: 1
-  m_delayAfterDeath: 0
+  m_delayAfterDeath: 0.3
   m_enemyData: {fileID: 11400000, guid: 3a4d342279c43b74ba18ff85db68f046, type: 2}
   m_spriteRenderer: {fileID: 1208306049597145186}
   m_floatingTextEvent: {fileID: 11400000, guid: 319a78d159feea54fb1d2b7b0953e9ec, type: 2}
