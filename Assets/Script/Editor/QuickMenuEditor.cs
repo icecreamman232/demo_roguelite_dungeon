@@ -15,7 +15,7 @@ namespace SGGames.Script.EditorExtensions
             brain.AddComponent<AIBrain>();
             
             GameObject selection = Selection.activeGameObject;
-            brain.transform.SetParent(selection.transform);
+            brain.transform.SetParent(selection.transform,true);
             
             GameObject action = new GameObject();
             action.name = "Actions";

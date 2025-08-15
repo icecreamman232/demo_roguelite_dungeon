@@ -1,3 +1,4 @@
+using System;
 using SGGames.Script.Data;
 using SGGames.Script.HealthSystem;
 using UnityEngine;
@@ -17,6 +18,8 @@ namespace SGGames.Script.Weapons
         protected GameObject m_owner;
         protected Vector2 m_startPosition;
         protected bool m_isAlive;
+
+        public Action OnProjectileStopped;
         
         public GameObject Owner => m_owner;
 
@@ -52,6 +55,7 @@ namespace SGGames.Script.Weapons
 
         protected virtual void DestroyProjectile()
         {
+            OnProjectileStopped?.Invoke();
             m_isAlive = false;
             transform.rotation = Quaternion.identity;
             this.gameObject.SetActive(false);

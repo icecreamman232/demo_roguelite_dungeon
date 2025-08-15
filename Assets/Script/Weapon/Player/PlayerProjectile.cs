@@ -30,6 +30,7 @@ namespace SGGames.Script.Weapons
                 m_animator.SetTrigger(k_ANIM_IMPACT_PARAM);
                 yield return new WaitForSeconds(m_impactAnimDuration);
             }
+            OnProjectileStopped?.Invoke();
             this.gameObject.SetActive(false);
         }
     }

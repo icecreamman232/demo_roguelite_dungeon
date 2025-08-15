@@ -14,15 +14,12 @@ namespace SGGames.Script.Entity
         public EnemyController Controller => m_controller;
 
         public bool IsAttacking => m_currWeapon.IsAttacking();
-        
-        private void Start()
-        {
-            m_currWeapon.InitializeWeapon(this);
-        }
+ 
 
         public void Initialize(EnemyController controller)
         {
             m_controller = controller;
+            m_currWeapon.InitializeWeapon(this);
         }
         
         public void UseWeapon()

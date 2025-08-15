@@ -110,8 +110,9 @@ namespace SGGames.Script.Core
         public enum WeaponState
         {
             Ready,
+            InProgress,
             CoolDown,
-            AttackCombo,
+            AttackCombo
         }
 
         public enum InteractEventType
