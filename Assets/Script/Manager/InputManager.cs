@@ -24,8 +24,7 @@ namespace SGGames.Script.Managers
         private InputAction m_openConsole;
         private InputAction m_closeUI;
         private InputAction m_interactAction;
-        private InputAction m_skill1Action;
-        private InputAction m_skill2Action;
+        private InputAction m_endTurnAction;
         
         public bool IsAllowInput => m_isAllowInput;
         public Action<Vector2> OnMoveInputUpdate;
@@ -35,8 +34,7 @@ namespace SGGames.Script.Managers
         public Action OnPressOpenConsole;
         public Action OnPressCloseUI;
         public Action OnPressInteract;
-        public Action OnPressSkill1;
-        public Action OnPressSkill2;
+        public Action OnPressEndTurn;
         private float m_attackCooldownTimer;
         private bool m_isAttacking;
         private float m_attackCooldownTime = 0.1f;
@@ -102,8 +100,8 @@ namespace SGGames.Script.Managers
             m_openConsole = InputSystem.actions.FindAction("Open Console");
             m_closeUI = InputSystem.actions.FindAction("Close UI");
             m_interactAction = InputSystem.actions.FindAction("Interact");
-            m_skill1Action = InputSystem.actions.FindAction("ActiveSkill_1");
-            m_skill2Action = InputSystem.actions.FindAction("ActiveSkill_2");
+            m_endTurnAction = InputSystem.actions.FindAction("End Turn");
+            
 
             m_moveAction.performed += OnMoveInputPressed;
             m_attackAction.performed += OnAttackButtonPressed;
@@ -112,8 +110,7 @@ namespace SGGames.Script.Managers
             m_openConsole.performed += OnOpenConsoleButtonPressed;
             m_closeUI.performed += OnCloseUIButtonPressed;
             m_interactAction.performed += OnInteractButtonPressed;
-            m_skill1Action.performed += OnPressSkill1Button;
-            m_skill2Action.performed += OnPressSkill2Button;
+            m_endTurnAction.performed += OnEndTurnButtonPressed;
         }
         
         /// <summary>
@@ -193,16 +190,13 @@ namespace SGGames.Script.Managers
             OnPressInteract?.Invoke();
         }
         
-        private void OnPressSkill2Button(InputAction.CallbackContext context)
+        private void OnEndTurnButtonPressed(InputAction.CallbackContext context)
         {
             if (!m_isAllowInput) return;
-            OnPressSkill1?.Invoke();
+            if (!m_isAllowGameplayInput) return;
+            OnPressEndTurn?.Invoke();
         }
 
-        private void OnPressSkill1Button(InputAction.CallbackContext context)
-        {
-            OnPressSkill2?.Invoke();
-        }
         
         #endregion
     }

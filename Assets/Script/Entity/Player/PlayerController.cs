@@ -77,15 +77,5 @@ namespace SGGames.Script.Entity
         {
             m_weaponHandler.ForceResetCombo();
         }
-
-        #if UNITY_EDITOR
-        private void Update()
-        {
-            if (Input.GetKeyUp(KeyCode.F))
-            {
-                FinishedTurn();
-            }
-        }
-        #endif
     }
 }

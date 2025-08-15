@@ -17,11 +17,15 @@ namespace SGGames.Script.UI
         private void Awake()
         {
             m_updateActionPointUIEvent.AddListener(OnUpdateActionPointText);
+            var inputManager = ServiceLocator.GetService<InputManager>();
+            inputManager.OnPressEndTurn += EndTurn;
         }
 
         private void OnDestroy()
         {
             m_updateActionPointUIEvent.RemoveListener(OnUpdateActionPointText);
+            var inputManager = ServiceLocator.GetService<InputManager>();
+            inputManager.OnPressEndTurn -= EndTurn;
         }
 
         private IEnumerator Start()

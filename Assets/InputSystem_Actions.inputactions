@@ -60,18 +60,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ActiveSkill_1",
+                    "name": "End Turn",
                     "type": "Button",
-                    "id": "0e8c2cb5-702c-47d4-b8ae-10b612c0e57f",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "ActiveSkill_2",
-                    "type": "Button",
-                    "id": "89d305bb-2cbc-4da2-9fd0-5dba96ce62d6",
+                    "id": "2ee4a70d-aa6c-4484-a866-dc71bee6d3ad",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -323,23 +314,12 @@
                 },
                 {
                     "name": "",
-                    "id": "f47d1cf5-d3bd-4537-ae69-2f02c5a63323",
-                    "path": "<Keyboard>/e",
+                    "id": "10b67d13-2653-4ec4-898d-a018dd25018e",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "ActiveSkill_1",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "28c5b202-9d5f-49e8-9039-13b357e8e2d9",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "ActiveSkill_2",
+                    "groups": ";Gamepad",
+                    "action": "End Turn",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
