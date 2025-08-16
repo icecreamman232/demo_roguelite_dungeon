@@ -1,4 +1,5 @@
 
+using System;
 using SGGames.Script.Events;
 using UnityEngine;
 
@@ -12,6 +13,11 @@ namespace SGGames.Script.Core
         {
             m_gameEvent.AddListener(OnReceiveGameEvent);
             base.Awake();
+        }
+
+        private void OnDestroy()
+        {
+            m_gameEvent.RemoveListener(OnReceiveGameEvent);
         }
 
         private void OnReceiveGameEvent(Global.GameEventType gameEvent)

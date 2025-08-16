@@ -57,7 +57,7 @@ namespace SGGames.Script.Managers
             {
                 m_playerPrefab.ReleaseAsset();
             }
-            ServiceLocator.UnregisterService<LevelManager>();
+            m_gameEvent.RemoveListener(OnReceiveGameEvent);
         }
 
         private IEnumerator LoadFirstRoomOfBiomes()
@@ -154,6 +154,8 @@ namespace SGGames.Script.Managers
             var inputManager = ServiceLocator.GetService<InputManager>();
             
             inputManager.DisableInput();
+
+            ServiceLocator.ClearServices();
             
             yield return StartCoroutine(FadeOutToBlack(loadingSceneController));
             

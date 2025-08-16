@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using SGGames.Script.Core;
 using SGGames.Script.Events;
@@ -27,7 +28,12 @@ namespace SGGames.Script.Dungeon
             var gridManager = ServiceLocator.GetService<GridManager>();
             gridManager.Tilemap = m_tilemap;
         }
-        
+
+        private void OnDestroy()
+        {
+            m_gameEvent.RemoveListener(OnReceiveGameEvent);
+        }
+
         private void OnReceiveGameEvent(Global.GameEventType eventType)
         {
             if (eventType == Global.GameEventType.LoadNextRoomLeftRoom || eventType == Global.GameEventType.LoadNextRoomRightRoom)

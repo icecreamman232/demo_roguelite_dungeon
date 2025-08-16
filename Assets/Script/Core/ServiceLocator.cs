@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using SGGames.Script.UI;
 
 namespace SGGames.Script.Core
 {
@@ -36,6 +37,27 @@ namespace SGGames.Script.Core
             {
                 m_services.Remove(typeof(T));
             }
+        }
+        
+        public static void ClearServices()
+        {
+            // Save the LoadingScreenController if it exists
+            IGameService loadingScreenController = null;
+            if (m_services.ContainsKey(typeof(LoadingScreenController)))
+            {
+                loadingScreenController = m_services[typeof(LoadingScreenController)];
+            }
+            
+            // Clear all services
+            m_services.Clear();
+            
+            // Re-register the LoadingScreenController if it existed
+            if (loadingScreenController != null)
+            {
+                m_services.Add(typeof(LoadingScreenController), loadingScreenController);
+            }
+
+            
         }
     }
 }

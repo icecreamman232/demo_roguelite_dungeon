@@ -1,9 +1,7 @@
-using System;
 using SGGames.Script.Core;
 using SGGames.Script.Events;
 using SGGames.Script.Managers;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace SGGames.Script.UI
 {
@@ -25,8 +23,6 @@ namespace SGGames.Script.UI
 
         private void OnDestroy()
         {
-            var inputManager = ServiceLocator.GetService<InputManager>();
-            inputManager.OnPressInteract -= InteractActionOnPerformed;
             m_interactEvent.RemoveListener(OnReceiveInteractEvent);
         }
 

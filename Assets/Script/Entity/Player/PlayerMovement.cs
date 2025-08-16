@@ -39,11 +39,6 @@ namespace SGGames.Script.Entity
         
         private void OnDisable()
         {
-            var inputManager = ServiceLocator.GetService<InputManager>();
-            if (inputManager != null)
-            {
-                inputManager.OnMoveInputUpdate -= UpdateMoveInput;
-            }
             m_gameEvent.RemoveListener(OnReceiveGameEvent);
         }
 

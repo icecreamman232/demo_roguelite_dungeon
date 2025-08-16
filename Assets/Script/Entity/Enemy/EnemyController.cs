@@ -65,9 +65,6 @@ namespace SGGames.Scripts.Entity
 
         private void OnDestroy()
         {
-            var gameManager = ServiceLocator.GetService<GameManager>();
-            gameManager.OnGamePauseCallback -= OnGamePaused;
-            gameManager.OnGameUnPauseCallback -= OnGameResumed;
             m_gameEvent.RemoveListener(OnReceiveGameEvent);
         }
 

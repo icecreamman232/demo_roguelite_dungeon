@@ -28,6 +28,11 @@ namespace SGGames.Scripts.AI
             m_switchTurnEvent.AddListener(OnSwitchTurnEvent);
         }
 
+        private void OnDestroy()
+        {
+            m_switchTurnEvent.RemoveListener(OnSwitchTurnEvent);
+        }
+
         private void Update()
         {
             if (!m_isActivated) return;

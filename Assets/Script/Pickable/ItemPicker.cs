@@ -16,6 +16,11 @@ namespace SGGames.Script.Pickables
         {
             m_gameEvent.AddListener(OnReceiveGameEvent); 
         }
+        
+        protected virtual void OnDestroy()
+        {
+            m_gameEvent.RemoveListener(OnReceiveGameEvent); 
+        }
 
         protected virtual void OnReceiveGameEvent(Global.GameEventType eventType)
         {
@@ -34,11 +39,6 @@ namespace SGGames.Script.Pickables
         protected virtual void PickedUp()
         {
             
-        }
-
-        protected virtual void OnDestroy()
-        {
-            m_gameEvent.RemoveListener(OnReceiveGameEvent); 
         }
     }
 }

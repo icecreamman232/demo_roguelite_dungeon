@@ -54,16 +54,6 @@ namespace SGGames.Script.Entity
         {
             ExternalInitialize();
         }
-        
-        private void OnDestroy()
-        {
-            var gameManager = ServiceLocator.GetService<GameManager>();
-            if (gameManager != null)
-            {
-                gameManager.OnGamePauseCallback -= OnGamePaused;
-                gameManager.OnGameUnPauseCallback -= OnGameResumed;
-            }
-        }
 
         #endregion
 

@@ -24,8 +24,6 @@ namespace SGGames.Script.UI
         private void OnDestroy()
         {
             m_updateActionPointUIEvent.RemoveListener(OnUpdateActionPointText);
-            var inputManager = ServiceLocator.GetService<InputManager>();
-            inputManager.OnPressEndTurn -= EndTurn;
         }
 
         private IEnumerator Start()
