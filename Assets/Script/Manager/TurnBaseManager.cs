@@ -22,6 +22,7 @@ namespace SGGames.Script.Managers
         /// Indicate which entity is in this turn
         /// </summary>
         [SerializeField] private Global.TurnBaseState m_turnBaseState;
+        [SerializeField] private GameEvent m_gameEvent;
         [SerializeField] private SwitchTurnEvent m_switchTurnEvent;
         [SerializeField] private List<EnemyTurnBaseStatus> m_enemyTurnBaseStatusList;
 
@@ -40,9 +41,23 @@ namespace SGGames.Script.Managers
         private void OnDestroy()
         {
             m_enemyTurnBaseStatusList.Clear();
+            m_gameEvent.RemoveListener(OnReceiveGameEvent);
             m_switchTurnEvent.RemoveListener(OnSwitchTurn);
         }
+        
+        private void InitializeInternal()
+        {
+            m_enemyTurnBaseStatusList = new List<EnemyTurnBaseStatus>();
+            m_turnBaseState = Global.TurnBaseState.PlayerTakeTurn;
+            m_switchTurnEvent.AddListener(OnSwitchTurn);
+            m_gameEvent.AddListener(OnReceiveGameEvent);
+        }
 
+        private void InitializeExternal()
+        {
+            ServiceLocator.RegisterService<TurnBaseManager>(this);  
+        }
+        
         public void RegisterEnemy(EnemyController controller)
         {
             m_enemyTurnBaseStatusList.Add(new EnemyTurnBaseStatus
@@ -53,18 +68,6 @@ namespace SGGames.Script.Managers
             });
             controller.SetOrderIndex(m_currentEnemyIndex);
             m_currentEnemyIndex++;
-        }
-
-        private void InitializeInternal()
-        {
-            m_enemyTurnBaseStatusList = new List<EnemyTurnBaseStatus>();
-            m_turnBaseState = Global.TurnBaseState.PlayerTakeTurn;
-            m_switchTurnEvent.AddListener(OnSwitchTurn);
-        }
-
-        private void InitializeExternal()
-        {
-            ServiceLocator.RegisterService<TurnBaseManager>(this);  
         }
 
         private void SwitchToPlayerTurn()
@@ -117,6 +120,14 @@ namespace SGGames.Script.Managers
             foreach (var enemyRef in m_enemyTurnBaseStatusList)
             {
                 enemyRef.HasTakenTurn = false;
+            }
+        }
+        
+        private void OnReceiveGameEvent(Global.GameEventType eventType)
+        {
+            if (eventType == Global.GameEventType.GameStarted)
+            {
+                SwitchToPlayerTurn();
             }
         }
 

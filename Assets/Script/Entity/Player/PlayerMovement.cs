@@ -167,6 +167,14 @@ namespace SGGames.Script.Entity
             {
                 m_movementDirection = Vector2.zero;
             }
+            else if (eventType == Global.GameEventType.GameStarted)
+            {
+                m_movementDirection = Vector2.zero;
+                SetMovementState(Global.MovementState.Ready);
+                m_currentPosition = transform.position;
+                m_nextPosition = transform.position;
+                m_lerpValue = 0;
+            }
         }
         
         [CheatCode("test","Description Here")]

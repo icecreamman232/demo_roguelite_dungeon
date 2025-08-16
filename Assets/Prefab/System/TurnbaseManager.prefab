@@ -44,5 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03c9de4f4b47424192251e48e9702c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_turnBaseType: 0
+  m_turnBaseState: 0
+  m_gameEvent: {fileID: 11400000, guid: 7ac1f24220b2ef14186e0695169f9965, type: 2}
   m_switchTurnEvent: {fileID: 11400000, guid: 311f02bcf056f7b4a89524a610155650, type: 2}
+  m_enemyTurnBaseStatusList: []

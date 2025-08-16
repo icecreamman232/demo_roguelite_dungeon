@@ -14,6 +14,7 @@ namespace SGGames.Script.Entities
         [SerializeField] private PlayerUseActionPointEvent m_playerUseActionPointEvent;
         [SerializeField] private UpdateActionPointUIEvent m_updateActionPointUIEvent;
         [SerializeField] private SwitchTurnEvent m_switchTurnEvent;
+        [SerializeField] private GameEvent m_gameEvent;
         [Header("Action Points")]
         [SerializeField] private int m_maxActionPoint;
         [SerializeField] private int m_currentActionPoint;
@@ -35,6 +36,7 @@ namespace SGGames.Script.Entities
         {
             m_playerUseActionPointEvent.RemoveListener(UsePoints);
             m_switchTurnEvent.RemoveListener(OnSwitchTurnEvent);
+            m_gameEvent.RemoveListener(OnReceiveGameEvent);
         }
 
         private void InternalInitialize()
@@ -48,6 +50,7 @@ namespace SGGames.Script.Entities
         {
             m_playerUseActionPointEvent.AddListener(UsePoints);
             m_switchTurnEvent.AddListener(OnSwitchTurnEvent);
+            m_gameEvent.AddListener(OnReceiveGameEvent);
         }
 
         private void OnSwitchTurnEvent(TurnBaseEventData turnBaseEventData)
@@ -78,6 +81,14 @@ namespace SGGames.Script.Entities
         {
             m_currentActionPoint = m_maxActionPoint;
             UpdateActionPointUI();
+        }
+        
+        private void OnReceiveGameEvent(Global.GameEventType eventType)
+        {
+            if (eventType == Global.GameEventType.GameStarted)
+            {
+                ResetPoints();
+            }
         }
     }
 }

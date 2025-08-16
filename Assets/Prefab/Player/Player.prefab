@@ -614,6 +614,7 @@ MonoBehaviour:
   m_playerUseActionPointEvent: {fileID: 11400000, guid: 172316abaaec8d9438a3a5e8258b9478, type: 2}
   m_updateActionPointUIEvent: {fileID: 11400000, guid: 62962d335f343ef4eada9907c8fea45d, type: 2}
   m_switchTurnEvent: {fileID: 11400000, guid: 311f02bcf056f7b4a89524a610155650, type: 2}
+  m_gameEvent: {fileID: 11400000, guid: 7ac1f24220b2ef14186e0695169f9965, type: 2}
   m_maxActionPoint: 0
   m_currentActionPoint: 0
 --- !u!1001 &1910210252862058889

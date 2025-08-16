@@ -14,7 +14,7 @@ namespace SGGames.Script.Entity
         private TimerClock m_delayAfterMovingTimer;
         protected Vector3 m_currentPosition;
         protected Vector3 m_nextPosition;
-        private float m_lerpValue;
+        protected float m_lerpValue;
         private Action m_updateMovementAction;
         
         private const float k_MovementSpeed = 5;
