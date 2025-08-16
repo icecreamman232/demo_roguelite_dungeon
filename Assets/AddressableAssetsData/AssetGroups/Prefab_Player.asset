@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Player_Prefab
+  m_Name: Prefab_Player
   m_EditorClassIdentifier: 
-  m_GroupName: Player_Prefab
+  m_GroupName: Prefab_Player
   m_GUID: e96dba380bd6a38448d8245c183f2b73
   m_SerializeEntries:
   - m_GUID: 1490b9b0600713d4f800d05e7f134a72
@@ -26,26 +26,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Player_Prefab
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3776205dabfdd9d4290a7ef167911b69
-    m_Address: Assets/Prefab/System/TurnbaseManager.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 391aac97798acbf4ea99f2718fcde1f8
-    m_Address: Assets/Prefab/GridManager.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 680ad78d3b37d084493b850c88fbb302
-    m_Address: Assets/Prefab/ItemManager.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f3d9fdda3ae2d6541b3bf431513a0ed0
-    m_Address: Assets/Items/Rebound Cowl/Rebound Cowl Item.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 8cf258e3a231a0945b7eb17f27662218, type: 2}

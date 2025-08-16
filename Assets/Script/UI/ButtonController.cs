@@ -12,13 +12,19 @@ namespace SGGames.Script.UI
         
         public override void OnPointerEnter(PointerEventData eventData)
         {
-            EventSystem.current.SetSelectedGameObject(gameObject);
+            if (EventSystem.current != null)
+            {
+                EventSystem.current.SetSelectedGameObject(gameObject);
+            }
             base.OnPointerEnter(eventData);
         }
 
         public override void OnPointerExit(PointerEventData eventData)
         {
-            EventSystem.current.SetSelectedGameObject(null);
+            if (EventSystem.current != null)
+            {
+                EventSystem.current.SetSelectedGameObject(null);
+            }
             base.OnPointerExit(eventData);
         }
     }

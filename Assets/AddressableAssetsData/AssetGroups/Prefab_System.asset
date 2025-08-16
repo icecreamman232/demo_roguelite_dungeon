@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Room_Prefab
+  m_Name: Prefab_System
   m_EditorClassIdentifier: 
-  m_GroupName: Room_Prefab
-  m_GUID: eddd7b38ad39f7240a274900d93434a8
+  m_GroupName: Prefab_System
+  m_GUID: 7aff848e933b85f488f7587d63605de1
   m_SerializeEntries:
-  - m_GUID: 287d580421c343b4383510feefd4ff30
-    m_Address: Assets/Prefab/Room/RoomTemplate.prefab
+  - m_GUID: 8a2b6095864848e4e81afe2665202aaf
+    m_Address: Assets/Prefab/System
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -24,5 +24,5 @@ MonoBehaviour:
   m_Settings: {fileID: 11400000, guid: 8cf258e3a231a0945b7eb17f27662218, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: f63d313e9d92f254e995863006fb1501, type: 2}
-    - {fileID: 11400000, guid: a4049b6016e6d1c4cbea6f579daab6c8, type: 2}
+    - {fileID: 11400000, guid: f1c0a8b7f460fae4ba7ac89a6ca48484, type: 2}
+    - {fileID: 11400000, guid: cf4b0ae7ffe618f48b11202d0c95d310, type: 2}

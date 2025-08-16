@@ -15,83 +15,8 @@ MonoBehaviour:
   m_GroupName: ScriptableEvents
   m_GUID: 3b86e27e2f340614298f5a82d1839868
   m_SerializeEntries:
-  - m_GUID: 016c0540edf7df14ea01ae11b5308dbc
-    m_Address: Trigger Impact Event
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 0ba3d2406415cdf48b4a2e22edab016a
-    m_Address: Update Player Stamina Event
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 13529ca2b65aad543acc50a4d03b8c4b
-    m_Address: Inventory Event
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1dcb4f4dcfd70a04bbfb71420a857417
-    m_Address: Item Drops Event
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 319a78d159feea54fb1d2b7b0953e9ec
-    m_Address: Damage Floating Text Event
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3ea1778f75b556045a3b02555e9cae7b
-    m_Address: Update Player Health Event
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 45e12c09bec6ffa4dbb959ea840d16bf
-    m_Address: Interact Event
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 462e5d57e15fb4b428b80fc58616ae99
-    m_Address: Currency Event
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 7ac1f24220b2ef14186e0695169f9965
-    m_Address: Game Event
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 881e0a4dc49de4446ae2074ba42fc980
-    m_Address: Currency Drops Event
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9a2a3cd3b7567224491db05d547c8c38
-    m_Address: Update Currency Event
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a2968847acf4eb047a0295f74c00780e
-    m_Address: Biomes Transition UI Event
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: ab348dcc88bbf79448852907c9077415
-    m_Address: Trigger Modifier Event
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: ac789070c038d3b47a5f2db446c36a1a
-    m_Address: Equip Inventory Item Event
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: bb0fa696d762446469b075bdfcd3d078
-    m_Address: Spawn Chest Event
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d2588a1244fcc69409b423e1ce8377fd
-    m_Address: Update Player Dmg Projectile Event
+  - m_GUID: 2cb37392e2e33424092ec36d496d20cd
+    m_Address: Assets/Data/Events
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

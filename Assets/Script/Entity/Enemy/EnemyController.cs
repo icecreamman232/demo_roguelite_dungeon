@@ -95,6 +95,9 @@ namespace SGGames.Scripts.Entity
                     room.RegisterEnemyToRoom(this);
                 }
             }
+
+            var turnBaseManager = ServiceLocator.GetService<TurnBaseManager>();
+            turnBaseManager.RemoveEnemyFromTurnBaseList(this);
         }
         
         private void OnReceiveGameEvent(Global.GameEventType eventType)

@@ -13,6 +13,7 @@ namespace SGGames.Script.Managers
     {
         public EnemyController RefController;
         public bool HasTakenTurn;
+        public bool IsDead;
         public int OrderIndex;
     }
     
@@ -70,6 +71,18 @@ namespace SGGames.Script.Managers
             m_currentEnemyIndex++;
         }
 
+        public void RemoveEnemyFromTurnBaseList(EnemyController controller)
+        {
+            foreach (var enemyRef in m_enemyTurnBaseStatusList)
+            {
+                if (enemyRef.RefController == controller)
+                {
+                    enemyRef.IsDead = true;
+                    return;
+                }
+            }
+        }
+
         private void SwitchToPlayerTurn()
         {
             m_switchTurnEvent.Raise(new TurnBaseEventData
@@ -97,6 +110,7 @@ namespace SGGames.Script.Managers
             foreach (var enemyRef in m_enemyTurnBaseStatusList)
             {
                 if(enemyRef.HasTakenTurn) continue;
+                if(enemyRef.IsDead) continue;
                 return enemyRef.OrderIndex;
             }
             return -1;
@@ -107,6 +121,7 @@ namespace SGGames.Script.Managers
             bool hasAllFinished = true;
             foreach (var enemyRef in m_enemyTurnBaseStatusList)
             {
+                if(enemyRef.IsDead) continue;
                 if (!enemyRef.HasTakenTurn)
                 {
                     hasAllFinished = false;
@@ -137,7 +152,7 @@ namespace SGGames.Script.Managers
             {
                 case Global.TurnBaseState.EnemyFinishedTurn:
                     Debug.Log("Finished Turn in Turn Base Manager");
-                    m_enemyTurnBaseStatusList.First(enemy=>enemy.OrderIndex == turnBaseEventData.EntityIndex).HasTakenTurn = true;
+                    m_enemyTurnBaseStatusList.First(enemy=>enemy.OrderIndex == turnBaseEventData.EntityIndex && !enemy.IsDead).HasTakenTurn = true;
                     if (HasAllEnemiesFinishedTurn())
                     {
                         m_currentEnemyIndex = 0;

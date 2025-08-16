@@ -112,7 +112,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8630033408810215285, guid: 287d580421c343b4383510feefd4ff30, type: 3}
       propertyPath: m_Name
-      value: Room-Easy_6
+      value: Room-Hard-1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
