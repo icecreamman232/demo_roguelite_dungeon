@@ -185,7 +185,7 @@ namespace SGGames.Script.Managers
 
         private IEnumerator InstantiateFirstRoom(RoomManager roomManager)
         {
-#if UNITY_EDITOR
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
             if (m_isUsingTestRoom)
             {
                 m_currentRoom = Instantiate(m_testRoom.RoomPrefab);
@@ -204,7 +204,7 @@ namespace SGGames.Script.Managers
 
         private IEnumerator InstantiateRoom(bool fromLeftRoom, RoomManager roomManager)
         {
-#if UNITY_EDITOR
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
             if (m_isUsingTestRoom)
             {
                 m_currentRoom = Instantiate(m_testRoom.RoomPrefab);
