@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using SGGames.Script.Core;
 using SGGames.Script.Data;
-using SGGames.Script.Entities;
 using SGGames.Script.Entity;
 using SGGames.Script.Events;
 using SGGames.Script.Items;
@@ -73,7 +72,11 @@ namespace SGGames.Script.HealthSystem
         protected override void Damage(float damage, GameObject source)
         {
             var finalDamage = damage * (1 - MathHelpers.PercentToValue(CurrentDamageResistance));
-            m_currHealth -= finalDamage; 
+            m_currHealth -= finalDamage;
+            if (m_currHealth <= 0)
+            {
+                m_currHealth = 0;
+            }
             OnHit?.Invoke(damage, source);
             OnWeaponComboInterrupted?.Invoke();
         }
