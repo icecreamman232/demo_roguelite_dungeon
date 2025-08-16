@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bfe9eb401d3cae43bf3b408e111c6d6, type: 3}
-  m_Name: Enemy Slime Data
+  m_Script: {fileID: 11500000, guid: 32be3065037cc9d42b994be74addbe0e, type: 3}
+  m_Name: Morthys Projectile Data
   m_EditorClassIdentifier: 
-  m_maxHealth: 100
-  m_moveSpeed: 3
+  m_speed: 5
+  m_range: 3

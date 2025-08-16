@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b0ce7b22ba139d48a292b8ab86a8780, type: 3}
-  m_Name: Bat Weapon Data
+  m_Script: {fileID: 11500000, guid: 9bfe9eb401d3cae43bf3b408e111c6d6, type: 3}
+  m_Name: Enemy Morthys Data
   m_EditorClassIdentifier: 
-  m_coolDown: 1.5
-  m_projectilePerShot: 1
-  m_shotProperties:
-  - OffsetPosition: {x: 0, y: 0, z: 0}
-    BonusSpeed: 0
+  m_enemyGrade: 0
+  m_enemyProperties: 0
+  m_maxHealth: 100
+  m_moveSpeed: 5

@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 5191261746585005969}
   - component: {fileID: 4720754150642318466}
   m_Layer: 0
-  m_Name: Bat Projectile
+  m_Name: Morthys Projectile
   m_TagString: PlayerProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

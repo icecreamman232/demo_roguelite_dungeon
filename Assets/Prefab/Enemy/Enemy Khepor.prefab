@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 2029056537
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 5108020667906848606, guid: b5040d7cdedf4684985693bbefcfdcab, type: 3}
+  m_Sprite: {fileID: -611662836, guid: 6219432f130854c4da4d20799a648b68, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -142,7 +142,7 @@ GameObject:
   - component: {fileID: 3278343070005187421}
   - component: {fileID: 8975557050080255171}
   m_Layer: 7
-  m_Name: Enemy Slime
+  m_Name: Enemy Khepor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -330,7 +330,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_isPermit: 1
-  m_weaponAttachment: {fileID: 0}
   m_currWeapon: {fileID: 896521030116690375}
 --- !u!1 &4662264174105308099
 GameObject:

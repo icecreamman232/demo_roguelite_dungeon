@@ -308,7 +308,7 @@ GameObject:
   - component: {fileID: 4031663204895293153}
   - component: {fileID: -4197170573172073043}
   m_Layer: 7
-  m_Name: Enemy Bat
+  m_Name: Enemy Morthys
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -574,7 +574,7 @@ SpriteRenderer:
   m_SortingLayerID: 2029056537
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1355583348540280598, guid: b5040d7cdedf4684985693bbefcfdcab, type: 3}
+  m_Sprite: {fileID: 279894195, guid: 6219432f130854c4da4d20799a648b68, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
