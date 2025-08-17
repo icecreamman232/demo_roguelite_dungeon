@@ -60,7 +60,13 @@ namespace SGGames.Script.PathFindings
         {
             return new Vector2Int(gridPos.x - m_roomWidth/2, gridPos.y - m_roomHeight/2);
         }
-
+        
+        /// <summary>
+        /// Finds the walkable status of a grid position.
+        /// </summary>
+        /// <param name="x">Grid Position X</param>
+        /// <param name="y">Grid Position Y</param>
+        /// <returns></returns>
         public bool GetWalkable(int x, int y)
         {
             if (x >= 0 && x < m_roomWidth && y >= 0 && y < m_roomHeight)

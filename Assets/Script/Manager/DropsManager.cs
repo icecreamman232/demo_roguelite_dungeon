@@ -1,7 +1,11 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using SGGames.Script.Core;
 using SGGames.Script.Data;
 using SGGames.Script.Events;
+using SGGames.Script.PathFindings;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -27,6 +31,7 @@ namespace SGGames.Script.Managers
         [Header("Currency")] 
         [SerializeField] private CurrencyDropsEvent m_currencyDropsEvent;
         
+        private GridManager m_gridManager;
         private TreasureChestSelector m_treasureChestSelector;
         private ItemSelector m_itemSelector;
         private const float SPAWN_RANGE_FOR_CURRENCY = 1;
@@ -34,13 +39,13 @@ namespace SGGames.Script.Managers
         private void Awake()
         {
             ServiceLocator.RegisterService<DropsManager>(this);
+            m_gridManager = ServiceLocator.GetService<GridManager>();
             InitializeHelperModules();
             RegisterEvents();
         }
 
         private void OnDestroy()
         {
-            ServiceLocator.UnregisterService<DropsManager>();
             UnregisterEvents();
         }
 
@@ -97,13 +102,51 @@ namespace SGGames.Script.Managers
             {
                 var itemPrefab = m_container.GetCurrencyPrefabWithID(currencyDropData.ItemID);
                 if (itemPrefab == null) return;
+                var testPositionList = FindProperDropPositions(currencyDropData.HostPosition);
                 Vector3 spawnPosition;
                 for (int i = 0; i < currencyDropData.Amount; i++)
                 {
-                    spawnPosition = currencyDropData.HostPosition + (Vector3)Random.insideUnitCircle * SPAWN_RANGE_FOR_CURRENCY;
+                    spawnPosition = testPositionList[i % testPositionList.Count];
                     Instantiate(itemPrefab, spawnPosition, Quaternion.identity);
                 }
             }
+        }
+
+        private List<Vector3> FindProperDropPositions(Vector3 hostPosition)
+        {
+            var surroundPosArray = new List<Vector3>
+            {
+                hostPosition + Vector3.up,
+                hostPosition + Vector3.down,
+                hostPosition + Vector3.left,
+                hostPosition + Vector3.right,
+                
+                //Diagonal positions
+                hostPosition + new Vector3(-1, 1, 0),
+                hostPosition + new Vector3(1, 1, 0),
+                hostPosition + new Vector3(-1, -1, 0),
+                hostPosition + new Vector3(1, -1, 0),
+            };
+            
+            List<int> toRemovedIndexList = new List<int>();
+            
+            for (int i = 0; i < surroundPosArray.Count; i++)
+            {
+                var result = Physics2D.OverlapBox(surroundPosArray[i], Vector3.one * 0.7f, 1, LayerManager.NoWalkableMask);
+                if (result == null)
+                {
+                    toRemovedIndexList.Add(i);
+                }
+            }
+
+            List<Vector3> resultList = new List<Vector3>();
+            for (int j = 0; j < toRemovedIndexList.Count; j++)
+            {
+                resultList.Add(surroundPosArray[toRemovedIndexList[j]]);
+            }
+            
+            GameHelper.Shuffle(resultList);
+            return resultList;
         }
     }
 }

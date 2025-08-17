@@ -69,7 +69,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 1
+  m_Radius: 0.6
 --- !u!114 &119446242194439600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,7 +87,6 @@ MonoBehaviour:
   m_currencyID: 2
   m_amount: 1
   m_currencyEvent: {fileID: 11400000, guid: 462e5d57e15fb4b428b80fc58616ae99, type: 2}
-  m_collider: {fileID: 4933055783692523758}
 --- !u!1 &4823314039560441995
 GameObject:
   m_ObjectHideFlags: 0

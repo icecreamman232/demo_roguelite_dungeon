@@ -11,13 +11,15 @@ namespace SGGames.Script.Core
         public static int PlayerLayer = 6;
         public static int EnemyLayer = 7;
         public static int ObstacleLayer = 8;
+        public static int DoorLayer = 9;
         #endregion
 
         #region Layer Masks
         public static int PlayerMask = 1 << PlayerLayer;
         public static int EnemyMask = 1 << EnemyLayer;
         public static int ObstacleMask = 1 << ObstacleLayer;
-        //public static int PlayerMask = DoorMask | WallMask;
+        public static int DoorMask = 1 << DoorLayer;
+        public static int NoWalkableMask = ObstacleMask | DoorMask | EnemyMask;
         #endregion
         
         
