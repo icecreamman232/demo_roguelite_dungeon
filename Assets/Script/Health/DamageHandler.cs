@@ -27,17 +27,17 @@ namespace SGGames.Script.HealthSystem
         {
             if (!LayerManager.IsInLayerMask(other.gameObject.layer, m_targetMask)) return;
             
-            var health = other.gameObject.GetComponent<Health>();
+            var damageable = other.gameObject.GetComponent<IDamageable>();
             
-            if (health)
+            if (damageable != null)
             {
-                HitDamageable(health);
+                HitDamageable(damageable);
             }
         }
 
-        protected virtual void HitDamageable(Health health)
+        protected virtual void HitDamageable(IDamageable damageable)
         {
-            health.TakeDamage(GetDamage(),this.gameObject, m_invincibilityDuration);
+            damageable.TakeDamage(GetDamage(),this.gameObject, m_invincibilityDuration);
             OnHit?.Invoke();
         }
     }

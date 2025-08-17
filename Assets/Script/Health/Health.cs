@@ -8,7 +8,7 @@ namespace SGGames.Script.HealthSystem
     /// <summary>
     /// Base class to compute health for entity
     /// </summary>
-    public class Health : EntityBehavior
+    public class Health : EntityBehavior, IDamageable
     {
         [SerializeField] protected float m_maxHealth;
         [SerializeField] protected float m_currHealth;
