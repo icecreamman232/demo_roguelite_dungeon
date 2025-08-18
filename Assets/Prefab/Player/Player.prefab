@@ -298,6 +298,7 @@ GameObject:
   - component: {fileID: 3555579561468918608}
   - component: {fileID: 977378331000385504}
   - component: {fileID: 3123490272856798815}
+  - component: {fileID: 6002755624812572842}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -421,6 +422,7 @@ MonoBehaviour:
   m_resistanceController: {fileID: -5217333942266810330}
   m_modifierController: {fileID: 3555579561468918608}
   m_dodge: {fileID: 977378331000385504}
+  m_aimingController: {fileID: 6002755624812572842}
   m_switchTurnEvent: {fileID: 11400000, guid: 311f02bcf056f7b4a89524a610155650, type: 2}
 --- !u!114 &1171857828541800924
 MonoBehaviour:
@@ -554,6 +556,7 @@ MonoBehaviour:
   m_afterImageFX: {fileID: 5595065650812919701}
   m_spriteRenderer: {fileID: 3941868291613530036}
   m_displayEffectTileEvent: {fileID: 11400000, guid: 35301664b05aade41b785a83f6f165ba, type: 2}
+  m_playerUseActionPointEvent: {fileID: 11400000, guid: 172316abaaec8d9438a3a5e8258b9478, type: 2}
 --- !u!114 &-5217333942266810330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -619,6 +622,21 @@ MonoBehaviour:
   m_gameEvent: {fileID: 11400000, guid: 7ac1f24220b2ef14186e0695169f9965, type: 2}
   m_maxActionPoint: 0
   m_currentActionPoint: 0
+--- !u!114 &6002755624812572842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9048246708849386775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb3958a198205644a90d36adc4d88d30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_aimingData:
+    AimDirection: {x: 0, y: 0, z: 0}
+    AimAngle: 0
 --- !u!1001 &1910210252862058889
 PrefabInstance:
   m_ObjectHideFlags: 0

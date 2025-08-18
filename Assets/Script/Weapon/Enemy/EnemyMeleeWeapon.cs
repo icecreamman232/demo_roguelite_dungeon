@@ -5,7 +5,7 @@ using SGGames.Script.Weapons;
 using UnityEngine;
 
 
-namespace SGGames.Script.Entities
+namespace SGGames.Script.Entity
 {
     public class EnemyMeleeWeapon : Weapon
     {

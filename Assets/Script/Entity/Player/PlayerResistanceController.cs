@@ -2,7 +2,7 @@ using SGGames.Script.Data;
 using SGGames.Script.Entity;
 using UnityEngine;
 
-namespace SGGames.Script.Entities
+namespace SGGames.Script.Entity
 {
     public class PlayerResistanceController : EntityBehavior
     {

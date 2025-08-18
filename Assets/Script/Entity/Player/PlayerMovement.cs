@@ -4,6 +4,7 @@ using SGGames.Script.EditorExtensions;
 using SGGames.Script.Events;
 using SGGames.Script.Managers;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace SGGames.Script.Entity
 {
@@ -61,6 +62,25 @@ namespace SGGames.Script.Entity
             m_gameEvent.AddListener(OnReceiveGameEvent);
             ConsoleCheatManager.RegisterCommands(this);
         }
+        
+        public bool CheckObstacleWithRaycast(Vector3 direction, float raycastDistance)
+        {
+            var hit = Physics2D.Raycast(transform.position, direction, raycastDistance, m_obstacleLayerMask);
+            return hit.collider != null;
+        }
+        
+        /// <summary>
+        /// Call this method to reset movement parameters after doing such as dashing, being knockback, etc...
+        /// </summary>
+        public void ResetMovementParameters()
+        {
+            m_movementDirection = Vector2.zero;
+            SetMovementState(Global.MovementState.Ready);
+            m_currentPosition = transform.position;
+            m_nextPosition = transform.position;
+            m_lerpValue = 0;
+        }
+
         
         public void PauseMovement()
         {
@@ -169,11 +189,7 @@ namespace SGGames.Script.Entity
             }
             else if (eventType == Global.GameEventType.GameStarted)
             {
-                m_movementDirection = Vector2.zero;
-                SetMovementState(Global.MovementState.Ready);
-                m_currentPosition = transform.position;
-                m_nextPosition = transform.position;
-                m_lerpValue = 0;
+                ResetMovementParameters();
             }
         }
         

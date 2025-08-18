@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using SGGames.Script.Core;
-using SGGames.Script.Entities;
 using SGGames.Script.Items;
 using UnityEngine;
 

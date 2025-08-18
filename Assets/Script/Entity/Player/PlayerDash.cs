@@ -7,8 +7,8 @@ using SGGames.Script.Events;
 using SGGames.Script.Items;
 using SGGames.Script.Managers;
 using SGGames.Script.Modules;
+using SGGames.Script.PathFindings;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace SGGames.Script.Entity
 {
@@ -20,7 +20,9 @@ namespace SGGames.Script.Entity
         [SerializeField] private AnimationCurve m_dashSpeedCurve;
         [SerializeField] private AfterImageFX m_afterImageFX;
         [SerializeField] private SpriteRenderer m_spriteRenderer;
+        [Header("Events")]
         [SerializeField] private DisplayEffectTileEvent m_displayEffectTileEvent;
+        [SerializeField] private PlayerUseActionPointEvent m_playerUseActionPointEvent;
 
         private PercentageStackController m_percentageStackController;
         private float m_flatSpeedBonus;
@@ -31,8 +33,9 @@ namespace SGGames.Script.Entity
         private Vector3 m_endPosition;
         private float m_traveledDistance;
         private float m_distanceToTarget;
-        private Vector2 m_lastMoveInput;
+        private Vector3 m_dashDirection;
         private bool m_allowShowRangeHUD;
+        private GridManager m_gridManager;
         
         
         private IDashCommand[] m_startDashCommands;
@@ -42,21 +45,37 @@ namespace SGGames.Script.Entity
         
         public Action OnDashHitObstacle;
         public Action OnDashFinished;
-        
+
+        private void Awake()
+        {
+            InternalInitialize();
+        }
+
         private void Start()
         {
-            m_controller = GetComponent<PlayerController>();
-            m_percentageStackController = new PercentageStackController();
-            
+            ExternalInitialize();
+        }
+
+        public void Initialize(PlayerController controller)
+        {
+            m_controller = controller;
+            m_controller.AimingController.OnAimingDataChanged += OnAimingDataChanged;
+        }
+        
+        private void ExternalInitialize()
+        {
             var inputManager = ServiceLocator.GetService<InputManager>();
-            inputManager.OnMoveInputUpdate += UpdateMoveInput;
             inputManager.OnPressSpecialAbility += OnDashButtonPressed;
             inputManager.OnPressExecute += OnExecuteButtonPressed;
-
-            m_lastMoveInput = Vector2.right;
-
-            m_currentSpeed = m_playerData.DashSpeed;
             
+            m_gridManager = ServiceLocator.GetService<GridManager>();
+        }
+
+        private void InternalInitialize()
+        {
+            m_percentageStackController = new PercentageStackController();
+            m_dashDirection = Vector2.right;
+            m_currentSpeed = m_playerData.DashSpeed;
             SetupCommands();
         }
         
@@ -126,50 +145,75 @@ namespace SGGames.Script.Entity
 
         private void OnExecuteButtonPressed()
         {
+            //Deduct stamina
             m_controller.PlayerStamina.UseStamina(m_playerData.StaminaCostForDash);
+            //Deduct action point
+            m_playerUseActionPointEvent.Raise(1);
+            
             PrepareBeforeDash();
         }
 
+        private bool CanDash()
+        {
+            if(!m_controller.PlayerStamina.CanUseStamina(m_playerData.StaminaCostForDash)) return false;
+            if (!m_controller.ActionPoint.CanUsePoint(1)) return false;
+            return true;
+        }
+        
         private void OnDashButtonPressed()
         {
-            if (!m_controller.PlayerStamina.CanUseStamina(m_playerData.StaminaCostForDash)) return;
+            if (!CanDash())
+            {
+                //Play cant dash animation
+                m_controller.AnimationController.PlayCantMoveAnimation();
+            }
+            
             m_allowShowRangeHUD = true;
         }
 
-        private void ShowRange(Vector3 direction)
+        private void ShowRangeIndicator(Vector3 direction, int range)
         {
-            if (m_allowShowRangeHUD) return;
-           
-            //Range is 3 tiles from player position
-            for (int i = 1; i < 4; i++)
+            if (!m_allowShowRangeHUD) return;
+            var positionList = new List<Vector3>();
+            //Start at i = 1 to avoid the player position. Therefore, the range will be (range + 1)
+            for (int i = 1; i < (range + 1); i++)
             {
-                m_displayEffectTileEvent.Raise(new EffectTileEventData
-                {
-                    Position = transform.position + direction * i,
-                    EffectTileType = Global.EffectTileType.Indicator
-                });
-                Debug.Log($"Show Range at tile {transform.position + direction * i}");
+                positionList.Add(transform.position + direction * i);
             }
+            m_displayEffectTileEvent.Raise(new EffectTileEventData
+            {
+                Position = positionList,
+                EffectTileType = Global.EffectTileType.Indicator
+            });
         }
-        
-        private void UpdateMoveInput(Vector2 lastMoveInput)
+
+        private void HideRangeIndicator(Vector3 direction, int range)
         {
-            if (lastMoveInput == Vector2.zero) return;
-            m_lastMoveInput = lastMoveInput;
+            var positionList = new List<Vector3>();
+            for (int i = 0; i < range; i++)
+            {
+                positionList.Add(transform.position + direction * i);
+            }
+            m_displayEffectTileEvent.Raise(new EffectTileEventData
+            {
+                Position = positionList,
+                EffectTileType = Global.EffectTileType.None
+            });
         }
 
         private void Update()
         {
             if (!m_isPermit) return;
             if (!m_isDashing) return;
-
-            // if (m_controller.PlayerMovement.IsHitObstacle)
-            // {
-            //     OnDashHitObstacle?.Invoke();
-            //     m_worldEvent.Raise(Global.WorldEventType.OnPlayerDashCanceled, this.gameObject, null);
-            //     EndDash();
-            //     return;
-            // }
+            
+            if (m_controller.PlayerMovement.CheckObstacleWithRaycast(m_dashDirection, 0.5f))
+            {
+                transform.position = m_gridManager.GetSnapPosition(transform.position);
+                OnDashHitObstacle?.Invoke();
+                m_worldEvent.Raise(Global.WorldEventType.OnPlayerDashCanceled, this.gameObject, null);
+                EndDash();
+                return;
+            }
             
             var traveledTime = MathHelpers.Remap(m_traveledDistance,0,m_distanceToTarget,0,1);
             var speedMultiplier = m_dashSpeedCurve.Evaluate(traveledTime);
@@ -179,7 +223,7 @@ namespace SGGames.Script.Entity
             m_traveledDistance = Vector3.Distance(m_startPosition, transform.position);
 
             m_afterImageFX.DropImageFX(m_spriteRenderer.sprite, m_spriteRenderer.flipX);
-
+            
             if (transform.position == m_endPosition)
             {
                 OnDashFinished?.Invoke();
@@ -215,8 +259,11 @@ namespace SGGames.Script.Entity
 
         private void PrepareBeforeDash()
         {
+            m_allowShowRangeHUD = false;
+            HideRangeIndicator(m_dashDirection, m_playerData.DashDistance);
+            
             m_startPosition = transform.position;
-            var desiredEndPosition = m_startPosition + (Vector3)m_lastMoveInput * m_playerData.DashDistance;
+            var desiredEndPosition = m_startPosition + m_dashDirection * m_playerData.DashDistance;
             m_endPosition = FindSafeDashEndPosition(m_startPosition, desiredEndPosition);
             m_distanceToTarget = Vector3.Distance(m_startPosition, m_endPosition);
             m_traveledDistance = 0;
@@ -233,6 +280,12 @@ namespace SGGames.Script.Entity
 
         private void EndDash()
         {
+            m_controller.PlayerMovement.ResetMovementParameters();
+            if (!m_controller.ActionPoint.StillHavePoints())
+            {
+                m_controller.FinishedTurn();
+            }
+            
             m_isDashing = false;
             foreach (var command in m_endDashCommands)
             {
@@ -245,12 +298,24 @@ namespace SGGames.Script.Entity
         {
             yield return new WaitForSeconds(m_playerData.DashCooldown);
         }
-
+        
+        private void OnAimingDataChanged(AimingData aimingData)
+        {
+            if (!m_allowShowRangeHUD) return;
+            m_dashDirection = aimingData.AimDirection;
+            ShowRangeIndicator(aimingData.AimDirection, m_playerData.DashDistance);
+        }
         
         [ContextMenu("Show Range")]
         private void Test()
         {
-            ShowRange(Vector3.right);
+            transform.position = m_gridManager.GetSnapPosition(transform.position);
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(transform.position, transform.position + m_dashDirection * 1);
         }
     }
 }

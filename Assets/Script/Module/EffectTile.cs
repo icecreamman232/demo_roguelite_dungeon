@@ -24,6 +24,7 @@ namespace SGGames.Script.Modules
         {
             var transparentWhite = new Color(1, 1, 1, 0);
             m_spriteRenderer.color = transparentWhite;
+            gameObject.SetActive(false);
         }
         
         private void DisplayIndicator()
@@ -33,8 +34,6 @@ namespace SGGames.Script.Modules
 
         private void OnDisplayEffectTile(EffectTileEventData effectTileEventData)
         {
-            if (effectTileEventData.Position != transform.position) return;
-            
             switch (effectTileEventData.EffectTileType)
             {
                 case Global.EffectTileType.None:

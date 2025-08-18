@@ -5,7 +5,7 @@ using SGGames.Script.Items;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace SGGames.Script.Entities
+namespace SGGames.Script.Entity
 {
     public class PlayerDodge : EntityBehavior
     {

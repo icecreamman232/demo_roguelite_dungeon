@@ -23,7 +23,7 @@ namespace SGGames.Script.PathFindings
         private GridController m_gridController;
         private Dictionary<int, Vector2Int> m_enemyPositions;
         private Dictionary<int, Vector2Int> m_previousEnemyPositions;
-        
+        private List<GameObject> m_effectTiles = new List<GameObject>();
 
         public Tilemap Tilemap
         {
@@ -77,13 +77,15 @@ namespace SGGames.Script.PathFindings
             }
         }
 
-        public Vector2Int WorldPosToGrid(Vector3 worldPos)
+        public Vector3 GetSnapPosition(Vector3 position)
         {
-            var tilePos = m_tilemap.WorldToCell(worldPos);
-            var gridPos = TilePosToGrid(tilePos);
-            return gridPos;
+            var tilePos = m_tilemap.WorldToCell(position);
+            var worldPos = m_tilemap.CellToWorld(new Vector3Int(tilePos.x, tilePos.y, 0));
+            worldPos.x += k_TileMapOffset;
+            worldPos.y += k_TileMapOffset;
+            return worldPos;
         }
-
+        
         public Vector3 GridPosToWorld(Vector2Int gridPos)
         {
             var tilePos = GridPosToTile(gridPos);
@@ -161,9 +163,21 @@ namespace SGGames.Script.PathFindings
         
         private void OnDisplayEffectTile(EffectTileEventData effectTileEventData)
         {
-            var effectTileGO = m_effectTilePooler.GetPooledGameObject();
-            effectTileGO.transform.position = effectTileEventData.Position;
-            effectTileGO.SetActive(true);
+            if (m_effectTiles.Count > 0)
+            {
+                foreach (var tile in m_effectTiles)
+                {
+                    tile.SetActive(false);
+                }
+            }
+
+            for (int i = 0; i < effectTileEventData.Position.Count; i++)
+            {
+                var effectTileGO = m_effectTilePooler.GetPooledGameObject();
+                effectTileGO.transform.position = effectTileEventData.Position[i];
+                effectTileGO.SetActive(true);
+                m_effectTiles.Add(effectTileGO);
+            }
         }
         
         

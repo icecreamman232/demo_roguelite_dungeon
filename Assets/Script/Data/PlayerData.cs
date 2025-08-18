@@ -10,7 +10,7 @@ namespace SGGames.Script.Data
         [Header("Action Points")]
         [SerializeField] private int m_actionPoints;
         [Header("Dash Data")]
-        [SerializeField] private float m_dashDistance;
+        [SerializeField] private int m_dashDistance;
         [SerializeField] private float m_dashSpeed;
         [SerializeField] private float m_dashCooldown;
         [SerializeField] private int m_staminaCostForDash;
@@ -26,7 +26,7 @@ namespace SGGames.Script.Data
         
         public float MaxHealth => m_maxHealth;
         public int ActionPoints => m_actionPoints;
-        public float DashDistance => m_dashDistance;
+        public int DashDistance => m_dashDistance;
         public float DashSpeed => m_dashSpeed;
         public float DashCooldown => m_dashCooldown;
         public float MaxDashSpeed => m_maxDashSpeed;

@@ -1,6 +1,4 @@
-using System;
 using SGGames.Script.Core;
-using SGGames.Script.Entities;
 using SGGames.Script.Events;
 using SGGames.Script.HealthSystem;
 using SGGames.Script.StaminaSystem;
@@ -26,6 +24,7 @@ namespace SGGames.Script.Entity
         [SerializeField] private PlayerResistanceController m_resistanceController;
         [SerializeField] private PlayerModifierController m_modifierController;
         [SerializeField] private PlayerDodge m_dodge;
+        [SerializeField] private PlayerAimingController m_aimingController;
         [SerializeField] private SwitchTurnEvent m_switchTurnEvent;
 
         public BoxCollider2D PlayerCollider => m_collider;
@@ -41,6 +40,7 @@ namespace SGGames.Script.Entity
         public PlayerResistanceController ResistanceController => m_resistanceController;
         public PlayerModifierController ModifierController => m_modifierController;
         public PlayerDodge PlayerDodge => m_dodge;
+        public PlayerAimingController AimingController => m_aimingController;
 
         private void Start()
         {
@@ -49,6 +49,7 @@ namespace SGGames.Script.Entity
             m_resistanceController.Initialize();
             ModifierController.Initialize(this);
             m_weaponHandler.Initialize(this);
+            m_playerDash.Initialize(this);
         }
 
         private void OnSwitchTurn(TurnBaseEventData turnBaseEventData)

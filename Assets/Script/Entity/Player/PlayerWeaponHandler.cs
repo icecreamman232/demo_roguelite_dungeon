@@ -13,8 +13,7 @@ namespace SGGames.Script.Entity
         
         private PlayerController m_playerController;
         private Vector3 m_aimDirection;
-        private float m_aimAngle;
-        
+
         public Vector3 AimDirection => m_aimDirection;
         public PlayerController Controller => m_playerController;
         public Action OnAttack;
@@ -22,7 +21,6 @@ namespace SGGames.Script.Entity
         private void Start()
         {
             var inputManager = ServiceLocator.GetService<InputManager>();
-            inputManager.WorldMousePositionUpdate += OnWorldMousePositionChanged;
             inputManager.OnPressAttack += OnPressAttackButton;
             m_currWeapon.InitializeWeapon(this);
         }
@@ -30,40 +28,26 @@ namespace SGGames.Script.Entity
         public void Initialize(PlayerController playerController)
         {
             m_playerController = playerController;
+            m_playerController.AimingController.OnAimingDataChanged += OnAimingDataChanged;
         }
-        
+
+        private void OnAimingDataChanged(AimingData aimingData)
+        {
+            m_aimDirection = aimingData.AimDirection;
+            RotateAimingCursor(aimingData.AimAngle);
+            m_currWeapon.RotateWeapon(aimingData.AimDirection, aimingData.AimAngle);
+        }
+
         private void OnPressAttackButton()
         {
             if (m_playerController.PlayerMovement.CurrentMovementState != Global.MovementState.Ready) return;
             m_currWeapon.Attack();
             OnAttack?.Invoke();
         }
-
-        private void OnWorldMousePositionChanged(Vector3 mouseWorldPosition)
+     
+        private void RotateAimingCursor(float aimAngle)
         {
-            CalculateAiming(mouseWorldPosition);
-            RotateAimingCursor();
-            m_currWeapon.RotateWeapon(m_aimDirection, m_aimAngle);
-        }
-
-        private void CalculateAiming(Vector3 mouseWorldPosition)
-        {
-            m_aimDirection = (mouseWorldPosition - transform.position).normalized;
-            m_aimAngle = Mathf.Atan2(m_aimDirection.y, m_aimDirection.x) * Mathf.Rad2Deg - 90f;
-            
-            // Snap to 4 directions (90-degree increments)
-            float snappedAngle = Mathf.Round(m_aimAngle / 90f) * 90f;
-            
-            // Update aim direction to match the snapped angle
-            float radians = (snappedAngle + 90f) * Mathf.Deg2Rad;
-            
-            m_aimDirection = new Vector3(Mathf.Cos(radians), Mathf.Sin(radians), 0).normalized;
-            m_aimAngle = snappedAngle;
-        }
-        
-        private void RotateAimingCursor()
-        {
-            m_aimingCursor.rotation = Quaternion.AngleAxis(m_aimAngle, Vector3.forward);
+            m_aimingCursor.rotation = Quaternion.AngleAxis(aimAngle, Vector3.forward);
         }
 
         public void ForceResetCombo()
