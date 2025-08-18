@@ -8,13 +8,13 @@ using SGGames.Script.Items;
 using SGGames.Script.Managers;
 using SGGames.Script.Modules;
 using SGGames.Script.PathFindings;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 namespace SGGames.Script.Entity
 {
     public class PlayerDash : EntityBehavior
     {
+        [SerializeField] private Global.PlayerDashState m_dashState;
         [SerializeField] private PlayerData m_playerData;
         [SerializeField] private float m_currentSpeed;
         [SerializeField] private WorldEvent m_worldEvent;
@@ -30,11 +30,9 @@ namespace SGGames.Script.Entity
         
         private PlayerController m_controller;
         private float m_lerpValue;
-        private bool m_isDashing;
         private Vector3 m_startPosition;
         private Vector3 m_endPosition;
         private Vector3 m_dashDirection;
-        private bool m_allowShowRangeHUD;
         private GridManager m_gridManager;
         
         private const float k_raycastDistance = 0.5f;
@@ -45,16 +43,27 @@ namespace SGGames.Script.Entity
         public Action OnDashHitObstacle;
         public Action OnDashFinished;
 
+        #region Unity Cycle Methods
+        
         private void Awake()
         {
             InternalInitialize();
         }
-
+        
         private void Start()
         {
             ExternalInitialize();
         }
 
+        private void Update()
+        {
+            UpdateMovement();
+        }
+        
+        #endregion
+        
+        #region Initialize
+        
         public void Initialize(PlayerController controller)
         {
             m_controller = controller;
@@ -66,8 +75,10 @@ namespace SGGames.Script.Entity
             var inputManager = ServiceLocator.GetService<InputManager>();
             inputManager.OnPressSpecialAbility += OnDashButtonPressed;
             inputManager.OnPressExecute += OnExecuteButtonPressed;
+            inputManager.OnCancel += CancelPrepareDash;
             
             m_gridManager = ServiceLocator.GetService<GridManager>();
+            m_dashState = Global.PlayerDashState.Ready;
         }
 
         private void InternalInitialize()
@@ -77,6 +88,33 @@ namespace SGGames.Script.Entity
             m_currentSpeed = m_playerData.DashSpeed;
             SetupCommands();
         }
+        
+        private void SetupCommands()
+        {
+            m_startDashCommands = new IDashCommand[]
+            {
+                new PauseMovementDashCommand(),
+                new EnableInvincibleDashCommand(),
+            };
+
+            m_endDashCommands = new IDashCommand[]
+            {
+                new ResumeMovementDashCommand(),
+                new DisableInvincibleDashCommand(),
+            };
+
+            foreach (var command in m_startDashCommands)
+            {
+                command.Initialize(this.gameObject);
+            }
+            
+            foreach (var command in m_endDashCommands)
+            {
+                command.Initialize(this.gameObject);
+            }
+        }
+        
+        #endregion
         
         #region Dash speed modifier
         public void AddPercentageBonusSpeedFromItem(Guid guid, float percentageBonus)
@@ -116,58 +154,14 @@ namespace SGGames.Script.Entity
             SetPermission(true);
             base.OnGameResumed();
         }
-
-        private void SetupCommands()
-        {
-            m_startDashCommands = new IDashCommand[]
-            {
-                new PauseMovementDashCommand(),
-                new EnableInvincibleDashCommand(),
-            };
-
-            m_endDashCommands = new IDashCommand[]
-            {
-                new ResumeMovementDashCommand(),
-                new DisableInvincibleDashCommand(),
-            };
-
-            foreach (var command in m_startDashCommands)
-            {
-                command.Initialize(this.gameObject);
-            }
-            
-            foreach (var command in m_endDashCommands)
-            {
-                command.Initialize(this.gameObject);
-            }
-        }
-
-        private void OnExecuteButtonPressed()
-        {
-            //Deduct stamina
-            m_controller.PlayerStamina.UseStamina(m_playerData.StaminaCostForDash);
-            //Deduct action point
-            m_playerUseActionPointEvent.Raise(1);
-            
-            PrepareBeforeDash();
-        }
+        
+        #region Dash Methods
 
         private bool CanDash()
         {
             if(!m_controller.PlayerStamina.CanUseStamina(m_playerData.StaminaCostForDash)) return false;
             if (!m_controller.ActionPoint.CanUsePoint(1)) return false;
             return true;
-        }
-        
-        private void OnDashButtonPressed()
-        {
-            if (!CanDash())
-            {
-                //Play cant dash animation
-                m_controller.AnimationController.PlayCantMoveAnimation();
-            }
-            
-            m_allowShowRangeHUD = true;
         }
 
         private bool CheckObstacleWithRaycast(Vector3 direction)
@@ -183,7 +177,7 @@ namespace SGGames.Script.Entity
 
         private void ShowRangeIndicator(Vector3 direction, int range)
         {
-            if (!m_allowShowRangeHUD) return;
+            if(m_dashState != Global.PlayerDashState.ShowRange) return;
             var positionList = new List<Vector3>();
             for (int i = 0; i <= range; i++)
             {
@@ -219,10 +213,56 @@ namespace SGGames.Script.Entity
             });
         }
 
-        private void Update()
+        private void BlockComponentBeforeDash()
+        {
+            m_controller.PlayerMovement.SetPermission(false);
+            m_controller.WeaponHandler.SetPermission(false);
+        }
+
+        private void UnlockComponentAfterDash()
+        {
+            m_controller.PlayerMovement.SetPermission(true);
+            m_controller.WeaponHandler.SetPermission(true);
+        }
+        
+        private void PrepareBeforeDash()
+        {
+            m_dashState = Global.PlayerDashState.Dashing;
+            HideRangeIndicator(m_dashDirection, m_playerData.DashDistance);
+            
+            m_startPosition = transform.position;
+            m_endPosition = m_startPosition + m_dashDirection * m_playerData.DashDistance;
+
+            //Check if dash ends at the enemy's position, then we will extend dash distance 1 unit behind the enemy
+            if (CheckCollisionAtThisPosition(m_endPosition, LayerManager.EnemyMask))
+            {
+                m_endPosition = m_startPosition + m_dashDirection * (m_playerData.DashDistance + 1);
+            }
+
+            m_lerpValue = 0;
+            foreach (var command in m_startDashCommands)
+            {
+                command.Execute();
+            }
+            
+            m_worldEvent.Raise(Global.WorldEventType.OnPlayerStartDash, this.gameObject, null);
+            
+        }
+
+        /// <summary>
+        /// Hide the range indicator and reset prepared parameters for dash
+        /// </summary>
+        private void CancelPrepareDash()
+        {
+            UnlockComponentAfterDash();
+            m_dashState = Global.PlayerDashState.Ready;
+            HideRangeIndicator(m_dashDirection, m_playerData.DashDistance);
+        }
+        
+        private void UpdateMovement()
         {
             if (!m_isPermit) return;
-            if (!m_isDashing) return;
+            if(m_dashState != Global.PlayerDashState.Dashing) return;
             
             if (CheckObstacleWithRaycast(m_dashDirection))
             {
@@ -245,32 +285,6 @@ namespace SGGames.Script.Entity
             }
         }
         
-        
-        private void PrepareBeforeDash()
-        {
-            m_allowShowRangeHUD = false;
-            HideRangeIndicator(m_dashDirection, m_playerData.DashDistance);
-            
-            m_startPosition = transform.position;
-            m_endPosition = m_startPosition + m_dashDirection * m_playerData.DashDistance;
-
-            //Check if dash ends at the enemy's position, then we will extend dash distance 1 unit behind the enemy
-            if (CheckCollisionAtThisPosition(m_endPosition, LayerManager.EnemyMask))
-            {
-                m_endPosition = m_startPosition + m_dashDirection * (m_playerData.DashDistance + 1);
-            }
-
-            m_lerpValue = 0;
-            foreach (var command in m_startDashCommands)
-            {
-                command.Execute();
-            }
-            
-            m_worldEvent.Raise(Global.WorldEventType.OnPlayerStartDash, this.gameObject, null);
-            
-            m_isDashing = true;
-        }
-
         private void EndDash()
         {
             m_controller.PlayerMovement.ResetMovementParameters();
@@ -278,13 +292,13 @@ namespace SGGames.Script.Entity
             {
                 m_controller.FinishedTurn();
             }
-            
-            m_isDashing = false;
             foreach (var command in m_endDashCommands)
             {
                 command.Execute();
             }
             StartCoroutine(OnCoolDown());
+            UnlockComponentAfterDash();
+            m_dashState = Global.PlayerDashState.Ready;
         }
 
         private IEnumerator OnCoolDown()
@@ -292,12 +306,40 @@ namespace SGGames.Script.Entity
             yield return new WaitForSeconds(m_playerData.DashCooldown);
         }
         
+        #endregion
+        
+        #region Callbacks
+        
         private void OnAimingDataChanged(AimingData aimingData)
         {
-            if (!m_allowShowRangeHUD) return;
+            if (m_dashState != Global.PlayerDashState.ShowRange) return;
             m_dashDirection = aimingData.AimDirection;
             ShowRangeIndicator(aimingData.AimDirection, m_playerData.DashDistance);
         }
+        
+        private void OnDashButtonPressed()
+        {
+            if (!CanDash())
+            {
+                //Play cant dash animation
+                m_controller.AnimationController.PlayCantMoveAnimation();
+            }
+            BlockComponentBeforeDash();
+            m_dashState = Global.PlayerDashState.ShowRange;
+        }
+        
+        private void OnExecuteButtonPressed()
+        {
+            if(m_dashState != Global.PlayerDashState.ShowRange) return;
+            //Deduct stamina
+            m_controller.PlayerStamina.UseStamina(m_playerData.StaminaCostForDash);
+            //Deduct action point
+            m_playerUseActionPointEvent.Raise(1);
+            
+            PrepareBeforeDash();
+        }
+        
+        #endregion
 
         private void OnDrawGizmos()
         {

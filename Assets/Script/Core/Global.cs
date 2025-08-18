@@ -52,6 +52,13 @@ namespace SGGames.Script.Core
             }
             return false;
         }
+
+        public enum PlayerDashState
+        {
+            Ready,
+            ShowRange,
+            Dashing,
+        }
         
         public enum MovementDirectionType
         {

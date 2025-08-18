@@ -26,6 +26,7 @@ namespace SGGames.Script.Managers
         private InputAction m_closeUI;
         private InputAction m_interactAction;
         private InputAction m_endTurnAction;
+        private InputAction m_cancelAction;
         
         public bool IsAllowInput => m_isAllowInput;
         public Action<Vector2> OnMoveInputUpdate;
@@ -37,6 +38,7 @@ namespace SGGames.Script.Managers
         public Action OnPressCloseUI;
         public Action OnPressInteract;
         public Action OnPressEndTurn;
+        public Action OnCancel;
         private float m_attackCooldownTimer;
         private bool m_isAttacking;
         private float m_attackCooldownTime = 0.1f;
@@ -109,6 +111,7 @@ namespace SGGames.Script.Managers
             m_closeUI = InputSystem.actions.FindAction("Close UI");
             m_interactAction = InputSystem.actions.FindAction("Interact");
             m_endTurnAction = InputSystem.actions.FindAction("End Turn");
+            m_cancelAction = InputSystem.actions.FindAction("Cancel");
             
 
             m_moveAction.performed += OnMoveInputPressed;
@@ -120,7 +123,9 @@ namespace SGGames.Script.Managers
             m_closeUI.performed += OnCloseUIButtonPressed;
             m_interactAction.performed += OnInteractButtonPressed;
             m_endTurnAction.performed += OnEndTurnButtonPressed;
+            m_cancelAction.performed += OnCancelButtonPressed;
         }
+        
 
         private void UnassignActions()
         {
@@ -133,6 +138,7 @@ namespace SGGames.Script.Managers
             m_closeUI.performed -= OnCloseUIButtonPressed;
             m_interactAction.performed -= OnInteractButtonPressed;
             m_endTurnAction.performed -= OnEndTurnButtonPressed;
+            m_cancelAction.performed -= OnCancelButtonPressed;
         }
 
         /// <summary>
@@ -142,9 +148,7 @@ namespace SGGames.Script.Managers
         {
             return m_isAttacking || m_attackCooldownTimer > 0;
         }
-
-
-
+        
         #region Callback for Buttons
         
         private Vector3 ComputeWorldMousePosition()
@@ -226,6 +230,13 @@ namespace SGGames.Script.Managers
             OnPressEndTurn?.Invoke();
         }
 
+        
+        private void OnCancelButtonPressed(InputAction.CallbackContext context)
+        {
+            if (!m_isAllowInput) return;
+            if (!m_isAllowGameplayInput) return;
+            OnCancel?.Invoke();
+        }
         
         #endregion
     }

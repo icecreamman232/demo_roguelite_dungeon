@@ -40,6 +40,7 @@ namespace SGGames.Script.Entity
 
         private void OnPressAttackButton()
         {
+            if (!m_isPermit) return;
             if (m_playerController.PlayerMovement.CurrentMovementState != Global.MovementState.Ready) return;
             m_currWeapon.Attack();
             OnAttack?.Invoke();
