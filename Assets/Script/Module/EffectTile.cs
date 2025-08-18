@@ -1,0 +1,53 @@
+using SGGames.Script.Core;
+using SGGames.Script.Events;
+using UnityEngine;
+
+namespace SGGames.Script.Modules
+{
+    public class EffectTile : MonoBehaviour
+    {
+        [SerializeField] private DisplayEffectTileEvent m_displayEffectTileEvent;
+        [SerializeField] private Color m_indicatorColor;
+        [SerializeField] private SpriteRenderer m_spriteRenderer;
+
+        private void Awake()
+        {
+            m_displayEffectTileEvent.AddListener(OnDisplayEffectTile);
+        }
+
+        private void OnDestroy()
+        {
+            m_displayEffectTileEvent.RemoveListener(OnDisplayEffectTile);
+        }
+
+        private void ResetDisplay()
+        {
+            var transparentWhite = new Color(1, 1, 1, 0);
+            m_spriteRenderer.color = transparentWhite;
+        }
+        
+        private void DisplayIndicator()
+        {
+            m_spriteRenderer.color = m_indicatorColor;
+        }
+
+        private void OnDisplayEffectTile(EffectTileEventData effectTileEventData)
+        {
+            if (effectTileEventData.Position != transform.position) return;
+            
+            switch (effectTileEventData.EffectTileType)
+            {
+                case Global.EffectTileType.None:
+                    ResetDisplay();
+                    break;
+                case Global.EffectTileType.Indicator:
+                    DisplayIndicator();
+                    break;
+                case Global.EffectTileType.Fire:
+                    break;
+                case Global.EffectTileType.Poison:
+                    break;
+            }
+        }
+    }
+}

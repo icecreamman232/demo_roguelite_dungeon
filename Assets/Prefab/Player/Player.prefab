@@ -48,6 +48,7 @@ MonoBehaviour:
   m_autoCreateParentForPool: 1
   m_parent: {fileID: 0}
   m_isSharePool: 0
+  m_pooledObjectActiveByDefault: 0
   m_objectToPool: {fileID: 5760272314426281025, guid: 36cea74f19eeca745af49392487b853e, type: 3}
   m_poolSize: 30
 --- !u!114 &5595065650812919701
@@ -552,6 +553,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   m_afterImageFX: {fileID: 5595065650812919701}
   m_spriteRenderer: {fileID: 3941868291613530036}
+  m_displayEffectTileEvent: {fileID: 11400000, guid: 35301664b05aade41b785a83f6f165ba, type: 2}
 --- !u!114 &-5217333942266810330
 MonoBehaviour:
   m_ObjectHideFlags: 0

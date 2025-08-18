@@ -1,11 +1,14 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using SGGames.Script.Core;
 using SGGames.Script.Data;
+using SGGames.Script.Events;
 using SGGames.Script.Items;
 using SGGames.Script.Managers;
 using SGGames.Script.Modules;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace SGGames.Script.Entity
 {
@@ -17,6 +20,7 @@ namespace SGGames.Script.Entity
         [SerializeField] private AnimationCurve m_dashSpeedCurve;
         [SerializeField] private AfterImageFX m_afterImageFX;
         [SerializeField] private SpriteRenderer m_spriteRenderer;
+        [SerializeField] private DisplayEffectTileEvent m_displayEffectTileEvent;
 
         private PercentageStackController m_percentageStackController;
         private float m_flatSpeedBonus;
@@ -28,7 +32,9 @@ namespace SGGames.Script.Entity
         private float m_traveledDistance;
         private float m_distanceToTarget;
         private Vector2 m_lastMoveInput;
-
+        private bool m_allowShowRangeHUD;
+        
+        
         private IDashCommand[] m_startDashCommands;
         private IDashCommand[] m_endDashCommands;
         
@@ -44,7 +50,8 @@ namespace SGGames.Script.Entity
             
             var inputManager = ServiceLocator.GetService<InputManager>();
             inputManager.OnMoveInputUpdate += UpdateMoveInput;
-            inputManager.OnPressDash += OnDashButtonPressed;
+            inputManager.OnPressSpecialAbility += OnDashButtonPressed;
+            inputManager.OnPressExecute += OnExecuteButtonPressed;
 
             m_lastMoveInput = Vector2.right;
 
@@ -117,14 +124,34 @@ namespace SGGames.Script.Entity
             }
         }
 
-        private void OnDashButtonPressed()
+        private void OnExecuteButtonPressed()
         {
-            if (!m_controller.PlayerStamina.CanUseStamina(m_playerData.StaminaCostForDash)) return;
-
             m_controller.PlayerStamina.UseStamina(m_playerData.StaminaCostForDash);
             PrepareBeforeDash();
         }
 
+        private void OnDashButtonPressed()
+        {
+            if (!m_controller.PlayerStamina.CanUseStamina(m_playerData.StaminaCostForDash)) return;
+            m_allowShowRangeHUD = true;
+        }
+
+        private void ShowRange(Vector3 direction)
+        {
+            if (m_allowShowRangeHUD) return;
+           
+            //Range is 3 tiles from player position
+            for (int i = 1; i < 4; i++)
+            {
+                m_displayEffectTileEvent.Raise(new EffectTileEventData
+                {
+                    Position = transform.position + direction * i,
+                    EffectTileType = Global.EffectTileType.Indicator
+                });
+                Debug.Log($"Show Range at tile {transform.position + direction * i}");
+            }
+        }
+        
         private void UpdateMoveInput(Vector2 lastMoveInput)
         {
             if (lastMoveInput == Vector2.zero) return;
@@ -217,6 +244,13 @@ namespace SGGames.Script.Entity
         private IEnumerator OnCoolDown()
         {
             yield return new WaitForSeconds(m_playerData.DashCooldown);
+        }
+
+        
+        [ContextMenu("Show Range")]
+        private void Test()
+        {
+            ShowRange(Vector3.right);
         }
     }
 }

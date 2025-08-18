@@ -1,4 +1,3 @@
-using System;
 using SGGames.Script.Core;
 using SGGames.Script.Events;
 using SGGames.Scripts.Entity;
@@ -30,7 +29,6 @@ namespace SGGames.Scripts.AI
 
         private void OnDisable()
         {
-            Debug.Log("Disable Brain");
             m_switchTurnEvent.RemoveListener(OnSwitchTurnEvent);
         }
         

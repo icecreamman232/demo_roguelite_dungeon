@@ -8,6 +8,7 @@ namespace SGGames.Script.Core
         [SerializeField] private bool m_autoCreateParentForPool;
         [SerializeField] private GameObject m_parent;
         [SerializeField] private bool m_isSharePool;
+        [SerializeField] private bool m_pooledObjectActiveByDefault;
         [SerializeField] private GameObject m_objectToPool;
         [SerializeField] private int m_poolSize;
 
@@ -57,7 +58,7 @@ namespace SGGames.Script.Core
                 var currentName = pooledObject.name;
                 currentName += $"({i})";
                 pooledObject.name = currentName;
-                pooledObject.SetActive(false);
+                pooledObject.SetActive(m_pooledObjectActiveByDefault);
                 m_pool.Add(pooledObject);
             }
         }

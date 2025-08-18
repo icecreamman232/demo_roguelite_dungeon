@@ -1,4 +1,3 @@
-using UnityEngine;
 
 namespace SGGames.Script.Core
 {
@@ -173,6 +172,14 @@ namespace SGGames.Script.Core
             Down,
             Left,
             Right,
+        }
+
+        public enum EffectTileType
+        {
+            None,
+            Indicator,
+            Fire,
+            Poison,
         }
     }
 }

@@ -1,5 +1,8 @@
+using System;
 using System.Collections.Generic;
 using SGGames.Script.Core;
+using SGGames.Script.Events;
+using SGGames.Script.Modules;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -11,6 +14,8 @@ namespace SGGames.Script.PathFindings
         [SerializeField] private int m_roomWidth;
         [SerializeField] private int m_roomHeight;
         [SerializeField] private Tilemap m_tilemap;
+        [SerializeField] private ObjectPooler m_effectTilePooler;
+        [SerializeField] private DisplayEffectTileEvent m_displayEffectTileEvent;
         [Header("Debug")]
         [SerializeField] private bool m_showGrid;
         
@@ -39,9 +44,37 @@ namespace SGGames.Script.PathFindings
         private void Awake()
         {
             ServiceLocator.RegisterService<GridManager>(this);
+            m_displayEffectTileEvent.AddListener(OnDisplayEffectTile);
             m_enemyPositions = new Dictionary<int, Vector2Int>();
             m_previousEnemyPositions = new Dictionary<int, Vector2Int>();
             Initialize();
+        }
+
+        private void OnDestroy()
+        {
+            m_displayEffectTileEvent.RemoveListener(OnDisplayEffectTile);
+        }
+
+        private void Initialize()
+        {
+            m_gridController = new GridController(m_roomWidth, m_roomHeight);
+        }
+        
+        private void ReadTileMapIntoGrid()
+        {
+            for (int y = -m_roomHeight/2; y < m_roomHeight/2; y++)
+            {
+                for (int x = -m_roomWidth/2; x < m_roomWidth/2; x++)
+                {
+                    var pos = new Vector3(x + k_TileMapOffset, y + k_TileMapOffset, 0);
+                    var tilePos = m_tilemap.WorldToCell(pos);
+                    
+                    var tile = m_tilemap.GetTile(tilePos);
+                    
+                    var gridPos = TilePosToGrid(tilePos);
+                    m_gridController.SetWalkable(gridPos.x ,gridPos.y,tile == null);
+                }
+            }
         }
 
         public Vector2Int WorldPosToGrid(Vector3 worldPos)
@@ -49,6 +82,12 @@ namespace SGGames.Script.PathFindings
             var tilePos = m_tilemap.WorldToCell(worldPos);
             var gridPos = TilePosToGrid(tilePos);
             return gridPos;
+        }
+
+        public Vector3 GridPosToWorld(Vector2Int gridPos)
+        {
+            var tilePos = GridPosToTile(gridPos);
+            return m_tilemap.CellToWorld(new Vector3Int(tilePos.x, tilePos.y, 0));
         }
         
         public Vector2Int TilePosToGrid(Vector3Int tilePos)
@@ -119,28 +158,14 @@ namespace SGGames.Script.PathFindings
             m_previousEnemyPositions[instanceID] = prevPosition;
             m_enemyPositions[instanceID] = gridPos;
         }
-
-        private void Initialize()
+        
+        private void OnDisplayEffectTile(EffectTileEventData effectTileEventData)
         {
-            m_gridController = new GridController(m_roomWidth, m_roomHeight);
+            var effectTileGO = m_effectTilePooler.GetPooledGameObject();
+            effectTileGO.transform.position = effectTileEventData.Position;
+            effectTileGO.SetActive(true);
         }
         
-        private void ReadTileMapIntoGrid()
-        {
-            for (int y = -m_roomHeight/2; y < m_roomHeight/2; y++)
-            {
-                for (int x = -m_roomWidth/2; x < m_roomWidth/2; x++)
-                {
-                    var pos = new Vector3(x + k_TileMapOffset, y + k_TileMapOffset, 0);
-                    var tilePos = m_tilemap.WorldToCell(pos);
-                    
-                    var tile = m_tilemap.GetTile(tilePos);
-                    
-                    var gridPos = TilePosToGrid(tilePos);
-                    m_gridController.SetWalkable(gridPos.x ,gridPos.y,tile == null);
-                }
-            }
-        }
         
         private void OnDrawGizmos()
         {

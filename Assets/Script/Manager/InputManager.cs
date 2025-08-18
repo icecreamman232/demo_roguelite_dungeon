@@ -20,7 +20,8 @@ namespace SGGames.Script.Managers
         private Vector3 m_worldMousePosition;
         private InputAction m_moveAction;
         private InputAction m_attackAction;
-        private InputAction m_dashAction;
+        private InputAction m_specialAbilityAction;
+        private InputAction m_executeAction;
         private InputAction m_openConsole;
         private InputAction m_closeUI;
         private InputAction m_interactAction;
@@ -30,7 +31,8 @@ namespace SGGames.Script.Managers
         public Action<Vector2> OnMoveInputUpdate;
         public Action<Vector3> WorldMousePositionUpdate;
         public Action OnPressAttack;
-        public Action OnPressDash;
+        public Action OnPressSpecialAbility;
+        public Action OnPressExecute;
         public Action OnPressOpenConsole;
         public Action OnPressCloseUI;
         public Action OnPressInteract;
@@ -47,6 +49,11 @@ namespace SGGames.Script.Managers
             AssignActions();
             m_camera = Camera.main;
             EnableInput();
+        }
+
+        private void OnDestroy()
+        {
+            UnassignActions();
         }
 
         private void Update()
@@ -96,7 +103,8 @@ namespace SGGames.Script.Managers
         {
             m_moveAction = InputSystem.actions.FindAction("Move");
             m_attackAction = InputSystem.actions.FindAction("Attack");
-            m_dashAction = InputSystem.actions.FindAction("Dash");
+            m_specialAbilityAction = InputSystem.actions.FindAction("Special Ability");
+            m_executeAction = InputSystem.actions.FindAction("Execute");
             m_openConsole = InputSystem.actions.FindAction("Open Console");
             m_closeUI = InputSystem.actions.FindAction("Close UI");
             m_interactAction = InputSystem.actions.FindAction("Interact");
@@ -106,13 +114,27 @@ namespace SGGames.Script.Managers
             m_moveAction.performed += OnMoveInputPressed;
             m_attackAction.performed += OnAttackButtonPressed;
             m_attackAction.canceled += OnAttackButtonReleased;
-            m_dashAction.performed += OnDashButtonPressed;
+            m_specialAbilityAction.performed += OnSpecialAbilityButtonPressed;
+            m_executeAction.performed += OnExecuteButtonPressed;
             m_openConsole.performed += OnOpenConsoleButtonPressed;
             m_closeUI.performed += OnCloseUIButtonPressed;
             m_interactAction.performed += OnInteractButtonPressed;
             m_endTurnAction.performed += OnEndTurnButtonPressed;
         }
-        
+
+        private void UnassignActions()
+        {
+            m_moveAction.performed -= OnMoveInputPressed;
+            m_attackAction.performed -= OnAttackButtonPressed;
+            m_attackAction.canceled -= OnAttackButtonReleased;
+            m_specialAbilityAction.performed -= OnSpecialAbilityButtonPressed;
+            m_executeAction.performed -= OnExecuteButtonPressed;
+            m_openConsole.performed -= OnOpenConsoleButtonPressed;
+            m_closeUI.performed -= OnCloseUIButtonPressed;
+            m_interactAction.performed -= OnInteractButtonPressed;
+            m_endTurnAction.performed -= OnEndTurnButtonPressed;
+        }
+
         /// <summary>
         /// Check if attack has priority over movement
         /// </summary>
@@ -131,6 +153,13 @@ namespace SGGames.Script.Managers
             mousePos = m_camera.ScreenToWorldPoint(mousePos);
             mousePos.z = 0;
             return mousePos;    
+        }
+        
+        private void OnExecuteButtonPressed(InputAction.CallbackContext context)
+        {
+            if (!m_isAllowInput) return;
+            if (!m_isAllowGameplayInput) return;
+            OnPressExecute?.Invoke();
         }
         
         private void OnMoveInputPressed(InputAction.CallbackContext context)
@@ -162,11 +191,11 @@ namespace SGGames.Script.Managers
             m_isAttacking = false;
         }
         
-        private void OnDashButtonPressed(InputAction.CallbackContext context)
+        private void OnSpecialAbilityButtonPressed(InputAction.CallbackContext context)
         {
             if (!m_isAllowInput) return;
             if (!m_isAllowGameplayInput) return;
-            OnPressDash?.Invoke();
+            OnPressSpecialAbility?.Invoke();
         }
         
         private void OnOpenConsoleButtonPressed(InputAction.CallbackContext context)

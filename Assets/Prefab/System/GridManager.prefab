@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3940396642818323851}
   - component: {fileID: 8607786375551551365}
+  - component: {fileID: 4232906120892083011}
   m_Layer: 0
   m_Name: GridManager
   m_TagString: Untagged
@@ -47,3 +48,24 @@ MonoBehaviour:
   m_roomWidth: 16
   m_roomHeight: 10
   m_tilemap: {fileID: 0}
+  m_effectTilePooler: {fileID: 4232906120892083011}
+  m_displayEffectTileEvent: {fileID: 11400000, guid: 35301664b05aade41b785a83f6f165ba, type: 2}
+  m_showGrid: 0
+--- !u!114 &4232906120892083011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3348433011219734553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbfe5d2fe6527dc40893b1d9a844900b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_autoCreateParentForPool: 0
+  m_parent: {fileID: 3348433011219734553}
+  m_isSharePool: 0
+  m_pooledObjectActiveByDefault: 0
+  m_objectToPool: {fileID: 5512679486214420096, guid: 2f83024daace44144b650651b85c51c9, type: 3}
+  m_poolSize: 20

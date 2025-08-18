@@ -1,4 +1,5 @@
 {
+    "version": 1,
     "name": "InputSystem_Actions",
     "maps": [
         {
@@ -33,7 +34,16 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Dash",
+                    "name": "Special Ability",
+                    "type": "Button",
+                    "id": "49144c70-0202-4965-b2b5-18d81eefafe0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Execute",
                     "type": "Button",
                     "id": "f1ba0d36-48eb-4cd5-b651-1c94a6531f70",
                     "expectedControlType": "",
@@ -253,7 +263,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Dash",
+                    "action": "Execute",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -264,7 +274,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Dash",
+                    "action": "Execute",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -320,6 +330,17 @@
                     "processors": "",
                     "groups": ";Gamepad",
                     "action": "End Turn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1ea7958a-54f9-4a69-a8f7-efd20bf6c3c8",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "Special Ability",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
