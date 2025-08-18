@@ -63,12 +63,6 @@ namespace SGGames.Script.Entity
             ConsoleCheatManager.RegisterCommands(this);
         }
         
-        public bool CheckObstacleWithRaycast(Vector3 direction, float raycastDistance)
-        {
-            var hit = Physics2D.Raycast(transform.position, direction, raycastDistance, m_obstacleLayerMask);
-            return hit.collider != null;
-        }
-        
         /// <summary>
         /// Call this method to reset movement parameters after doing such as dashing, being knockback, etc...
         /// </summary>

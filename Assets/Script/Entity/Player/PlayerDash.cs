@@ -8,6 +8,7 @@ using SGGames.Script.Items;
 using SGGames.Script.Managers;
 using SGGames.Script.Modules;
 using SGGames.Script.PathFindings;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 namespace SGGames.Script.Entity
@@ -28,20 +29,18 @@ namespace SGGames.Script.Entity
         private float m_flatSpeedBonus;
         
         private PlayerController m_controller;
+        private float m_lerpValue;
         private bool m_isDashing;
         private Vector3 m_startPosition;
         private Vector3 m_endPosition;
-        private float m_traveledDistance;
-        private float m_distanceToTarget;
         private Vector3 m_dashDirection;
         private bool m_allowShowRangeHUD;
         private GridManager m_gridManager;
         
+        private const float k_raycastDistance = 0.5f;
         
         private IDashCommand[] m_startDashCommands;
         private IDashCommand[] m_endDashCommands;
-        
-        public float CurrentSpeed => m_currentSpeed;
         
         public Action OnDashHitObstacle;
         public Action OnDashFinished;
@@ -171,14 +170,33 @@ namespace SGGames.Script.Entity
             m_allowShowRangeHUD = true;
         }
 
+        private bool CheckObstacleWithRaycast(Vector3 direction)
+        {
+            var hit = Physics2D.Raycast(transform.position, direction, k_raycastDistance, LayerManager.ObstacleMask | LayerManager.DoorMask);
+            return hit.collider != null;
+        }
+        
+        private bool CheckCollisionAtThisPosition(Vector3 position, LayerMask layerMask)
+        {
+            return Physics2D.OverlapBox(position, m_controller.PlayerCollider.size, 0, layerMask) != null;
+        }
+
         private void ShowRangeIndicator(Vector3 direction, int range)
         {
             if (!m_allowShowRangeHUD) return;
             var positionList = new List<Vector3>();
-            //Start at i = 1 to avoid the player position. Therefore, the range will be (range + 1)
-            for (int i = 1; i < (range + 1); i++)
+            for (int i = 0; i <= range; i++)
             {
-                positionList.Add(transform.position + direction * i);
+                var snapPos = m_gridManager.GetSnapPosition(transform.position + direction * i);
+                var isObstacle = CheckCollisionAtThisPosition(snapPos, LayerManager.ObstacleMask | LayerManager.DoorMask);
+                if (!isObstacle)
+                {
+                    positionList.Add(snapPos);
+                }
+                else
+                {
+                    break;
+                }
             }
             m_displayEffectTileEvent.Raise(new EffectTileEventData
             {
@@ -190,7 +208,7 @@ namespace SGGames.Script.Entity
         private void HideRangeIndicator(Vector3 direction, int range)
         {
             var positionList = new List<Vector3>();
-            for (int i = 0; i < range; i++)
+            for (int i = 0; i <= range; i++)
             {
                 positionList.Add(transform.position + direction * i);
             }
@@ -206,21 +224,16 @@ namespace SGGames.Script.Entity
             if (!m_isPermit) return;
             if (!m_isDashing) return;
             
-            if (m_controller.PlayerMovement.CheckObstacleWithRaycast(m_dashDirection, 0.5f))
+            if (CheckObstacleWithRaycast(m_dashDirection))
             {
-                transform.position = m_gridManager.GetSnapPosition(transform.position);
                 OnDashHitObstacle?.Invoke();
                 m_worldEvent.Raise(Global.WorldEventType.OnPlayerDashCanceled, this.gameObject, null);
                 EndDash();
                 return;
             }
-            
-            var traveledTime = MathHelpers.Remap(m_traveledDistance,0,m_distanceToTarget,0,1);
-            var speedMultiplier = m_dashSpeedCurve.Evaluate(traveledTime);
-            var finalDashSpeed = (speedMultiplier * m_currentSpeed);
-            finalDashSpeed = Mathf.Clamp(finalDashSpeed,m_playerData.DashSpeed,m_playerData.MaxDashSpeed);
-            transform.position = Vector3.MoveTowards(transform.position,m_endPosition, finalDashSpeed * Time.deltaTime);
-            m_traveledDistance = Vector3.Distance(m_startPosition, transform.position);
+
+            m_lerpValue += Time.deltaTime * m_playerData.DashSpeed;
+            transform.position = Vector3.Lerp(m_startPosition, m_endPosition, m_lerpValue);
 
             m_afterImageFX.DropImageFX(m_spriteRenderer.sprite, m_spriteRenderer.flipX);
             
@@ -232,42 +245,22 @@ namespace SGGames.Script.Entity
             }
         }
         
-        private Vector3 FindSafeDashEndPosition(Vector3 startPos, Vector3 desiredEndPos)
-        {
-            Vector3 direction = (desiredEndPos - startPos).normalized;
-            float maxDistance = Vector3.Distance(startPos, desiredEndPos);
-    
-            var playerCollider = m_controller.PlayerCollider;
-    
-            // Step backwards from desired position to find safe spot
-            for (float distance = maxDistance; distance > 0.1f; distance -= 0.1f)
-            {
-                Vector3 testPosition = startPos + direction * distance;
         
-                // Check if this position would cause a collision
-                var hit = Physics2D.OverlapBox(testPosition, playerCollider.size, 0, m_controller.PlayerMovement.ObstacleLayerMask);
-        
-                if (hit == null)
-                {
-                    return testPosition;
-                }
-            }
-    
-            return startPos;
-        }
-
-
         private void PrepareBeforeDash()
         {
             m_allowShowRangeHUD = false;
             HideRangeIndicator(m_dashDirection, m_playerData.DashDistance);
             
             m_startPosition = transform.position;
-            var desiredEndPosition = m_startPosition + m_dashDirection * m_playerData.DashDistance;
-            m_endPosition = FindSafeDashEndPosition(m_startPosition, desiredEndPosition);
-            m_distanceToTarget = Vector3.Distance(m_startPosition, m_endPosition);
-            m_traveledDistance = 0;
-            
+            m_endPosition = m_startPosition + m_dashDirection * m_playerData.DashDistance;
+
+            //Check if dash ends at the enemy's position, then we will extend dash distance 1 unit behind the enemy
+            if (CheckCollisionAtThisPosition(m_endPosition, LayerManager.EnemyMask))
+            {
+                m_endPosition = m_startPosition + m_dashDirection * (m_playerData.DashDistance + 1);
+            }
+
+            m_lerpValue = 0;
             foreach (var command in m_startDashCommands)
             {
                 command.Execute();
@@ -304,12 +297,6 @@ namespace SGGames.Script.Entity
             if (!m_allowShowRangeHUD) return;
             m_dashDirection = aimingData.AimDirection;
             ShowRangeIndicator(aimingData.AimDirection, m_playerData.DashDistance);
-        }
-        
-        [ContextMenu("Show Range")]
-        private void Test()
-        {
-            transform.position = m_gridManager.GetSnapPosition(transform.position);
         }
 
         private void OnDrawGizmos()

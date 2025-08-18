@@ -77,6 +77,11 @@ namespace SGGames.Script.PathFindings
             }
         }
 
+        public Vector3Int WorldPosToTile(Vector3 worldPos)
+        {
+            return m_tilemap.WorldToCell(worldPos);
+        }
+
         public Vector3 GetSnapPosition(Vector3 position)
         {
             var tilePos = m_tilemap.WorldToCell(position);
