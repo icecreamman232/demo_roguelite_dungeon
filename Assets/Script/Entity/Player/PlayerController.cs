@@ -78,5 +78,20 @@ namespace SGGames.Script.Entity
         {
             m_weaponHandler.ForceResetCombo();
         }
+
+        public bool StartSpecialAbility()
+        {
+            return m_playerDash.StartSpecial();
+        }
+
+        public void ExecuteSpecialAbility()
+        {
+            m_playerDash.ExecuteSpecial();
+        }
+
+        public void CancelSpecialAbility()
+        {
+            m_playerDash.CancelSpecial();
+        }
     }
 }

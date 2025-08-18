@@ -29,6 +29,22 @@ namespace SGGames.Script.Core
             color.a = 0;
             return color;
         }
+
+        public static CanvasGroup Activate(this CanvasGroup canvasGroup)
+        {
+            canvasGroup.alpha = 1;
+            canvasGroup.interactable = true;
+            canvasGroup.blocksRaycasts = true;
+            return canvasGroup;
+        }
+
+        public static CanvasGroup Deactivate(this CanvasGroup canvasGroup)
+        {
+            canvasGroup.alpha = 0;
+            canvasGroup.interactable = false;
+            canvasGroup.blocksRaycasts = false;
+            return canvasGroup;
+        }
         
         #endregion
         

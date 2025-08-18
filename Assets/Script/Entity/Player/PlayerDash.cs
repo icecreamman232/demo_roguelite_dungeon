@@ -12,7 +12,7 @@ using UnityEngine;
 
 namespace SGGames.Script.Entity
 {
-    public class PlayerDash : EntityBehavior
+    public class PlayerDash : EntityBehavior, IPlayerSpecialAbility
     {
         [SerializeField] private Global.PlayerDashState m_dashState;
         [SerializeField] private PlayerData m_playerData;
@@ -340,11 +340,36 @@ namespace SGGames.Script.Entity
         }
         
         #endregion
+        
+        #region Special Ability Methods
+        
+        public bool StartSpecial()
+        {
+            if (!CanDash())
+            {
+                return false;
+            }
+            OnDashButtonPressed();
+            return true;
+        }
+
+        public void ExecuteSpecial()
+        {
+            OnExecuteButtonPressed();
+        }
+
+        public void CancelSpecial()
+        {
+            CancelPrepareDash();
+        }
+        
+        #endregion
 
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
             Gizmos.DrawLine(transform.position, transform.position + m_dashDirection * 1);
         }
+        
     }
 }
