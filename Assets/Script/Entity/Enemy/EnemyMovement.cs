@@ -20,22 +20,21 @@ namespace SGGames.Script.Entity
         
         [Header("Debug")]
         [SerializeField] private bool m_enableDebug = false;
-
-        // Components and services
+        
         private EnemyController m_controller;
         private RaycastHit2D m_collisionHit;
         private GridManager m_gridManager;
-
-        // Target tracking
         private Transform m_target;
+        private bool m_isStunned;
+        private int m_numberStepPerTurn;
+        private int m_currentStep;
 
         // Pathfinding state
         private List<Vector3> m_waypoints = new List<Vector3>();
         private int m_currentWaypointIndex;
         private bool m_hasPath;
         
-        //Stunning
-        private bool m_isStunned;
+        
         
         // Properties
         public Global.MovementState CurrentMovementState => m_currentMovementState;
@@ -54,13 +53,37 @@ namespace SGGames.Script.Entity
         }
 
         #endregion
-
-        #region Public API
+        
+        #region Initialize
+        
         public void Initialize(EnemyController controller)
         {
             m_controller = controller;
         }
         
+        private void InternalInitialize()
+        {
+            // Get PathFinding component if not assigned and pathfinding is enabled
+            if (m_usePathfinding && m_pathFinder == null)
+            {
+                m_pathFinder = GetComponent<PathFinding>();
+                if (m_pathFinder == null)
+                {
+                    Debug.LogError($"PathFinding component not found on {gameObject.name}! Please attach a PathFinding component.");
+                }
+            }
+        }
+
+        private void ExternalInitialize()
+        {
+            m_gridManager = ServiceLocator.GetService<GridManager>();
+            var gameManager = ServiceLocator.GetService<GameManager>();
+            gameManager.OnGamePauseCallback += OnGamePaused;
+            gameManager.OnGameUnPauseCallback += OnGameResumed;
+        }
+        #endregion
+        
+        #region Public API
         public void ApplyStun(float duration)
         {
             //TODO: Here is simple stunning mechanic which there is only 1 stun instance could apply on the enemy
@@ -105,47 +128,47 @@ namespace SGGames.Script.Entity
         }
 
         #endregion
-        
-        #region Initialize
 
-        private void InternalInitialize()
+        protected override void UpdateMovement()
         {
-            // Get PathFinding component if not assigned and pathfinding is enabled
-            if (m_usePathfinding && m_pathFinder == null)
+            m_lerpValue += Time.deltaTime * k_MovementSpeed;
+            transform.position = Vector3.Lerp(m_currentPosition, m_nextPosition, m_lerpValue);
+            if (m_lerpValue >= 1)
             {
-                m_pathFinder = GetComponent<PathFinding>();
-                if (m_pathFinder == null)
+                m_lerpValue = 0;
+                m_currentStep++;
+                //Snap to the latest position
+                m_currentPosition = m_nextPosition;
+                
+                //Movement rules:
+                //1. If the final position is not empty, then stop moving
+                //2. If the final position is empty, then move to the next position
+                if (m_currentStep > m_numberStepPerTurn || HasEnemyAtThisPosition(m_waypoints[m_currentStep]))
                 {
-                    Debug.LogError($"PathFinding component not found on {gameObject.name}! Please attach a PathFinding component.");
+                    SetMovementState(Global.MovementState.DelayAfterMoving);
+                }
+                else
+                {
+                    m_nextPosition = m_waypoints[m_currentStep];
                 }
             }
         }
 
-        private void ExternalInitialize()
+        private bool HasEnemyAtThisPosition(Vector3 position)
         {
-            m_gridManager = ServiceLocator.GetService<GridManager>();
-            var gameManager = ServiceLocator.GetService<GameManager>();
-            gameManager.OnGamePauseCallback += OnGamePaused;
-            gameManager.OnGameUnPauseCallback += OnGameResumed;
-        }
-        #endregion
-        
-        #region Pathfinding
-        [ContextMenu("Find path")]
-        public void TestPathFinding()
-        {
-            m_target = ServiceLocator.GetService<LevelManager>().Player.transform;
-            SetNextPosition();
-            SetMovementState(Global.MovementState.Moving);
+            var result = Physics2D.OverlapBox(position, Vector3.one * 0.7f, 0, LayerManager.EnemyMask); 
+            return result != null;
         }
 
+        #region Pathfinding
         private void SetNextPosition()
         {
             UpdatePath();
-            var totalStep = m_controller.Data.StepPerTurn < m_waypoints.Count
+            m_numberStepPerTurn = m_controller.Data.StepPerTurn < m_waypoints.Count
                 ? m_controller.Data.StepPerTurn
                 : m_waypoints.Count - 1;
-            m_nextPosition = m_waypoints[totalStep];
+            m_currentStep = 1;
+            m_nextPosition = m_waypoints[m_currentStep];
         }
         
         private void UpdatePath()

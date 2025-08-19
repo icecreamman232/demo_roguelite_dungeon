@@ -17,7 +17,7 @@ namespace SGGames.Script.Entity
         protected float m_lerpValue;
         private Action m_updateMovementAction;
         
-        private const float k_MovementSpeed = 5;
+        protected const float k_MovementSpeed = 5;
         private const float k_DelayAfterMoving = 0.1f;
 
         protected virtual void Awake()

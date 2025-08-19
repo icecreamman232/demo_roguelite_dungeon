@@ -18,9 +18,9 @@ namespace SGGames.Script.PathFindings
             m_enemyInstanceId = GetInstanceID();
             Path = Array.Empty<Vector2Int>();
             m_gridManager = ServiceLocator.GetService<GridManager>();
-            Vector2Int initialGridPos = m_gridManager.TilePosToGrid(
-                m_gridManager.Tilemap.WorldToCell(transform.position));
-            m_gridManager.RegisterEnemy(m_enemyInstanceId, initialGridPos);
+            // Vector2Int initialGridPos = m_gridManager.TilePosToGrid(
+            //     m_gridManager.Tilemap.WorldToCell(transform.position));
+            // m_gridManager.RegisterEnemy(m_enemyInstanceId, initialGridPos);
         }
 
         private void OnDestroy()
@@ -119,11 +119,11 @@ namespace SGGames.Script.PathFindings
             return path.ToArray();
         }
 
-        private void Update()
-        {
-            if(m_gridManager == null) return;
-            UpdateSelfToGrid();
-        }
+        // private void Update()
+        // {
+        //     if(m_gridManager == null) return;
+        //     UpdateSelfToGrid();
+        // }
         
         private void UpdateSelfToGrid()
         {
