@@ -11,6 +11,6 @@ namespace SGGames.Script.Events
     public class AbilityStateEventData
     {
         public Global.AbilityState AbilityState;
-        public Global.AbilityID AbilityID;
+        public Global.AbilityType abilityType;
     }
 }

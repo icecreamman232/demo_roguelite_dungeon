@@ -186,7 +186,6 @@ namespace SGGames.Script.Entity
             if (!m_controller.ActionPoint.CanUsePoint(1)) return false;
             if(m_dashState != Global.PlayerDashState.Ready) return false;
             
-            Debug.Log("Can dash: true");
             return true;
         }
 
@@ -257,7 +256,7 @@ namespace SGGames.Script.Entity
             m_abilityStateEvent.Raise(new AbilityStateEventData
             {
                 AbilityState = Global.AbilityState.Executing,
-                AbilityID = Global.AbilityID.Dash
+                abilityType = Global.AbilityType.Special
             });
             
             HideRangeIndicator(m_dashDirection, m_playerData.DashDistance);
@@ -290,7 +289,7 @@ namespace SGGames.Script.Entity
             m_abilityStateEvent.Raise(new AbilityStateEventData
             {
                 AbilityState = Global.AbilityState.Ready,
-                AbilityID = Global.AbilityID.Dash
+                abilityType = Global.AbilityType.Special
             });
             m_dashState = Global.PlayerDashState.Ready;
             HideRangeIndicator(m_dashDirection, m_playerData.DashDistance);
@@ -338,7 +337,7 @@ namespace SGGames.Script.Entity
             m_abilityStateEvent.Raise(new AbilityStateEventData
             {
                 AbilityState = Global.AbilityState.Cooldown,
-                AbilityID = Global.AbilityID.Dash
+                abilityType = Global.AbilityType.Special
             });
             m_dashState = Global.PlayerDashState.Cooldown;
         }
@@ -352,7 +351,7 @@ namespace SGGames.Script.Entity
                 m_abilityStateEvent.Raise(new AbilityStateEventData
                 {
                     AbilityState = Global.AbilityState.Ready,
-                    AbilityID = Global.AbilityID.Dash
+                    abilityType = Global.AbilityType.Special
                 });
                 m_dashState = Global.PlayerDashState.Ready;
             }
@@ -381,7 +380,7 @@ namespace SGGames.Script.Entity
             m_abilityStateEvent.Raise(new AbilityStateEventData
             {
                 AbilityState = Global.AbilityState.ShowRange,
-                AbilityID = Global.AbilityID.Dash
+                abilityType = Global.AbilityType.Special
             });
             m_dashState = Global.PlayerDashState.ShowRange;
         }
@@ -421,7 +420,7 @@ namespace SGGames.Script.Entity
                     m_abilityStateEvent.Raise(new AbilityStateEventData
                     {
                         AbilityState = Global.AbilityState.ShowRange,
-                        AbilityID = Global.AbilityID.Dash
+                        abilityType = Global.AbilityType.Special
                     });
                     m_dashState = Global.PlayerDashState.ShowRange;
                     break;

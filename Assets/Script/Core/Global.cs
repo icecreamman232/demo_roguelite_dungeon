@@ -205,9 +205,9 @@ namespace SGGames.Script.Core
             Cooldown,
         }
 
-        public enum AbilityID
+        public enum AbilityType
         {
-            Dash,
+            Special,
         }
     }
 }

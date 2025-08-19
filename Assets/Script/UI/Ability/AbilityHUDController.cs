@@ -67,7 +67,8 @@ namespace SGGames.Script.UI
         
         private void OnAbilityStateChanged(AbilityStateEventData abilityStateEventData)
         {
-            Debug.Log($"Ability Changed {abilityStateEventData.AbilityState}");
+            if(abilityStateEventData.abilityType != Global.AbilityType.Special) return;
+            
             switch (abilityStateEventData.AbilityState)
             {
                 case Global.AbilityState.Ready:
