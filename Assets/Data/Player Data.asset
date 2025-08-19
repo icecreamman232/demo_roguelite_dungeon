@@ -16,7 +16,7 @@ MonoBehaviour:
   m_actionPoints: 3
   m_dashDistance: 4
   m_dashSpeed: 5
-  m_dashCooldown: 1.5
+  m_dashCooldown: 2
   m_staminaCostForDash: 1
   m_defaultDamageResistance: 0
   m_dodgeChance: 20

@@ -413,8 +413,7 @@ namespace SGGames.Script.Entity
         
         private void OnSwitchTurn(TurnBaseEventData turnBaseEventData)
         {
-            if (turnBaseEventData.TurnBaseState == Global.TurnBaseState.EnemyTakeTurn ||
-                turnBaseEventData.TurnBaseState == Global.TurnBaseState.PlayerTakeTurn)
+            if (turnBaseEventData.TurnBaseState == Global.TurnBaseState.PlayerTakeTurn)
             {
                 CountCooldown();
             }
