@@ -144,7 +144,10 @@ namespace SGGames.Script.Entity
         private void SetNextPosition()
         {
             UpdatePath();
-            m_nextPosition = m_waypoints[1];
+            var totalStep = m_enemyData.StepPerTurn < m_waypoints.Count
+                ? m_enemyData.StepPerTurn
+                : m_waypoints.Count - 1;
+            m_nextPosition = m_waypoints[totalStep];
         }
         
         private void UpdatePath()
