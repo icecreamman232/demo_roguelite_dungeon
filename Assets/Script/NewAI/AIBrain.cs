@@ -62,7 +62,7 @@ namespace SGGames.Scripts.AI
        
         private void ExecuteTurn()
         {
-            Debug.Log("Executing Turn===========================================");
+            //Debug.Log("Executing Turn===========================================");
             m_isActivated = true;
             
             //Start at first state down to last state
@@ -74,10 +74,10 @@ namespace SGGames.Scripts.AI
                 {
                     m_currentState = m_states[i];
                     m_states[i].DoActions();
-                    Debug.Log($"Do actions at state {m_states[i].StateName}");
+                    //Debug.Log($"Do actions at state {m_states[i].StateName}");
                     if (m_states[i].ConsumeTurn)
                     {
-                        Debug.Log($"Break at state {m_states[i].StateName}");
+                        //Debug.Log($"Break at state {m_states[i].StateName}");
                         break;
                     }
                 }

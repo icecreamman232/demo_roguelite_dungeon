@@ -82,7 +82,7 @@ namespace SGGames.Scripts.AI
             {
                 m_actionsCompleted = true;
                 m_brain.CompleteTurn();
-                Debug.Log($"Complete Turn in state {StateName}");
+                //Debug.Log($"Complete Turn in state {StateName}");
             }
         }
     }

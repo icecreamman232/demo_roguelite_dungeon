@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using SGGames.Script.Core;
 using SGGames.Script.Events;
@@ -54,6 +53,7 @@ namespace SGGames.Script.Dungeon
 
         private void RoomClearAndDropChest()
         {
+            Debug.Log("RoomClearAndDropChest");
             m_gameEvent.Raise(Global.GameEventType.RoomCleared);
             m_spawnChestEvent.Raise(m_treasureChestSpawnPoint.position);
         }

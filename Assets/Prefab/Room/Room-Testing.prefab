@@ -78,7 +78,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3965494464855751623, guid: 5c782bb1a44637c4aa8c186bf3bfbbc8, type: 3}
       propertyPath: m_Name
-      value: Enemy Slime
+      value: Enemy Khepor
       objectReference: {fileID: 0}
     - target: {fileID: 7830288532704342732, guid: 5c782bb1a44637c4aa8c186bf3bfbbc8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -140,7 +140,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7276820154010669371, guid: 544c47d957f67ab42b86628acac54dff, type: 3}
       propertyPath: m_Name
-      value: Enemy Bat
+      value: Enemy Morthys
       objectReference: {fileID: 0}
     - target: {fileID: 8924605653382889979, guid: 544c47d957f67ab42b86628acac54dff, type: 3}
       propertyPath: m_LocalPosition.x

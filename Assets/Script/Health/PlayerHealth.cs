@@ -71,14 +71,9 @@ namespace SGGames.Script.HealthSystem
 
         protected override void Damage(float damage, GameObject source)
         {
-            var finalDamage = damage * (1 - MathHelpers.PercentToValue(CurrentDamageResistance));
-            m_currHealth -= finalDamage;
-            if (m_currHealth <= 0)
-            {
-                m_currHealth = 0;
-            }
-            OnHit?.Invoke(damage, source);
+            var finalDamage = Mathf.RoundToInt(damage * (1 - MathHelpers.PercentToValue(CurrentDamageResistance)));
             OnWeaponComboInterrupted?.Invoke();
+            base.Damage(finalDamage, source);
         }
 
         protected override bool CanTakeDamage()
@@ -95,7 +90,7 @@ namespace SGGames.Script.HealthSystem
             
             if (m_isInvincible) return false;
 
-            if (CanDodgeThisAttack) return false;
+            //if (CanDodgeThisAttack) return false;
             
             if(m_currHealth <= 0) return false;
             

@@ -455,8 +455,8 @@ MonoBehaviour:
   m_targetMask:
     serializedVersion: 2
     m_Bits: 64
-  m_minDamage: 50
-  m_maxDamage: 50
+  m_minDamage: 10
+  m_maxDamage: 15
   m_invincibilityDuration: 0.3
 --- !u!61 &2933225535416741485
 BoxCollider2D:

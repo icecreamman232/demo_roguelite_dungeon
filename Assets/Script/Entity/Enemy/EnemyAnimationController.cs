@@ -11,7 +11,6 @@ namespace SGGames.Script.Entity
         
         public void PlayBodySlamAnimation(Global.Direction attackDirection)
         {
-            Debug.Log($"Attack Direction: {attackDirection}");
             m_animator.SetInteger(BODY_SLAM_DIRECTION_PARAM, (int)attackDirection);
             m_animator.SetTrigger(BODY_SLAM_ANIMATION);
         }

@@ -151,7 +151,7 @@ namespace SGGames.Script.Managers
             switch (turnBaseEventData.TurnBaseState)
             {
                 case Global.TurnBaseState.EnemyFinishedTurn:
-                    Debug.Log("Finished Turn in Turn Base Manager");
+                    //Debug.Log("Finished Turn in Turn Base Manager");
                     m_enemyTurnBaseStatusList.First(enemy=>enemy.OrderIndex == turnBaseEventData.EntityIndex && !enemy.IsDead).HasTakenTurn = true;
                     if (HasAllEnemiesFinishedTurn())
                     {
