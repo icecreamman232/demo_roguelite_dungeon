@@ -25,6 +25,7 @@ namespace SGGames.Script.Entity
         [SerializeField] private SwitchTurnEvent m_switchTurnEvent;
         [SerializeField] private HudButtonEvent m_hudButtonEvent;
         [SerializeField] private AbilityStateEvent m_abilityStateEvent;
+        [SerializeField] private AbilityCooldownEvent m_abilityCooldownEvent;
 
         private int m_cooldownTimer;
         private PlayerController m_controller;
@@ -334,6 +335,13 @@ namespace SGGames.Script.Entity
             }
             UnlockComponentAfterDash();
             m_cooldownTimer = m_playerData.DashCooldown;
+            
+            m_abilityCooldownEvent.Raise(new AbilityCooldownEventData
+            {
+                AbilityType = Global.AbilityType.Special,
+                Cooldown = m_cooldownTimer
+            });
+            
             m_abilityStateEvent.Raise(new AbilityStateEventData
             {
                 AbilityState = Global.AbilityState.Cooldown,
@@ -348,6 +356,7 @@ namespace SGGames.Script.Entity
             m_cooldownTimer--;
             if (m_cooldownTimer <= 0)
             {
+                m_cooldownTimer = 0;
                 m_abilityStateEvent.Raise(new AbilityStateEventData
                 {
                     AbilityState = Global.AbilityState.Ready,
@@ -355,6 +364,12 @@ namespace SGGames.Script.Entity
                 });
                 m_dashState = Global.PlayerDashState.Ready;
             }
+            
+            m_abilityCooldownEvent.Raise(new AbilityCooldownEventData
+            {
+                AbilityType = Global.AbilityType.Special,
+                Cooldown = m_cooldownTimer
+            });
         }
 
         #endregion

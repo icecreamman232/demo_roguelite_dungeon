@@ -107,8 +107,8 @@ RectTransform:
   m_Children:
   - {fileID: 5384694058045246427}
   - {fileID: 6383291474741236723}
-  - {fileID: 977889901527356606}
   - {fileID: 8966219908069744616}
+  - {fileID: 977889901527356606}
   m_Father: {fileID: 4150520107672124175}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -1356,6 +1356,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_abilityButtonCG: {fileID: 5356851913432681513}
   m_executeButtonCG: {fileID: 3035977257743104450}
+  m_cooldownTimerUI: {fileID: 2207188751499697818}
 --- !u!1 &5012643454643486123
 GameObject:
   m_ObjectHideFlags: 0
@@ -2665,6 +2666,7 @@ MonoBehaviour:
   m_view: {fileID: 201770844285792518}
   m_hudButtonEvent: {fileID: 11400000, guid: 79d1aa48f54f99148ab547706ef10b7d, type: 2}
   m_abilityStateEvent: {fileID: 11400000, guid: acc83d027e6decf4db12bdc9484a41d5, type: 2}
+  m_abilityCooldownEvent: {fileID: 11400000, guid: 4e440522d93bc584aa42381aa9da9da7, type: 2}
 --- !u!114 &201770844285792518
 MonoBehaviour:
   m_ObjectHideFlags: 0

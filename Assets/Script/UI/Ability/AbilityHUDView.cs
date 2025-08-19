@@ -21,9 +21,9 @@ namespace SGGames.Script.UI
             m_abilityHUD.ShowExecuteButtons();
         }
 
-        public void ShowCooldown()
+        public void ShowCooldown(int cooldown)
         {
-            
+            m_abilityHUD.ShowCooldown(cooldown);
         }
     }
 

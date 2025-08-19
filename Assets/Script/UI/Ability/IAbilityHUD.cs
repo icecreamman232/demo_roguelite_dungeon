@@ -7,5 +7,6 @@ namespace SGGames.Script.UI
     {
         void ShowAbilityButton();
         void ShowExecuteButtons();
+        void ShowCooldown(int cooldown);
     }
 }

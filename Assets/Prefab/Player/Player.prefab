@@ -560,6 +560,7 @@ MonoBehaviour:
   m_switchTurnEvent: {fileID: 11400000, guid: 311f02bcf056f7b4a89524a610155650, type: 2}
   m_hudButtonEvent: {fileID: 11400000, guid: 79d1aa48f54f99148ab547706ef10b7d, type: 2}
   m_abilityStateEvent: {fileID: 11400000, guid: acc83d027e6decf4db12bdc9484a41d5, type: 2}
+  m_abilityCooldownEvent: {fileID: 11400000, guid: 4e440522d93bc584aa42381aa9da9da7, type: 2}
 --- !u!114 &-5217333942266810330
 MonoBehaviour:
   m_ObjectHideFlags: 0

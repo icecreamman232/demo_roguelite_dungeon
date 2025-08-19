@@ -7,6 +7,7 @@ namespace SGGames.Script.UI
     {
         [SerializeField] private CanvasGroup m_abilityButtonCG;
         [SerializeField] private CanvasGroup m_executeButtonCG;
+        [SerializeField] private CooldownTimerUI m_cooldownTimerUI;
         
         public void ShowAbilityButton()
         {
@@ -20,9 +21,9 @@ namespace SGGames.Script.UI
             m_executeButtonCG.Activate();
         }
 
-        public void SetCooldown(int turnAmount)
+        public void ShowCooldown(int turnAmount)
         {
-            
+            m_cooldownTimerUI.UpdateCooldownTimer(turnAmount);
         }
     }
 }

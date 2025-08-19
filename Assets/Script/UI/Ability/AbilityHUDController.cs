@@ -1,7 +1,5 @@
-using System;
 using System.Collections;
 using SGGames.Script.Core;
-using SGGames.Script.Entity;
 using SGGames.Script.Events;
 using SGGames.Script.Managers;
 using UnityEngine;
@@ -13,6 +11,7 @@ namespace SGGames.Script.UI
         [SerializeField] private AbilityHUDView m_view;
         [SerializeField] private HudButtonEvent m_hudButtonEvent;
         [SerializeField] private AbilityStateEvent m_abilityStateEvent;
+        [SerializeField] private AbilityCooldownEvent m_abilityCooldownEvent;
         
         private IEnumerator Start()
         {
@@ -23,6 +22,7 @@ namespace SGGames.Script.UI
         private void OnDestroy()
         {
             m_abilityStateEvent.RemoveListener(OnAbilityStateChanged);
+            m_abilityCooldownEvent.RemoveListener(OnAbilityCooldownChanged);
         }
 
         private bool HasPlayerCreated()
@@ -40,6 +40,7 @@ namespace SGGames.Script.UI
             m_view.Initialize();
             m_view.ShowDefaultView();
             m_abilityStateEvent.AddListener(OnAbilityStateChanged);
+            m_abilityCooldownEvent.AddListener(OnAbilityCooldownChanged);
         }
 
         public void OnClickSpecialButton()
@@ -65,6 +66,14 @@ namespace SGGames.Script.UI
             });
         }
         
+        private void OnAbilityCooldownChanged(AbilityCooldownEventData abilityCooldownEventData)
+        {
+            if (abilityCooldownEventData.AbilityType == Global.AbilityType.Special)
+            {
+                m_view.ShowCooldown(abilityCooldownEventData.Cooldown);
+            }
+        }
+        
         private void OnAbilityStateChanged(AbilityStateEventData abilityStateEventData)
         {
             if(abilityStateEventData.abilityType != Global.AbilityType.Special) return;
@@ -81,7 +90,6 @@ namespace SGGames.Script.UI
                     break;
                 case Global.AbilityState.Cooldown:
                     m_view.ShowDefaultView();
-                    m_view.ShowCooldown();
                     break;
             }
         }
