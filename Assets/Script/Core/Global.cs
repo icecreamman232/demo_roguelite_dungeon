@@ -58,6 +58,7 @@ namespace SGGames.Script.Core
             Ready,
             ShowRange,
             Dashing,
+            Cooldown,
         }
         
         public enum MovementDirectionType
@@ -187,6 +188,26 @@ namespace SGGames.Script.Core
             Indicator,
             Fire,
             Poison,
+        }
+
+        public enum HudButtonType
+        {
+            SpecialAbilityButton,
+            ExecuteAbilityButton,
+            CancelAbilityButton,
+        }
+
+        public enum AbilityState
+        {
+            Ready,
+            ShowRange,
+            Executing,
+            Cooldown,
+        }
+
+        public enum AbilityID
+        {
+            Dash,
         }
     }
 }

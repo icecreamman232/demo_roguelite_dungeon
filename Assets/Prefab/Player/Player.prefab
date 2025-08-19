@@ -517,8 +517,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_isPermit: 1
+  m_dashState: 0
   m_playerData: {fileID: 11400000, guid: cb8c5b08840ace34ab97ac1148242ac1, type: 2}
-  m_currentSpeed: 0
   m_worldEvent: {fileID: 11400000, guid: 99cdaba5340f5944f93746bbfbafa9ad, type: 2}
   m_dashSpeedCurve:
     serializedVersion: 2
@@ -557,6 +557,9 @@ MonoBehaviour:
   m_spriteRenderer: {fileID: 3941868291613530036}
   m_displayEffectTileEvent: {fileID: 11400000, guid: 35301664b05aade41b785a83f6f165ba, type: 2}
   m_playerUseActionPointEvent: {fileID: 11400000, guid: 172316abaaec8d9438a3a5e8258b9478, type: 2}
+  m_switchTurnEvent: {fileID: 11400000, guid: 311f02bcf056f7b4a89524a610155650, type: 2}
+  m_hudButtonEvent: {fileID: 11400000, guid: 79d1aa48f54f99148ab547706ef10b7d, type: 2}
+  m_abilityStateEvent: {fileID: 11400000, guid: acc83d027e6decf4db12bdc9484a41d5, type: 2}
 --- !u!114 &-5217333942266810330
 MonoBehaviour:
   m_ObjectHideFlags: 0

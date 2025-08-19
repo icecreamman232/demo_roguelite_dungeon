@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using SGGames.Script.Core;
 using SGGames.Script.Data;
@@ -16,7 +15,6 @@ namespace SGGames.Script.Entity
     {
         [SerializeField] private Global.PlayerDashState m_dashState;
         [SerializeField] private PlayerData m_playerData;
-        [SerializeField] private float m_currentSpeed;
         [SerializeField] private WorldEvent m_worldEvent;
         [SerializeField] private AnimationCurve m_dashSpeedCurve;
         [SerializeField] private AfterImageFX m_afterImageFX;
@@ -24,10 +22,11 @@ namespace SGGames.Script.Entity
         [Header("Events")]
         [SerializeField] private DisplayEffectTileEvent m_displayEffectTileEvent;
         [SerializeField] private PlayerUseActionPointEvent m_playerUseActionPointEvent;
+        [SerializeField] private SwitchTurnEvent m_switchTurnEvent;
+        [SerializeField] private HudButtonEvent m_hudButtonEvent;
+        [SerializeField] private AbilityStateEvent m_abilityStateEvent;
 
-        private PercentageStackController m_percentageStackController;
-        private float m_flatSpeedBonus;
-        
+        private int m_cooldownTimer;
         private PlayerController m_controller;
         private float m_lerpValue;
         private Vector3 m_startPosition;
@@ -55,6 +54,12 @@ namespace SGGames.Script.Entity
             ExternalInitialize();
         }
 
+        private void OnDestroy()
+        {
+            m_switchTurnEvent.RemoveListener(OnSwitchTurn);
+            m_hudButtonEvent.RemoveListener(OnHudButtonEvent);
+        }
+
         private void Update()
         {
             UpdateMovement();
@@ -78,14 +83,14 @@ namespace SGGames.Script.Entity
             inputManager.OnCancel += CancelPrepareDash;
             
             m_gridManager = ServiceLocator.GetService<GridManager>();
+            m_switchTurnEvent.AddListener(OnSwitchTurn);
+            m_hudButtonEvent.AddListener(OnHudButtonEvent);
             m_dashState = Global.PlayerDashState.Ready;
         }
-
+        
         private void InternalInitialize()
         {
-            m_percentageStackController = new PercentageStackController();
             m_dashDirection = Vector2.right;
-            m_currentSpeed = m_playerData.DashSpeed;
             SetupCommands();
         }
         
@@ -117,28 +122,46 @@ namespace SGGames.Script.Entity
         #endregion
         
         #region Dash speed modifier
+        
+        /// <summary>
+        /// To be removed
+        /// </summary>
+        /// <param name="guid"></param>
+        /// <param name="percentageBonus"></param>
+        [Obsolete]
         public void AddPercentageBonusSpeedFromItem(Guid guid, float percentageBonus)
         {
-            m_percentageStackController.AddPercentage(guid, percentageBonus);
-            m_currentSpeed = m_percentageStackController.GetValueWithPercentageStack(m_playerData.DashSpeed);
-            Debug.Log($"Apply dash speed modifier {percentageBonus} % - Current Spd: {m_currentSpeed}");
+           
         }
 
+        /// <summary>
+        /// To be removed
+        /// </summary>
+        /// <param name="guid"></param>
+        [Obsolete]
         public void RemovePercentageBonusSpeedFromItem(Guid guid)
         {
-            m_percentageStackController.RemovePercentage(guid);
-            m_currentSpeed = m_percentageStackController.GetValueWithPercentageStack(m_playerData.DashSpeed);
-            Debug.Log($"Remove dash speed modifier - Current Spd: {m_currentSpeed}");
+            
         }
 
+        /// <summary>
+        /// To be removed
+        /// </summary>
+        /// <param name="bonusSpeed"></param>
+        [Obsolete]
         public void AddFlatBonusSpeedFromItem(float bonusSpeed)
         {
-            m_flatSpeedBonus += bonusSpeed;
+            
         }
 
+        /// <summary>
+        /// To be removed
+        /// </summary>
+        /// <param name="bonusSpeed"></param>
+        [Obsolete]
         public void RemoveFlatBonusSpeedFromItem(float bonusSpeed)
         {
-            m_flatSpeedBonus -= bonusSpeed;
+            
         }
         
         #endregion
@@ -157,10 +180,13 @@ namespace SGGames.Script.Entity
         
         #region Dash Methods
 
-        private bool CanDash()
+        public bool CanDash()
         {
             if(!m_controller.PlayerStamina.CanUseStamina(m_playerData.StaminaCostForDash)) return false;
             if (!m_controller.ActionPoint.CanUsePoint(1)) return false;
+            if(m_dashState != Global.PlayerDashState.Ready) return false;
+            
+            Debug.Log("Can dash: true");
             return true;
         }
 
@@ -228,6 +254,12 @@ namespace SGGames.Script.Entity
         private void PrepareBeforeDash()
         {
             m_dashState = Global.PlayerDashState.Dashing;
+            m_abilityStateEvent.Raise(new AbilityStateEventData
+            {
+                AbilityState = Global.AbilityState.Executing,
+                AbilityID = Global.AbilityID.Dash
+            });
+            
             HideRangeIndicator(m_dashDirection, m_playerData.DashDistance);
             
             m_startPosition = transform.position;
@@ -255,6 +287,11 @@ namespace SGGames.Script.Entity
         private void CancelPrepareDash()
         {
             UnlockComponentAfterDash();
+            m_abilityStateEvent.Raise(new AbilityStateEventData
+            {
+                AbilityState = Global.AbilityState.Ready,
+                AbilityID = Global.AbilityID.Dash
+            });
             m_dashState = Global.PlayerDashState.Ready;
             HideRangeIndicator(m_dashDirection, m_playerData.DashDistance);
         }
@@ -296,16 +333,31 @@ namespace SGGames.Script.Entity
             {
                 command.Execute();
             }
-            StartCoroutine(OnCoolDown());
             UnlockComponentAfterDash();
-            m_dashState = Global.PlayerDashState.Ready;
+            m_cooldownTimer = m_playerData.DashCooldown;
+            m_abilityStateEvent.Raise(new AbilityStateEventData
+            {
+                AbilityState = Global.AbilityState.Cooldown,
+                AbilityID = Global.AbilityID.Dash
+            });
+            m_dashState = Global.PlayerDashState.Cooldown;
         }
 
-        private IEnumerator OnCoolDown()
+        private void CountCooldown()
         {
-            yield return new WaitForSeconds(m_playerData.DashCooldown);
+            if(m_dashState != Global.PlayerDashState.Cooldown) return;
+            m_cooldownTimer--;
+            if (m_cooldownTimer <= 0)
+            {
+                m_abilityStateEvent.Raise(new AbilityStateEventData
+                {
+                    AbilityState = Global.AbilityState.Ready,
+                    AbilityID = Global.AbilityID.Dash
+                });
+                m_dashState = Global.PlayerDashState.Ready;
+            }
         }
-        
+
         #endregion
         
         #region Callbacks
@@ -323,8 +375,14 @@ namespace SGGames.Script.Entity
             {
                 //Play cant dash animation
                 m_controller.AnimationController.PlayCantMoveAnimation();
+                return;
             }
             BlockComponentBeforeDash();
+            m_abilityStateEvent.Raise(new AbilityStateEventData
+            {
+                AbilityState = Global.AbilityState.ShowRange,
+                AbilityID = Global.AbilityID.Dash
+            });
             m_dashState = Global.PlayerDashState.ShowRange;
         }
         
@@ -338,6 +396,50 @@ namespace SGGames.Script.Entity
             
             PrepareBeforeDash();
         }
+        
+        private void OnSwitchTurn(TurnBaseEventData turnBaseEventData)
+        {
+            if (turnBaseEventData.TurnBaseState == Global.TurnBaseState.EnemyTakeTurn ||
+                turnBaseEventData.TurnBaseState == Global.TurnBaseState.PlayerTakeTurn)
+            {
+                CountCooldown();
+            }
+        }
+        
+        private void OnHudButtonEvent(HudButtonEventData hudButtonEventData)
+        {
+            switch (hudButtonEventData.HudButtonType)
+            {
+                case Global.HudButtonType.SpecialAbilityButton:
+                    if (!CanDash())
+                    {
+                        //Play cant dash animation
+                        m_controller.AnimationController.PlayCantMoveAnimation();
+                        return;
+                    }
+                    BlockComponentBeforeDash();
+                    m_abilityStateEvent.Raise(new AbilityStateEventData
+                    {
+                        AbilityState = Global.AbilityState.ShowRange,
+                        AbilityID = Global.AbilityID.Dash
+                    });
+                    m_dashState = Global.PlayerDashState.ShowRange;
+                    break;
+                case Global.HudButtonType.ExecuteAbilityButton:
+                    if(m_dashState != Global.PlayerDashState.ShowRange) return;
+                    //Deduct stamina
+                    m_controller.PlayerStamina.UseStamina(m_playerData.StaminaCostForDash);
+                    //Deduct action point
+                    m_playerUseActionPointEvent.Raise(1);
+            
+                    PrepareBeforeDash();
+                    break;
+                case Global.HudButtonType.CancelAbilityButton:
+                    CancelPrepareDash();
+                    break;
+            }
+        }
+
         
         #endregion
         

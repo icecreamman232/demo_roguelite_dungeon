@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using SGGames.Script.Core;
 using SGGames.Script.Entity;
+using SGGames.Script.Events;
 using SGGames.Script.Managers;
 using UnityEngine;
 
@@ -9,15 +11,20 @@ namespace SGGames.Script.UI
     public class AbilityHUDController : MonoBehaviour
     {
         [SerializeField] private AbilityHUDView m_view;
-        
-        private PlayerController m_playerController;
+        [SerializeField] private HudButtonEvent m_hudButtonEvent;
+        [SerializeField] private AbilityStateEvent m_abilityStateEvent;
         
         private IEnumerator Start()
         {
             yield return new WaitUntil(HasPlayerCreated);
             Initialize();
         }
-        
+
+        private void OnDestroy()
+        {
+            m_abilityStateEvent.RemoveListener(OnAbilityStateChanged);
+        }
+
         private bool HasPlayerCreated()
         {
             if (ServiceLocator.HasService<LevelManager>())
@@ -27,46 +34,55 @@ namespace SGGames.Script.UI
             }
             return false;
         }
-
-        public void OnPressSpecialAbility()
-        {
-            if (m_playerController.StartSpecialAbility())
-            {
-                OnSpecialAbilityButtonPressed();
-            }
-        }
-
-        public void OnPressExecute()
-        {
-            m_playerController.ExecuteSpecialAbility();
-            ShowDefaultView();
-        }
-
-        public void OnPressCancel()
-        {
-            m_playerController.CancelSpecialAbility();
-            ShowDefaultView();
-        }
         
         private void Initialize()
         {
             m_view.Initialize();
             m_view.ShowDefaultView();
-            var inputManager = ServiceLocator.GetService<InputManager>();
-            inputManager.OnPressSpecialAbility += OnSpecialAbilityButtonPressed;
-            inputManager.OnPressExecute += ShowDefaultView;
-            inputManager.OnCancel += ShowDefaultView;
-            m_playerController = ServiceLocator.GetService<LevelManager>().Player.GetComponent<PlayerController>();
+            m_abilityStateEvent.AddListener(OnAbilityStateChanged);
         }
 
-        private void ShowDefaultView()
+        public void OnClickSpecialButton()
         {
-            m_view.ShowDefaultView();
+            m_hudButtonEvent.Raise(new HudButtonEventData
+            {
+                HudButtonType = Global.HudButtonType.SpecialAbilityButton
+            });
         }
         
-        private void OnSpecialAbilityButtonPressed()
+        public void OnClickExecuteButton()
         {
-            m_view.ShowExecuteButtons();
+            m_hudButtonEvent.Raise(new HudButtonEventData
+            {
+                HudButtonType = Global.HudButtonType.ExecuteAbilityButton
+            });
+        }
+        public void OnClickCancelButton()
+        {
+            m_hudButtonEvent.Raise(new HudButtonEventData
+            {
+                HudButtonType = Global.HudButtonType.CancelAbilityButton
+            });
+        }
+        
+        private void OnAbilityStateChanged(AbilityStateEventData abilityStateEventData)
+        {
+            Debug.Log($"Ability Changed {abilityStateEventData.AbilityState}");
+            switch (abilityStateEventData.AbilityState)
+            {
+                case Global.AbilityState.Ready:
+                    m_view.ShowDefaultView();
+                    break;
+                case Global.AbilityState.ShowRange:
+                    m_view.ShowExecuteButtons();
+                    break;
+                case Global.AbilityState.Executing:
+                    break;
+                case Global.AbilityState.Cooldown:
+                    m_view.ShowDefaultView();
+                    m_view.ShowCooldown();
+                    break;
+            }
         }
     }
 }

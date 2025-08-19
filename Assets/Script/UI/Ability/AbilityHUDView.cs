@@ -20,6 +20,11 @@ namespace SGGames.Script.UI
         {
             m_abilityHUD.ShowExecuteButtons();
         }
+
+        public void ShowCooldown()
+        {
+            
+        }
     }
 
 }

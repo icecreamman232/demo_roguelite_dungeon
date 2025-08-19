@@ -19,5 +19,10 @@ namespace SGGames.Script.UI
             m_abilityButtonCG.Deactivate();
             m_executeButtonCG.Activate();
         }
+
+        public void SetCooldown(int turnAmount)
+        {
+            
+        }
     }
 }
