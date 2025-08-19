@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 2029056537
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: -611662836, guid: 6219432f130854c4da4d20799a648b68, type: 3}
+  m_Sprite: {fileID: 1787439171, guid: 6219432f130854c4da4d20799a648b68, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -142,7 +142,7 @@ GameObject:
   - component: {fileID: 3278343070005187421}
   - component: {fileID: 8975557050080255171}
   m_Layer: 7
-  m_Name: Enemy Khepor
+  m_Name: Enemy Gruntusk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -253,7 +253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_isPermit: 1
-  m_data: {fileID: 11400000, guid: 3a4d342279c43b74ba18ff85db68f046, type: 2}
+  m_data: {fileID: 11400000, guid: 049bb2bb3605ba542a2fba87ee291eea, type: 2}
   m_switchTurnEvent: {fileID: 11400000, guid: 311f02bcf056f7b4a89524a610155650, type: 2}
   m_gameEvent: {fileID: 11400000, guid: 7ac1f24220b2ef14186e0695169f9965, type: 2}
   m_spriteRenderer: {fileID: 1208306049597145186}
@@ -280,7 +280,7 @@ MonoBehaviour:
   m_isInvincible: 0
   m_disableOnDeath: 1
   m_delayAfterDeath: 0.3
-  m_enemyData: {fileID: 11400000, guid: 3a4d342279c43b74ba18ff85db68f046, type: 2}
+  m_enemyData: {fileID: 11400000, guid: 049bb2bb3605ba542a2fba87ee291eea, type: 2}
   m_spriteRenderer: {fileID: 1208306049597145186}
   m_floatingTextEvent: {fileID: 11400000, guid: 319a78d159feea54fb1d2b7b0953e9ec, type: 2}
 --- !u!114 &8262135198344343122
@@ -455,8 +455,8 @@ MonoBehaviour:
   m_targetMask:
     serializedVersion: 2
     m_Bits: 64
-  m_minDamage: 10
-  m_maxDamage: 15
+  m_minDamage: 20
+  m_maxDamage: 23
   m_invincibilityDuration: 0.3
 --- !u!61 &2933225535416741485
 BoxCollider2D:

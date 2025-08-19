@@ -3,6 +3,7 @@ using System.Collections;
 using SGGames.Script.Data;
 using SGGames.Script.Modules;
 using SGGames.Script.UI;
+using SGGames.Scripts.Entity;
 using UnityEngine;
 
 namespace SGGames.Script.HealthSystem
@@ -10,24 +11,27 @@ namespace SGGames.Script.HealthSystem
     public class EnemyHealth : Health, IRevivable
     {
         [Header("Enemy")] 
-        [SerializeField] private EnemyData m_enemyData;
-        [SerializeField] private SpriteRenderer m_spriteRenderer;
         [SerializeField] private FloatingTextEvent m_floatingTextEvent;
         private EnemyHealthBarController m_enemyHealthBar;
         private FillOverlayColorOnSprite m_fillOverlayColorOnSprite;
         private BloodSplashVFX m_bloodSplashVFX;
+        private EnemyController m_controller;
         private const float k_SpriteFlickeringFrequency = 0.1f;
      
         protected override void Start()
         {
-            m_maxHealth = m_enemyData.MaxHealth;
             base.Start();
-            
-            m_spriteRenderer = GetComponentInChildren<SpriteRenderer>();
             m_enemyHealthBar = GetComponentInChildren<EnemyHealthBarController>();
             m_fillOverlayColorOnSprite = GetComponentInChildren<FillOverlayColorOnSprite>();
             m_bloodSplashVFX = GetComponentInChildren<BloodSplashVFX>();
             UpdateHealthBar();
+        }
+
+        public void Initialize(EnemyController controller)
+        {
+            m_controller = controller;
+            m_maxHealth = m_controller.Data.MaxHealth;
+            m_currHealth = m_maxHealth;
         }
         
         protected override IEnumerator OnInvincible(float duration)
@@ -38,13 +42,13 @@ namespace SGGames.Script.HealthSystem
             
             while (Time.time < timeStop)
             {
-                m_fillOverlayColorOnSprite.FillOverlayColor(m_spriteRenderer,Color.red,1);
+                m_fillOverlayColorOnSprite.FillOverlayColor(m_controller.Model,Color.red,1);
                 yield return new WaitForSeconds(k_SpriteFlickeringFrequency);
-                m_fillOverlayColorOnSprite.FillOverlayColor(m_spriteRenderer,Color.red,0);
+                m_fillOverlayColorOnSprite.FillOverlayColor(m_controller.Model,Color.red,0);
                 yield return new WaitForSeconds(k_SpriteFlickeringFrequency);
             }
             
-            m_fillOverlayColorOnSprite.FillOverlayColor(m_spriteRenderer,Color.white,0);
+            m_fillOverlayColorOnSprite.FillOverlayColor(m_controller.Model,Color.white,0);
             
             m_isInvincible = false;
         }

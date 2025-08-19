@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using SGGames.Script.Core;
-using SGGames.Script.Data;
 using SGGames.Script.Managers;
 using SGGames.Script.PathFindings;
 using SGGames.Scripts.Entity;
@@ -12,7 +11,6 @@ namespace SGGames.Script.Entity
     public class EnemyMovement : EntityMovement
     {
         [Header("Enemy Basic Settings")] 
-        [SerializeField] private EnemyData m_enemyData;
         [SerializeField] private LayerMask m_obstacleLayerMask;
         
         [Header("Pathfinding Settings")]
@@ -144,8 +142,8 @@ namespace SGGames.Script.Entity
         private void SetNextPosition()
         {
             UpdatePath();
-            var totalStep = m_enemyData.StepPerTurn < m_waypoints.Count
-                ? m_enemyData.StepPerTurn
+            var totalStep = m_controller.Data.StepPerTurn < m_waypoints.Count
+                ? m_controller.Data.StepPerTurn
                 : m_waypoints.Count - 1;
             m_nextPosition = m_waypoints[totalStep];
         }

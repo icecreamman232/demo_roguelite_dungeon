@@ -213,6 +213,7 @@ MonoBehaviour:
   m_autoCreateParentForPool: 1
   m_parent: {fileID: 0}
   m_isSharePool: 0
+  m_pooledObjectActiveByDefault: 0
   m_objectToPool: {fileID: 9034834727839782509, guid: 1cfdc674b35356a44a040ab7235c64ed, type: 3}
   m_poolSize: 20
 --- !u!1 &6742223461460846237
@@ -419,6 +420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_isPermit: 1
+  m_data: {fileID: 11400000, guid: 016adb8f7453c2449bff74fb74c392fd, type: 2}
   m_switchTurnEvent: {fileID: 11400000, guid: 311f02bcf056f7b4a89524a610155650, type: 2}
   m_gameEvent: {fileID: 11400000, guid: 7ac1f24220b2ef14186e0695169f9965, type: 2}
   m_spriteRenderer: {fileID: 7984223844477170315}
@@ -463,7 +465,6 @@ MonoBehaviour:
   m_isPermit: 1
   m_currentMovementState: 0
   m_movementDirection: {x: 0, y: 0}
-  m_enemyData: {fileID: 11400000, guid: 016adb8f7453c2449bff74fb74c392fd, type: 2}
   m_obstacleLayerMask:
     serializedVersion: 2
     m_Bits: 768

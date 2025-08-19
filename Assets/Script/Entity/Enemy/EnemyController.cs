@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using SGGames.Script.Core;
+using SGGames.Script.Data;
 using SGGames.Script.Dungeon;
 using SGGames.Script.Entity;
 using SGGames.Script.Events;
@@ -15,6 +16,7 @@ namespace SGGames.Scripts.Entity
     [Serializable]
     public class EnemyController : EntityBehavior, IRevivable , IEntityIdentifier
     {
+        [SerializeField] protected EnemyData m_data;
         [SerializeField] protected SwitchTurnEvent m_switchTurnEvent;
         [SerializeField] protected GameEvent m_gameEvent;
         [SerializeField] protected SpriteRenderer m_spriteRenderer;
@@ -26,22 +28,41 @@ namespace SGGames.Scripts.Entity
         
         private List<IDeathCommand> m_deathCommands;
         private int m_orderIndex;
+        public EnemyData Data => m_data;
         public int OrderIndex => m_orderIndex;
         public AIBrain AIBrain => m_aiBrain;
         public EnemyMovement Movement => m_enemyMovement;
         public EnemyHealth Health => m_enemyHealth;
         public EnemyWeaponHandler WeaponHandler => m_enemyWeaponHandler;
+        public SpriteRenderer Model => m_spriteRenderer;
 
         private void Awake()
         {
-            m_gameEvent.AddListener(OnReceiveGameEvent);
             m_enemyHealth.OnDeath += OnEnemyDeath;
-            
-            
+            m_enemyMovement.Initialize(this);
+            m_enemyWeaponHandler.Initialize(this);
+            m_enemyHealth.Initialize(this);
+            m_aiBrain.Initialize(this);
+            SetupDeathCommands();
+        }
+
+        private void Start()
+        {
+            m_gameEvent.AddListener(OnReceiveGameEvent);
             var gameManager = ServiceLocator.GetService<GameManager>();
             gameManager.OnGamePauseCallback += OnGamePaused;
             gameManager.OnGameUnPauseCallback += OnGameResumed;
-            
+            var turnBaseManager = ServiceLocator.GetService<TurnBaseManager>();
+            turnBaseManager.RegisterEnemy(this);
+        }
+
+        private void OnDestroy()
+        {
+            m_gameEvent.RemoveListener(OnReceiveGameEvent);
+        }
+
+        private void SetupDeathCommands()
+        {
             m_deathCommands = new List<IDeathCommand>
             {
                 new DisableMovementDeathCommand(),
@@ -52,20 +73,6 @@ namespace SGGames.Scripts.Entity
             {
                 command.Initialize(this);
             }
-        }
-
-        private void Start()
-        {
-            m_enemyMovement.Initialize(this);
-            m_enemyWeaponHandler.Initialize(this);
-            m_aiBrain.Initialize(this);
-            var turnBaseManager = ServiceLocator.GetService<TurnBaseManager>();
-            turnBaseManager.RegisterEnemy(this);
-        }
-
-        private void OnDestroy()
-        {
-            m_gameEvent.RemoveListener(OnReceiveGameEvent);
         }
 
         private void RegisterEnemyToRoom()
