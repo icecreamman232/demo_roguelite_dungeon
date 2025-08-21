@@ -1,3 +1,4 @@
+using System;
 using SGGames.Script.Core;
 using SGGames.Script.Data;
 using SGGames.Script.Entity;
@@ -9,8 +10,15 @@ namespace SGGames.Script.Weapons
 {
     public class EnemyRangeWeapon : Weapon, IProjectileSpawner, IStateTransitioner<Global.WeaponState>
     {
+        [Header( "Targeting" )]
+        [SerializeField] private Global.TargetingType m_targetingType;
+        [SerializeField] private ITargetingStrategy m_targetingStrategy;
+        [SerializeField] protected FixedDirectionTargetingStrategy m_fixedDirectionStrategy = new FixedDirectionTargetingStrategy();
+
+        [Header("Projectile")]
         [SerializeField] private ObjectPooler m_projectilePooler;
         [SerializeField] private WeaponData m_weaponData;
+        
         private EnemyWeaponStateMachine m_stateMachine;
         private EnemyController m_controller;
         private IWeaponOwner m_owner;
@@ -41,6 +49,21 @@ namespace SGGames.Script.Weapons
             coolDownState.Initialize(m_weaponData);
             
             InitializeProjectileSpawner(new ProjectileBuilder());
+
+            InitializeTargetingStrategy();
+        }
+
+        protected virtual void InitializeTargetingStrategy()
+        {
+            switch (m_targetingType)
+            {
+                case Global.TargetingType.Player:
+                    m_targetingStrategy = new PlayerTargetingStrategy();
+                    break;
+                case Global.TargetingType.FixedDirection:
+                    m_targetingStrategy = m_fixedDirectionStrategy;
+                    break;
+            }
         }
 
         public override bool IsAttacking()
@@ -75,8 +98,7 @@ namespace SGGames.Script.Weapons
 
             for (int i = 0; i < numberProjectile; i++)
             {
-                var targetPos = target.transform.position + m_weaponData.ShotProperties[i].OffsetPosition;
-                var aimDirection = (targetPos - transform.position).normalized;
+                var aimDirection = m_targetingStrategy.GetAimDirection(this.transform, target.transform);
                 var projectileRot = Quaternion.AngleAxis(Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg, Vector3.forward);
                 var projectileGO = m_projectilePooler.GetPooledGameObject();
                 var projectile = projectileGO.GetComponent<Projectile>();

@@ -209,6 +209,12 @@ namespace SGGames.Script.Core
         {
             Special,
         }
+
+        public enum TargetingType
+        {
+            Player,
+            FixedDirection,
+        }
     }
 }
 
