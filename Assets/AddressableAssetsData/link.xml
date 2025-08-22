@@ -1,0 +1,277 @@
+<linker>
+  <assembly fullname="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="SGGames.Scrips.UI.HealthUIView" preserve="all" />
+    <type fullname="SGGames.Script.AI.CheckTargetInRangeAIDecision" preserve="all" />
+    <type fullname="SGGames.Script.Managers.InventoryManager" preserve="all" />
+    <type fullname="SGGames.Script.Modules.BloodSplashVFX" preserve="all" />
+    <type fullname="SGGames.Script.Modules.FillOverlayColorOnSprite" preserve="all" />
+    <type fullname="SGGames.Script.Pickable.DropLootOnDeath" preserve="all" />
+    <type fullname="SGGames.Script.UI.AbilityHUDController" preserve="all" />
+    <type fullname="SGGames.Script.UI.AbilityHUDView" preserve="all" />
+    <type fullname="SGGames.Script.UI.BiomesTransitionUIController" preserve="all" />
+    <type fullname="SGGames.Script.UI.CoinUIController" preserve="all" />
+    <type fullname="SGGames.Script.UI.CoinUIView" preserve="all" />
+    <type fullname="SGGames.Script.UI.CooldownTimerUI" preserve="all" />
+    <type fullname="SGGames.Script.UI.DashHUD" preserve="all" />
+    <type fullname="SGGames.Script.UI.KeyUIController" preserve="all" />
+    <type fullname="SGGames.Script.UI.KeyUIView" preserve="all" />
+    <type fullname="SGGames.Script.UI.PromptButton" preserve="all" />
+    <type fullname="SGGames.Script.UI.StaminaUISlot" preserve="all" />
+    <type fullname="SGGames.Script.Weapons.EnemyProjectile" preserve="all" />
+    <type fullname="SGGames.Scripts.AI.AIBrain" preserve="all" />
+    <type fullname="SGGames.Scripts.AI.DefaultTrueAIDecision" preserve="all" />
+    <type fullname="SGGames.Scripts.AI.FollowingTargetAIAction" preserve="all" />
+    <type fullname="SGGames.Scripts.AI.NextTurnAIAction" preserve="all" />
+    <type fullname="SGGames.Scripts.AI.NoTargetAIDecision" preserve="all" />
+    <type fullname="SGGames.Scripts.AI.SetPlayerAsTargetAIAction" preserve="all" />
+    <type fullname="SGGames.Scripts.AI.UseWeaponAIAction" preserve="all" />
+    <type fullname="SGGames.Scripts.Core.BootstrapGameObject" preserve="all" />
+    <type fullname="SGGames.Scripts.Core.ObjectPooler" preserve="all" />
+    <type fullname="SGGames.Scripts.Core.TriggerManager" preserve="all" />
+    <type fullname="SGGames.Scripts.Data.AssetPathContainer" preserve="all" />
+    <type fullname="SGGames.Scripts.Data.BiomesTransitionUIEvent" preserve="all" />
+    <type fullname="SGGames.Scripts.Data.BootstrapProfile" preserve="all" />
+    <type fullname="SGGames.Scripts.Data.EnemyData" preserve="all" />
+    <type fullname="SGGames.Scripts.Data.FloatingTextEvent" preserve="all" />
+    <type fullname="SGGames.Scripts.Data.InventoryEvent" preserve="all" />
+    <type fullname="SGGames.Scripts.Data.InventoryItemData" preserve="all" />
+    <type fullname="SGGames.Scripts.Data.ItemPickerContainer" preserve="all" />
+    <type fullname="SGGames.Scripts.Data.ItemRarityTable" preserve="all" />
+    <type fullname="SGGames.Scripts.Data.LootTable" preserve="all" />
+    <type fullname="SGGames.Scripts.Data.PlayerData" preserve="all" />
+    <type fullname="SGGames.Scripts.Data.ProjectileData" preserve="all" />
+    <type fullname="SGGames.Scripts.Data.RoomContainer" preserve="all" />
+    <type fullname="SGGames.Scripts.Data.RoomData" preserve="all" />
+    <type fullname="SGGames.Scripts.Data.WeaponData" preserve="all" />
+    <type fullname="SGGames.Scripts.Dungeon.Door" preserve="all" />
+    <type fullname="SGGames.Scripts.Dungeon.Room" preserve="all" />
+    <type fullname="SGGames.Scripts.Entities.EnemyAnimationController" preserve="all" />
+    <type fullname="SGGames.Scripts.Entities.EnemyController" preserve="all" />
+    <type fullname="SGGames.Scripts.Entities.EnemyMeleeWeapon" preserve="all" />
+    <type fullname="SGGames.Scripts.Entities.EnemyMovement" preserve="all" />
+    <type fullname="SGGames.Scripts.Entities.EnemyWeaponHandler" preserve="all" />
+    <type fullname="SGGames.Scripts.Entities.PlayerActionPoint" preserve="all" />
+    <type fullname="SGGames.Scripts.Entities.PlayerAimingController" preserve="all" />
+    <type fullname="SGGames.Scripts.Entities.PlayerAnimationController" preserve="all" />
+    <type fullname="SGGames.Scripts.Entities.PlayerController" preserve="all" />
+    <type fullname="SGGames.Scripts.Entities.PlayerDash" preserve="all" />
+    <type fullname="SGGames.Scripts.Entities.PlayerDodge" preserve="all" />
+    <type fullname="SGGames.Scripts.Entities.PlayerModifierController" preserve="all" />
+    <type fullname="SGGames.Scripts.Entities.PlayerMovement" preserve="all" />
+    <type fullname="SGGames.Scripts.Entities.PlayerResistanceController" preserve="all" />
+    <type fullname="SGGames.Scripts.Entities.PlayerWeaponHandler" preserve="all" />
+    <type fullname="SGGames.Scripts.Events.AbilityCooldownEvent" preserve="all" />
+    <type fullname="SGGames.Scripts.Events.AbilityStateEvent" preserve="all" />
+    <type fullname="SGGames.Scripts.Events.CurrencyDropsEvent" preserve="all" />
+    <type fullname="SGGames.Scripts.Events.CurrencyEvent" preserve="all" />
+    <type fullname="SGGames.Scripts.Events.DisplayEffectTileEvent" preserve="all" />
+    <type fullname="SGGames.Scripts.Events.EquipInventoryItemEvent" preserve="all" />
+    <type fullname="SGGames.Scripts.Events.GameEvent" preserve="all" />
+    <type fullname="SGGames.Scripts.Events.HudButtonEvent" preserve="all" />
+    <type fullname="SGGames.Scripts.Events.InteractEvent" preserve="all" />
+    <type fullname="SGGames.Scripts.Events.ItemDropsEvent" preserve="all" />
+    <type fullname="SGGames.Scripts.Events.LoadingScreenEvent" preserve="all" />
+    <type fullname="SGGames.Scripts.Events.PlayerUseActionPointEvent" preserve="all" />
+    <type fullname="SGGames.Scripts.Events.SpawnChestEvent" preserve="all" />
+    <type fullname="SGGames.Scripts.Events.SwitchTurnEvent" preserve="all" />
+    <type fullname="SGGames.Scripts.Events.UpdateActionPointUIEvent" preserve="all" />
+    <type fullname="SGGames.Scripts.Events.UpdateCurrencyUIEvent" preserve="all" />
+    <type fullname="SGGames.Scripts.Events.UpdatePlayerHealthEvent" preserve="all" />
+    <type fullname="SGGames.Scripts.Events.UpdatePlayerProjectileDamageEvent" preserve="all" />
+    <type fullname="SGGames.Scripts.Events.UpdatePlayerStaminaEvent" preserve="all" />
+    <type fullname="SGGames.Scripts.HealthSystem.DamageHandler" preserve="all" />
+    <type fullname="SGGames.Scripts.HealthSystem.EnemyHealth" preserve="all" />
+    <type fullname="SGGames.Scripts.HealthSystem.PlayerHealth" preserve="all" />
+    <type fullname="SGGames.Scripts.Items.ApplyModifierAction" preserve="all" />
+    <type fullname="SGGames.Scripts.Items.CollisionWithObstacleCondition" preserve="all" />
+    <type fullname="SGGames.Scripts.Items.CreateImpactAtPosition" preserve="all" />
+    <type fullname="SGGames.Scripts.Items.DamageResistanceModifierData" preserve="all" />
+    <type fullname="SGGames.Scripts.Items.DashSpeedEventBasedModifierData" preserve="all" />
+    <type fullname="SGGames.Scripts.Items.HealingAction" preserve="all" />
+    <type fullname="SGGames.Scripts.Items.HealthThresholdCondition" preserve="all" />
+    <type fullname="SGGames.Scripts.Items.InvincibilityModifierData" preserve="all" />
+    <type fullname="SGGames.Scripts.Items.PlayerMoveSpeedModifierData" preserve="all" />
+    <type fullname="SGGames.Scripts.Items.TriggerData" preserve="all" />
+    <type fullname="SGGames.Scripts.Items.TriggerModifierEvent" preserve="all" />
+    <type fullname="SGGames.Scripts.Items.WorldEvent" preserve="all" />
+    <type fullname="SGGames.Scripts.Managers.ConsoleCheatManager" preserve="all" />
+    <type fullname="SGGames.Scripts.Managers.DebugSettings" preserve="all" />
+    <type fullname="SGGames.Scripts.Managers.DropsManager" preserve="all" />
+    <type fullname="SGGames.Scripts.Managers.GameManager" preserve="all" />
+    <type fullname="SGGames.Scripts.Managers.InputManager" preserve="all" />
+    <type fullname="SGGames.Scripts.Managers.ItemLibrary" preserve="all" />
+    <type fullname="SGGames.Scripts.Managers.LevelManager" preserve="all" />
+    <type fullname="SGGames.Scripts.Managers.RoomManager" preserve="all" />
+    <type fullname="SGGames.Scripts.Managers.TurnBaseManager" preserve="all" />
+    <type fullname="SGGames.Scripts.Modules.AfterImageFX" preserve="all" />
+    <type fullname="SGGames.Scripts.Modules.CommandSequencer" preserve="all" />
+    <type fullname="SGGames.Scripts.Modules.EffectTile" preserve="all" />
+    <type fullname="SGGames.Scripts.Modules.FloatingText" preserve="all" />
+    <type fullname="SGGames.Scripts.Modules.FloatingTextSpawner" preserve="all" />
+    <type fullname="SGGames.Scripts.Modules.InteractTrigger" preserve="all" />
+    <type fullname="SGGames.Scripts.Modules.PlayerCloneSprite" preserve="all" />
+    <type fullname="SGGames.Scripts.Modules.ToggleColliderCommand" preserve="all" />
+    <type fullname="SGGames.Scripts.Modules.TriggerAnimationCommand" preserve="all" />
+    <type fullname="SGGames.Scripts.PathFindings.GridManager" preserve="all" />
+    <type fullname="SGGames.Scripts.PathFindings.PathFinding" preserve="all" />
+    <type fullname="SGGames.Scripts.Pickable.CurrencyTreasureChest" preserve="all" />
+    <type fullname="SGGames.Scripts.Pickables.CurrencyPicker" preserve="all" />
+    <type fullname="SGGames.Scripts.Pickables.ManualItemPicker" preserve="all" />
+    <type fullname="SGGames.Scripts.Skills.ImpactManager" preserve="all" />
+    <type fullname="SGGames.Scripts.Skills.ItemManager" preserve="all" />
+    <type fullname="SGGames.Scripts.Skills.StunAOEIMpact" preserve="all" />
+    <type fullname="SGGames.Scripts.Skills.StunAOEParamInfo" preserve="all" />
+    <type fullname="SGGames.Scripts.Skills.TriggerImpactEvent" preserve="all" />
+    <type fullname="SGGames.Scripts.StaminaSystem.PlayerStamina" preserve="all" />
+    <type fullname="SGGames.Scripts.TweenSystem.TweenManager" preserve="all" />
+    <type fullname="SGGames.Scripts.UI.ActionPointUI" preserve="all" />
+    <type fullname="SGGames.Scripts.UI.ClickableButton" preserve="all" />
+    <type fullname="SGGames.Scripts.UI.ConsoleCanvasController" preserve="all" />
+    <type fullname="SGGames.Scripts.UI.EnemyHealthBarController" preserve="all" />
+    <type fullname="SGGames.Scripts.UI.EnemyHealthBarView" preserve="all" />
+    <type fullname="SGGames.Scripts.UI.HealthUIController" preserve="all" />
+    <type fullname="SGGames.Scripts.UI.LoadingScreenController" preserve="all" />
+    <type fullname="SGGames.Scripts.UI.MainMenuController" preserve="all" />
+    <type fullname="SGGames.Scripts.UI.PlayGameButton" preserve="all" />
+    <type fullname="SGGames.Scripts.UI.StaminaUIController" preserve="all" />
+    <type fullname="SGGames.Scripts.UI.StaminaUIView" preserve="all" />
+    <type fullname="SGGames.Scripts.Weapons.EnemyRangeWeapon" preserve="all" />
+    <type fullname="SGGames.Scripts.Weapons.PlayerDefaultMeleeWeapon" preserve="all" />
+    <type fullname="SGGames.Scripts.Data.ShotProperty" preserve="nothing" serialized="true" />
+    <type fullname="SGGames.Scripts.Managers.CurrencyInventory" preserve="nothing" serialized="true" />
+    <type fullname="SGGames.Scripts.Managers.Inventory" preserve="nothing" serialized="true" />
+    <type fullname="SGGames.Scripts.AI.AIState" preserve="nothing" serialized="true" />
+    <type fullname="SGGames.Scripts.Data.Loot" preserve="nothing" serialized="true" />
+    <type fullname="SGGames.Scripts.Weapons.FixedDirectionTargetingStrategy" preserve="nothing" serialized="true" />
+    <type fullname="SGGames.Scripts.Entities.AimingData" preserve="nothing" serialized="true" />
+    <type fullname="SGGames.Scripts.Data.WeightSheet" preserve="nothing" serialized="true" />
+    <type fullname="SGGames.Scripts.Data.WeightValue" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="Unity.Addressables, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
+    <type fullname="UnityEngine.AddressableAssets.Addressables" preserve="all" />
+    <type fullname="UnityEngine.AddressableAssets.AssetReference" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.AddressableAssets.AssetReferenceGameObject" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="Unity.InputSystem, Version=1.14.1.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.InputSystem.InputActionAsset" preserve="all" />
+    <type fullname="UnityEngine.InputSystem.InputActionReference" preserve="all" />
+    <type fullname="UnityEngine.InputSystem.UI.InputSystemUIInputModule" preserve="all" />
+    <type fullname="UnityEngine.InputSystem.InputAction" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.InputSystem.InputActionMap" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.InputSystem.InputBinding" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.InputSystem.InputControlScheme" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.InputSystem.InputControlScheme/DeviceRequirement" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="Unity.RenderPipelines.Universal.2D.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.Rendering.Universal.Light2D" preserve="all" />
+    <type fullname="UnityEngine.Rendering.Universal.PixelPerfectCamera" preserve="all" />
+  </assembly>
+  <assembly fullname="Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.Rendering.Universal.UniversalAdditionalCameraData" preserve="all" />
+    <type fullname="UnityEngine.Rendering.Universal.TemporalAA/Settings" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="Unity.ResourceManager, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.AssetBundleProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.BundledAssetProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.InstanceProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.SceneProvider" preserve="all" />
+  </assembly>
+  <assembly fullname="Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="TMPro.TextMeshPro" preserve="all" />
+    <type fullname="TMPro.TextMeshProUGUI" preserve="all" />
+    <type fullname="TMPro.TMP_FontAsset" preserve="all" />
+    <type fullname="TMPro.TMP_InputField" preserve="all" />
+    <type fullname="TMPro.FaceInfo_Legacy" preserve="nothing" serialized="true" />
+    <type fullname="TMPro.FontAssetCreationSettings" preserve="nothing" serialized="true" />
+    <type fullname="TMPro.KerningTable" preserve="nothing" serialized="true" />
+    <type fullname="TMPro.TMP_Character" preserve="nothing" serialized="true" />
+    <type fullname="TMPro.TMP_FontFeatureTable" preserve="nothing" serialized="true" />
+    <type fullname="TMPro.TMP_FontWeightPair" preserve="nothing" serialized="true" />
+    <type fullname="TMPro.VertexGradient" preserve="nothing" serialized="true" />
+    <type fullname="TMPro.TMP_InputField/OnChangeEvent" preserve="nothing" serialized="true" />
+    <type fullname="TMPro.TMP_InputField/SelectionEvent" preserve="nothing" serialized="true" />
+    <type fullname="TMPro.TMP_InputField/SubmitEvent" preserve="nothing" serialized="true" />
+    <type fullname="TMPro.TMP_InputField/TextSelectionEvent" preserve="nothing" serialized="true" />
+    <type fullname="TMPro.TMP_InputField/TouchScreenKeyboardEvent" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="UnityEngine.AnimationModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.AnimationClip" preserve="all" />
+    <type fullname="UnityEngine.Animator" preserve="all" />
+    <type fullname="UnityEngine.RuntimeAnimatorController" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.AudioModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.AudioListener" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.Camera" preserve="all" />
+    <type fullname="UnityEngine.Cubemap" preserve="all" />
+    <type fullname="UnityEngine.GameObject" preserve="all" />
+    <type fullname="UnityEngine.LightmapSettings" preserve="all" />
+    <type fullname="UnityEngine.Material" preserve="all" />
+    <type fullname="UnityEngine.MeshRenderer" preserve="all" />
+    <type fullname="UnityEngine.Object" preserve="all" />
+    <type fullname="UnityEngine.RectTransform" preserve="all" />
+    <type fullname="UnityEngine.RenderSettings" preserve="all" />
+    <type fullname="UnityEngine.Shader" preserve="all" />
+    <type fullname="UnityEngine.Sprite" preserve="all" />
+    <type fullname="UnityEngine.SpriteRenderer" preserve="all" />
+    <type fullname="UnityEngine.Texture2D" preserve="all" />
+    <type fullname="UnityEngine.Transform" preserve="all" />
+    <type fullname="UnityEngine.Events.PersistentCallGroup" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.RectOffset" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Events.ArgumentCache" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Events.PersistentListenerMode" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Events.UnityEvent" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="UnityEngine.GridModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.Grid" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.ParticleSystemModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.ParticleSystem" preserve="all" />
+    <type fullname="UnityEngine.ParticleSystemRenderer" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.Physics2DModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.BoxCollider2D" preserve="all" />
+    <type fullname="UnityEngine.CircleCollider2D" preserve="all" />
+    <type fullname="UnityEngine.Rigidbody2D" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.TextRenderingModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.Font" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.TilemapModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.Tilemaps.Tile" preserve="all" />
+    <type fullname="UnityEngine.Tilemaps.Tilemap" preserve="all" />
+    <type fullname="UnityEngine.Tilemaps.TilemapCollider2D" preserve="all" />
+    <type fullname="UnityEngine.Tilemaps.TilemapRenderer" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.EventSystems.EventSystem" preserve="all" />
+    <type fullname="UnityEngine.UI.CanvasScaler" preserve="all" />
+    <type fullname="UnityEngine.UI.ContentSizeFitter" preserve="all" />
+    <type fullname="UnityEngine.UI.GraphicRaycaster" preserve="all" />
+    <type fullname="UnityEngine.UI.GridLayoutGroup" preserve="all" />
+    <type fullname="UnityEngine.UI.HorizontalLayoutGroup" preserve="all" />
+    <type fullname="UnityEngine.UI.Image" preserve="all" />
+    <type fullname="UnityEngine.UI.LayoutElement" preserve="all" />
+    <type fullname="UnityEngine.UI.RectMask2D" preserve="all" />
+    <type fullname="UnityEngine.UI.AnimationTriggers" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UI.ColorBlock" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UI.MaskableGraphic/CullStateChangedEvent" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UI.Navigation" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UI.SpriteState" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="UnityEngine.UIModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.Canvas" preserve="all" />
+    <type fullname="UnityEngine.CanvasGroup" preserve="all" />
+    <type fullname="UnityEngine.CanvasRenderer" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.TextCoreFontEngineModule">
+    <type fullname="UnityEngine.TextCore.FaceInfo" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.TextCore.Glyph" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.TextCore.GlyphMetrics" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.TextCore.GlyphRect" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.TextCore.LowLevel.GlyphAdjustmentRecord" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.TextCore.LowLevel.GlyphPairAdjustmentRecord" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.TextCore.LowLevel.GlyphValueRecord" preserve="nothing" serialized="true" />
+  </assembly>
+</linker>
