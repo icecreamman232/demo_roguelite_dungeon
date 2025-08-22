@@ -29,6 +29,8 @@ namespace SGGames.Script.Managers
 
         private int m_currentEnemyIndex;
         
+        public Global.TurnBaseState CurrentTurnBaseState => m_turnBaseState;
+        
         private void Awake()
         {
             InitializeInternal();

@@ -47,9 +47,9 @@ MonoBehaviour:
   m_targetingType: 1
   m_fixedDirectionStrategy:
     m_fixedDirection: {x: 0, y: 1, z: 0}
-  m_projectilePooler: {fileID: 7310917412458323680}
+  m_projectilePooler: {fileID: 5557528310484076956}
   m_weaponData: {fileID: 11400000, guid: 9e8872989db84ce409a0f66d91acd0e2, type: 2}
---- !u!1 &2773952038046348974
+--- !u!1 &2688786889336404005
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -57,8 +57,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7228710902560844562}
-  - component: {fileID: 7310917412458323680}
+  - component: {fileID: 7376714997499291017}
+  - component: {fileID: 5557528310484076956}
   m_Layer: 0
   m_Name: ProjectilePooler
   m_TagString: Untagged
@@ -66,13 +66,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7228710902560844562
+--- !u!4 &7376714997499291017
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2773952038046348974}
+  m_GameObject: {fileID: 2688786889336404005}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -81,13 +81,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8924605653382889979}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7310917412458323680
+--- !u!114 &5557528310484076956
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2773952038046348974}
+  m_GameObject: {fileID: 2688786889336404005}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbfe5d2fe6527dc40893b1d9a844900b, type: 3}
@@ -97,7 +97,7 @@ MonoBehaviour:
   m_parent: {fileID: 0}
   m_isSharePool: 0
   m_pooledObjectActiveByDefault: 0
-  m_objectToPool: {fileID: 9034834727839782509, guid: 1cfdc674b35356a44a040ab7235c64ed, type: 3}
+  m_objectToPool: {fileID: 9034834727839782509, guid: 6fb85847e320d7046a5451c5ea6a03fc, type: 3}
   m_poolSize: 30
 --- !u!1 &3163164990472202636
 GameObject:
@@ -223,7 +223,7 @@ MonoBehaviour:
   m_targetingType: 1
   m_fixedDirectionStrategy:
     m_fixedDirection: {x: 1, y: 0, z: 0}
-  m_projectilePooler: {fileID: 7310917412458323680}
+  m_projectilePooler: {fileID: 5557528310484076956}
   m_weaponData: {fileID: 11400000, guid: 9e8872989db84ce409a0f66d91acd0e2, type: 2}
 --- !u!1 &5226103879564384175
 GameObject:
@@ -272,7 +272,7 @@ MonoBehaviour:
   m_targetingType: 1
   m_fixedDirectionStrategy:
     m_fixedDirection: {x: 0, y: -1, z: 0}
-  m_projectilePooler: {fileID: 7310917412458323680}
+  m_projectilePooler: {fileID: 5557528310484076956}
   m_weaponData: {fileID: 11400000, guid: 9e8872989db84ce409a0f66d91acd0e2, type: 2}
 --- !u!1 &5565779291090243289
 GameObject:
@@ -395,7 +395,7 @@ MonoBehaviour:
   m_targetingType: 1
   m_fixedDirectionStrategy:
     m_fixedDirection: {x: -1, y: 0, z: 0}
-  m_projectilePooler: {fileID: 7310917412458323680}
+  m_projectilePooler: {fileID: 5557528310484076956}
   m_weaponData: {fileID: 11400000, guid: 9e8872989db84ce409a0f66d91acd0e2, type: 2}
 --- !u!1 &6742223461460846237
 GameObject:
@@ -515,7 +515,7 @@ Transform:
   - {fileID: 6759577932550234979}
   - {fileID: 5644283784786285354}
   - {fileID: 9212072378513052604}
-  - {fileID: 7228710902560844562}
+  - {fileID: 7376714997499291017}
   - {fileID: 7829241433809151223}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -668,7 +668,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_isPermit: 1
-  m_currWeapon: {fileID: 1519801537839649554}
+  m_availableWeapons:
+  - {fileID: 1519801537839649554}
+  - {fileID: 2011192810840962323}
+  - {fileID: 9075012522190991446}
+  - {fileID: 4054253628609607225}
+  m_selectionStrategy: 0
 --- !u!114 &-4197170573172073043
 MonoBehaviour:
   m_ObjectHideFlags: 0

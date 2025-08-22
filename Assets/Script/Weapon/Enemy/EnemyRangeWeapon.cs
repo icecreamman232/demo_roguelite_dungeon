@@ -8,7 +8,8 @@ using UnityEngine;
 
 namespace SGGames.Script.Weapons
 {
-    public class EnemyRangeWeapon : Weapon, IProjectileSpawner, IStateTransitioner<Global.WeaponState>
+    public class EnemyRangeWeapon : Weapon, IProjectileSpawner, 
+        IStateTransitioner<Global.WeaponState>, IProjectileTrackable
     {
         [Header( "Targeting" )]
         [SerializeField] private Global.TargetingType m_targetingType;
@@ -23,6 +24,8 @@ namespace SGGames.Script.Weapons
         private EnemyController m_controller;
         private IWeaponOwner m_owner;
         private ProjectileBuilder m_projectileBuilder;
+        private ProjectileManager m_projectileManager;
+        private string m_currentAttackGroupID;
         
         public int NumberSpawnedProjectile { get; set; }
 
@@ -107,8 +110,16 @@ namespace SGGames.Script.Weapons
                     .SetDirection(aimDirection)
                     .SetPosition(transform.position)
                     .SetRotation(projectileRot));
-                projectile.OnProjectileStopped = OnProjectileStopped;
-                NumberSpawnedProjectile++;
+
+                if (m_projectileManager != null && !string.IsNullOrEmpty(m_currentAttackGroupID))
+                {
+                    m_projectileManager.AddProjectile(m_currentAttackGroupID, projectile);
+                }
+                else
+                {
+                    projectile.OnProjectileStopped = OnProjectileStopped;
+                    NumberSpawnedProjectile++;
+                }
             }
         }
 
@@ -127,6 +138,20 @@ namespace SGGames.Script.Weapons
         }
 
         #endregion
+
+        public void SetProjectileManager(ProjectileManager projectileManager)
+        {
+            m_projectileManager = projectileManager;
+        }
+
+        public void AttackWithTracking(string groupId)
+        {
+            if (!IsReady) return;
+            m_currentAttackGroupID = groupId;
+            SpawnProjectile();
+            UpdateAnimationOnAttack();
+            m_stateMachine.SetState(Global.WeaponState.InProgress);
+        }
     }
 }
 

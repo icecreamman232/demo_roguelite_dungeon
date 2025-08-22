@@ -4,7 +4,6 @@ using SGGames.Script.EditorExtensions;
 using SGGames.Script.Events;
 using SGGames.Script.Managers;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 namespace SGGames.Script.Entity
 {
@@ -19,6 +18,7 @@ namespace SGGames.Script.Entity
         [SerializeField] private GameEvent m_gameEvent;
         [SerializeField] private PlayerUseActionPointEvent m_playerUseActionPointEvent;
 
+        private TurnBaseManager m_turnBaseManager;
         private PlayerController m_controller;
         private bool m_canMove;
         
@@ -58,6 +58,9 @@ namespace SGGames.Script.Entity
             var gameManager = ServiceLocator.GetService<GameManager>();
             gameManager.OnGamePauseCallback += OnGamePaused;
             gameManager.OnGameUnPauseCallback += OnGameResumed;
+            
+            m_turnBaseManager = ServiceLocator.GetService<TurnBaseManager>();
+            
             
             m_gameEvent.AddListener(OnReceiveGameEvent);
             ConsoleCheatManager.RegisterCommands(this);
@@ -130,6 +133,7 @@ namespace SGGames.Script.Entity
 
         private bool CanMove()
         {
+            if (m_turnBaseManager.CurrentTurnBaseState != Global.TurnBaseState.PlayerTakeTurn) return false;
             if (m_currentMovementState != Global.MovementState.Ready) return false;
             if (!m_controller.ActionPoint.CanUsePoint(1)) return false;
             

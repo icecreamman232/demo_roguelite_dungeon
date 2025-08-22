@@ -215,6 +215,12 @@ namespace SGGames.Script.Core
             Player,
             FixedDirection,
         }
+
+        public enum WeaponSelectionStrategy
+        {
+            Simultaneous, //Use multiple weapon at once
+            Sequential, //Cycle through weapons in order
+        }
     }
 }
 

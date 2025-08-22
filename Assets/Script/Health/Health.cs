@@ -88,7 +88,7 @@ namespace SGGames.Script.HealthSystem
 
         protected virtual void Damage(float damage, GameObject source)
         {
-            Debug.Log($"{this.gameObject.name} take damage {damage} from {source.gameObject.name}");
+            //Debug.Log($"{this.gameObject.name} take damage {damage} from {source.gameObject.name}");
             m_currHealth -= damage;
             if (m_currHealth <= 0)
             {
