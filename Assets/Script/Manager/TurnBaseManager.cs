@@ -132,6 +132,19 @@ namespace SGGames.Scripts.Managers
             return hasAllFinished;
         }
 
+        private bool HasAllEnemiesDead()
+        {
+            bool hasAllDead = true;
+            foreach (var enemyRef in m_enemyTurnBaseStatusList)
+            {
+                if (!enemyRef.IsDead)
+                {
+                    hasAllDead = false;
+                }
+            }
+            return hasAllDead;
+        }
+
         private void ResetEnemyTurnBaseStatus()
         {
             foreach (var enemyRef in m_enemyTurnBaseStatusList)
