@@ -163,13 +163,13 @@ MonoBehaviour:
     - {fileID: 3847952909651767995}
     m_actions:
     - {fileID: 6724018728237573742}
-  - StateName: Move toward target
+  - StateName: Do nothing
     m_consumeTurn: 1
     m_actionsCompleted: 0
     m_decisions:
     - {fileID: 9119261645223049702}
     m_actions:
-    - {fileID: 87777436681311480}
+    - {fileID: 8611301508653268795}
   m_currentState:
     StateName: 
     m_consumeTurn: 0
@@ -409,6 +409,7 @@ GameObject:
   - component: {fileID: 183960395848439939}
   - component: {fileID: 6724018728237573742}
   - component: {fileID: 87777436681311480}
+  - component: {fileID: 8611301508653268795}
   m_Layer: 0
   m_Name: Actions
   m_TagString: Untagged
@@ -472,6 +473,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Label: Following target
+  m_currentState: 0
+--- !u!114 &8611301508653268795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6742223461460846237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 492e7fc5839facd47859b63d3f571bfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Label: Next turn
   m_currentState: 0
 --- !u!1 &7276820154010669371
 GameObject:
