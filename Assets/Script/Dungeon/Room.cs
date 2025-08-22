@@ -53,7 +53,6 @@ namespace SGGames.Scripts.Dungeon
 
         private void RoomClearAndDropChest()
         {
-            Debug.Log("RoomClearAndDropChest");
             m_gameEvent.Raise(Global.GameEventType.RoomCleared);
             m_spawnChestEvent.Raise(m_treasureChestSpawnPoint.position);
         }

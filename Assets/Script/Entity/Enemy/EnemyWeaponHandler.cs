@@ -42,8 +42,6 @@ namespace SGGames.Scripts.Entities
         
         private void OnAllProjectilesFromAttackStopped()
         {
-            // Handle logic when all projectiles from the current attack have stopped
-            Debug.Log($"All projectiles from attack group {m_attackGroupID} have stopped");
             // Generate new group ID for next attack
             m_weaponManager.ChangeWeaponState(Global.WeaponState.Complete);
             m_attackGroupID = $"Enemy_{GetInstanceID()}_{Time.time}";
