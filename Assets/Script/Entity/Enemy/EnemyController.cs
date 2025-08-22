@@ -167,6 +167,9 @@ namespace SGGames.Scripts.Entities
 
         public void FinishTurn()
         {
+            //Prevent dead enemy trigger events
+            if (m_enemyHealth.IsDead) return;
+           
             m_switchTurnEvent.Raise(new TurnBaseEventData
             {
                 TurnBaseState = Global.TurnBaseState.EnemyFinishedTurn,

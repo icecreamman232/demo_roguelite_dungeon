@@ -83,6 +83,14 @@ namespace SGGames.Scripts.Managers
                     return;
                 }
             }
+
+            //If this is the last enemy, switch to player turn immediately
+            if (HasAllEnemiesDead() && m_turnBaseState == Global.TurnBaseState.EnemyTakeTurn)
+            {
+                m_currentEnemyIndex = 0;
+                ResetEnemyTurnBaseStatus();
+                SwitchToPlayerTurn();
+            }
         }
 
         private void SwitchToPlayerTurn()
@@ -180,6 +188,14 @@ namespace SGGames.Scripts.Managers
                     }
                     break;
                 case Global.TurnBaseState.PlayerFinishedTurn:
+                    //All enemies are dead, switch to player turn immediately
+                    if (HasAllEnemiesDead())
+                    {
+                        m_currentEnemyIndex = 0;
+                        ResetEnemyTurnBaseStatus();
+                        SwitchToPlayerTurn();
+                        return;
+                    }
                     SwitchToEnemyTurn();
                     break;
             }
