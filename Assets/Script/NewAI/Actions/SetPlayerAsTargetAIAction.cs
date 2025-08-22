@@ -1,6 +1,5 @@
-using SGGames.Script.Core;
-using SGGames.Script.Managers;
-using UnityEngine;
+using SGGames.Scripts.Core;
+using SGGames.Scripts.Managers;
 
 namespace SGGames.Scripts.AI
 {

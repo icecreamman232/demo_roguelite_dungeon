@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace SGGames.Script.Events
+namespace SGGames.Scripts.Events
 {
     [CreateAssetMenu(fileName = "Update Action Point UI Event", menuName = "SGGames/Event/Update Action Point UI ")]
     public class UpdateActionPointUIEvent : ScriptableEvent<ActionPointUIData> { }

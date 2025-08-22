@@ -1,8 +1,8 @@
-using SGGames.Script.Core;
-using SGGames.Script.Events;
+using SGGames.Scripts.Core;
+using SGGames.Scripts.Events;
 using UnityEngine;
 
-namespace SGGames.Script.Pickables
+namespace SGGames.Scripts.Pickables
 {
     [RequireComponent(typeof(CircleCollider2D))]
     public class CurrencyPicker : ItemPicker

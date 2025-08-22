@@ -1,6 +1,6 @@
-using SGGames.Script.Data;
-using SGGames.Script.Events;
-using SGGames.Script.HealthSystem;
+using SGGames.Scripts.Data;
+using SGGames.Scripts.Events;
+using SGGames.Scripts.HealthSystem;
 using UnityEngine;
 using Random = UnityEngine.Random;
 

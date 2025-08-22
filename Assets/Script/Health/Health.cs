@@ -1,9 +1,9 @@
 using System;
 using System.Collections;
-using SGGames.Script.Entity;
+using SGGames.Scripts.Entities;
 using UnityEngine;
 
-namespace SGGames.Script.HealthSystem
+namespace SGGames.Scripts.HealthSystem
 {
     /// <summary>
     /// Base class to compute health for entity

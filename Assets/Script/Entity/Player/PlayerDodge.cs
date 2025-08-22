@@ -1,11 +1,10 @@
-using SGGames.Script.Core;
-using SGGames.Script.Data;
-using SGGames.Script.Entity;
-using SGGames.Script.Items;
+using SGGames.Scripts.Core;
+using SGGames.Scripts.Data;
+using SGGames.Scripts.Items;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace SGGames.Script.Entity
+namespace SGGames.Scripts.Entities
 {
     public class PlayerDodge : EntityBehavior
     {

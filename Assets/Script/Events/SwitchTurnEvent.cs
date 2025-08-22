@@ -1,10 +1,12 @@
 using System;
-using SGGames.Script.Core;
-
+using SGGames.Scripts.Core;
 using UnityEngine;
 
-namespace SGGames.Script.Events
+namespace SGGames.Scripts.Events
 {
+    /// <summary>
+    /// Event for switch turn.
+    /// </summary>
     [CreateAssetMenu(fileName = "Switch Turn Event", menuName = "SGGames/Event/Switch Turn")]
     public class SwitchTurnEvent : ScriptableEvent<TurnBaseEventData> { }
 

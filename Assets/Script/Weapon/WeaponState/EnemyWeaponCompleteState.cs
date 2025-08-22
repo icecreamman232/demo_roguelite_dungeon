@@ -1,8 +1,7 @@
+using SGGames.Scripts.Core;
+using SGGames.Scripts.Modules;
 
-using SGGames.Script.Core;
-using SGGames.Script.Modules;
-
-namespace SGGames.Script.Weapons
+namespace SGGames.Scripts.Weapons
 {
     public class EnemyWeaponCompleteState : IWeaponState
     {
@@ -18,15 +17,9 @@ namespace SGGames.Script.Weapons
             m_transitioner.ChangeState(Global.WeaponState.Ready);
         }
 
-        public void Update(Weapon weapon)
-        {
-            
-        }
+        public void Update(Weapon weapon) { }
 
-        public void Exit(Weapon weapon)
-        {
-            
-        }
+        public void Exit(Weapon weapon) { }
     }
 }
 

@@ -1,15 +1,14 @@
 using System.Collections;
-using SGGames.Script.Core;
-using SGGames.Script.Data;
 using SGGames.Script.Dungeon;
-using SGGames.Script.EditorExtensions;
-using SGGames.Script.Events;
-using SGGames.Script.UI;
+using SGGames.Scripts.Core;
+using SGGames.Scripts.Data;
+using SGGames.Scripts.EditorExtensions;
+using SGGames.Scripts.Events;
+using SGGames.Scripts.UI;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-
-namespace SGGames.Script.Managers
+namespace SGGames.Scripts.Managers
 {
     public class LevelManager : MonoBehaviour, IGameService
     {

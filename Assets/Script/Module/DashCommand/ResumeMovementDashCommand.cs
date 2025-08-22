@@ -1,7 +1,7 @@
-using SGGames.Script.Entity;
+using SGGames.Scripts.Entities;
 using UnityEngine;
 
-namespace SGGames.Script.Modules
+namespace SGGames.Scripts.Modules
 {
     public class ResumeMovementDashCommand : IDashCommand
     {

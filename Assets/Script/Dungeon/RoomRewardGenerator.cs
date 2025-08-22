@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using SGGames.Script.Core;
+using SGGames.Scripts.Core;
 using UnityEngine;
 
 
-namespace SGGames.Script.Dungeon
+namespace SGGames.Scripts.Dungeon
 {
     public class RoomRewardGenerator
     {

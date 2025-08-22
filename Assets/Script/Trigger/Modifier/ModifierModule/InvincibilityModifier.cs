@@ -1,17 +1,15 @@
 using System;
-using SGGames.Script.Entity;
+using SGGames.Script.Items;
+using SGGames.Scripts.Entities;
 using UnityEngine;
 
-namespace SGGames.Script.Items
+namespace SGGames.Scripts.Items
 {
     [Serializable]
     public class InvincibilityModifier : DurationBasedModifier
     {
-        public InvincibilityModifier(PlayerController controller, float duration = 0) : base(controller, duration)
-        {
-            
-        }
-
+        public InvincibilityModifier(PlayerController controller, float duration = 0) : base(controller, duration) { }
+        
         public override void Apply()
         {
             if (m_entity.IsPlayer())

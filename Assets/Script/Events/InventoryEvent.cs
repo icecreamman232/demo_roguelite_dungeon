@@ -1,9 +1,9 @@
 using System;
-using SGGames.Script.Core;
-using SGGames.Script.Events;
+using SGGames.Scripts.Core;
+using SGGames.Scripts.Events;
 using UnityEngine;
 
-namespace SGGames.Script.Data
+namespace SGGames.Scripts.Data
 {
     [CreateAssetMenu(fileName = "Inventory Event", menuName = "SGGames/Event/Inventory")]
     public class InventoryEvent: ScriptableEvent<InventoryEventData> { }

@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using SGGames.Script.Core;
+using SGGames.Scripts.Core;
 using UnityEngine;
 
-namespace SGGames.Script.Data
+namespace SGGames.Scripts.Data
 {
     [CreateAssetMenu(fileName = "New Room Container", menuName = "SGGames/Data/Room Container")]
     public class RoomContainer : IDataContainer<RoomData>

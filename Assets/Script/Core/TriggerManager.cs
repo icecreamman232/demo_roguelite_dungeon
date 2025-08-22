@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using SGGames.Script.Items;
+using SGGames.Scripts.Items;
 using UnityEngine;
 
-namespace SGGames.Script.Core
+namespace SGGames.Scripts.Core
 {
     public class TriggerManager : MonoBehaviour, IGameService
     {

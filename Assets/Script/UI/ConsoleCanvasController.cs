@@ -1,10 +1,10 @@
-using SGGames.Script.Core;
-using SGGames.Script.Managers;
+using SGGames.Scripts.Core;
+using SGGames.Scripts.Managers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace SGGames.Script.UI
+namespace SGGames.Scripts.UI
 {
     public class ConsoleCanvasController : MonoBehaviour
     {

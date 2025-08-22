@@ -1,9 +1,9 @@
-using SGGames.Script.Core;
-using SGGames.Script.Data;
-using SGGames.Script.Events;
+using SGGames.Scripts.Core;
+using SGGames.Scripts.Data;
+using SGGames.Scripts.Events;
 using UnityEngine;
 
-namespace SGGames.Script.Skills
+namespace SGGames.Scripts.Skills
 {
     public class ItemManager : MonoBehaviour
     {

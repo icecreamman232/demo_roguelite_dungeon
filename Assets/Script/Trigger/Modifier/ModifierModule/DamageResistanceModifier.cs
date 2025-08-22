@@ -1,5 +1,6 @@
 using System;
-using SGGames.Script.Entity;
+using SGGames.Scripts.Entities;
+using SGGames.Scripts.Items;
 using UnityEngine;
 
 namespace SGGames.Script.Items

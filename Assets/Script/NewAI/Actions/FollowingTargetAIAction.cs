@@ -1,9 +1,7 @@
-using SGGames.Script.Core;
-using SGGames.Scripts.AI;
+using SGGames.Scripts.Core;
 using UnityEngine;
 
-
-namespace SGGames.Script.AI
+namespace SGGames.Scripts.AI
 {
     public class FollowingTargetAIAction : AIAction
     {

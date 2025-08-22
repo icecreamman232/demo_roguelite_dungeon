@@ -1,7 +1,10 @@
 using UnityEngine;
 
-namespace SGGames.Script.Data
+namespace SGGames.Scripts.Data
 {
+    /// <summary>
+    /// Centralize all player data.
+    /// </summary>
     [CreateAssetMenu(fileName = "Player Data", menuName = "SGGames/Player Data")]
     public class PlayerData : ScriptableObject
     {
@@ -33,7 +36,6 @@ namespace SGGames.Script.Data
         public int StaminaCostForDash => m_staminaCostForDash;
         public float DefaultDamageResistance => m_defaultDamageResistance;
         public float MaxDamageResistance => m_maxDamageResistance;
-        
         public float DefaultDodgeChance => m_dodgeChance;
         public float MaxDodgeChance => m_maxDodgeChance;
     }

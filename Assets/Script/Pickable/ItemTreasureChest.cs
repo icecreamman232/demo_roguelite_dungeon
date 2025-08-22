@@ -1,7 +1,7 @@
-using SGGames.Script.Events;
+using SGGames.Scripts.Events;
 using UnityEngine;
 
-namespace SGGames.Script.Pickable
+namespace SGGames.Scripts.Pickable
 {
     public class ItemTreasureChest : TreasureChest
     {

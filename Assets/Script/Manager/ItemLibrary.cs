@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using SGGames.Script.Core;
-using SGGames.Script.Data;
+using SGGames.Scripts.Core;
+using SGGames.Scripts.Data;
 using UnityEngine;
 
-namespace SGGames.Script.Managers
+namespace SGGames.Scripts.Managers
 {
     public class ItemLibrary : MonoBehaviour, IGameService
     {

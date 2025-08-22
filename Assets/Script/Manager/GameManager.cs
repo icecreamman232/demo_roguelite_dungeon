@@ -1,10 +1,13 @@
 using System;
-using SGGames.Script.Core;
-using SGGames.Script.Events;
+using SGGames.Scripts.Core;
+using SGGames.Scripts.Events;
 using UnityEngine;
 
-namespace SGGames.Script.Managers
+namespace SGGames.Scripts.Managers
 {
+    /// <summary>
+    /// Managing pause and unpause game.
+    /// </summary>
     public class GameManager : MonoBehaviour, IGameService
     {
         [SerializeField] private GameEvent m_gameEvent;

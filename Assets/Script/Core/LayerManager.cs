@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SGGames.Script.Core
+namespace SGGames.Scripts.Core
 {
     /// <summary>
     /// Static class contains helper method and mask and layer define values
@@ -22,7 +22,12 @@ namespace SGGames.Script.Core
         public static int NoWalkableMask = ObstacleMask | DoorMask | EnemyMask;
         #endregion
         
-        
+        /// <summary>
+        /// Checking whether layer is in layer mask
+        /// </summary>
+        /// <param name="layerWantToCheck"></param>
+        /// <param name="layerMask"></param>
+        /// <returns></returns>
         public static bool IsInLayerMask(int layerWantToCheck, LayerMask layerMask)
         {
             if (((1 << layerWantToCheck) & layerMask) != 0)

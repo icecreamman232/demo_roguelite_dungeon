@@ -1,8 +1,8 @@
-using SGGames.Script.Core;
-using SGGames.Script.Events;
+using SGGames.Scripts.Core;
+using SGGames.Scripts.Events;
 using UnityEngine;
 
-namespace SGGames.Script.Modules
+namespace SGGames.Scripts.Modules
 {
     public class EffectTile : MonoBehaviour
     {

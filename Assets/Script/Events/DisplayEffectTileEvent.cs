@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using SGGames.Script.Core;
+using SGGames.Scripts.Core;
 using UnityEngine;
 
-namespace SGGames.Script.Events
+namespace SGGames.Scripts.Events
 {
     [CreateAssetMenu(fileName = "Display Effect Tile Event", menuName = "SGGames/Event/Display Effect Tile")]
     public class DisplayEffectTileEvent : ScriptableEvent<EffectTileEventData> { }

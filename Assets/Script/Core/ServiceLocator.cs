@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using SGGames.Script.UI;
+using SGGames.Scripts.UI;
 
-namespace SGGames.Script.Core
+namespace SGGames.Scripts.Core
 {
     public class ServiceLocator : Singleton<ServiceLocator>
     {

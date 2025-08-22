@@ -1,9 +1,9 @@
 using System;
 using SGGames.Script.Data;
-using SGGames.Script.HealthSystem;
+using SGGames.Scripts.HealthSystem;
 using UnityEngine;
 
-namespace SGGames.Script.Weapons
+namespace SGGames.Scripts.Weapons
 {
     public class Projectile : MonoBehaviour
     {

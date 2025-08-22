@@ -1,8 +1,8 @@
 using System;
-using SGGames.Script.Core;
+using SGGames.Scripts.Core;
 using UnityEngine;
 
-namespace SGGames.Script.Events
+namespace SGGames.Scripts.Events
 {
     [CreateAssetMenu(fileName = "Hud Button Event", menuName = "SGGames/Event/Hud Button")]
     public class HudButtonEvent : ScriptableEvent<HudButtonEventData> { }

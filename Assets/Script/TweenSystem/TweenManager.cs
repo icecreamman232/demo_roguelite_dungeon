@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using SGGames.Script.Core;
+using SGGames.Scripts.Core;
 using UnityEngine;
 
-namespace SGGames.Script.TweenSystem
+namespace SGGames.Scripts.TweenSystem
 {
     public class TweenManager : PersistentSingleton<TweenManager>
     {

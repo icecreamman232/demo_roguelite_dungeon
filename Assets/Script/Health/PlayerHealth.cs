@@ -1,14 +1,14 @@
 using System;
 using System.Collections;
-using SGGames.Script.Core;
-using SGGames.Script.Data;
-using SGGames.Script.Entity;
-using SGGames.Script.Events;
-using SGGames.Script.Items;
-using SGGames.Script.Managers;
+using SGGames.Scripts.Managers;
+using SGGames.Scripts.Core;
+using SGGames.Scripts.Data;
+using SGGames.Scripts.Entities;
+using SGGames.Scripts.Events;
+using SGGames.Scripts.Items;
 using UnityEngine;
 
-namespace SGGames.Script.HealthSystem
+namespace SGGames.Scripts.HealthSystem
 {
     public class PlayerHealth : Health
     {

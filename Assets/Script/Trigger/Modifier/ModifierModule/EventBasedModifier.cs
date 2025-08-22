@@ -1,6 +1,6 @@
-using SGGames.Script.Core;
+using SGGames.Scripts.Core;
 
-namespace SGGames.Script.Items
+namespace SGGames.Scripts.Items
 {
     public class EventBasedModifier : Modifier
     {

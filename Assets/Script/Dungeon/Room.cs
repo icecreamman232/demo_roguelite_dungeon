@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using SGGames.Script.Core;
-using SGGames.Script.Events;
-using SGGames.Script.PathFindings;
-using SGGames.Scripts.Entity;
+using SGGames.Scripts.Core;
+using SGGames.Scripts.PathFindings;
+using SGGames.Scripts.Entities;
+using SGGames.Scripts.Events;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 

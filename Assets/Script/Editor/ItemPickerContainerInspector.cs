@@ -1,5 +1,5 @@
-using SGGames.Script.Data;
-using SGGames.Script.Pickables;
+using SGGames.Scripts.Data;
+using SGGames.Scripts.Pickables;
 using UnityEditor;
 using UnityEngine;
 

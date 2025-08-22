@@ -1,6 +1,5 @@
-using UnityEngine;
 
-namespace SGGames.Script.Weapons
+namespace SGGames.Scripts.Weapons
 {
     public interface IProjectileSpawner
     {

@@ -1,7 +1,7 @@
-using SGGames.Script.Core;
+using SGGames.Scripts.Core;
 using UnityEngine;
 
-namespace SGGames.Script.Data
+namespace SGGames.Scripts.Data
 {
     public class ItemData : ScriptableObject
     {

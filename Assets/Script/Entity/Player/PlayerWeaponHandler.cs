@@ -1,10 +1,10 @@
 using System;
-using SGGames.Script.Core;
-using SGGames.Script.Managers;
-using SGGames.Script.Weapons;
+using SGGames.Scripts.Core;
+using SGGames.Scripts.Managers;
+using SGGames.Scripts.Weapons;
 using UnityEngine;
 
-namespace SGGames.Script.Entity
+namespace SGGames.Scripts.Entities
 {
     public class PlayerWeaponHandler : EntityBehavior, IWeaponOwner
     {

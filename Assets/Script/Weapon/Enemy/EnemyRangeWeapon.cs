@@ -1,12 +1,10 @@
-using System;
-using SGGames.Script.Core;
-using SGGames.Script.Data;
-using SGGames.Script.Entity;
-using SGGames.Script.Modules;
-using SGGames.Scripts.Entity;
+using SGGames.Scripts.Core;
+using SGGames.Scripts.Data;
+using SGGames.Scripts.Entities;
+using SGGames.Scripts.Modules;
 using UnityEngine;
 
-namespace SGGames.Script.Weapons
+namespace SGGames.Scripts.Weapons
 {
     public class EnemyRangeWeapon : Weapon, IProjectileSpawner, 
         IStateTransitioner<Global.WeaponState>, IProjectileTrackable

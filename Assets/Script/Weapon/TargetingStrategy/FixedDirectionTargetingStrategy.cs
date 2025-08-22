@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace SGGames.Script.Weapons
+namespace SGGames.Scripts.Weapons
 {
     [Serializable]
     public class FixedDirectionTargetingStrategy : ITargetingStrategy

@@ -1,12 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using SGGames.Script.Core;
-using SGGames.Script.Managers;
-using SGGames.Script.PathFindings;
-using SGGames.Scripts.Entity;
+using SGGames.Scripts.Core;
+using SGGames.Scripts.Managers;
+using SGGames.Scripts.PathFindings;
 using UnityEngine;
 
-namespace SGGames.Script.Entity
+namespace SGGames.Scripts.Entities
 {
     public class EnemyMovement : EntityMovement
     {

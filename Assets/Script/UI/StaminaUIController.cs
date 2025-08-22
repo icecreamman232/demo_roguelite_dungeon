@@ -1,5 +1,4 @@
-using System;
-using SGGames.Script.Events;
+using SGGames.Scripts.Events;
 using UnityEngine;
 
 namespace SGGames.Scripts.UI

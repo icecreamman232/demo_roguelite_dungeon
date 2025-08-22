@@ -1,9 +1,8 @@
-using SGGames.Script.Core;
-using SGGames.Script.Data;
-using SGGames.Script.Events;
+using SGGames.Scripts.Core;
+using SGGames.Scripts.Events;
 using UnityEngine;
 
-namespace SGGames.Script.Pickables
+namespace SGGames.Scripts.Pickables
 {
     public class ItemPicker : MonoBehaviour
     {

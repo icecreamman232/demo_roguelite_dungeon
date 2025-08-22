@@ -1,12 +1,12 @@
 using System;
 using System.Collections;
-using SGGames.Script.Data;
 using SGGames.Script.Modules;
 using SGGames.Script.UI;
-using SGGames.Scripts.Entity;
+using SGGames.Scripts.Data;
+using SGGames.Scripts.Entities;
 using UnityEngine;
 
-namespace SGGames.Script.HealthSystem
+namespace SGGames.Scripts.HealthSystem
 {
     public class EnemyHealth : Health, IRevivable
     {

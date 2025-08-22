@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SGGames.Script.Data
+namespace SGGames.Scripts.Data
 {
     [CreateAssetMenu(fileName = "Item Rarity Table", menuName = "SGGames/Data/Item Rarity Table")]
     public class ItemRarityTable : ScriptableObject

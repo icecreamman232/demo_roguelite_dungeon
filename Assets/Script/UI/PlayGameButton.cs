@@ -1,9 +1,9 @@
-using SGGames.Script.Core;
+using SGGames.Scripts.Core;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.EventSystems;
 
-namespace SGGames.Script.UI
+namespace SGGames.Scripts.UI
 {
     public class PlayGameButton : ButtonController
     {

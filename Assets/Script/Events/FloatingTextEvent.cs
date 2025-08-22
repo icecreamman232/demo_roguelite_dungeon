@@ -1,8 +1,8 @@
 using System;
-using SGGames.Script.Events;
+using SGGames.Scripts.Events;
 using UnityEngine;
 
-namespace SGGames.Script.Data
+namespace SGGames.Scripts.Data
 {
     [CreateAssetMenu(fileName = "Floating Text Event", menuName = "SGGames/Event/Floating Text")]
     public class FloatingTextEvent: ScriptableEvent<FloatingTextData> { }

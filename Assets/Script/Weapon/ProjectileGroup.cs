@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace SGGames.Script.Weapons
+namespace SGGames.Scripts.Weapons
 {
     public class ProjectileGroup
     {

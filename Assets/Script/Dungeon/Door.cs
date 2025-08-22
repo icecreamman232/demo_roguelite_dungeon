@@ -1,10 +1,9 @@
-using System;
-using SGGames.Script.Core;
-using SGGames.Script.Events;
-using SGGames.Script.Managers;
+using SGGames.Scripts.Core;
+using SGGames.Scripts.Events;
+using SGGames.Scripts.Managers;
 using UnityEngine;
 
-namespace SGGames.Script.Dungeon
+namespace SGGames.Scripts.Dungeon
 {
     public class Door : MonoBehaviour
     {

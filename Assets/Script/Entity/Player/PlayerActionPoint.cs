@@ -1,11 +1,10 @@
-using SGGames.Script.Core;
-using SGGames.Script.Data;
-using SGGames.Script.Entity;
-using SGGames.Script.Events;
+using SGGames.Scripts.Core;
+using SGGames.Scripts.Data;
+using SGGames.Scripts.Events;
 using UnityEngine;
 
 
-namespace SGGames.Script.Entity
+namespace SGGames.Scripts.Entities
 {
     public class PlayerActionPoint : EntityBehavior
     {

@@ -1,5 +1,5 @@
 
-namespace SGGames.Script.Modules
+namespace SGGames.Scripts.Modules
 {
     /// <summary>
     /// Interface to class that need ability

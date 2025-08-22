@@ -1,9 +1,8 @@
-using System;
 using System.Collections;
-using SGGames.Script.Core;
-using SGGames.Script.Data;
-using SGGames.Script.Events;
-using SGGames.Script.TweenSystem;
+using SGGames.Scripts.Core;
+using SGGames.Scripts.Data;
+using SGGames.Scripts.Events;
+using SGGames.Scripts.TweenSystem;
 using UnityEngine;
 
 namespace SGGames.Script.UI

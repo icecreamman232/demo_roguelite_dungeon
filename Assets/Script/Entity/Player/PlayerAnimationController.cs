@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SGGames.Script.Entity
+namespace SGGames.Scripts.Entities
 {
     public class PlayerAnimationController : MonoBehaviour
     {
@@ -13,6 +13,5 @@ namespace SGGames.Script.Entity
         {
             m_animator.SetTrigger(CANT_MOVE_ANIMATION);
         }
-       
     }
 }

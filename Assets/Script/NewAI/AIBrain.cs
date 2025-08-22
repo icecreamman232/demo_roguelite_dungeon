@@ -1,6 +1,6 @@
-using SGGames.Script.Core;
-using SGGames.Script.Events;
-using SGGames.Scripts.Entity;
+using SGGames.Scripts.Core;
+using SGGames.Scripts.Events;
+using SGGames.Scripts.Entities;
 using UnityEngine;
 
 namespace SGGames.Scripts.AI

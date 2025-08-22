@@ -1,12 +1,13 @@
 using System.Collections;
-using SGGames.Script.Core;
-using SGGames.Script.Entity;
-using SGGames.Script.Events;
+using SGGames.Scripts.Core;
+using SGGames.Scripts.Entities;
+using SGGames.Scripts.Events;
 using SGGames.Script.Managers;
+using SGGames.Scripts.Managers;
 using TMPro;
 using UnityEngine;
 
-namespace SGGames.Script.UI
+namespace SGGames.Scripts.UI
 {
     public class ActionPointUI : MonoBehaviour
     {

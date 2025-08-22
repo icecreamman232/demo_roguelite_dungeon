@@ -1,8 +1,8 @@
-using SGGames.Script.Data;
+using SGGames.Scripts.Data;
 using UnityEditor;
 using UnityEngine;
 
-namespace SGGames.Script.EditorExtensions
+namespace SGGames.Scripts.EditorExtensions
 {
     [CustomEditor(typeof(AssetPathContainer))]
     public class AssetPathContainerInspector : Editor

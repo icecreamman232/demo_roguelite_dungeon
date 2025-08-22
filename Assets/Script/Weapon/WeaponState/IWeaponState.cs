@@ -1,9 +1,6 @@
-using SGGames.Script.Modules;
+using SGGames.Scripts.Modules;
 
-namespace SGGames.Script.Weapons
+namespace SGGames.Scripts.Weapons
 {
-    public interface IWeaponState : IState<Weapon>
-    {
-        
-    }
+    public interface IWeaponState : IState<Weapon> { }
 }

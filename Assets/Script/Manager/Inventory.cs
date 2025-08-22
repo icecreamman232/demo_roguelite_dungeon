@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using SGGames.Script.Core;
+using SGGames.Scripts.Core;
 
 
-namespace SGGames.Script.Managers
+namespace SGGames.Scripts.Managers
 {
     /// <summary>
     /// Handle operation related to item that will be presented in main inventory

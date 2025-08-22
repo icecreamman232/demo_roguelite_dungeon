@@ -1,8 +1,8 @@
-using SGGames.Script.Entity;
-using SGGames.Script.Modules;
+using SGGames.Scripts.Entities;
+using SGGames.Scripts.Modules;
 using UnityEngine;
 
-namespace SGGames.Script.HealthSystem
+namespace SGGames.Scripts.HealthSystem
 {
     public class ReviveComponent : EntityBehavior
     {

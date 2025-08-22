@@ -1,17 +1,16 @@
 using System;
 using System.Collections.Generic;
-using SGGames.Script.Core;
-using SGGames.Script.Data;
 using SGGames.Script.Dungeon;
-using SGGames.Script.Entity;
-using SGGames.Script.Events;
-using SGGames.Script.HealthSystem;
-using SGGames.Script.Managers;
 using SGGames.Script.Modules;
+using SGGames.Scripts.Events;
+using SGGames.Scripts.HealthSystem;
+using SGGames.Scripts.Managers;
 using SGGames.Scripts.AI;
+using SGGames.Scripts.Core;
+using SGGames.Scripts.Data;
 using UnityEngine;
 
-namespace SGGames.Scripts.Entity
+namespace SGGames.Scripts.Entities
 {
     [Serializable]
     public class EnemyController : EntityBehavior, IRevivable , IEntityIdentifier

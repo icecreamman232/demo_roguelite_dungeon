@@ -2,7 +2,7 @@
 using SGGames.Scripts.EditorExtensions;
 using UnityEngine;
 
-namespace SGGames.Script.Data
+namespace SGGames.Scripts.Data
 {
     [Serializable]
     public class WeightValue

@@ -1,7 +1,7 @@
 using System.Reflection;
 using SGGames.Script.Data;
-using SGGames.Script.HealthSystem;
-using SGGames.Script.Weapons;
+using SGGames.Scripts.HealthSystem;
+using SGGames.Scripts.Weapons;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;

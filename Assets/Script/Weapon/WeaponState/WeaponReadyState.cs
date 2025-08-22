@@ -1,6 +1,5 @@
-using SGGames.Script.Data;
 
-namespace SGGames.Script.Weapons
+namespace SGGames.Scripts.Weapons
 {
     public class WeaponReadyState : IWeaponState
     {
@@ -12,15 +11,8 @@ namespace SGGames.Script.Weapons
             }
         }
 
-        public void Update(Weapon weapon)
-        {
-            
-        }
-
-        public void Exit(Weapon weapon)
-        {
-            
-        }
+        public void Update(Weapon weapon) { }
+        public void Exit(Weapon weapon) { }
     }
 }
 

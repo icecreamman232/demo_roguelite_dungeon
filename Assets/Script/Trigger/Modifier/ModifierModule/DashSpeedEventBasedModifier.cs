@@ -1,6 +1,7 @@
 using System;
-using SGGames.Script.Core;
-using SGGames.Script.Entity;
+using SGGames.Scripts.Core;
+using SGGames.Scripts.Entities;
+using SGGames.Scripts.Items;
 
 namespace SGGames.Script.Items
 {

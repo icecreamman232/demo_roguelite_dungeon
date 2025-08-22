@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace SGGames.Script.Modules
+namespace SGGames.Scripts.Modules
 {
     [CreateAssetMenu(fileName = "Play Animation Command",menuName = "SGGames/Command/Trigger Animation")]
     public class TriggerAnimationCommand : ICommand

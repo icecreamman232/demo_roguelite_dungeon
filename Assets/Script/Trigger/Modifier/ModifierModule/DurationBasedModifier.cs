@@ -1,9 +1,9 @@
-using SGGames.Script.Skills;
+using SGGames.Script.Items;
 using UnityEngine;
 
-namespace SGGames.Script.Items
+namespace SGGames.Scripts.Items
 {
-    public class DurationBasedModifier :Modifier
+    public class DurationBasedModifier : Modifier
     {
         protected float m_duration;
         protected float m_timeElapsed;

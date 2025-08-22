@@ -1,10 +1,11 @@
 using System.Collections.Generic;
-using SGGames.Script.Core;
-using SGGames.Script.Data;
-using SGGames.Script.Dungeon;
+using SGGames.Script.Managers;
+using SGGames.Scripts.Core;
+using SGGames.Scripts.Data;
+using SGGames.Scripts.Dungeon;
 using UnityEngine;
 
-namespace SGGames.Script.Managers
+namespace SGGames.Scripts.Managers
 {
     public class RoomManager : MonoBehaviour, IGameService
     {

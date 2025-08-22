@@ -1,10 +1,7 @@
 using UnityEngine;
 
-namespace SGGames.Script.EditorExtensions
+namespace SGGames.Scripts.EditorExtensions
 {
     // Custom attribute to mark fields that should show their properties in the Inspector
-    public class ShowPropertiesAttribute : PropertyAttribute
-    {
-        
-    }
+    public class ShowPropertiesAttribute : PropertyAttribute { }
 }

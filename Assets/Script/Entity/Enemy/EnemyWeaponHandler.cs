@@ -1,10 +1,9 @@
 using System.Collections.Generic;
-using SGGames.Script.Core;
-using SGGames.Script.Weapons;
-using SGGames.Scripts.Entity;
+using SGGames.Scripts.Core;
+using SGGames.Scripts.Weapons;
 using UnityEngine;
 
-namespace SGGames.Script.Entity
+namespace SGGames.Scripts.Entities
 {
     public class EnemyWeaponHandler : EntityBehavior, IWeaponOwner
     {

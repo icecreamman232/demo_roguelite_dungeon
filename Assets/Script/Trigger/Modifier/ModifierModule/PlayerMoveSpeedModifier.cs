@@ -1,7 +1,6 @@
 using System;
-using SGGames.Script.Entity;
 
-namespace SGGames.Script.Items
+namespace SGGames.Scripts.Items
 {
     public class PlayerMoveSpeedModifier : DurationBasedModifier
     {
@@ -15,19 +14,6 @@ namespace SGGames.Script.Items
             m_isFlatValue = isFlatValue;
             m_bonusSpeed = bonusSpeed;
         }
-
-        public override void Apply()
-        {
-            
-            base.Apply();
-        }
-
-        public override void Remove()
-        {
-            
-            base.Remove();
-        }
     }
-
 }
 

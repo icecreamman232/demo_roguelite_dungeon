@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
-using SGGames.Script.Core;
-using SGGames.Script.Pickables;
+using SGGames.Scripts.Pickables;
+using SGGames.Scripts.Core;
 using UnityEngine;
 
-namespace SGGames.Script.Data
+namespace SGGames.Scripts.Data
 {
     [CreateAssetMenu(fileName = "Item Picker Container", menuName = "SGGames/Data/Item Picker Container")]
     public class ItemPickerContainer : ScriptableObject

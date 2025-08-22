@@ -1,8 +1,8 @@
 using System;
-using SGGames.Script.Core;
+using SGGames.Scripts.Core;
 using UnityEngine;
 
-namespace SGGames.Script.Skills
+namespace SGGames.Scripts.Skills
 {
     [CreateAssetMenu(fileName = "Trigger Impact Event", menuName = "SGGames/Event/Trigger Impact")]
     public class TriggerImpactEvent : ScriptableObject

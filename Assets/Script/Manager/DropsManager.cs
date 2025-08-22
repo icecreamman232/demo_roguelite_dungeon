@@ -1,11 +1,9 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using SGGames.Script.Core;
-using SGGames.Script.Data;
-using SGGames.Script.Events;
-using SGGames.Script.PathFindings;
-using Unity.VisualScripting;
+using SGGames.Scripts.Core;
+using SGGames.Scripts.Data;
+using SGGames.Scripts.Events;
+using SGGames.Scripts.Managers;
+using SGGames.Scripts.PathFindings;
 using UnityEngine;
 using Random = UnityEngine.Random;
 

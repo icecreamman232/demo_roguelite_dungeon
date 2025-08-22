@@ -1,7 +1,7 @@
-using SGGames.Script.Core;
+using SGGames.Scripts.Core;
 using UnityEngine;
 
-namespace SGGames.Script.Entity
+namespace SGGames.Scripts.Entities
 {
     public class EnemyAnimationController : MonoBehaviour
     {

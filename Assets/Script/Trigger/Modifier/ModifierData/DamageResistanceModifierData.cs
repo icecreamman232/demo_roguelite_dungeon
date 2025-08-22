@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SGGames.Script.Items
+namespace SGGames.Scripts.Items
 {
     [CreateAssetMenu(fileName = "Damage Resistance Modifier Data", menuName = "SGGames/Modifier/Damage Resist")]
     public class DamageResistanceModifierData : ModifierData

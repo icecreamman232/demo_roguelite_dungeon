@@ -1,6 +1,6 @@
 using System;
 
-namespace SGGames.Script.Items
+namespace SGGames.Scripts.Items
 {
     [Serializable]
     public abstract class Modifier

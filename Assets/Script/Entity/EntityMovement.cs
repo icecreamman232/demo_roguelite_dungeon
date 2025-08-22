@@ -1,9 +1,9 @@
 using System;
-using SGGames.Script.Core;
-using SGGames.Script.Modules;
+using SGGames.Scripts.Core;
+using SGGames.Scripts.Modules;
 using UnityEngine;
 
-namespace SGGames.Script.Entity
+namespace SGGames.Scripts.Entities
 {
     public class EntityMovement : EntityBehavior
     {

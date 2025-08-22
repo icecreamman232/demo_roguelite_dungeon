@@ -1,10 +1,9 @@
 using System;
-using SGGames.Script.Core;
-using SGGames.Script.Entity;
+using SGGames.Scripts.Core;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace SGGames.Script.HealthSystem
+namespace SGGames.Scripts.HealthSystem
 {
     /// <summary>
     /// Base class to handle damage dealt to entity

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SGGames.Script.Data
+namespace SGGames.Scripts.Data
 {
     [CreateAssetMenu(fileName = "Asset Path Container", menuName = "SGGames/Asset Path Container")]
     public class AssetPathContainer : ScriptableObject

@@ -1,11 +1,11 @@
 using System.Collections;
-using SGGames.Script.Core;
-using SGGames.Script.Events;
+using SGGames.Scripts.Events;
+using SGGames.Scripts.Core;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.SceneManagement;
 
-namespace SGGames.Script.UI
+namespace SGGames.Scripts.UI
 {
     public class LoadingScreenController : MonoBehaviour, IGameService
     {

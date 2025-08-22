@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace SGGames.Script.Modules
+namespace SGGames.Scripts.Modules
 {
     [CreateAssetMenu(fileName = "Toggle Collider Command", menuName = "SGGames/Command/Toggle Collider")]
     public class ToggleColliderCommand : ICommand

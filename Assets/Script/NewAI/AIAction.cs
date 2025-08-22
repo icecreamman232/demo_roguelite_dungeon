@@ -1,4 +1,4 @@
-using SGGames.Script.Core;
+using SGGames.Scripts.Core;
 using UnityEngine;
 
 namespace SGGames.Scripts.AI

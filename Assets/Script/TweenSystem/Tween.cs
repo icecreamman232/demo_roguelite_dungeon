@@ -1,8 +1,8 @@
 using System;
-using SGGames.Script.Core;
+using SGGames.Scripts.Core;
 using UnityEngine;
 
-namespace SGGames.Script.TweenSystem
+namespace SGGames.Scripts.TweenSystem
 {
     public abstract class Tween
     {

@@ -1,11 +1,12 @@
-using SGGames.Script.Core;
-using SGGames.Script.Data;
-using SGGames.Script.Entity;
-using SGGames.Script.Items;
-using SGGames.Script.Modules;
+using SGGames.Script.Weapons;
+using SGGames.Scripts.Core;
+using SGGames.Scripts.Data;
+using SGGames.Scripts.Entities;
+using SGGames.Scripts.Items;
+using SGGames.Scripts.Modules;
 using UnityEngine;
 
-namespace SGGames.Script.Weapons
+namespace SGGames.Scripts.Weapons
 {
     public class PlayerDefaultRangedWeapon : Weapon, IProjectileSpawner
     {

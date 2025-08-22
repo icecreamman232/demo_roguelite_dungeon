@@ -1,11 +1,11 @@
 using System;
-using SGGames.Script.Core;
-using SGGames.Script.UI;
+using SGGames.Scripts.UI;
+using SGGames.Scripts.Core;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
-namespace SGGames.Script.Managers
+namespace SGGames.Scripts.Managers
 {
     /// <summary>
     /// Manager class for all input in game

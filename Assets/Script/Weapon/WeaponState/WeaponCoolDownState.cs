@@ -1,7 +1,7 @@
-using SGGames.Script.Data;
+using SGGames.Scripts.Data;
 using UnityEngine;
 
-namespace SGGames.Script.Weapons
+namespace SGGames.Scripts.Weapons
 {
     public class WeaponCoolDownState : IWeaponState
     {
@@ -28,10 +28,7 @@ namespace SGGames.Script.Weapons
             }
         }
 
-        public void Exit(Weapon weapon)
-        {
-            
-        }
+        public void Exit(Weapon weapon) { }
     }
 }
 

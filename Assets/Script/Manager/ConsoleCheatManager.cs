@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using SGGames.Script.EditorExtensions;
+using SGGames.Scripts.EditorExtensions;
 using UnityEngine;
 
-namespace SGGames.Script.Managers
+namespace SGGames.Scripts.Managers
 {
     /// <summary>
     /// Main class for cheat code used in game.

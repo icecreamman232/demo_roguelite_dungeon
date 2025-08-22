@@ -1,10 +1,8 @@
-
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-namespace SGGames.Script.UI
+namespace SGGames.Scripts.UI
 {
     public class ClickableButton : ButtonController
     {

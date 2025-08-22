@@ -1,8 +1,8 @@
 using System;
-using SGGames.Script.Core;
+using SGGames.Scripts.Core;
 using UnityEngine;
 
-namespace SGGames.Script.Items
+namespace SGGames.Scripts.Items
 {
     [CreateAssetMenu(fileName = "World Event", menuName = "SGGames/Event/World Event")]
     public class WorldEvent : ScriptableObject

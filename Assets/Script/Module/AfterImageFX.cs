@@ -1,9 +1,13 @@
 using System.Collections;
-using SGGames.Script.Core;
+using SGGames.Script.Modules;
+using SGGames.Scripts.Core;
 using UnityEngine;
 
-namespace SGGames.Script.Modules
+namespace SGGames.Scripts.Modules
 {
+    /// <summary>
+    /// FX controller to create after image effect for dash ability
+    /// </summary>
     public class AfterImageFX : MonoBehaviour
     {
         [SerializeField] private ObjectPooler m_imagePooler;

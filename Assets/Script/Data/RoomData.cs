@@ -1,7 +1,7 @@
-using SGGames.Script.Core;
+using SGGames.Scripts.Core;
 using UnityEngine;
 
-namespace SGGames.Script.Data
+namespace SGGames.Scripts.Data
 {
     [CreateAssetMenu(menuName = "SGGames/Data/Room", fileName = "New Room Data")]
     public class RoomData : ScriptableObject

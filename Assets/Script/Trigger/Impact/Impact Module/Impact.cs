@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SGGames.Script.Skills
+namespace SGGames.Scripts.Skills
 {
     public abstract class Impact : MonoBehaviour
     {

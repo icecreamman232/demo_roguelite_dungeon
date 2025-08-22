@@ -1,8 +1,8 @@
-using SGGames.Script.Core;
+using SGGames.Scripts.Core;
 using TMPro;
 using UnityEngine;
 
-namespace SGGames.Script.Modules
+namespace SGGames.Scripts.Modules
 {
     public class FloatingText : MonoBehaviour
     {

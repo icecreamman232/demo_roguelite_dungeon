@@ -1,4 +1,4 @@
-namespace SGGames.Script.PathFindings
+namespace SGGames.Scripts.PathFindings
 {
     public class GridController
     {

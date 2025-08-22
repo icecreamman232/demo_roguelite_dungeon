@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SGGames.Script.Modules
+namespace SGGames.Scripts.Modules
 {
     public interface IDashCommand
     {

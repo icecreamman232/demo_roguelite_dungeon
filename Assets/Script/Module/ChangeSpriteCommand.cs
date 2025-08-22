@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace SGGames.Script.Modules
+namespace SGGames.Scripts.Modules
 {
     [CreateAssetMenu(fileName = "Command Sequencer", menuName = "SGGames/Command/Change Sprite")]
     public class ChangeSpriteCommand : ICommand

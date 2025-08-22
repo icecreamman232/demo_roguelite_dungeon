@@ -1,7 +1,7 @@
-using SGGames.Script.Core;
+using SGGames.Scripts.Core;
 using UnityEngine;
 
-namespace SGGames.Script.Items
+namespace SGGames.Scripts.Items
 {
     public abstract class TriggerCondition : ScriptableObject
     {

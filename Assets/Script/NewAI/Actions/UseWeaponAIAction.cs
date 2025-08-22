@@ -1,7 +1,6 @@
-using SGGames.Script.Core;
-using SGGames.Scripts.AI;
+using SGGames.Scripts.Core;
 
-namespace SGGames.Script.AI
+namespace SGGames.Scripts.AI
 {
     public class UseWeaponAIAction : AIAction
     {

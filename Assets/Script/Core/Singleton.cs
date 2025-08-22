@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SGGames.Script.Core
+namespace SGGames.Scripts.Core
 {
     public class Singleton<T> : MonoBehaviour where T:Component
     {

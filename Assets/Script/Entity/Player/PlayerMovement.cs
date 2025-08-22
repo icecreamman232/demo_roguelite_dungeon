@@ -1,11 +1,11 @@
-using SGGames.Script.Core;
-using SGGames.Script.Data;
-using SGGames.Script.EditorExtensions;
-using SGGames.Script.Events;
-using SGGames.Script.Managers;
+using SGGames.Scripts.Core;
+using SGGames.Scripts.Data;
+using SGGames.Scripts.EditorExtensions;
+using SGGames.Scripts.Events;
+using SGGames.Scripts.Managers;
 using UnityEngine;
 
-namespace SGGames.Script.Entity
+namespace SGGames.Scripts.Entities
 {
     public class PlayerMovement : EntityMovement
     {

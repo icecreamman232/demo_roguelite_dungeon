@@ -1,5 +1,4 @@
-using System;
-using SGGames.Script.Core;
+using System;using SGGames.Scripts.Core;
 using UnityEngine;
 
 namespace SGGames.Script.Managers

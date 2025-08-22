@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
-using SGGames.Script.Core;
-using SGGames.Script.Data;
+using SGGames.Scripts.Core;
+using SGGames.Scripts.Data;
+using SGGames.Scripts.Managers;
 using UnityEngine;
 
 namespace SGGames.Script.Managers

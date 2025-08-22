@@ -1,8 +1,7 @@
-using SGGames.Script.Core;
-using SGGames.Script.Data;
+using SGGames.Scripts.Core;
+using SGGames.Scripts.Data;
 using UnityEditor;
 using UnityEngine;
-
 
 namespace SGGames.Script.EditorExtensions
 {

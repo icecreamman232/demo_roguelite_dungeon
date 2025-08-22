@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SGGames.Script.Core
+﻿namespace SGGames.Scripts.Core
 {
     public static partial class Global
     {

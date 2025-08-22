@@ -1,5 +1,5 @@
 
-namespace SGGames.Script.Entity
+namespace SGGames.Scripts.Entities
 {
     public interface IPlayerSpecialAbility
     {

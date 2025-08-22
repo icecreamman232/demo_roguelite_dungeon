@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SGGames.Script.Core
+namespace SGGames.Scripts.Core
 {
     /// <summary>
     /// Static helper class which contain vary math-type methods

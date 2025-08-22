@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace SGGames.Script.Core
+namespace SGGames.Scripts.Core
 {
     /// <summary>
     /// Static helper class which contains method for vary components, scripts and situations.

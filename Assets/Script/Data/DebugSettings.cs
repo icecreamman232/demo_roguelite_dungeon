@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-namespace SGGames.Script.Managers
+namespace SGGames.Scripts.Managers
 {
     [CreateAssetMenu(fileName = "Debug Settings", menuName = "SGGames/Debug Settings")]
     public class DebugSettings : ScriptableObject

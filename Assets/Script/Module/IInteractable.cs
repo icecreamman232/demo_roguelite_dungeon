@@ -1,7 +1,5 @@
 
-using System;
-
-namespace SGGames.Script.Modules
+namespace SGGames.Scripts.Modules
 {
     public interface IInteractable
     {

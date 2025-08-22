@@ -1,9 +1,8 @@
 using SGGames.Scripts.AI;
-using SGGames.Scripts.Entity;
 using UnityEditor;
 using UnityEngine;
 
-namespace SGGames.Script.EditorExtensions
+namespace SGGames.Scripts.EditorExtensions
 {
     public partial class QuickMenuEditor
     {

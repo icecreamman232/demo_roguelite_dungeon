@@ -1,11 +1,8 @@
 using System.Collections;
-using SGGames.Script.Core;
-using SGGames.Script.Entity;
-using SGGames.Script.Weapons;
+using SGGames.Scripts.Weapons;
 using UnityEngine;
 
-
-namespace SGGames.Script.Entity
+namespace SGGames.Scripts.Entities
 {
     public class EnemyMeleeWeapon : Weapon
     {

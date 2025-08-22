@@ -1,4 +1,4 @@
-using SGGames.Scripts.Entity;
+using SGGames.Scripts.Entities;
 
 
 namespace SGGames.Script.Modules

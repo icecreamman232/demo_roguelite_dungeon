@@ -1,9 +1,9 @@
 
 using System;
-using SGGames.Script.Events;
+using SGGames.Scripts.Events;
 using UnityEngine;
 
-namespace SGGames.Script.Core
+namespace SGGames.Scripts.Core
 {
     public class RoomObjectPooler : ObjectPooler
     {

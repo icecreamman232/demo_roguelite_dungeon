@@ -1,14 +1,13 @@
 ﻿using System.Reflection;
-using SGGames.Script.Core;
-using SGGames.Script.Data;
-using SGGames.Script.Entity;
-using SGGames.Script.Events;
-using SGGames.Script.HealthSystem;
-using SGGames.Scripts.Entity;
+using SGGames.Scripts.Core;
+using SGGames.Scripts.Data;
+using SGGames.Scripts.Entities;
+using SGGames.Scripts.Events;
+using SGGames.Scripts.HealthSystem;
 using UnityEditor;
 using UnityEngine;
 
-namespace SGGames.Script.EditorExtensions
+namespace SGGames.Scripts.EditorExtensions
 {
     public partial class QuickMenuEditor
     {

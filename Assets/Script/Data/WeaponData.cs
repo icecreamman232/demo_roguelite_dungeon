@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace SGGames.Script.Data
+namespace SGGames.Scripts.Data
 {
     [CreateAssetMenu(menuName = "SGGames/Data/Weapon",fileName = "New Weapon Data")]
     public class WeaponData : ScriptableObject

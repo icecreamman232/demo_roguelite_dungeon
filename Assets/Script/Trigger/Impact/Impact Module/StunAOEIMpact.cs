@@ -1,9 +1,9 @@
 using System.Collections;
-using SGGames.Script.Core;
-using SGGames.Scripts.Entity;
+using SGGames.Scripts.Core;
+using SGGames.Scripts.Entities;
 using UnityEngine;
 
-namespace SGGames.Script.Skills
+namespace SGGames.Scripts.Skills
 {
     [RequireComponent(typeof(CircleCollider2D))]
     public class StunAOEIMpact : Impact

@@ -1,5 +1,4 @@
-using SGGames.Scripts.Entity;
-using UnityEngine;
+using SGGames.Scripts.Entities;
 
 namespace SGGames.Script.Modules
 {

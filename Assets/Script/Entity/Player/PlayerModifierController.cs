@@ -1,10 +1,11 @@
 using System.Collections.Generic;
-using SGGames.Script.Core;
+using SGGames.Scripts.Core;
 using SGGames.Script.Items;
+using SGGames.Scripts.Items;
 using UnityEngine;
 
 
-namespace SGGames.Script.Entity
+namespace SGGames.Scripts.Entities
 {
     public class PlayerModifierController : EntityBehavior, IModifierController
     {

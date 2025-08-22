@@ -1,9 +1,8 @@
-using System;
-using SGGames.Script.Core;
-using SGGames.Script.Events;
+using SGGames.Scripts.Core;
+using SGGames.Scripts.Events;
 using UnityEngine;
 
-namespace SGGames.Script.Modules
+namespace SGGames.Scripts.Modules
 {
     [RequireComponent(typeof(CircleCollider2D))]
     public class InteractTrigger : MonoBehaviour

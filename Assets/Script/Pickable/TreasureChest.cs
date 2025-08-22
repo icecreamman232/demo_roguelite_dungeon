@@ -1,10 +1,10 @@
-using SGGames.Script.Core;
-using SGGames.Script.Events;
 using SGGames.Script.Managers;
-using SGGames.Script.Modules;
+using SGGames.Scripts.Core;
+using SGGames.Scripts.Events;
+using SGGames.Scripts.Modules;
 using UnityEngine;
 
-namespace SGGames.Script.Pickable
+namespace SGGames.Scripts.Pickable
 {
     public class TreasureChest : MonoBehaviour, IInteractable
     {

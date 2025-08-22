@@ -1,8 +1,8 @@
 using System;
-using SGGames.Script.Core;
+using SGGames.Scripts.Core;
 using UnityEngine;
 
-namespace SGGames.Script.Data
+namespace SGGames.Scripts.Data
 {
     [CreateAssetMenu(menuName = "SGGames/Data/Loot Table", fileName = "New Loot Table")]
     public class LootTable : ScriptableObject

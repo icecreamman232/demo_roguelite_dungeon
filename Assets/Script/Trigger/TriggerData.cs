@@ -1,30 +1,33 @@
-using SGGames.Script.Core;
-using SGGames.Script.EditorExtensions;
-using SGGames.Script.Items;
+using SGGames.Scripts.Core;
+using SGGames.Scripts.EditorExtensions;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Trigger Data", menuName = "SGGames/Trigger/Trigger Data")]
-public class TriggerData : ScriptableObject
+namespace SGGames.Scripts.Items
 {
-    [SerializeField] private Global.WorldEventType m_evenTrigger;
-    [SerializeField] [ShowProperties] private TriggerCondition[] m_conditions;
-    [SerializeField] [ShowProperties] private TriggerAction[] m_actions;
-
-    public bool CheckEvent(Global.WorldEventType eventType)
+    [CreateAssetMenu(fileName = "Trigger Data", menuName = "SGGames/Trigger/Trigger Data")]
+    public class TriggerData : ScriptableObject
     {
-        return m_evenTrigger == eventType;
-    }
+        [SerializeField] private Global.WorldEventType m_evenTrigger;
+        [SerializeField] [ShowProperties] private TriggerCondition[] m_conditions;
+        [SerializeField] [ShowProperties] private TriggerAction[] m_actions;
 
-    public void Execute(Global.WorldEventType eventType, GameObject source, GameObject target)
-    {
-        foreach (var condition in m_conditions)
+        public bool CheckEvent(Global.WorldEventType eventType)
         {
-            if (!condition.Evaluate(eventType, source, target)) return;
+            return m_evenTrigger == eventType;
         }
 
-        foreach (var action in m_actions)
+        public void Execute(Global.WorldEventType eventType, GameObject source, GameObject target)
         {
-            action.Execute(source, target);
+            foreach (var condition in m_conditions)
+            {
+                if (!condition.Evaluate(eventType, source, target)) return;
+            }
+
+            foreach (var action in m_actions)
+            {
+                action.Execute(source, target);
+            }
         }
-    }
+    } 
 }
+

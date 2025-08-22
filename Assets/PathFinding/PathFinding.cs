@@ -1,10 +1,13 @@
 using System;
 using System.Collections.Generic;
-using SGGames.Script.Core;
+using SGGames.Scripts.Core;
 using UnityEngine;
 
-namespace SGGames.Script.PathFindings
+namespace SGGames.Scripts.PathFindings
 {
+    /// <summary>
+    /// Core script for pathfinding.
+    /// </summary>
     public class PathFinding : MonoBehaviour
     {
         private Vector2Int[] Path;

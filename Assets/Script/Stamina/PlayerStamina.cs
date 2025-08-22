@@ -1,10 +1,9 @@
-using System;
 using System.Collections;
-using SGGames.Script.Entity;
-using SGGames.Script.Events;
+using SGGames.Scripts.Entities;
+using SGGames.Scripts.Events;
 using UnityEngine;
 
-namespace SGGames.Script.StaminaSystem
+namespace SGGames.Scripts.StaminaSystem
 {
     public class PlayerStamina : EntityBehavior
     {

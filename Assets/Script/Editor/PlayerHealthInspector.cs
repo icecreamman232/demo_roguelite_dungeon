@@ -1,4 +1,4 @@
-using SGGames.Script.HealthSystem;
+using SGGames.Scripts.HealthSystem;
 using UnityEditor;
 using UnityEngine;
 

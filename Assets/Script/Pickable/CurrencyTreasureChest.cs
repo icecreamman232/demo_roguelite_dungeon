@@ -1,8 +1,10 @@
-using SGGames.Script.Core;
-using SGGames.Script.Events;
+using SGGames.Script.Pickable;
+using SGGames.Scripts.Pickable;
+using SGGames.Scripts.Core;
+using SGGames.Scripts.Events;
 using UnityEngine;
 
-namespace SGGames.Script.Pickable
+namespace SGGames.Scripts.Pickable
 {
     public class CurrencyTreasureChest : TreasureChest
     {

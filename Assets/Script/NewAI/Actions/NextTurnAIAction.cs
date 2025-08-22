@@ -1,5 +1,4 @@
-
-using SGGames.Script.Core;
+using SGGames.Scripts.Core;
 
 namespace SGGames.Scripts.AI
 {

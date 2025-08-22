@@ -1,5 +1,5 @@
 
-namespace SGGames.Script.Core
+namespace SGGames.Scripts.Core
 {
     public interface IGameService
     {

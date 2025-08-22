@@ -1,9 +1,9 @@
-using SGGames.Script.Core;
+using SGGames.Scripts.Core;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace SGGames.Script.UI
+namespace SGGames.Scrips.UI
 {
     public class HealthUIView : UIView
     {

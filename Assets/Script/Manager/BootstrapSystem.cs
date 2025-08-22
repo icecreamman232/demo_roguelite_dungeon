@@ -1,12 +1,12 @@
 using System;
 using System.Collections;
-using SGGames.Script.Core;
-using SGGames.Script.UI;
+using SGGames.Scripts.Core;
+using SGGames.Scripts.UI;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.SceneManagement;
 
-namespace SGGames.Script.Managers
+namespace SGGames.Scripts.Managers
 {
     public class BootstrapSystem : MonoBehaviour
     {

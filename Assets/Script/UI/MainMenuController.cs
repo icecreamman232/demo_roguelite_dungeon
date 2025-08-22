@@ -1,8 +1,8 @@
 using System.Collections;
-using SGGames.Script.Core;
+using SGGames.Scripts.Core;
 using UnityEngine;
 
-namespace SGGames.Script.UI
+namespace SGGames.Scripts.UI
 {
     public class MainMenuController : MonoBehaviour, IGameService
     {

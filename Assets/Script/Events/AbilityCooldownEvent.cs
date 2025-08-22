@@ -1,8 +1,8 @@
 using System;
-using SGGames.Script.Core;
+using SGGames.Scripts.Core;
 using UnityEngine;
 
-namespace SGGames.Script.Events
+namespace SGGames.Scripts.Events
 {
     [CreateAssetMenu(fileName = "Ability Cooldown Event", menuName = "SGGames/Event/Ability Cooldown")]
     public class AbilityCooldownEvent : ScriptableEvent<AbilityCooldownEventData> { }

@@ -1,6 +1,6 @@
 using System;
 
-namespace SGGames.Script.EditorExtensions
+namespace SGGames.Scripts.EditorExtensions
 {
     [AttributeUsage(AttributeTargets.Method)]
     public class CheatCodeAttribute : Attribute

@@ -1,4 +1,4 @@
-using SGGames.Script.UI;
+using SGGames.Scripts.UI;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using Object = UnityEngine.Object;

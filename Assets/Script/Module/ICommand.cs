@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace SGGames.Script.Modules
+namespace SGGames.Scripts.Modules
 {
     public abstract class ICommand : ScriptableObject
     {

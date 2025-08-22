@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SGGames.Script.HealthSystem
+namespace SGGames.Scripts.HealthSystem
 {
     public interface IDamageable
     {

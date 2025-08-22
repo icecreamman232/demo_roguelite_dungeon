@@ -1,6 +1,6 @@
-using SGGames.Script.Data;
+using SGGames.Scripts.Data;
 
-namespace SGGames.Script.Weapons
+namespace SGGames.Scripts.Weapons
 {
     public class EnemyWeaponReadyState : IWeaponState
     {

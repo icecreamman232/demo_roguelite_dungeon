@@ -1,8 +1,8 @@
-using SGGames.Script.Core;
-using SGGames.Script.Data;
+using SGGames.Scripts.Core;
+using SGGames.Scripts.Data;
 using Random = UnityEngine.Random;
 
-namespace SGGames.Script.Managers
+namespace SGGames.Scripts.Managers
 {
     /// <summary>
     /// Class to hold the logic to choose which item should be put into the chest

@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace SGGames.Script.EditorExtensions
+namespace SGGames.Scripts.EditorExtensions
 {
     [CustomPropertyDrawer(typeof(ShowPropertiesAttribute))]
     public class ShowPropertiesDrawer : PropertyDrawer

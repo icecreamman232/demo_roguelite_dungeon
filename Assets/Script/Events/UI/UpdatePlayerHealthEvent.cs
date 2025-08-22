@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace SGGames.Script.Events
+namespace SGGames.Scripts.Events
 {
     [CreateAssetMenu(menuName = "SGGames/Event/Update Player Health", fileName = "New Update Player Health Event")]
     public class UpdatePlayerHealthEvent : ScriptableEvent<UpdatePlayerHealthEventData> { }

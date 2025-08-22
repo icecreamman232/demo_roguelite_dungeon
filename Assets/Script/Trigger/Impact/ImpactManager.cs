@@ -1,7 +1,7 @@
-using SGGames.Script.Core;
+using SGGames.Scripts.Core;
 using UnityEngine;
 
-namespace SGGames.Script.Skills
+namespace SGGames.Scripts.Skills
 {
     public class ImpactManager : MonoBehaviour, IGameService
     {

@@ -1,12 +1,10 @@
-using SGGames.Script.Core;
-using SGGames.Script.Modules;
+using SGGames.Scripts.Core;
+using SGGames.Scripts.Modules;
 
-namespace SGGames.Script.Weapons
+namespace SGGames.Scripts.Weapons
 {
     public class EnemyWeaponStateMachine : FiniteStateMachine<Weapon, Global.WeaponState>
     {
-        public EnemyWeaponStateMachine(Weapon context, (Global.WeaponState, IState<Weapon>)[] states) : base(context, states)
-        {
-        }
+        public EnemyWeaponStateMachine(Weapon context, (Global.WeaponState, IState<Weapon>)[] states) : base(context, states) { }
     }
 }

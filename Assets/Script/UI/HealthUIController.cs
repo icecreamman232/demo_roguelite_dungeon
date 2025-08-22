@@ -1,9 +1,8 @@
-using SGGames.Script.Events;
-using SGGames.Scripts.UI;
+using SGGames.Scrips.UI;
+using SGGames.Scripts.Events;
 using UnityEngine;
 
-
-namespace SGGames.Script.UI
+namespace SGGames.Scripts.UI
 {
     public class HealthUIController : UIController
     {

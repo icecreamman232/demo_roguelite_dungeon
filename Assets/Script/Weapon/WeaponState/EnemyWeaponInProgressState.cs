@@ -1,25 +1,10 @@
-using SGGames.Script.Data;
-using SGGames.Script.Weapons;
-using UnityEngine;
-
-namespace SGGames.Script.Weapons
+namespace SGGames.Scripts.Weapons
 {
     public class EnemyWeaponInProgressState : IWeaponState
     {
-        public void Enter(Weapon weapon)
-        {
-           
-        }
-
-        public void Update(Weapon weapon)
-        {
-            
-        }
-
-        public void Exit(Weapon weapon)
-        {
-            
-        }
+        public void Enter(Weapon weapon) { }
+        public void Update(Weapon weapon) { }
+        public void Exit(Weapon weapon) { }
     }
 }
 

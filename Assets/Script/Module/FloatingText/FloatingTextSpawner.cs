@@ -1,8 +1,9 @@
-using SGGames.Script.Core;
-using SGGames.Script.Data;
+using SGGames.Script.Modules;
+using SGGames.Scripts.Core;
+using SGGames.Scripts.Data;
 using UnityEngine;
 
-namespace SGGames.Script.Modules
+namespace SGGames.Scripts.Modules
 {
     public class FloatingTextSpawner : MonoBehaviour
     {

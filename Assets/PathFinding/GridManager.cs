@@ -1,12 +1,10 @@
-using System;
 using System.Collections.Generic;
-using SGGames.Script.Core;
-using SGGames.Script.Events;
-using SGGames.Script.Modules;
+using SGGames.Scripts.Core;
+using SGGames.Scripts.Events;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace SGGames.Script.PathFindings
+namespace SGGames.Scripts.PathFindings
 {
     public class GridManager : MonoBehaviour, IGameService
     {

@@ -1,11 +1,9 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using SGGames.Script.Core;
-using SGGames.Script.Modules;
-using UnityEngine;
+using SGGames.Scripts.Core;
+using SGGames.Scripts.Modules;
 
-namespace SGGames.Script.Weapons
+namespace SGGames.Scripts.Weapons
 {
     public class WeaponManager
     {

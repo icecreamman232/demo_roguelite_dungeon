@@ -1,8 +1,8 @@
-using SGGames.Script.Managers;
+using SGGames.Scripts.Managers;
 using UnityEditor;
 using UnityEngine;
 
-namespace SGGames.Script.EditorExtensions
+namespace SGGames.Scripts.EditorExtensions
 {
     [CustomEditor(typeof(DebugSettings))]
     public class DebugSettingInspector : Editor

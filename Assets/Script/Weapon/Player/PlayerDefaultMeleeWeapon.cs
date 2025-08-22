@@ -1,9 +1,8 @@
 using System.Collections;
-using SGGames.Script.Core;
-using SGGames.Script.Entity;
+using SGGames.Scripts.Entities;
 using UnityEngine;
 
-namespace SGGames.Script.Weapons
+namespace SGGames.Scripts.Weapons
 {
     public class PlayerDefaultMeleeWeapon : Weapon
     {

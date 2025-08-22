@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SGGames.Script.Entity
+namespace SGGames.Scripts.Entities
 {
     /// <summary>
     /// Base class for all entity behavior. This is used to enable/disable any entity behavior

@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace SGGames.Script.Data
+namespace SGGames.Scripts.Data
 {
     [Serializable]
     public class WeightSheet

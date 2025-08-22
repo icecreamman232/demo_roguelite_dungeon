@@ -1,9 +1,9 @@
 using System;
-using SGGames.Script.Core;
-using SGGames.Script.Managers;
+using SGGames.Scripts.Core;
+using SGGames.Scripts.Managers;
 using UnityEngine;
 
-namespace SGGames.Script.Entity
+namespace SGGames.Scripts.Entities
 {
     [Serializable]
     public class AimingData

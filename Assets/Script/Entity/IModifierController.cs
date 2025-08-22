@@ -1,6 +1,6 @@
-using SGGames.Script.Items;
+using SGGames.Scripts.Items;
 
-namespace SGGames.Script.Entity
+namespace SGGames.Scripts.Entities
 {
     public interface IModifierController
     {

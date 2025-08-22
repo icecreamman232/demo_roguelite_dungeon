@@ -1,10 +1,10 @@
-using SGGames.Script.Core;
-using SGGames.Script.Events;
-using SGGames.Script.HealthSystem;
-using SGGames.Script.StaminaSystem;
+using SGGames.Scripts.Core;
+using SGGames.Scripts.Events;
+using SGGames.Scripts.HealthSystem;
+using SGGames.Scripts.StaminaSystem;
 using UnityEngine;
 
-namespace SGGames.Script.Entity
+namespace SGGames.Scripts.Entities
 {
     /// <summary>
     /// Central component for other components to access other components of player
