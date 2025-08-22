@@ -280,8 +280,6 @@ MonoBehaviour:
   m_isInvincible: 0
   m_disableOnDeath: 1
   m_delayAfterDeath: 0.3
-  m_enemyData: {fileID: 11400000, guid: 3a4d342279c43b74ba18ff85db68f046, type: 2}
-  m_spriteRenderer: {fileID: 1208306049597145186}
   m_floatingTextEvent: {fileID: 11400000, guid: 319a78d159feea54fb1d2b7b0953e9ec, type: 2}
 --- !u!114 &8262135198344343122
 MonoBehaviour:
@@ -330,7 +328,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_isPermit: 1
-  m_currWeapon: {fileID: 896521030116690375}
+  m_availableWeapons:
+  - {fileID: 896521030116690375}
+  m_selectionStrategy: 0
 --- !u!1 &4662264174105308099
 GameObject:
   m_ObjectHideFlags: 0

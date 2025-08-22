@@ -10,6 +10,10 @@ namespace SGGames.Script.Managers
     {
         private readonly RoomManager m_roomManager;
         
+        private List<RoomData> GetEasyRoomList => m_roomManager.GetCurrentRoomContainer().GetEasyRoomList;
+        private List<RoomData> GetHardRoomList => m_roomManager.GetCurrentRoomContainer().GetHardRoomList;
+        private List<RoomData> GetChallengeRoomList => m_roomManager.GetCurrentRoomContainer().GetChallengeRoomList;
+        
         public RoomGenerator(RoomManager roomManager)
         {
             m_roomManager = roomManager;
@@ -20,9 +24,9 @@ namespace SGGames.Script.Managers
             m_roomManager.ClearData();
             
             // Get shuffled room lists by difficulty
-            var shuffledEasyRooms = GetShuffledRoomList(m_roomManager.GetCurrentRoomContainer().GetEasyRoomList);
-            var shuffledHardRooms = GetShuffledRoomList(m_roomManager.GetCurrentRoomContainer().GetHardRoomList);
-            var shuffledChallengeRooms = GetShuffledRoomList(m_roomManager.GetCurrentRoomContainer().GetChallengeRoomList);
+            var shuffledEasyRooms = GetShuffledRoomList(GetEasyRoomList);
+            var shuffledHardRooms = GetShuffledRoomList(GetHardRoomList);
+            var shuffledChallengeRooms = GetShuffledRoomList(GetChallengeRoomList);
             
             // Calculate how many rooms to select
             int easyRoomsToSelect = CalculateRoomsToSelect(m_roomManager.MaxEasyRoom, shuffledEasyRooms.Count);

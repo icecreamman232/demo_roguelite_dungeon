@@ -196,6 +196,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 947b2e007562d5f408725d4805647544, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_targetingType: 0
+  m_fixedDirectionStrategy:
+    m_fixedDirection: {x: 1, y: 0, z: 0}
   m_projectilePooler: {fileID: 6601005402557295134}
   m_weaponData: {fileID: 11400000, guid: c88c0b857543d054fb2c3bc9b9bb874c, type: 2}
 --- !u!114 &6601005402557295134
@@ -324,7 +327,7 @@ Transform:
   m_GameObject: {fileID: 7276820154010669371}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.11, y: 3.26, z: 0}
+  m_LocalPosition: {x: 0.5, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -447,8 +450,6 @@ MonoBehaviour:
   m_isInvincible: 0
   m_disableOnDeath: 1
   m_delayAfterDeath: 0
-  m_enemyData: {fileID: 11400000, guid: 016adb8f7453c2449bff74fb74c392fd, type: 2}
-  m_spriteRenderer: {fileID: 7984223844477170315}
   m_floatingTextEvent: {fileID: 11400000, guid: 319a78d159feea54fb1d2b7b0953e9ec, type: 2}
 --- !u!114 &4121836022372627583
 MonoBehaviour:
@@ -485,7 +486,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_isPermit: 1
-  m_currWeapon: {fileID: 1519801537839649554}
+  m_availableWeapons:
+  - {fileID: 1519801537839649554}
+  m_selectionStrategy: 0
 --- !u!114 &-4197170573172073043
 MonoBehaviour:
   m_ObjectHideFlags: 0
