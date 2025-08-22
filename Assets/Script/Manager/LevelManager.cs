@@ -193,11 +193,13 @@ namespace SGGames.Scripts.Managers
             {
                 var roomData = roomManager.FirstRoom;
                 m_currentRoom = Instantiate(roomData.RoomPrefab);
+                Debug.Log($"Created room {roomData.RoomPrefab.name}");
             }
-            #else
+#else
                 var roomData = roomManager.FirstRoom;
                 m_currentRoom = Instantiate(roomData.RoomPrefab);
-            #endif
+                Debug.Log($"Created room {roomData.RoomPrefab.name}");
+#endif
             yield return new WaitForEndOfFrame();
         }
 
@@ -212,10 +214,12 @@ namespace SGGames.Scripts.Managers
             {
                 var roomData = fromLeftRoom ? roomManager.GetNextLeftRoom() : roomManager.GetNextRightRoom();
                 m_currentRoom = Instantiate(roomData.RoomPrefab);
+                Debug.Log($"Created room {roomData.RoomPrefab.name}");
             }
 #else
             var roomData = fromLeftRoom ? roomManager.GetNextLeftRoom() : roomManager.GetNextRightRoom();;
             m_currentRoom = Instantiate(roomData.RoomPrefab);
+            Debug.Log($"Created room {roomData.RoomPrefab.name}");
 #endif
             
             yield return new WaitForEndOfFrame();
