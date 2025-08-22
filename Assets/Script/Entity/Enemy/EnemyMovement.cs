@@ -142,7 +142,7 @@ namespace SGGames.Scripts.Entities
                 //Movement rules:
                 //1. If the final position is not empty, then stop moving
                 //2. If the final position is empty, then move to the next position
-                if (m_currentStep > m_numberStepPerTurn || HasEnemyAtThisPosition(m_waypoints[m_currentStep]))
+                if (m_currentStep > m_numberStepPerTurn || HasEnemyAtThisPosition(m_waypoints[m_currentStep]) || HasPlayerAtThisPosition(m_waypoints[m_currentStep]))
                 {
                     SetMovementState(Global.MovementState.DelayAfterMoving);
                 }
@@ -156,6 +156,12 @@ namespace SGGames.Scripts.Entities
         private bool HasEnemyAtThisPosition(Vector3 position)
         {
             var result = Physics2D.OverlapBox(position, Vector3.one * 0.7f, 0, LayerManager.EnemyMask); 
+            return result != null;
+        }
+
+        private bool HasPlayerAtThisPosition(Vector3 position)
+        {
+            var result = Physics2D.OverlapBox(position, Vector3.one * 0.7f, 0, LayerManager.PlayerMask); 
             return result != null;
         }
 
