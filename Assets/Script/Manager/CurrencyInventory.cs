@@ -1,7 +1,8 @@
-using System;using SGGames.Scripts.Core;
+using System;
+using SGGames.Scripts.Core;
 using UnityEngine;
 
-namespace SGGames.Script.Managers
+namespace SGGames.Scripts.Managers
 {
     /// <summary>
     /// Handles all operation on type of item which will be not presented in main inventory such as: key, coin, bomb etc...

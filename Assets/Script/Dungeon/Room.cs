@@ -6,7 +6,7 @@ using SGGames.Scripts.Events;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace SGGames.Script.Dungeon
+namespace SGGames.Scripts.Dungeon
 {
     public class Room : MonoBehaviour
     {

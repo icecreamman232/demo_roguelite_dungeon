@@ -3,7 +3,7 @@ using SGGames.Scripts.Data;
 using UnityEditor;
 using UnityEngine;
 
-namespace SGGames.Script.EditorExtensions
+namespace SGGames.Scripts.EditorExtensions
 {
     [CustomEditor(typeof(RoomContainer))]
     public class RoomContainerInspector : Editor

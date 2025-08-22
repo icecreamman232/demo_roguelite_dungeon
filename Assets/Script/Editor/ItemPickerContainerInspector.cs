@@ -3,8 +3,7 @@ using SGGames.Scripts.Pickables;
 using UnityEditor;
 using UnityEngine;
 
-
-namespace SGGames.Script.EditorExtensions
+namespace SGGames.Scripts.EditorExtensions
 {
     [CustomEditor(typeof(ItemPickerContainer))]
     public class ItemPickerContainerInspector : Editor

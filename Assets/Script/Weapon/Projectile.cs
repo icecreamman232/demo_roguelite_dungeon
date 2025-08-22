@@ -1,5 +1,5 @@
 using System;
-using SGGames.Script.Data;
+using SGGames.Scripts.Data;
 using SGGames.Scripts.HealthSystem;
 using UnityEngine;
 

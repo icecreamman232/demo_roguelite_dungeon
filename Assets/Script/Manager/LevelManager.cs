@@ -1,5 +1,5 @@
 using System.Collections;
-using SGGames.Script.Dungeon;
+using SGGames.Scripts.Dungeon;
 using SGGames.Scripts.Core;
 using SGGames.Scripts.Data;
 using SGGames.Scripts.EditorExtensions;

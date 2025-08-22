@@ -2,7 +2,7 @@ using SGGames.Scripts.Core;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace SGGames.Script.UI
+namespace SGGames.Scripts.UI
 {
     public class EnemyHealthBarView : MonoBehaviour
     {

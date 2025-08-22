@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace SGGames.Script.Modules
+namespace SGGames.Scripts.Modules
 {
     [InitializeOnLoad]
     public class SaveRoomDesignSceneEditor

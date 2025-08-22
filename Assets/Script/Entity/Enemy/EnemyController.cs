@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using SGGames.Script.Dungeon;
+using SGGames.Scripts.Dungeon;
 using SGGames.Script.Modules;
 using SGGames.Scripts.Events;
 using SGGames.Scripts.HealthSystem;

@@ -1,11 +1,10 @@
-using System;
 using System.Collections;
-using SGGames.Script.Data;
+using SGGames.Scripts.Data;
 using UnityEngine;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.SceneManagement;
 
-namespace SGGames.Script.Core
+namespace SGGames.Scripts.Core
 {
     /// <summary>
     /// Use to initialize all systems to prevent race condition

@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace SGGames.Script.Modules
+namespace SGGames.Scripts.Modules
 {
     public class RoomDesignSaveSystem : MonoBehaviour
     {

@@ -2,8 +2,7 @@ using SGGames.Scripts.HealthSystem;
 using UnityEditor;
 using UnityEngine;
 
-
-namespace SGGames.Script.EditorExtensions
+namespace SGGames.Scripts.EditorExtensions
 {
     [CustomEditor(typeof(PlayerHealth))]
     public class PlayerHealthInspector : Editor

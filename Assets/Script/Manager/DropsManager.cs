@@ -7,7 +7,7 @@ using SGGames.Scripts.PathFindings;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace SGGames.Script.Managers
+namespace SGGames.Scripts.Managers
 {
     /// <summary>
     /// This class is responsible for dropping items, weapons and currencies upon requesting

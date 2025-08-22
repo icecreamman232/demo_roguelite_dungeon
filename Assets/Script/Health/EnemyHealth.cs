@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using SGGames.Script.Modules;
-using SGGames.Script.UI;
+using SGGames.Scripts.UI;
 using SGGames.Scripts.Data;
 using SGGames.Scripts.Entities;
 using UnityEngine;

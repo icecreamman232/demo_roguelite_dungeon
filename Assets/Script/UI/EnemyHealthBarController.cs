@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SGGames.Script.UI
+namespace SGGames.Scripts.UI
 {
     public class EnemyHealthBarController : MonoBehaviour
     {

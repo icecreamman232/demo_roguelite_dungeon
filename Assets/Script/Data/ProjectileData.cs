@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SGGames.Script.Data
+namespace SGGames.Scripts.Data
 {
     [CreateAssetMenu(fileName = "Projectile Data", menuName = "SGGames/Data/Projectile")]
     public class ProjectileData : ScriptableObject
