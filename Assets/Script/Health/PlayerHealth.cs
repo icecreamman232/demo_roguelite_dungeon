@@ -16,6 +16,7 @@ namespace SGGames.Scripts.HealthSystem
         [SerializeField] private WorldEvent m_worldEvent;
         [SerializeField] private GameEvent m_gameEvent;
         [SerializeField] private UpdatePlayerHealthEvent m_updatePlayerHealthEvent;
+        [SerializeField] private FloatingTextEvent m_floatingTextEvent;
         [Header("Invincibility Settings")]
         [SerializeField] private bool m_invincibleByItem;
         [SerializeField] private bool m_invincibleByDash;
@@ -74,6 +75,11 @@ namespace SGGames.Scripts.HealthSystem
             var finalDamage = Mathf.RoundToInt(damage * (1 - MathHelpers.PercentToValue(CurrentDamageResistance)));
             OnWeaponComboInterrupted?.Invoke();
             base.Damage(finalDamage, source);
+            m_floatingTextEvent.Raise(new FloatingTextData
+            {
+                Content = finalDamage.ToString(),
+                Position = transform.position
+            });
         }
 
         protected override bool CanTakeDamage()
