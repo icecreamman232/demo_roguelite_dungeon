@@ -10,12 +10,20 @@ namespace SGGames.Scripts.HealthSystem
     /// </summary>
     public class DamageHandler : MonoBehaviour
     {
+        [SerializeField] protected Global.DamageType m_damageType = Global.DamageType.Normal;
         [SerializeField] protected LayerMask m_targetMask;
         [SerializeField] protected float m_minDamage;
         [SerializeField] protected float m_maxDamage;
         [SerializeField] protected float m_invincibilityDuration;
-
+        [SerializeField] protected GameObject m_owner;
+        
+        public GameObject Owner => m_owner;
         public Action OnHit;
+
+        public void SetOwner(GameObject owner)
+        {
+            m_owner = owner;
+        }
         
         protected virtual float GetDamage()
         {
@@ -36,7 +44,12 @@ namespace SGGames.Scripts.HealthSystem
 
         protected virtual void HitDamageable(IDamageable damageable)
         {
-            damageable.TakeDamage(GetDamage(),this.gameObject, m_invincibilityDuration);
+            if (m_owner == null)
+            {
+                Debug.LogError($"Damage handler owner is null on {this.gameObject.name}");
+            }
+            
+            damageable.TakeDamage(m_damageType, GetDamage(), m_owner ?? this.gameObject, m_owner, m_invincibilityDuration);
             OnHit?.Invoke();
         }
     }

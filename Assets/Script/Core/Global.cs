@@ -190,6 +190,15 @@ namespace SGGames.Scripts.Core
             Poison,
         }
 
+        public enum DamageType
+        {
+            Normal,
+            Reflected,
+            Poison,
+            Burn,
+            Frozen,
+        }
+
         public enum HudButtonType
         {
             SpecialAbilityButton,

@@ -458,6 +458,7 @@ MonoBehaviour:
   m_minDamage: 10
   m_maxDamage: 15
   m_invincibilityDuration: 0.3
+  m_owner: {fileID: 3965494464855751623}
 --- !u!61 &2933225535416741485
 BoxCollider2D:
   m_ObjectHideFlags: 0

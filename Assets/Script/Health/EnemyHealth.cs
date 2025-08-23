@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using SGGames.Script.Modules;
+using SGGames.Scripts.Core;
 using SGGames.Scripts.UI;
 using SGGames.Scripts.Data;
 using SGGames.Scripts.Entities;
@@ -53,9 +54,9 @@ namespace SGGames.Scripts.HealthSystem
             m_isInvincible = false;
         }
 
-        protected override void Damage(float damage, GameObject source)
+        protected override void Damage(Global.DamageType damageType, float damage, GameObject source, GameObject owner)
         {
-            base.Damage(damage, source);
+            base.Damage(damageType, damage, source, owner);
             var attackDirection = (transform.position - source.transform.position).normalized;
             m_bloodSplashVFX.PlayAtDirection(attackDirection);
             m_floatingTextEvent.Raise(new FloatingTextData
@@ -81,7 +82,7 @@ namespace SGGames.Scripts.HealthSystem
         {
             try
             {
-                TakeDamage(m_currHealth, null, 0);
+                TakeDamage(Global.DamageType.Normal,m_currHealth, null, this.gameObject,0);
             }
             catch (Exception ex)
             {

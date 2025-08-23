@@ -70,7 +70,12 @@ namespace SGGames.Scripts.Core
         {
             return value * 100;
         }
-
+        
+        /// <summary>
+        /// Return floating point value from percentage
+        /// </summary>
+        /// <param name="percent"></param>
+        /// <returns></returns>
         public static float PercentToValue(float percent)
         {
             return percent / 100;

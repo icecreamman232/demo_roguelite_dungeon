@@ -70,11 +70,11 @@ namespace SGGames.Scripts.HealthSystem
             m_invincibleByDash = isInvincible;
         }
 
-        protected override void Damage(float damage, GameObject source)
+        protected override void Damage(Global.DamageType damageType, float damage, GameObject source, GameObject owner)
         {
             var finalDamage = Mathf.RoundToInt(damage * (1 - MathHelpers.PercentToValue(CurrentDamageResistance)));
             OnWeaponComboInterrupted?.Invoke();
-            base.Damage(finalDamage, source);
+            base.Damage(damageType, finalDamage, source, owner);
             m_floatingTextEvent.Raise(new FloatingTextData
             {
                 Content = finalDamage.ToString(),

@@ -25,6 +25,7 @@ namespace SGGames.Scripts.Weapons
 
         private void Awake()
         {
+            m_damageHandler.SetOwner(m_owner);
             m_damageHandler.OnHit += DestroyProjectile;
         }
         

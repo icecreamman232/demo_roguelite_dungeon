@@ -1,10 +1,20 @@
 using System;
 using System.Collections;
+using SGGames.Scripts.Core;
 using SGGames.Scripts.Entities;
 using UnityEngine;
 
 namespace SGGames.Scripts.HealthSystem
 {
+    [Serializable]
+    public class OnHitInfo
+    {
+        public float Damage;
+        public Global.DamageType DamageType;
+        public GameObject Source;
+        public GameObject Owner;
+    }
+    
     /// <summary>
     /// Base class to compute health for entity
     /// </summary>
@@ -16,6 +26,7 @@ namespace SGGames.Scripts.HealthSystem
         [SerializeField] protected bool m_disableOnDeath = true;
         [SerializeField] protected float m_delayAfterDeath;
         
+        private OnHitInfo m_onHitInfo;
         private ReviveComponent m_reviveComponent;
         private Animator m_animator;
         private int DEAD_TRIGGER_ANIM_PARAM = Animator.StringToHash("Trigger_Dead");
@@ -27,7 +38,7 @@ namespace SGGames.Scripts.HealthSystem
         public bool IsDead => m_currHealth <= 0;
         public bool CanRevive => m_reviveComponent && m_reviveComponent.CanRevive();
 
-        public Action<float, GameObject> OnHit;
+        public Action<OnHitInfo> OnHit;
         public Action OnDeath;
         
         protected virtual void Start()
@@ -35,6 +46,12 @@ namespace SGGames.Scripts.HealthSystem
             m_currHealth = m_maxHealth;
             m_animator = GetComponentInChildren<Animator>();
             m_reviveComponent = GetComponent<ReviveComponent>();
+            m_onHitInfo = new OnHitInfo()
+            {
+                Damage = 0,
+                Source = null,
+                Owner = null,
+            };
         }
 
         private void OnDestroy()
@@ -43,11 +60,11 @@ namespace SGGames.Scripts.HealthSystem
             OnDeath = null;
         }
 
-        public virtual void TakeDamage(float damage, GameObject source, float invincibleDuration)
+        public virtual void TakeDamage(Global.DamageType damageType, float damage, GameObject source, GameObject owner, float invincibleDuration)
         {
             if (!CanTakeDamage()) return;
             
-            Damage(damage, source);
+            Damage(damageType, damage, source, owner);
 
             UpdateHealthBar();
             
@@ -86,7 +103,7 @@ namespace SGGames.Scripts.HealthSystem
             return true;
         }
 
-        protected virtual void Damage(float damage, GameObject source)
+        protected virtual void Damage(Global.DamageType damageType, float damage, GameObject source, GameObject owner)
         {
             //Debug.Log($"{this.gameObject.name} take damage {damage} from {source.gameObject.name}");
             m_currHealth -= damage;
@@ -94,7 +111,11 @@ namespace SGGames.Scripts.HealthSystem
             {
                 m_currHealth = 0;
             }
-            OnHit?.Invoke(damage, source);
+            m_onHitInfo.DamageType = damageType;
+            m_onHitInfo.Damage = damage;
+            m_onHitInfo.Source = source;
+            m_onHitInfo.Owner = owner;
+            OnHit?.Invoke(m_onHitInfo);
         }
 
         protected virtual void UpdateHealthBar()

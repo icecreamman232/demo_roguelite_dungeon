@@ -654,6 +654,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Melee Weapon Template
       objectReference: {fileID: 0}
+    - target: {fileID: 1398949031492980426, guid: 802c0a6f4b7cce843823e1e47724af3d, type: 3}
+      propertyPath: m_owner
+      value: 
+      objectReference: {fileID: 9048246708849386775}
+    - target: {fileID: 2183096929159793486, guid: 802c0a6f4b7cce843823e1e47724af3d, type: 3}
+      propertyPath: m_owner
+      value: 
+      objectReference: {fileID: 9048246708849386775}
+    - target: {fileID: 3649406653401029870, guid: 802c0a6f4b7cce843823e1e47724af3d, type: 3}
+      propertyPath: m_owner
+      value: 
+      objectReference: {fileID: 9048246708849386775}
     - target: {fileID: 5158233748250718387, guid: 802c0a6f4b7cce843823e1e47724af3d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
