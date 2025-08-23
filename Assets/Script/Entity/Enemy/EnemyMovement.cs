@@ -98,7 +98,22 @@ namespace SGGames.Scripts.Entities
 
         public void StartMoving()
         {
-            SetNextPosition();
+            UpdatePath();
+            m_numberStepPerTurn = m_controller.Data.StepPerTurn < m_waypoints.Count
+                ? m_controller.Data.StepPerTurn
+                : m_waypoints.Count - 1;
+            m_currentStep = 1;
+            m_nextPosition = m_waypoints[m_currentStep];
+            
+            //Pre-check if the next position is empty or not
+            if (HasPlayerAtThisPosition(m_nextPosition) || HasEnemyAtThisPosition(m_nextPosition))
+            {
+                Debug.Log("Next position is not empty!");
+                m_nextPosition = m_currentPosition;
+                SetMovementState(Global.MovementState.DelayAfterMoving);
+                return;
+            }
+            
             SetMovementState(Global.MovementState.Moving);
         }
 
@@ -166,15 +181,6 @@ namespace SGGames.Scripts.Entities
         }
 
         #region Pathfinding
-        private void SetNextPosition()
-        {
-            UpdatePath();
-            m_numberStepPerTurn = m_controller.Data.StepPerTurn < m_waypoints.Count
-                ? m_controller.Data.StepPerTurn
-                : m_waypoints.Count - 1;
-            m_currentStep = 1;
-            m_nextPosition = m_waypoints[m_currentStep];
-        }
         
         private void UpdatePath()
         {
