@@ -188,6 +188,7 @@ namespace SGGames.Scripts.Managers
                     }
                     break;
                 case Global.TurnBaseState.PlayerFinishedTurn:
+                    if (m_turnBaseState != Global.TurnBaseState.PlayerTakeTurn) return;
                     //All enemies are dead, switch to player turn immediately
                     if (HasAllEnemiesDead())
                     {

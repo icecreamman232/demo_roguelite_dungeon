@@ -1,6 +1,7 @@
 using SGGames.Scripts.Core;
 using SGGames.Scripts.Events;
 using SGGames.Scripts.HealthSystem;
+using SGGames.Scripts.Managers;
 using SGGames.Scripts.StaminaSystem;
 using UnityEngine;
 
@@ -26,7 +27,9 @@ namespace SGGames.Scripts.Entities
         [SerializeField] private PlayerDodge m_dodge;
         [SerializeField] private PlayerAimingController m_aimingController;
         [SerializeField] private SwitchTurnEvent m_switchTurnEvent;
-
+        
+        private TurnBaseManager m_turnBaseManager;
+        
         public BoxCollider2D PlayerCollider => m_collider;
         public GameObject Model => m_spriteRenderer.gameObject;
         public SpriteRenderer SpriteRenderer => m_spriteRenderer;
@@ -50,6 +53,7 @@ namespace SGGames.Scripts.Entities
             ModifierController.Initialize(this);
             m_weaponHandler.Initialize(this);
             m_playerDash.Initialize(this);
+            m_turnBaseManager = ServiceLocator.GetService<TurnBaseManager>();
         }
 
         private void OnSwitchTurn(TurnBaseEventData turnBaseEventData)
@@ -67,6 +71,7 @@ namespace SGGames.Scripts.Entities
 
         public void FinishedTurn()
         {
+            if(m_turnBaseManager.CurrentTurnBaseState != Global.TurnBaseState.PlayerTakeTurn) return;
             m_switchTurnEvent.Raise(new TurnBaseEventData
             {
                 TurnBaseState = Global.TurnBaseState.PlayerFinishedTurn,
