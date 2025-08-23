@@ -1,10 +1,11 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace SGGames.Scripts.Abilities
 {
     public class AbilityHandler : MonoBehaviour
     {
-        [SerializeField] private AbilityBehavior[] m_abilities;
+        [SerializeField] private List<AbilityBehavior> m_abilities;
 
         private void Awake()
         {
@@ -14,6 +15,16 @@ namespace SGGames.Scripts.Abilities
                 {
                     ability.Activate();
                 }
+            }
+        }
+
+        public void AddAbility(AbilityBehavior ability)
+        {
+            var newAbility = Instantiate(ability,transform);
+            m_abilities.Add(newAbility);
+            if (newAbility.IsPermit && newAbility.IsDefaultActivated)
+            {
+                newAbility.Activate();
             }
         }
     }
