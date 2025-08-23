@@ -2,6 +2,7 @@ using SGGames.Scripts.Abilities;
 using SGGames.Scripts.Core;
 using SGGames.Scripts.HealthSystem;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace SGGames.Scrips.Abilities
 {
@@ -11,7 +12,7 @@ namespace SGGames.Scrips.Abilities
         [SerializeField] private float m_chanceToReflect;
         [SerializeField] private float m_percentDamageReflected;
         [SerializeField] private Health m_health;
-        
+
         [ContextMenu("Activate")]
         public override void Activate()
         {

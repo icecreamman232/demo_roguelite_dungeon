@@ -25,7 +25,7 @@ namespace SGGames.Scripts.Modules
         {
             var textObject = m_textPooler.GetPooledGameObject();
             var floatingText = textObject.GetComponent<FloatingText>();
-            floatingText.SetupFloatingText(floatingTextData.Content, floatingTextData.Position, m_textLifeTime);
+            floatingText.SetupFloatingText(floatingTextData.Content, floatingTextData.Position, m_textLifeTime, floatingTextData.Color);
         }
     }
 }

@@ -44,9 +44,10 @@ namespace SGGames.Scripts.Modules
             gameObject.SetActive(false);
         }
 
-        public void SetupFloatingText(string content, Vector3 position, float lifeTime)
+        public void SetupFloatingText(string content, Vector3 position, float lifeTime, Color color)
         {
             m_text.text = content;
+            m_text.color = color;
             m_startPosition = position;
             transform.position = position;
             m_lifeTime = lifeTime;

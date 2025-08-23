@@ -78,7 +78,8 @@ namespace SGGames.Scripts.HealthSystem
             m_floatingTextEvent.Raise(new FloatingTextData
             {
                 Content = finalDamage.ToString(),
-                Position = transform.position
+                Position = transform.position,
+                Color = GetDamageColor(damageType)
             });
         }
 

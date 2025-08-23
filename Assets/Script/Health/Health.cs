@@ -155,6 +155,24 @@ namespace SGGames.Scripts.HealthSystem
                 this.gameObject.SetActive(false);
             }
         }
+
+        protected Color GetDamageColor(Global.DamageType damageType)
+        {
+            switch (damageType)
+            {
+                case Global.DamageType.Normal:
+                    return Color.white;
+                case Global.DamageType.Reflected:
+                    return Color.yellow;
+                case Global.DamageType.Poison:
+                    return Color.green;
+                case Global.DamageType.Burn:
+                    return new Color(0.9f, 0.3f, 0.2f);
+                case Global.DamageType.Frozen:
+                    return Color.cyan;
+            }
+            return Color.white;
+        }
     }
 }
 

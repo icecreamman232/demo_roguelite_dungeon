@@ -170,9 +170,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_isPermit: 1
+  m_isDefaultActivated: 1
   m_isActivated: 0
   m_owner: {fileID: 3649311792346412000}
-  m_chanceToReflect: 65
+  m_chanceToReflect: 100
   m_percentDamageReflected: 50
   m_health: {fileID: 3681058085338316961}
 --- !u!1 &3965494464855751623
@@ -602,6 +603,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94526096adf1d7d409eed03ab715321e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_abilities:
+  - {fileID: 8995501802937255822}
 --- !u!1 &7111102373090438985
 GameObject:
   m_ObjectHideFlags: 0

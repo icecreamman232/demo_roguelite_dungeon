@@ -59,10 +59,12 @@ namespace SGGames.Scripts.HealthSystem
             base.Damage(damageType, damage, source, owner);
             var attackDirection = (transform.position - source.transform.position).normalized;
             m_bloodSplashVFX.PlayAtDirection(attackDirection);
+            
             m_floatingTextEvent.Raise(new FloatingTextData
             {
                 Content = damage.ToString(),
-                Position = transform.position
+                Position = transform.position,
+                Color = GetDamageColor(damageType)
             });
         }
 

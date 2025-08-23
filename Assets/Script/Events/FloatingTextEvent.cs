@@ -12,5 +12,6 @@ namespace SGGames.Scripts.Data
     {
         public string Content;
         public Vector3 Position;
+        public Color Color = Color.white;
     }
 }
