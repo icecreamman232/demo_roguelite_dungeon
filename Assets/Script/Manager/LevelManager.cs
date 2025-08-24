@@ -1,4 +1,5 @@
 using System.Collections;
+using SGGames.Scrips.Events;
 using SGGames.Scripts.Dungeon;
 using SGGames.Scripts.Core;
 using SGGames.Scripts.Data;
@@ -15,6 +16,7 @@ namespace SGGames.Scripts.Managers
         [SerializeField] private AssetReferenceGameObject m_playerPrefab;
         [SerializeField] private BiomesTransitionUIEvent m_biomesTransitionUIEvent;
         [SerializeField] private GameEvent m_gameEvent;
+        [SerializeField] private ShowCheatCodeUIEvent m_showCheatCodeUIEvent;
         [SerializeField] private Transform m_spawnPosition;
         [Header("Testing")]
         [SerializeField] private bool m_isUsingTestRoom;
@@ -194,10 +196,18 @@ namespace SGGames.Scripts.Managers
                 var roomData = roomManager.FirstRoom;
                 m_currentRoom = Instantiate(roomData.RoomPrefab);
                 Debug.Log($"Created room {roomData.RoomPrefab.name}");
+                m_showCheatCodeUIEvent.Raise(new CheatCodeUIData
+                {
+                    RoomName = roomData.RoomPrefab.name
+                });
             }
 #else
                 var roomData = roomManager.FirstRoom;
                 m_currentRoom = Instantiate(roomData.RoomPrefab);
+                m_showCheatCodeUIEvent.Raise(new CheatCodeUIData
+                {
+                    RoomName = roomData.RoomPrefab.name
+                });
                 Debug.Log($"Created room {roomData.RoomPrefab.name}");
 #endif
             yield return new WaitForEndOfFrame();
@@ -214,11 +224,19 @@ namespace SGGames.Scripts.Managers
             {
                 var roomData = fromLeftRoom ? roomManager.GetNextLeftRoom() : roomManager.GetNextRightRoom();
                 m_currentRoom = Instantiate(roomData.RoomPrefab);
+                m_showCheatCodeUIEvent.Raise(new CheatCodeUIData
+                {
+                    RoomName = roomData.RoomPrefab.name
+                });
                 Debug.Log($"Created room {roomData.RoomPrefab.name}");
             }
 #else
             var roomData = fromLeftRoom ? roomManager.GetNextLeftRoom() : roomManager.GetNextRightRoom();;
             m_currentRoom = Instantiate(roomData.RoomPrefab);
+            m_showCheatCodeUIEvent.Raise(new CheatCodeUIData
+                {
+                    RoomName = roomData.RoomPrefab.name
+                });
             Debug.Log($"Created room {roomData.RoomPrefab.name}");
 #endif
             

@@ -61,7 +61,8 @@ PrefabInstance:
       value: First-Room-Biomes-1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4579329400097248753, guid: 287d580421c343b4383510feefd4ff30, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 287d580421c343b4383510feefd4ff30, type: 3}
