@@ -165,7 +165,7 @@ namespace SGGames.Scripts.Entities
                 return;
             }
             
-            m_movementDirection= moveInput;
+            m_movementDirection = moveInput;
             if (m_movementDirection != Vector2.zero)
             {
                 CalculateNextPosition();

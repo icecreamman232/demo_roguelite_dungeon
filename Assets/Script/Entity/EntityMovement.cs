@@ -51,7 +51,7 @@ namespace SGGames.Scripts.Entities
             {
                 m_lerpValue = 0;
                 m_currentPosition = m_nextPosition;
-                SetMovementState(Global.MovementState.DelayAfterMoving);
+                SetMovementState(Global.MovementState.Finish);
             }
         }
         
