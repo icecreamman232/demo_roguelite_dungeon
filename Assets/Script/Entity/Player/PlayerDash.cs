@@ -322,6 +322,8 @@ namespace SGGames.Scripts.Entities
             
             if (CheckObstacleWithRaycast(m_dashDirection))
             {
+                //Snap to grid position to prevent player is out of place
+                transform.position = m_gridManager.GetSnapPosition(transform.position);
                 OnDashHitObstacle?.Invoke();
                 m_worldEvent.Raise(Global.WorldEventType.OnPlayerDashCanceled, this.gameObject, null);
                 EndDash();
@@ -368,6 +370,7 @@ namespace SGGames.Scripts.Entities
                 abilityType = Global.AbilityType.Special
             });
             m_dashState = Global.PlayerDashState.Cooldown;
+            Debug.Log($"Enddash at position {transform.position}");
         }
 
         private void CountCooldown()
