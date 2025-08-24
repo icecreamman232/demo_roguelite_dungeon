@@ -279,7 +279,7 @@ MonoBehaviour:
   m_currHealth: 0
   m_isInvincible: 0
   m_disableOnDeath: 1
-  m_delayAfterDeath: 0.3
+  m_delayAfterDeath: 0
   m_floatingTextEvent: {fileID: 11400000, guid: 319a78d159feea54fb1d2b7b0953e9ec, type: 2}
 --- !u!114 &8262135198344343122
 MonoBehaviour:
@@ -452,6 +452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dafb5a6d328e8243947f454b2f8875d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_damageType: 0
   m_targetMask:
     serializedVersion: 2
     m_Bits: 64

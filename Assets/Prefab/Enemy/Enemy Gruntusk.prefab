@@ -331,7 +331,7 @@ MonoBehaviour:
   m_currHealth: 0
   m_isInvincible: 0
   m_disableOnDeath: 1
-  m_delayAfterDeath: 0.3
+  m_delayAfterDeath: 0
   m_floatingTextEvent: {fileID: 11400000, guid: 319a78d159feea54fb1d2b7b0953e9ec, type: 2}
 --- !u!114 &8262135198344343122
 MonoBehaviour:
