@@ -84,9 +84,12 @@ namespace SGGames.Scripts.Entities
         
         private void OnEnemyDeath()
         {
-            var turnBaseManager = ServiceLocator.GetService<TurnBaseManager>();
-            turnBaseManager.RemoveEnemyFromTurnBaseList(this);
-            
+            if (ServiceLocator.HasService<TurnBaseManager>())
+            {
+                var turnBaseManager = ServiceLocator.GetService<TurnBaseManager>();
+                turnBaseManager.RemoveEnemyFromTurnBaseList(this);
+
+            }
             
             foreach (var command in m_deathCommands)
             {
