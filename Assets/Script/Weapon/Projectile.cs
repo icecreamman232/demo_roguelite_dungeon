@@ -25,7 +25,6 @@ namespace SGGames.Scripts.Weapons
 
         private void Awake()
         {
-            m_damageHandler.SetOwner(m_owner);
             m_damageHandler.OnHit += DestroyProjectile;
         }
         
@@ -67,6 +66,7 @@ namespace SGGames.Scripts.Weapons
             m_movingDirection = builder.Direction;
             transform.position = builder.Position;
             m_owner = builder.Owner;
+            m_damageHandler.SetOwner(m_owner);
             
             m_startPosition = transform.position;
             m_model.transform.rotation = builder.Rotation * Quaternion.AngleAxis(m_offsetAngle, Vector3.forward);
