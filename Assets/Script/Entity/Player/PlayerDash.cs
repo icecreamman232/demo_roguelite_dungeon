@@ -183,9 +183,23 @@ namespace SGGames.Scripts.Entities
 
         public bool CanDash()
         {
-            if(!m_controller.PlayerStamina.CanUseStamina(m_playerData.StaminaCostForDash)) return false;
-            if (!m_controller.ActionPoint.CanUsePoint(1)) return false;
-            if(m_dashState != Global.PlayerDashState.Ready) return false;
+            if (!m_controller.PlayerStamina.CanUseStamina(m_playerData.StaminaCostForDash))
+            {
+                Debug.Log("Dash:: Can't use stamina");
+                return false;
+            }
+
+            if (!m_controller.ActionPoint.CanUsePoint(1))
+            {
+                Debug.Log("Dash:: Can't use AP");
+                return false;
+            }
+
+            if (m_dashState != Global.PlayerDashState.Ready)
+            {
+                Debug.Log($"Dash:: Dash state not ready. Current state {m_dashState.ToString()}");
+                return false;
+            }
             
             return true;
         }
@@ -314,8 +328,9 @@ namespace SGGames.Scripts.Entities
 
             m_afterImageFX.DropImageFX(m_spriteRenderer.sprite, m_spriteRenderer.flipX);
             
-            if (transform.position == m_endPosition)
+            if (m_lerpValue >= 1 || Vector3.Distance(transform.position, m_endPosition) <= 0.1f)
             {
+                transform.position = m_endPosition;
                 OnDashFinished?.Invoke();
                 m_worldEvent.Raise(Global.WorldEventType.OnPlayerStopDash, this.gameObject, null);
                 EndDash();
