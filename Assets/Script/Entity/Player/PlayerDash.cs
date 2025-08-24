@@ -204,6 +204,11 @@ namespace SGGames.Scripts.Entities
             return true;
         }
 
+        public void ForceEndDash()
+        {
+            EndDash();
+        }
+
         private bool CheckObstacleWithRaycast(Vector3 direction)
         {
             var hit = Physics2D.Raycast(transform.position, direction, k_raycastDistance, LayerManager.ObstacleMask | LayerManager.DoorMask);

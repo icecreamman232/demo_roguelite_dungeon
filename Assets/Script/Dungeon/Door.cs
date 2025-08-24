@@ -1,4 +1,5 @@
 using SGGames.Scripts.Core;
+using SGGames.Scripts.Entities;
 using SGGames.Scripts.Events;
 using SGGames.Scripts.Managers;
 using UnityEngine;
@@ -36,6 +37,9 @@ namespace SGGames.Scripts.Dungeon
             if (!m_isOpen) return;
             if (!other.CompareTag("Player")) return;
 
+            var playerDash = other.GetComponent<PlayerDash>();
+            playerDash.ForceEndDash();
+            
             var roomManager = ServiceLocator.GetService<RoomManager>();
             if (roomManager.IsBossRoom)
             {
