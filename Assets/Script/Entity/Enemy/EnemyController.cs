@@ -84,6 +84,10 @@ namespace SGGames.Scripts.Entities
         
         private void OnEnemyDeath()
         {
+            var turnBaseManager = ServiceLocator.GetService<TurnBaseManager>();
+            turnBaseManager.RemoveEnemyFromTurnBaseList(this);
+            
+            
             foreach (var command in m_deathCommands)
             {
                 command.Execute();
@@ -101,9 +105,6 @@ namespace SGGames.Scripts.Entities
                     room.RegisterEnemyToRoom(this);
                 }
             }
-
-            var turnBaseManager = ServiceLocator.GetService<TurnBaseManager>();
-            turnBaseManager.RemoveEnemyFromTurnBaseList(this);
         }
         
         private void OnReceiveGameEvent(Global.GameEventType eventType)

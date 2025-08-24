@@ -75,13 +75,25 @@ namespace SGGames.Scripts.Managers
 
         public void RemoveEnemyFromTurnBaseList(EnemyController controller)
         {
+            EnemyController deadEnemy = null;
             foreach (var enemyRef in m_enemyTurnBaseStatusList)
             {
                 if (enemyRef.RefController == controller)
                 {
+                    enemyRef.HasTakenTurn = true;
                     enemyRef.IsDead = true;
-                    return;
+                    deadEnemy = enemyRef.RefController;
                 }
+            }
+            Debug.Log($"Enemy Death : Turnbase state = {m_turnBaseState}");
+            //Force end turn of dead enemy, so other enemy can continue or player can switch turn
+            if (m_turnBaseState == Global.TurnBaseState.EnemyTakeTurn)
+            {
+                m_switchTurnEvent.Raise(new TurnBaseEventData
+                {
+                    TurnBaseState = Global.TurnBaseState.EnemyFinishedTurn,
+                    EntityIndex = deadEnemy.OrderIndex
+                });
             }
 
             //If this is the last enemy, switch to player turn immediately
@@ -157,6 +169,7 @@ namespace SGGames.Scripts.Managers
         {
             foreach (var enemyRef in m_enemyTurnBaseStatusList)
             {
+                if (enemyRef.IsDead) continue;
                 enemyRef.HasTakenTurn = false;
             }
         }
@@ -165,6 +178,11 @@ namespace SGGames.Scripts.Managers
         {
             if (eventType == Global.GameEventType.GameStarted)
             {
+                if (m_enemyTurnBaseStatusList.Count > 0)
+                {
+                    //Remove all dead enemy
+                    m_enemyTurnBaseStatusList.RemoveAll(x => x.IsDead);
+                }
                 SwitchToPlayerTurn();
             }
         }
@@ -175,7 +193,11 @@ namespace SGGames.Scripts.Managers
             {
                 case Global.TurnBaseState.EnemyFinishedTurn:
                     //Debug.Log("Finished Turn in Turn Base Manager");
-                    m_enemyTurnBaseStatusList.First(enemy=>enemy.OrderIndex == turnBaseEventData.EntityIndex && !enemy.IsDead).HasTakenTurn = true;
+                    var enemyFinishTurn = m_enemyTurnBaseStatusList.FirstOrDefault(enemy=>enemy.OrderIndex == turnBaseEventData.EntityIndex && !enemy.IsDead);
+                    if (enemyFinishTurn != null)
+                    {
+                        enemyFinishTurn.HasTakenTurn = true;
+                    }
                     if (HasAllEnemiesFinishedTurn())
                     {
                         m_currentEnemyIndex = 0;
