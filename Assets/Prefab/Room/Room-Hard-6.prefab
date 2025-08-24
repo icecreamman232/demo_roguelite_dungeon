@@ -177,7 +177,8 @@ PrefabInstance:
       value: Room-Hard-6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4579329400097248753, guid: 287d580421c343b4383510feefd4ff30, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2415896887905785955, guid: 287d580421c343b4383510feefd4ff30, type: 3}
       insertIndex: -1
